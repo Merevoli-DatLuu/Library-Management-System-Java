@@ -1,7 +1,7 @@
 # Library-Management-System-Java-
 ![Language](https://img.shields.io/badge/Language-Java-orange.svg)
 ![Language](https://img.shields.io/badge/Team-SGU-00ffff.svg)
-* Đồ án Java (thầy Sang)
+![Language](https://img.shields.io/badge/Project-Java%20%2F%20HK2-1affa3.svg)
 
 ## Team
 | stt | Họ Tên  | MSSV |
