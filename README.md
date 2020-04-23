@@ -1,4 +1,4 @@
-# Library-Management-System-Java-
+# Library Management System by Java
 ![Language](https://img.shields.io/badge/Language-Java-orange.svg)
 ![Language](https://img.shields.io/badge/Team-SGU-00ffff.svg)
 ![Language](https://img.shields.io/badge/Project-Java%20%2F%20HK2-1affa3.svg)
