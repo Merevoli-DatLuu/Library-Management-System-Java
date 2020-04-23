@@ -2,7 +2,7 @@
 ![Language](https://img.shields.io/badge/Language-Java-orange.svg)
 ![Team](https://img.shields.io/badge/Team-SGU-00ffff.svg)
 ![Project](https://img.shields.io/badge/Project-Java%20%2F%20HK2-1affa3.svg)
-<span style = "float:right" align="right"> <img src= "https://img.shields.io/badge/style-5%25-00e600?label=Completion&logo=java&logoColor=red&style=for-the-badge&-5%"></span>
+<div style = "display: block;" align="right"> <img src= "https://img.shields.io/badge/style-5%25-00e600?label=Completion&logo=java&logoColor=red&style=for-the-badge&-5%"></div>
 
 
 ## Team
