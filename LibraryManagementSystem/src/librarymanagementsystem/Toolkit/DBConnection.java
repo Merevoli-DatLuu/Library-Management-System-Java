@@ -20,7 +20,7 @@ public class DBConnection {
     
     private final String ipAddress = "localhost:3306";
     
-    DBConnection(){
+    public DBConnection(){
         if (checkDriver() == true){
             this.DBName = "quanlythuvien";
             this.username = "root";
@@ -29,7 +29,7 @@ public class DBConnection {
         }
     }
     
-    DBConnection(String DBName, String username, String password){
+    public DBConnection(String DBName, String username, String password){
         if (checkDriver()){
             this.DBName = DBName;
             this.username = username;
