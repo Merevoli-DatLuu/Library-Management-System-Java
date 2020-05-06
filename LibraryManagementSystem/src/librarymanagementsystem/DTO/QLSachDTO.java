@@ -16,6 +16,19 @@ public class QLSachDTO {
         this.giaTien = giaTien;
         this.soTrang = soTrang;
     }
+    
+    public QLSachDTO(QLSachDTO sach){
+        this.maSach = sach.maSach;
+        this.tenSach = sach.tenSach;
+        this.tenTacGia = sach.tenTacGia;
+        this.tenNXB = sach.tenNXB;
+        this.theLoai = sach.theLoai;
+        this.ngonNgu = sach.ngonNgu;
+        this.tomTatNoiDung = sach.tomTatNoiDung;
+        this.namXB = sach.namXB;
+        this.giaTien = sach.giaTien;
+        this.soTrang = sach.soTrang;
+    }
 
     public String getMaSach() {
         return maSach;
