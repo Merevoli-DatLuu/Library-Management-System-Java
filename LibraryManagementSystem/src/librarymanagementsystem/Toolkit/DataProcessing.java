@@ -1,12 +1,19 @@
 package librarymanagementsystem.Toolkit;
 
 import java.lang.*;
+import java.lang.Number;
+import java.lang.Math;
+import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Calendar;
+import java.sql.Date;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 //import org.apache.commons.codec.binary.Base64;
 
 
@@ -207,6 +214,230 @@ public class DataProcessing {
         random.nextBytes(salt);
         return salt;
     }
+    
+    public String dateToString(Date date){
+        return date.toString();
+    }
+    
+    public Date stringToDate(String date){
+        return Date.valueOf(date);
+    }
+    
+    /** Date Processing **/
+    public int getDate(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.DATE);
+    }
+    
+    public int getDate(String date){
+        Date dat = Date.valueOf(date);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dat);
+        return cal.get(Calendar.DATE);
+    }
+    
+    public int getMonth(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MONTH);
+    }
+    
+    public int getMonth(String date){
+        Date dat = Date.valueOf(date);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dat);
+        return cal.get(Calendar.MONTH);
+    }
+    
+    public int getYear(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.YEAR);
+    }
+    
+    public int getYear(String date){
+        Date dat = Date.valueOf(date);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dat);
+        return cal.get(Calendar.YEAR);
+    }
+    
+    public int getDay(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.DAY_OF_WEEK);
+    }
+    
+    public int getDay(String date){
+        Date dat = Date.valueOf(date);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dat);
+        return cal.get(Calendar.DAY_OF_WEEK);
+    }
+    
+    /** Analysis Functions **/
+    
+    public double max(ArrayList <Double> arr){
+        double res_max = -0x3f3f3f3f;
+        for (double i : arr){
+            if (res_max < i){
+                res_max = i;
+            }
+        }
+        return res_max;
+    }
+    
+    public double min(ArrayList <Double> arr){
+        double res_min = 0x3f3f3f3f;
+        for (double i : arr){
+            if (res_min < i){
+                res_min = i;
+            }
+        }
+        return res_min;
+    }
+    
+    public double mean(ArrayList <Double> arr){
+        double sum = 0;
+        for (double i : arr){
+            sum += i;
+        }
+        return sum/arr.size();
+    }
+    
+    public double median(ArrayList <Double> arr){
+        Collections.sort(arr);
+        if ((arr.size() & 1) == 1){
+            return arr.get(arr.size()/2 + 1);
+        }
+        else{
+            return (arr.get(arr.size()/2) + arr.get(arr.size()/2 + 1))/2;
+        }
+    }
+    
+    public double mode(ArrayList <Double> arr){
+        HashMap<Double, Integer> hashMap = new HashMap<Double, Integer>();
+        for (double i : arr){
+            Integer count = hashMap.get(i);
+            if (count == null){
+                hashMap.put(i, 1);
+            }
+            else{
+                hashMap.put(i, hashMap.get(i) + 1);
+            }
+        }
+        int max_mode = 0;
+        double res_mode = arr.get(0);
+        for (double i : hashMap.keySet()){
+            if (max_mode < hashMap.get(i)){
+                max_mode = hashMap.get(i);
+                res_mode = i;
+            }
+        }
+        return res_mode;
+    }
+    
+    public double var(ArrayList <Double> arr){
+        double mean = mean(arr);
+        double res_var = 0;
+        for (double i : arr){
+            res_var += (i - mean)*(i - mean);
+        }
+        return res_var/arr.size();
+    }
+    
+    public double std(ArrayList <Double> arr){
+        return Math.sqrt(var(arr));
+    }
+    
+    public double percentile(ArrayList <Double> arr, int percen){
+        double per = (double)100/arr.size();
+        int k = (int)(percen/per) - 1;
+        if (k < 0){
+            k = 0;
+        }
+        Collections.sort(arr);
+        return arr.get(k);
+    }
+    
+    /** data.length() = date.length() By Date**/ 
+    /** Get Data from Analysis **/
+    public Double[] getDateValue(ArrayList <String> date) { // count from 2019 && only this count from 0
+        Double[] dat = new Double[10];
+        for (int i=0; i<date.size(); i++){
+            dat[getYear(date.get(i)) - 2019]++;
+        }
+        return dat;
+    }
+    
+    public Double[] getDateValueByYear(ArrayList <String> date, int year) {
+        Double[] dat = new Double[13];
+        for (int i=0; i<date.size(); i++){
+            if (getYear(date.get(i)) == year){
+                dat[getMonth(date.get(i))]++;
+            }
+        }
+        return dat;
+    }
+    
+    public Double[] getDateValueByMonth(ArrayList <String> date, int month, int year) {
+        Double[] dat = new Double[32];
+        for (int i=0; i<date.size(); i++){
+            if (getYear(date.get(i)) == year && getMonth(date.get(i)) == month){
+                dat[getDate(date.get(i))]++;
+            }
+        }
+        return dat;
+    }
+    
+    public HashMap <String, Integer> getObjectValue(ArrayList <String> obj) { 
+        HashMap <String, Integer> badjava= new HashMap <String, Integer>();
+        for (int i=0; i<obj.size(); i++){
+            Integer count = badjava.get(obj.get(i));
+            if (count == null){
+                badjava.put(obj.get(i), 1);
+            }
+            else{
+                badjava.put(obj.get(i), count + 1);
+            }
+        }
+        return badjava;
+    }
+    
+    public HashMap <String, Integer> getObjectValueByYear(ArrayList <String> obj, ArrayList <String> date, int year) {
+        HashMap <String, Integer> badjava= new HashMap <String, Integer>();
+        for (int i=0; i<obj.size(); i++){
+            if (getYear(date.get(i)) == year){
+                Integer count = badjava.get(obj.get(i));
+                if (count == null){
+                    badjava.put(obj.get(i), 1);
+                }
+                else{
+                    badjava.put(obj.get(i), count + 1);
+                }
+            }
+        }
+        return badjava;
+    }
+    
+    public HashMap <String, Integer> getObjectValueByMonth(ArrayList <String> obj, ArrayList <String> date, int month, int year) {
+        HashMap <String, Integer> badjava= new HashMap <String, Integer>();
+        for (int i=0; i<obj.size(); i++){
+            if (getYear(date.get(i)) == year && getMonth(date.get(i)) == month){
+                Integer count = badjava.get(obj.get(i));
+                if (count == null){
+                    badjava.put(obj.get(i), 1);
+                }
+                else{
+                    badjava.put(obj.get(i), count + 1);
+                }
+            }
+        }
+        return badjava;
+    }
+    
+    
     
     /***public String bytetoString(byte[] input) {
         return org.apache.commons.codec.binary.Base64.encodeBase64String(input);
