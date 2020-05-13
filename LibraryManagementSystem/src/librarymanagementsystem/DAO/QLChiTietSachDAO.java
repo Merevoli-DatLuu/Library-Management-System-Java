@@ -57,7 +57,8 @@ public class QLChiTietSachDAO {
                     int namXB = rs.getInt("namXB");
                     int giaTien = rs.getInt("giaTien");
                     int soTrang = rs.getInt("soTrang");
-                    QLSachDTO sach = new QLSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang);
+                    String hinh = rs.getString("hinhSach");
+                    QLSachDTO sach = new QLSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang, hinh);
                     arrChiTietSach.add(new QLChiTietSachDTO(IDSach, maSach, tinhTrang, sach));
                 }
             }

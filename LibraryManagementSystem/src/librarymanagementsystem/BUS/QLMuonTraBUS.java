@@ -29,17 +29,6 @@ public class QLMuonTraBUS {
         return this.add(muonTra);
     }
     
-    // add table `muonsach`
-    public Boolean add(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon){
-        return this.add(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon);
-    }
-    
-    // add table `trasach`
-    public Boolean add(String maMuonSach, String thoiDiemTra){
-        return this.add(maMuonSach, thoiDiemTra);
-    }
-    
-    
     public Boolean del(String maMuonSach){
         Boolean check = muonTraDAO.del(maMuonSach);
         if (check){
@@ -69,15 +58,5 @@ public class QLMuonTraBUS {
     public Boolean mod(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon, String thoiDiemTra){
         QLMuonTraDTO muonTra=new QLMuonTraDTO(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon, thoiDiemTra);
         return this.mod(muonTra);
-    } 
-    
-    // mod table `muonsach`
-    public Boolean mod(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon){
-        return this.mod(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon);
-    } 
-    
-    // mod table `trasach`
-    public Boolean mod(String maMuonSach, String thoiDiemTra){
-        return this.mod(maMuonSach, thoiDiemTra);
     } 
 }

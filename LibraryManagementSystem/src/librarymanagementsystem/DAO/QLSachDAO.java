@@ -29,7 +29,8 @@ public class QLSachDAO {
                     int namXB = rs.getInt("namXB");
                     int giaTien = rs.getInt("giaTien");
                     int soTrang = rs.getInt("soTrang");
-                    arrSach.add(new QLSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang));
+                    String hinh = rs.getString("hinhSach");
+                    arrSach.add(new QLSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang, hinh));
                 }
             }
 
@@ -45,7 +46,7 @@ public class QLSachDAO {
     
     public Boolean add(QLSachDTO sach){
         DBSach = new DBConnection();
-        Boolean check = DBSach.SQLUpdate("INSERT INTO Sach(maSach, tenSach, tenTacGia, tenNXB, namXB, theLoai, ngonNgu, tomTatNoiDung, giaTien, soTrang) "
+        Boolean check = DBSach.SQLUpdate("INSERT INTO Sach(maSach, tenSach, tenTacGia, tenNXB, namXB, theLoai, ngonNgu, tomTatNoiDung, giaTien, soTrang, hinhSach) "
                 + "VALUES ('"
                 + sach.getMaSach() + "', '"
                 + sach.getTenSach() + "', '"
@@ -56,7 +57,8 @@ public class QLSachDAO {
                 + sach.getNgonNgu() + "','"      
                 + sach.getTomTatNoiDung() + "',"   
                 + sach.getGiaTien() + ","   
-                + sach.getSoTrang() + ");");
+                + sach.getSoTrang() + ",'"
+                + sach.getHinh() + "');");
         DBSach.closeConnection();
         return check;
     }
@@ -80,7 +82,8 @@ public class QLSachDAO {
                 + "', tomTatNoiDung='" + sach.getTomTatNoiDung()
                 + "', giaTien=" + sach.getGiaTien()
                 + ", soTrang=" + sach.getSoTrang()
-                + " where maSach='" + sach.getMaSach() + "'");
+                + ", hinhSach='" + sach.getHinh()
+                + "' where maSach='" + sach.getMaSach() + "'");
         DBSach.closeConnection();
         return check;
     }

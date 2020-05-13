@@ -26,7 +26,7 @@ public class QLChiTietSachBUS {
     }
     
     public String [] getHeader_full(){
-        return new String[]{"ID Sách", "Mã Sách", "Tình Trạng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
+        return new String[]{"ID Sách", "Bìa Sách", "Mã Sách", "Tình Trạng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
     
     public Boolean add(QLChiTietSachDTO chiTietSach){

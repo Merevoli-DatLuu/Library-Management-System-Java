@@ -26,7 +26,7 @@ public class QLKhoSachBUS {
     }
     
     public String [] getHeader_full(){
-        return new String[]{"Mã Sách", "Số Lượng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
+        return new String[]{"Mã Sách", "Bìa Sách", "Số Lượng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
     
     public Boolean add(QLKhoSachDTO khoSach){

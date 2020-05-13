@@ -15,7 +15,7 @@ public class QLMuonTraDAO {
         ArrayList<QLMuonTraDTO> arrMuonTra = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM MuonSach,TraSach WHERE MuonSach.maMuonSach = TraSach.maMuonSach";
+            String query = "SELECT * FROM MuonSach";
             ResultSet rs = DBMuonTra.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -41,48 +41,35 @@ public class QLMuonTraDAO {
     
     public Boolean add(QLMuonTraDTO muonTra){
         DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO MuonSach(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon) "
+        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO MuonSach(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon, thoiDiemTra) "
                 + "VALUES ('"
                 + muonTra.getMaMuonSach()+ "','"     
                 + muonTra.getMaThe()+ "','"   
                 + muonTra.getIDSach()+ "','"   
                 + muonTra.getThoiDiemMuon()+ "',"     
-                + muonTra.getThoiGianMuon()+ ");"
-                + "INSERT INTO TraSach(maMuonSach,thoiDiemTra)"
-                    +"VALUES ('"
-                        + muonTra.getMaMuonSach()+"','"
-                        + muonTra.getThoiDiemTra()+"');");
+                + muonTra.getThoiGianMuon()+ ",'"     
+                + muonTra.getThoiDiemTra()+ ");");
         DBMuonTra.closeConnection();
         return check;
     }
-    // add table `muonsach`
-    public Boolean add(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon){
+    
+    public Boolean add(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon, String thoiDiemTra){
         DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO MuonSach(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon) "
+        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO MuonSach(maMuonSach, maThe, IDSach, thoiDiemMuon, thoiGianMuon, thoiDiemTra) "
                 + "VALUES ('"
                 + maMuonSach+ "','"     
                 + maThe+ "','"   
                 + IDSach+ "','"   
                 + thoiDiemMuon+ "',"     
-                + thoiGianMuon+ ");");
-        DBMuonTra.closeConnection();
-        return check;
-    }
-    // add table `trasach`
-    public Boolean add(String maMuonSach, String thoiDiemTra){
-        DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO TraSach(maMuonSach,thoiDiemTra)"
-                    +"VALUES ('"
-                        + maMuonSach+"','"
-                        + thoiDiemTra+"');");
+                + thoiGianMuon+ ",'"
+                + thoiDiemTra+ "');");
         DBMuonTra.closeConnection();
         return check;
     }
     
-     public Boolean del(String maMuonSach){
+    public Boolean del(String maMuonSach){
         DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("DELETE FROM MuonSach WHERE MuonSach.maMuonSach = '" + maMuonSach + "';"
-                                            + "DELETE FROM TraSach WHERE TraSach.maMuonSach = '" + maMuonSach + "';");
+        Boolean check = DBMuonTra.SQLUpdate("DELETE FROM MuonSach WHERE MuonSach.maMuonSach = '" + maMuonSach + "';");
         DBMuonTra.closeConnection();
         return check;
     }
@@ -94,31 +81,21 @@ public class QLMuonTraDAO {
                 + "', IDSach='" + muonTra.getIDSach()
                 + "', thoiDiemMuon='" + muonTra.getThoiDiemMuon()
                 + "', thoiGianMuon=" + muonTra.getThoiGianMuon()
-                + " where maMuonSach='" + muonTra.getMaMuonSach()+ "';"
-                + "Update TraSach Set "
-                    + "thoiDiemTra='" + muonTra.getThoiDiemTra()
-                    + "' where maMuonSach='"+ muonTra.getMaMuonSach()+ "';");
+                + ", thoiDiemTra='" + muonTra.getThoiDiemTra()
+                + "' where maMuonSach='" + muonTra.getMaMuonSach()+ "';");
         DBMuonTra.closeConnection();
         return check;
     }
-    // mod table `muonsach`   
-    public Boolean mod(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon){
+    
+    public Boolean mod(String maMuonSach, String maThe, String IDSach, String thoiDiemMuon, int thoiGianMuon, String thoiDiemTra){
         DBMuonTra = new DBConnection();
         Boolean check = DBMuonTra.SQLUpdate("Update MuonSach Set "
                 + " maThe='" + maThe
                 + "', IDSach='" + IDSach
                 + "', thoiDiemMuon='" + thoiDiemMuon
                 + "', thoiGianMuon=" + thoiGianMuon
-                + " where maMuonSach='" + maMuonSach+ "';");
-        DBMuonTra.closeConnection();
-        return check;
-    }
-    // mod table `trasach`
-    public Boolean mod(String maMuonSach, String thoiDiemTra){
-        DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("Update TraSach Set "
-                    + "thoiDiemTra='" + thoiDiemTra
-                    + "' where maMuonSach='"+ maMuonSach+ "';");
+                + ", thoiDiemTra='" + thoiDiemTra
+                + "' where maMuonSach='" + maMuonSach+ "';");
         DBMuonTra.closeConnection();
         return check;
     }

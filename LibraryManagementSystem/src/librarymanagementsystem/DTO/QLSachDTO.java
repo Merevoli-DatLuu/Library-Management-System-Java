@@ -1,10 +1,10 @@
 package librarymanagementsystem.DTO;
 
 public class QLSachDTO {
-    String maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung;
+    String maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, hinh;
     int namXB, giaTien, soTrang;
     
-    public QLSachDTO(String maSach, String tenSach, String tenTacGia, String tenNXB, String theLoai, String ngonNgu, String tomTatNoiDung, int namXB, int giaTien, int soTrang){
+    public QLSachDTO(String maSach, String tenSach, String tenTacGia, String tenNXB, String theLoai, String ngonNgu, String tomTatNoiDung, int namXB, int giaTien, int soTrang, String hinh){
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.tenTacGia = tenTacGia;
@@ -15,6 +15,7 @@ public class QLSachDTO {
         this.namXB = namXB;
         this.giaTien = giaTien;
         this.soTrang = soTrang;
+        this.hinh = hinh;
     }
     
     public QLSachDTO(QLSachDTO sach){
@@ -28,6 +29,7 @@ public class QLSachDTO {
         this.namXB = sach.namXB;
         this.giaTien = sach.giaTien;
         this.soTrang = sach.soTrang;
+        this.hinh = sach.hinh;
     }
 
     public String getMaSach() {
@@ -109,5 +111,15 @@ public class QLSachDTO {
     public void setSoTrang(int soTrang) {
         this.soTrang = soTrang;
     }
+
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setHinh(String hinh) {
+        this.hinh = hinh;
+    }
+    
+    
  
 }
