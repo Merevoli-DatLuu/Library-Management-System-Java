@@ -16,6 +16,15 @@ public class QLAdminBUS {
         return new String[]{"Tài Khoản Admin", "password"};
     }
     
+    public Boolean kiemTraTaiKhoan(String tk, String pass){
+        for (QLAdminDTO e : arrAdmin){
+            if (e.getTkAdmin().equals(tk) && e.getPassword().equals(pass)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public Boolean add(QLAdminDTO admin){
         Boolean check = adminDAO.add(admin);
         

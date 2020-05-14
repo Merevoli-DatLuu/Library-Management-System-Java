@@ -16,6 +16,15 @@ public class QLNhanVienBUS {
         return new String[]{"Mã Quản Lý", "Password", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email", "Chức Vụ"};
     }
     
+    public Boolean kiemTraTaiKhoan(String tk, String pass){
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (e.getMaQuanLy().equals(tk) && e.getPassword().equals(pass)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public Boolean add(QLNhanVienDTO nhanVien){
         Boolean check = nhanVienDAO.add(nhanVien);
         if (check){

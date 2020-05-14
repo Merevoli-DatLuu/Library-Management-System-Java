@@ -15,7 +15,7 @@ public class QLNhanVienDAO {
         ArrayList<QLNhanVienDTO> arrNhanVien = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM The";
+            String query = "SELECT * FROM NguoiQuanLy";
             ResultSet rs = DBNhanVien.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
