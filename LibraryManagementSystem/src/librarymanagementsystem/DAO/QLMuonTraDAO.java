@@ -31,7 +31,7 @@ public class QLMuonTraDAO {
 
         }
         catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Lỗi!!! Lỗi đọc dữ liệu bảng Mượn Sách, Trả Sách");
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Lỗi đọc dữ liệu bảng Mượn Sách");
         } 
         finally{
             DBMuonTra.closeConnection();

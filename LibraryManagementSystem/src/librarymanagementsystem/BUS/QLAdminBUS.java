@@ -16,13 +16,14 @@ public class QLAdminBUS {
         return new String[]{"Tài Khoản Admin", "password"};
     }
     
-    public Boolean kiemTraTaiKhoan(String tk, String pass){
+    // Trả về mã Admin, ko có trả về ""
+    public String kiemTraTaiKhoan(String tk, String pass){
         for (QLAdminDTO e : arrAdmin){
             if (e.getTkAdmin().equals(tk) && e.getPassword().equals(pass)){
-                return true;
+                return e.getTkAdmin();
             }
         }
-        return false;
+        return "";
     }
     
     public Boolean add(QLAdminDTO admin){
