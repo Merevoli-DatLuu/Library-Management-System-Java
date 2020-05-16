@@ -11,9 +11,11 @@ public class LoginGUI extends JFrame{
     private JLabel jLabel_password;
     private JLabel jLabel_username;
     private JLabel login_form; // GUI Image
+    private JLabel RFIDLogin;
     private JPanel pLogin;
     private JPasswordField password_field;
     private JTextField username_field;
+    loginRFID t;
     
     public LoginGUI() {
         initComponents();
@@ -35,6 +37,7 @@ public class LoginGUI extends JFrame{
         jLabel_password = new javax.swing.JLabel();
         username_field = new javax.swing.JTextField();
         password_field = new javax.swing.JPasswordField();
+        RFIDLogin = new javax.swing.JLabel();
         exit_btn = new javax.swing.JPanel();
         login_form = new javax.swing.JLabel();
 
@@ -140,10 +143,23 @@ public class LoginGUI extends JFrame{
         );
 
         pLogin.add(exit_btn);
+        
+        /** RFID login **/
+        RFIDLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/icon_RFIDLogin_30_30.png"))); // NOI18N
+        RFIDLogin.setBounds(417, 195, 30, 30);
+        RFIDLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RFIDLoginMouseClicked(evt);
+            }
+        });
+        pLogin.add(RFIDLogin);
+        
         pLogin.setBounds(0, 0, 530, 340);
         login_form.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/login.png"))); // NOI18N
         login_form.setBounds(10, 10, 500, 312);
         pLogin.add(login_form);
+        
+        
         
         getContentPane().add(pLogin);
 
@@ -164,7 +180,18 @@ public class LoginGUI extends JFrame{
         jLabel_password.setVisible(false);
         password_field.setVisible(true);
         password_field.requestFocus();
-    }                              
+    }                  
+    
+    /** for RFID **/
+    private void RFIDLoginMouseClicked(java.awt.event.MouseEvent evt){
+        //new loginRFID().setVisible(true);
+        
+        // System.out.println(t);
+        if (t == null || !t.isDisplayable()){ // Hiển thị 1 windows tại 1 thời điểm 
+            t = new loginRFID();
+            t.setVisible(true);
+        }
+    }
     
     public Boolean kiemTraDangNhap(){
         QLAdminBUS tkadmin = new QLAdminBUS();
