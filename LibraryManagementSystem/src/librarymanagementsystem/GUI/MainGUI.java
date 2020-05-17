@@ -7,6 +7,8 @@ import javax.swing.*;
 public class MainGUI extends javax.swing.JFrame{
     int x_Mouse, y_Mouse; // For Moving Window
     static String currentUser = "";
+    ExitGUI exitForm;
+    
     public MainGUI() {
         initComponents();
         setSize(1020, 680);
@@ -119,7 +121,11 @@ public class MainGUI extends javax.swing.JFrame{
     }// </editor-fold>                        
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
-        System.exit(0);
+        //System.exit(0);
+        if (exitForm == null || !exitForm.isDisplayable()){ // Hiển thị 1 windows tại 1 thời điểm 
+            exitForm = new ExitGUI();
+            exitForm.setVisible(true);
+        }
     }                                       
 
     private void movingWindowMouseDragged(java.awt.event.MouseEvent evt) {                                          

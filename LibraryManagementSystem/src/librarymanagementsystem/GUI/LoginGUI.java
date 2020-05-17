@@ -15,7 +15,7 @@ public class LoginGUI extends JFrame{
     private JPanel pLogin;
     private JPasswordField password_field;
     private JTextField username_field;
-    loginRFID t;
+    loginRFID RFIDlogin;
     
     public LoginGUI() {
         initComponents();
@@ -187,9 +187,9 @@ public class LoginGUI extends JFrame{
         //new loginRFID().setVisible(true);
         
         // System.out.println(t);
-        if (t == null || !t.isDisplayable()){ // Hiển thị 1 windows tại 1 thời điểm 
-            t = new loginRFID();
-            t.setVisible(true);
+        if (RFIDlogin == null || !RFIDlogin.isDisplayable()){ // Hiển thị 1 windows tại 1 thời điểm 
+            RFIDlogin = new loginRFID();
+            RFIDlogin.setVisible(true);
         }
     }
     
