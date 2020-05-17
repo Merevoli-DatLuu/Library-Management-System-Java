@@ -1,0 +1,41 @@
+log database
+* Thêm Bảng
+	+ ChiTietPhieuMuon
+	+ LyDoPhat
+
+* Thêm Thuộc tính
+	+ tongTien => nhapKhoSach
+	+ donGia, thanhTien => nhapKho
+	+ soLuongTong, soLuongMuon => sach
+	+ maLDPhat => PhieuPhat
+
+* Đổi tên
+	** Bảng
+		+ nguoiquanly => nhanvien
+		+ nhapKhoSach => phieuNhap
+		+ nhapKho => chiTietPhieuNhap
+		+ xuatKhoSach => phieuXuat
+		+ xuatKho => chiTietPhieuXuat
+		+ sach => loaiSach 
+		+ MuonSach => PhieuMuon
+
+	** Thuộc tính
+		+ maQuanLy => maNhanVien
+		+ thoiDiem* => Ngay*
+		
+khóa chính 
+ChiTietPhieuMuon: CTMxxxxxx vd:CTM000001
+PhieuPhat: Pxxxxxx vd: P0000001
+LyDoPhat: LDPxxxxxx vd:LDP0000001
+
+Lưu ý khi nhập data: những thuộc tính được tạo bởi những thuộc tính khác (vd: Tổng Tiền, số lượng tổng) thì phải đúng khi tính toán thực tế.
+
+Các thuộc tính liên quan
++ Đơn giá [Chi Tiết Phiếu Nhập] - Giá Tiền [Loại Sách]
++ Thành tiền [Chi Tiết Phiếu Nhập] - Số Lượng [Chi Tiết Phiếu Nhập], Đơn giá [Chi Tiết Phiếu Nhập]
++ Tổng Tiền [Nhập Kho Sách] - Thành Tiền [Chi Tiết Phiếu Nhập]
++ Tiền Phạt - Ngày Mượn [Phiếu Mượn], ThoiGianMuon [Phiếu Mượn], Ngày Trả [Phiếu Mượn] , Mức Độ [Lý Do Phạt]
++ Tổng Số Lượng [Phiếu Nhập] - Số Lượng [Chi Tiết Phiếu Nhập]
++ Tổng Số Lượng [Phiếu Xuất] - Số Lượng [Chi Tiết Phiếu Xuất]
++ Số Lượng [Kho Sách] - Tổng số Lượng [Phiếu Nhập], Tổng Số Lượng [Phiếu Xuất]
+  

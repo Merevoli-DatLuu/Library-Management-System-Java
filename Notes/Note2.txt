@@ -1,0 +1,48 @@
+I) log database
+* Thêm Bảng
+	+ ChiTietPhieuMuon
+	+ LyDoPhat
+
+* Thêm Thuộc tính
+	+ tongTien => nhapKhoSach
+	+ donGia, thanhTien => nhapKho
+	+ soLuongTong, soLuongMuon => sach
+	+ maLDPhat => PhieuPhat
+
+* Đổi tên
+	** Bảng
+		+ nguoiquanly => nhanvien
+		+ nhapKhoSach => phieuNhap
+		+ nhapKho => chiTietPhieuNhap
+		+ xuatKhoSach => phieuXuat
+		+ xuatKho => chiTietPhieuXuat
+		+ sach => loaiSach 
+		+ MuonSach => PhieuMuon
+
+	** Thuộc tính
+		+ maQuanLy => maNhanVien
+		+ thoiDiem* => Ngay*
+		
+II) khóa chính 
+ChiTietPhieuMuon: CTMxxxxxx vd:CTM000001
+PhieuPhat: Pxxxxxx vd: P0000001
+LyDoPhat: LDPxxxxxx vd:LDP0000001
+
+III) Lưu ý khi nhập data: những thuộc tính được tạo bởi những thuộc tính khác (tạm gọi là thuộc tính liên quan) (vd: Tổng Tiền, số lượng tổng) thì phải đúng theo tính toán thực tế.
+
+Các thuộc tính liên quan
++ Đơn giá [Chi Tiết Phiếu Nhập] => Giá Tiền [Loại Sách]
++ Thành tiền [Chi Tiết Phiếu Nhập] => Số Lượng [Chi Tiết Phiếu Nhập], Đơn giá [Chi Tiết Phiếu Nhập]
++ Tổng Tiền [Nhập Kho Sách] => Thành Tiền [Chi Tiết Phiếu Nhập]
++ Tiền Phạt => Ngày Mượn [Phiếu Mượn], ThoiGianMuon [Phiếu Mượn], Ngày Trả [Phiếu Mượn] , Mức Độ [Lý Do Phạt]
++ Tổng Số Lượng [Phiếu Nhập] => Số Lượng [Chi Tiết Phiếu Nhập]
++ Tổng Số Lượng [Phiếu Xuất] => Số Lượng [Chi Tiết Phiếu Xuất]
++ Số Lượng [Kho Sách] => Tổng số Lượng [Phiếu Nhập], Tổng Số Lượng [Phiếu Xuất]
++ Số Lượng Tổng [Loại Sách] => maSach [Chi Tiết Sách]
++ Số Lượng Mượn [Loại Sách] => IDSach [Phiếu Mượn], Ngày Mượn [Phiếu Mượn], Ngày Trả [Phiếu Mượn], maSach[Chi Tiết Sách]
+  
+IV) Nhập data
++ Bảng Lý Do Phạt - 10 rows - thuộc tính "mucdo" từ 20 -> 100 theo mức độ nghiệm trọng của lý do
++ Chi Tiết Phiếu Muon, Mỗi Mã Mượn Sách chỉ từ 1, 2 ID Sách
++ thuộc tính liên quan phải thêm chính xác
++ Số Lượng Mượn tạm thời bỏ trống 
