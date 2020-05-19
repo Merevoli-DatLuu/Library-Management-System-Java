@@ -1,1 +1,0 @@
-﻿lười quá bữa sau viết

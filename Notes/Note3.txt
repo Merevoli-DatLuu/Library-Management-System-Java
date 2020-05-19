@@ -1,0 +1,10 @@
+﻿đổi tên all
+viết class thiếu
+thêm search
+
+// Tạm thời ko xét đến thuộc tính liên quan
+
+fix main GUI
+table 
+thành phần
+char 
