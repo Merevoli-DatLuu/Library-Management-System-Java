@@ -3,17 +3,17 @@ package librarymanagementsystem.DTO;
 public class QLKhoSachDTO {
     String maSach;
     int soLuong;
-    QLSachDTO sach; //for full view table (not use in normal view)
+    QLLoaiSachDTO sach; //for full view table (not use in normal view)
     
     public QLKhoSachDTO(String maSach, int soLuong) {
         this.maSach = maSach;
         this.soLuong = soLuong;
     }
     
-    public QLKhoSachDTO(String maSach, int soLuong, QLSachDTO sach){
+    public QLKhoSachDTO(String maSach, int soLuong, QLLoaiSachDTO sach){
         this.maSach = maSach;
         this.soLuong = soLuong;
-        this.sach = new QLSachDTO(sach);
+        this.sach = new QLLoaiSachDTO(sach);
     }
 
     public String getMaSach() {
@@ -32,11 +32,11 @@ public class QLKhoSachDTO {
         this.soLuong = soLuong;
     }
     
-    public QLSachDTO getSach() {
+    public QLLoaiSachDTO getSach() {
         return sach;
     }
 
-    public void setSach(QLSachDTO sach) {
+    public void setSach(QLLoaiSachDTO sach) {
         this.sach = sach;
     }
 }

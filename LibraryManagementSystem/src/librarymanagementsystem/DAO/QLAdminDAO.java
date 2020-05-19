@@ -21,7 +21,8 @@ public class QLAdminDAO {
                 while (rs.next()){
                     String tkAdmin = rs.getString("tkAdmin");
                     String password = rs.getString("password");
-                    arrAdmin.add(new QLAdminDTO(tkAdmin, password));
+                    String RFID_code = rs.getString("RFID_code");
+                    arrAdmin.add(new QLAdminDTO(tkAdmin, password, RFID_code));
                 }
             }
 
@@ -37,10 +38,11 @@ public class QLAdminDAO {
     
     public Boolean add(QLAdminDTO admin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("INSERT INTO Admin(tkAdmin, password) "
+        Boolean check = DBAdmin.SQLUpdate("INSERT INTO Admin(tkAdmin, password, RFID_code) "
                 + "VALUES ('"
                 + admin.getTkAdmin() + "', '"
-                + admin.getPassword() + ");");
+                + admin.getPassword() + "', '"
+                + admin.getRFID_code() + ");");
         DBAdmin.closeConnection();
         return check;
     }
@@ -56,7 +58,17 @@ public class QLAdminDAO {
         DBAdmin = new DBConnection();
         Boolean check = DBAdmin.SQLUpdate("Update Admin Set "
                 + "', password='" + admin.getTkAdmin()
-                + " where maSach='" + admin.getPassword() + "'");
+                + "', RFID_code='" + admin.getRFID_code()
+                + " where tkAdmin='" + admin.getPassword() + "'");
+        DBAdmin.closeConnection();
+        return check;
+    }
+    
+    public Boolean mod_RFID_code(String tkAdmin, String RFID_code){
+        DBAdmin = new DBConnection();
+        Boolean check = DBAdmin.SQLUpdate("Update Admin Set "
+                + "', RFID_code='" + RFID_code
+                + " where tkAdmin='" + tkAdmin + "'");
         DBAdmin.closeConnection();
         return check;
     }

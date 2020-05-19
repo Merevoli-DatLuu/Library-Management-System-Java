@@ -41,7 +41,7 @@ public class QLKhoSachDAO {
         ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM KhoSach, Sach Where KhoSach.maSach = Sach.maSach";
+            String query = "SELECT * FROM KhoSach, LoaiSach Where KhoSach.maSach = LoaiSach.maSach";
             ResultSet rs = DBKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -57,7 +57,7 @@ public class QLKhoSachDAO {
                     int giaTien = rs.getInt("giaTien");
                     int soTrang = rs.getInt("soTrang");
                     String hinh = rs.getString("hinhSach");
-                    QLSachDTO sach = new QLSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang, hinh);
+                    QLLoaiSachDTO sach = new QLLoaiSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang, hinh);
                     arrKhoSach.add(new QLKhoSachDTO(maSach, soLuong, sach));
                 }
             }

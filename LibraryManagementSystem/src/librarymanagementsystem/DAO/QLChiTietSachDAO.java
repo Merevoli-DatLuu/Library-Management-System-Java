@@ -41,7 +41,7 @@ public class QLChiTietSachDAO {
         ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM ChiTietSach, Sach WHERE ChiTietSach.maSach = Sach.maSach";
+            String query = "SELECT * FROM ChiTietSach, LoaiSach WHERE ChiTietSach.maSach = LoaiSach.maSach";
             ResultSet rs = DBChiTietSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -58,7 +58,7 @@ public class QLChiTietSachDAO {
                     int giaTien = rs.getInt("giaTien");
                     int soTrang = rs.getInt("soTrang");
                     String hinh = rs.getString("hinhSach");
-                    QLSachDTO sach = new QLSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang, hinh);
+                    QLLoaiSachDTO sach = new QLLoaiSachDTO(maSach, tenSach, tenTacGia, tenNXB, theLoai, ngonNgu, tomTatNoiDung, namXB, giaTien, soTrang, hinh);
                     arrChiTietSach.add(new QLChiTietSachDTO(IDSach, maSach, tinhTrang, sach));
                 }
             }

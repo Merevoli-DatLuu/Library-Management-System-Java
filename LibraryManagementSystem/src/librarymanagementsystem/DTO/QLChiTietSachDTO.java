@@ -2,7 +2,7 @@ package librarymanagementsystem.DTO;
 
 public class QLChiTietSachDTO {
     String IDSach, maSach, tinhTrang;
-    QLSachDTO sach;
+    QLLoaiSachDTO sach;
     
     public QLChiTietSachDTO(String IDSach, String maSach, String tinhTrang){
         this.IDSach = IDSach;
@@ -10,11 +10,11 @@ public class QLChiTietSachDTO {
         this.tinhTrang = tinhTrang;
     }
     
-    public QLChiTietSachDTO(String IDSach, String maSach, String tinhTrang, QLSachDTO sach){
+    public QLChiTietSachDTO(String IDSach, String maSach, String tinhTrang, QLLoaiSachDTO sach){
         this.IDSach = IDSach;
         this.maSach = maSach;
         this.tinhTrang = tinhTrang;
-        this.sach = new QLSachDTO(sach);
+        this.sach = new QLLoaiSachDTO(sach);
     }
 
     public String getIDSach() {
@@ -41,11 +41,11 @@ public class QLChiTietSachDTO {
         this.tinhTrang = tinhTrang;
     }
 
-    public QLSachDTO getSach() {
+    public QLLoaiSachDTO getSach() {
         return sach;
     }
 
-    public void setSach(QLSachDTO sach) {
+    public void setSach(QLLoaiSachDTO sach) {
         this.sach = sach;
     }
     

@@ -15,11 +15,11 @@ public class QLNhanVienDAO {
         ArrayList<QLNhanVienDTO> arrNhanVien = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM NguoiQuanLy";
+            String query = "SELECT * FROM NhanVien";
             ResultSet rs = DBNhanVien.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
-                    String maQuanLy = rs.getString("maQuanLy");
+                    String maNhanVien = rs.getString("maNhanVien");
                     String password = rs.getString("password");
                     String hoTen = rs.getString("hoTen");
                     String ngaySinh = rs.getString("ngaySinh");
@@ -27,7 +27,7 @@ public class QLNhanVienDAO {
                     String email = rs.getString("email");
                     String chucVu = rs.getString("chucVu");
                     String sdt = rs.getString("sdt");
-                    arrNhanVien.add(new QLNhanVienDTO(maQuanLy, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt));
+                    arrNhanVien.add(new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt));
                 }
             }
 
@@ -43,9 +43,9 @@ public class QLNhanVienDAO {
     
     public Boolean add(QLNhanVienDTO nhanVien){
         DBNhanVien = new DBConnection();
-        Boolean check = DBNhanVien.SQLUpdate("INSERT INTO NguoiQuanLy(maQuanLy, password, hoTen, ngaySinh, diaChi, sdt, email, chucVu) "
+        Boolean check = DBNhanVien.SQLUpdate("INSERT INTO NhanVien(maNhanVien, password, hoTen, ngaySinh, diaChi, sdt, email, chucVu) "
                 + "VALUES ('"
-                + nhanVien.getMaQuanLy()+ "','"     
+                + nhanVien.getMaNhanVien()+ "','"     
                 + nhanVien.getPassword()+ "','"   
                 + nhanVien.getHoTen()+ "','"   
                 + nhanVien.getNgaySinh()+ "','"   
@@ -57,16 +57,16 @@ public class QLNhanVienDAO {
         return check;
     }
     
-     public Boolean del(String maQuanLy){
+     public Boolean del(String maNhanVien){
         DBNhanVien = new DBConnection();
-        Boolean check = DBNhanVien.SQLUpdate("DELETE FROM NguoiQuanLy WHERE NguoiQuanLy.maQuanLy = '" + maQuanLy + "'");
+        Boolean check = DBNhanVien.SQLUpdate("DELETE FROM NhanVien WHERE NhanVien.maNhanVien = '" + maNhanVien + "'");
         DBNhanVien.closeConnection();
         return check;
     }
     
     public Boolean mod(QLNhanVienDTO nhanVien){
         DBNhanVien = new DBConnection();
-        Boolean check = DBNhanVien.SQLUpdate("Update NguoiQuanLy Set "
+        Boolean check = DBNhanVien.SQLUpdate("Update NhanVien Set "
                 + " password='" + nhanVien.getPassword()
                 + "', hoTen='" + nhanVien.getHoTen()
                 + "', ngaySinh='" + nhanVien.getNgaySinh()
@@ -74,7 +74,16 @@ public class QLNhanVienDAO {
                 + "', sdt=" + nhanVien.getSdt()
                 + ", email='" + nhanVien.getEmail()
                 + "', chucVu='" + nhanVien.getChucVu()
-                + "' where maQuanLy='" + nhanVien.getMaQuanLy()+ "'");
+                + "' where maNhanVien='" + nhanVien.getMaNhanVien()+ "'");
+        DBNhanVien.closeConnection();
+        return check;
+    }
+    
+    public Boolean mod_RFID_code(String maNhanVien, String RFID_code){
+        DBNhanVien = new DBConnection();
+        Boolean check = DBNhanVien.SQLUpdate("Update NhanVien Set "
+                + " RFID_code='" + RFID_code
+                + "' where maNhanVien='" + maNhanVien+ "'");
         DBNhanVien.closeConnection();
         return check;
     }

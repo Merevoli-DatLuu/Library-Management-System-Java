@@ -1,10 +1,10 @@
 package librarymanagementsystem.DTO;
 
 public class QLNhanVienDTO {
-    String maQuanLy, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt;
+    String maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code;
 
     public QLNhanVienDTO(String maQuanLy, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt) {
-        this.maQuanLy = maQuanLy;
+        this.maNhanVien = maQuanLy;
         this.password = password;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -13,13 +13,26 @@ public class QLNhanVienDTO {
         this.chucVu = chucVu;
         this.sdt = sdt;
     }
-
-    public String getMaQuanLy() {
-        return maQuanLy;
+    
+    public QLNhanVienDTO(String maQuanLy, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt, String RFID_code) {
+        this.maNhanVien = maQuanLy;
+        this.password = password;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.email = email;
+        this.chucVu = chucVu;
+        this.sdt = sdt;
+        this.RFID_code = RFID_code;
     }
 
-    public void setMaQuanLy(String maQuanLy) {
-        this.maQuanLy = maQuanLy;
+
+    public String getMaNhanVien() {
+        return maNhanVien;
+    }
+
+    public void setMaNhanVien(String maNhanVien) {
+        this.maNhanVien = maNhanVien;
     }
 
     public String getPassword() {
@@ -77,5 +90,14 @@ public class QLNhanVienDTO {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
+
+    public String getRFID_code() {
+        return RFID_code;
+    }
+
+    public void setRFID_code(String RFID_code) {
+        this.RFID_code = RFID_code;
+    }
+    
     
 }

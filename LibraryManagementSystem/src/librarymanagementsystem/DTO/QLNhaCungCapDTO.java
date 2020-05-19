@@ -10,6 +10,14 @@ public class QLNhaCungCapDTO {
         this.email = email;
         this.diaChi = diaChi;
     }
+    
+    public QLNhaCungCapDTO(QLNhaCungCapDTO nhaCungCap){
+        this.maNCC = nhaCungCap.maNCC;
+        this.tenNCC = nhaCungCap.tenNCC;
+        this.sdt = nhaCungCap.sdt;
+        this.email = nhaCungCap.email;
+        this.diaChi = nhaCungCap.diaChi;
+    }
 
     public String getMaNCC() {
         return maNCC;

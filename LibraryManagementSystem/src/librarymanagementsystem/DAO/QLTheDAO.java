@@ -56,8 +56,8 @@ public class QLTheDAO {
                     String diaChi = rs.getString("diaChi");
                     String email = rs.getString("email");
                     String sdt = rs.getString("sdt");
-                    QLDocGiaDTO docGia = new QLDocGiaDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt);
-                    arrThe.add(new QLTheDTO(maThe, maKhachHang, ngayCap, ngayHetHan, docGia));
+                    QLKhachHangDTO khachHang = new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt);
+                    arrThe.add(new QLTheDTO(maThe, maKhachHang, ngayCap, ngayHetHan, khachHang));
                 }
             }
 

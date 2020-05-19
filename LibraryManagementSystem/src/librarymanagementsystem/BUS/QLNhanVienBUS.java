@@ -18,8 +18,17 @@ public class QLNhanVienBUS {
     
     public String kiemTraTaiKhoan(String tk, String pass){
         for (QLNhanVienDTO e : arrNhanVien){
-            if (e.getMaQuanLy().equals(tk) && e.getPassword().equals(pass)){
-                return e.getMaQuanLy();
+            if (e.getMaNhanVien().equals(tk) && e.getPassword().equals(pass)){
+                return e.getMaNhanVien();
+            }
+        }
+        return "";
+    }
+    
+    public String kiemTraTaiKhoan_RFID_code(String RFID_code){
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (e.getRFID_code().equals(RFID_code)){
+                return e.getMaNhanVien();
             }
         }
         return "";
@@ -33,16 +42,21 @@ public class QLNhanVienBUS {
         return check;
     }
     
-    public Boolean add(String maQuanLy, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt){
-        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maQuanLy, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt);
+    public Boolean add(String maNhanVien, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt){
+        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt);
         return this.add(nhanVien);
     }
     
-    public Boolean del(String maQuanLy){
-        Boolean check = nhanVienDAO.del(maQuanLy);
+    public Boolean add(String maNhanVien, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt, String RFID_code){
+        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code);
+        return this.add(nhanVien);
+    }
+    
+    public Boolean del(String maNhanVien){
+        Boolean check = nhanVienDAO.del(maNhanVien);
         if (check){
             for (QLNhanVienDTO nhanVien : arrNhanVien){
-                if (nhanVien.getMaQuanLy().equals(maQuanLy)){
+                if (nhanVien.getMaNhanVien().equals(maNhanVien)){
                     arrNhanVien.remove(nhanVien);
                     break;
                 }
@@ -55,7 +69,7 @@ public class QLNhanVienBUS {
         Boolean check = nhanVienDAO.mod(nhanVien);  
         if (check){
             for (QLNhanVienDTO s : arrNhanVien){
-                if (s.getMaQuanLy().equals(nhanVien.getMaQuanLy())){
+                if (s.getMaNhanVien().equals(nhanVien.getMaNhanVien())){
                     arrNhanVien.set(arrNhanVien.indexOf(s), nhanVien);
                     break;
                 }
@@ -64,8 +78,21 @@ public class QLNhanVienBUS {
         return check;
     }
      
-    public Boolean mod(String maQuanLy, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt){
-        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maQuanLy, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt);
+    public Boolean mod(String maNhanVien, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt){
+        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt);
         return this.mod(nhanVien);
     } 
+    
+    public Boolean mod_RFID_code(String maNhanVien, String RFID_code){
+        Boolean check = nhanVienDAO.mod_RFID_code(maNhanVien, RFID_code);  
+        if (check){
+            for (QLNhanVienDTO s : arrNhanVien){
+                if (s.getMaNhanVien().equals(maNhanVien)){
+                    arrNhanVien.get(arrNhanVien.indexOf(s)).setRFID_code(RFID_code);
+                    break;
+                }
+            }
+        } 
+        return check;
+    }
 }

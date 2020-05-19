@@ -2,7 +2,7 @@ package librarymanagementsystem.DTO;
 
 public class QLTheDTO {
     String maThe,maKhachHang,ngayCap,ngayHetHan;
-    QLDocGiaDTO docGia; // for full view table (not use in normal view)
+    QLKhachHangDTO khachHang; // for full view table (not use in normal view)
     
     public QLTheDTO(String maThe, String maKhachHang, String ngayCap, String ngayHetHan) {
         this.maThe = maThe;
@@ -12,12 +12,12 @@ public class QLTheDTO {
     }
     
     // contructor (full)
-    public QLTheDTO(String maThe, String maKhachHang, String ngayCap, String ngayHetHan, QLDocGiaDTO docGia) {
+    public QLTheDTO(String maThe, String maKhachHang, String ngayCap, String ngayHetHan, QLKhachHangDTO docGia) {
         this.maThe = maThe;
         this.maKhachHang = maKhachHang;
         this.ngayCap = ngayCap;
         this.ngayHetHan = ngayHetHan;
-        this.docGia = new QLDocGiaDTO(docGia);
+        this.khachHang = new QLKhachHangDTO(docGia);
     }
 
     public String getMaThe() {
@@ -52,12 +52,12 @@ public class QLTheDTO {
         this.ngayHetHan = ngayHetHan;
     }
     
-    public QLDocGiaDTO getDocGia() {
-        return docGia;
+    public QLKhachHangDTO getKhachHang() {
+        return khachHang;
     }
 
-    public void setDocGia(QLDocGiaDTO docGia) {
-        this.docGia = docGia;
+    public void setKhachHang(QLKhachHangDTO khachHang) {
+        this.khachHang = khachHang;
     }
     
 }
