@@ -1,14 +1,17 @@
 package librarymanagementsystem.GUI;
 
 import librarymanagementsystem.Toolkit.SerialConnection;
+import librarymanagementsystem.BUS.QLAdminBUS;
+import librarymanagementsystem.BUS.QLNhanVienBUS;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
+
 public class loginRFID extends javax.swing.JFrame {
-
+    
     int x_Mouse, y_Mouse; // For Moving Window
-
+    
     public loginRFID() {
         initComponents();
         setBounds(0, 0, 300, 500);
@@ -91,6 +94,39 @@ public class loginRFID extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
+    public String kiemTraDangNhap(String RFID_code){
+        QLAdminBUS tkadmin = new QLAdminBUS();
+        String admin = tkadmin.kiemTraTaiKhoan_RFID_code(RFID_code);
+        if (!admin.equals("")){
+            return admin;
+        }
+        
+        // Tạm thời làm cho admin
+        /*QLNhanVienBUS tknhanvien = new QLNhanVienBUS();
+        String nhanvien = tknhanvien.kiemTraTaiKhoan(username_field.getText(), password_field.getText());
+        if (!nhanvien.equals("")){
+            current_session = nhanvien;
+            return true;
+        }*/
+        
+        return "";
+    }
+    
+    public String login_by_RFID(){
+        SerialConnection RFID_login = new SerialConnection();
+        String tkDangNhap = RFID_login.readData();
+        System.out.println(tkDangNhap);
+        return kiemTraDangNhap(tkDangNhap);
+        
+        /** Thread fail :(((
+        RFID_login_thread thread = new RFID_login_thread();
+        thread.start();
+        while (thread.isAlive())
+        System.out.println(thread.getCurrent_ID() + "sads");
+        return kiemTraDangNhap(thread.getCurrent_ID());
+        **/
+    }
+    
     private void exit_btnMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         System.out.println("exit Clicked!");
@@ -140,7 +176,7 @@ public class loginRFID extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new loginRFID().setVisible(true);
-                /** testing part 
+                /** testing part
                 SerialConnection RFID_login = new SerialConnection();
                 String tkDangNhap = RFID_login.readData();
                 System.out.println(tkDangNhap);
@@ -158,4 +194,19 @@ public class loginRFID extends javax.swing.JFrame {
     private javax.swing.JLabel logoMain_Label;
     private javax.swing.JLabel movingWindow_Label;
     // End of variables declaration                   
+}
+
+class RFID_login_thread extends Thread {
+
+    static String current_ID = "";
+
+    public String getCurrent_ID(){
+        return current_ID;
+    }
+
+    public void run() {
+        SerialConnection RFID_login = new SerialConnection();
+        String tkDangNhap = RFID_login.readData();
+        current_ID = tkDangNhap;
+    }
 }

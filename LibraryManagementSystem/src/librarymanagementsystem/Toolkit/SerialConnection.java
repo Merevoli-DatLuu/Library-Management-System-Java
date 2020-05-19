@@ -7,6 +7,7 @@ import com.fazecast.jSerialComm.SerialPort;
 public class SerialConnection {
     static private String port = "COM3"; // Cổng phổ biến của arduino uno
     private SerialPort sp;
+    static String current_ID = "";
     
     public SerialConnection(){
         sp = SerialPort.getCommPort(port);
@@ -36,13 +37,20 @@ public class SerialConnection {
             }
             
             sp.closePort();
+            current_ID = data_in;
             return data_in;
         }
         else {
-          System.out.println("Failed to open port :(");
-          return "";
+            //Thread.sleep(10000);
+            System.out.println("Failed to open port :(");
+            current_ID = "";
+            return "";
         }     
         
+    }
+    
+    public static String getCurrent_ID() {
+        return current_ID;
     }
     
     // This for testing
@@ -76,4 +84,5 @@ public class SerialConnection {
     
         System.out.print(new SerialConnection().readData());
     }*/
+
 }

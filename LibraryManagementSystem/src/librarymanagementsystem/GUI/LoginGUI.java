@@ -190,6 +190,18 @@ public class LoginGUI extends JFrame{
         if (RFIDlogin == null || !RFIDlogin.isDisplayable()){ // Hiển thị 1 windows tại 1 thời điểm 
             RFIDlogin = new loginRFID();
             RFIDlogin.setVisible(true);
+            String tk = RFIDlogin.login_by_RFID();
+            if (!tk.equals("")){
+                RFIDlogin.dispose();
+                current_session = tk;
+                System.out.println("Đăng Nhập Thành Công");
+                System.out.println("Current Session: " + current_session);
+                new MainGUI(current_session).setVisible(true);
+                this.dispose();
+            }
+            else{
+                System.out.println("Đăng Nhập thất bại");
+            }
         }
     }
     
