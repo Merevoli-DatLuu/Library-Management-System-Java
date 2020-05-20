@@ -3,6 +3,8 @@ package librarymanagementsystem.BUS;
 import librarymanagementsystem.DTO.*;
 import librarymanagementsystem.DAO.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class QLAdminBUS {
     private ArrayList<QLAdminDTO> arrAdmin = new ArrayList<>();
@@ -27,6 +29,29 @@ public class QLAdminBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLAdminDTO> getAdmin_full(ArrayList <String> tkAdmin){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLAdminDTO> res = new ArrayList<>();
+        for (String e : tkAdmin){
+            set.add(e);
+        }
+        
+        for (QLAdminDTO e : arrAdmin){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLAdminDTO e : arrAdmin){
+            Pkey.add(e.getTkAdmin());
+        }
+        return Pkey;
     }
     
     // Trả về mã Admin, ko có trả về ""
