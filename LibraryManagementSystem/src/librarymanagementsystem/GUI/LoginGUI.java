@@ -197,9 +197,11 @@ public class LoginGUI extends JFrame{
                 System.out.println("Đăng Nhập Thành Công");
                 System.out.println("Current Session: " + current_session);
                 new MainGUI(current_session).setVisible(true);
+                new WelcomeGUI(current_session).setVisible(true);
                 this.dispose();
             }
             else{
+                RFIDlogin.dispose(); // Xóa sau
                 System.out.println("Đăng Nhập thất bại");
             }
         }
@@ -228,6 +230,7 @@ public class LoginGUI extends JFrame{
             System.out.println("Đăng Nhập Thành Công");
             System.out.println("Current Session: " + current_session);
             new MainGUI(current_session).setVisible(true);
+            new WelcomeGUI(current_session).setVisible(true);
             this.dispose();
         }
         else{

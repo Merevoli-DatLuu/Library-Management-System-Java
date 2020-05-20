@@ -114,10 +114,15 @@ public class loginRFID extends javax.swing.JFrame {
     
     public String login_by_RFID(){
         SerialConnection RFID_login = new SerialConnection();
-        String tkDangNhap = RFID_login.readData();
-        System.out.println(tkDangNhap);
-        return kiemTraDangNhap(tkDangNhap);
-        
+        if (RFID_login.kiemTraPort()){
+            String tkDangNhap = RFID_login.readData();
+            System.out.println(tkDangNhap);
+            return kiemTraDangNhap(tkDangNhap);
+        }
+        else{
+            System.out.println("Không tìm thấy RFID Module");
+            return "";
+        }
         /** Thread fail :(((
         RFID_login_thread thread = new RFID_login_thread();
         thread.start();

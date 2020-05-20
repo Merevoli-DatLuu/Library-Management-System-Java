@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import java.sql.Date;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -435,6 +437,44 @@ public class DataProcessing {
             }
         }
         return badjava;
+    }
+    
+    /** Union and Intersection 2 Two Array **/
+    
+    public ArrayList <String> union_arr(ArrayList <String> arr_1, ArrayList <String> arr_2){
+        Set<String> set_union = new HashSet<String>();
+        ArrayList <String> res_union = new ArrayList <String>();
+        
+        for (String e : arr_1){
+            set_union.add(e);
+        }
+        
+        for (String e : arr_2){
+            set_union.add(e);
+        }
+        
+        for (String e : set_union){
+            res_union.add(e);
+        }
+        
+        return res_union;
+    }
+    
+    public ArrayList <String> intersection_arr(ArrayList <String> arr_1, ArrayList <String> arr_2){
+        Set<String> set_intersection = new HashSet<String>();
+        ArrayList <String> res_intersection = new ArrayList <String>();
+        
+        for (String e : arr_1){
+            set_intersection.add(e);
+        }
+        
+        for (String e : arr_2){
+            if (set_intersection.contains(e)){
+                res_intersection.add(e);
+            }
+        }
+        
+        return res_intersection;
     }
     
     
