@@ -48,7 +48,7 @@ public class QLAdminBUS {
         return "";
     }
     
-    public ArrayList <QLAdminDTO> search (String column, String value){
+    /*public ArrayList <QLAdminDTO> search (String column, String value){
         ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
         for (QLAdminDTO e : arrAdmin){
             switch (column) {
@@ -71,6 +71,35 @@ public class QLAdminBUS {
         }
         return result_search;
     }
+    */
+    
+    public ArrayList <QLAdminDTO> search (String column, String value){
+        ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Tài Khoản Admin":
+                for (QLAdminDTO e : arrAdmin){
+                    if (e.getTkAdmin().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "password": // Bỏ cái này sau
+                for (QLAdminDTO e : arrAdmin){
+                    if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "RFID code":
+                for (QLAdminDTO e : arrAdmin){
+                    if (e.getRFID_code().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }
     
     public ArrayList <QLAdminDTO> search_all (String column, String value){
         ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
@@ -86,6 +115,26 @@ public class QLAdminBUS {
             }
         }
         return result_search;
+    }
+    
+    public ArrayList <QLAdminDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLAdminDTO> res_filter = new ArrayList <QLAdminDTO>(); 
+        for (QLAdminDTO e : arrAdmin){
+            if (PKey.contains(e.getTkAdmin())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLAdminDTO> filter (ArrayList <String> PKey, ArrayList <QLAdminDTO> arr){
+        ArrayList <QLAdminDTO> res_filter = new ArrayList <QLAdminDTO>(); 
+        for (QLAdminDTO e : arr){
+            if (PKey.contains(e.getTkAdmin())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
     }
     
     public Boolean add(QLAdminDTO admin){
