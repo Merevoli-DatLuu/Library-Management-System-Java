@@ -38,7 +38,8 @@ public class loginRFID extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoHeader_Label = new javax.swing.JLabel();
         logoMain_Label = new javax.swing.JLabel();
-        loadingIcon_Label = new javax.swing.JLabel();
+        //loadingIcon_Label = new javax.swing.JLabel();
+        WareIcon_Label = new javax.swing.JLabel();
         exit_btn = new javax.swing.JLabel();
         movingWindow_Label = new javax.swing.JLabel();
         loginGUI_Label = new javax.swing.JLabel();
@@ -57,11 +58,17 @@ public class loginRFID extends javax.swing.JFrame {
         logoMain_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/icon_main_80_80.png"))); // NOI18N
         logoMain_Label.setBounds(115, 245, 80, 80); // NOI18N
         jPanel1.add(logoMain_Label);
-
+        
+        /** not working with Serial Connection 
         loadingIcon_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/loading_icon_244_244.gif"))); // NOI18N
         loadingIcon_Label.setBounds(30, 160, 244, 244); // NOI18N
         jPanel1.add(loadingIcon_Label);
-
+        **/
+        
+        WareIcon_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/ware_icon_220_220.png"))); // NOI18N
+        WareIcon_Label.setBounds(42, 172, 220, 220); // NOI18N
+        jPanel1.add(WareIcon_Label);
+        
         exit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/exit_btn_30_30.png"))); // NOI18N
         exit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,7 +200,8 @@ public class loginRFID extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JLabel exit_btn;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel loadingIcon_Label;
+    //private javax.swing.JLabel loadingIcon_Label;
+    private javax.swing.JLabel WareIcon_Label;
     private javax.swing.JLabel loginGUI_Label;
     private javax.swing.JLabel logoHeader_Label;
     private javax.swing.JLabel logoMain_Label;

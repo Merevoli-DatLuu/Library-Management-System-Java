@@ -16,6 +16,83 @@ public class QLLDPhatBUS {
         return new String[]{"Mã Lý Do Phạt", "Tên Lý Do Phạt", "Mức Độ"};
     }
     
+    public QLLDPhatDTO getLDPhat(String maLDPhat){
+        for (QLLDPhatDTO e : arrLDPhat){
+            if (e.equals(maLDPhat)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLLDPhatDTO> search (String column, String value){
+        ArrayList <QLLDPhatDTO> result_search = new ArrayList <QLLDPhatDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Lý Do Phạt ":
+                for (QLLDPhatDTO e : arrLDPhat){
+                    if (e.getMaLDPhat().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tên Lý Do Phạt": 
+                for (QLLDPhatDTO e : arrLDPhat){
+                    if (e.getTenLDPhat().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mức Độ":
+            for (QLLDPhatDTO e : arrLDPhat) {
+                String mucDo=String.valueOf(e.getMucDo());
+                if (mucDo.toLowerCase().compareTo(value) != -1) {
+                    result_search.add(e);
+                }
+            }
+                break;
+
+
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLLDPhatDTO> search_all (String column, String value){
+        ArrayList <QLLDPhatDTO> result_search = new ArrayList <QLLDPhatDTO> ();
+        for (QLLDPhatDTO e : arrLDPhat){
+            String mucDo=String.valueOf(e.getMucDo());
+            if (e.getMaLDPhat().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getTenLDPhat().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (mucDo.toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLLDPhatDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLLDPhatDTO> res_filter = new ArrayList <QLLDPhatDTO>(); 
+        for (QLLDPhatDTO e : arrLDPhat){
+            if (PKey.contains(e.getMaLDPhat())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLLDPhatDTO> filter (ArrayList <String> PKey, ArrayList <QLLDPhatDTO> arr){
+        ArrayList <QLLDPhatDTO> res_filter = new ArrayList <QLLDPhatDTO>(); 
+        for (QLLDPhatDTO e : arr){
+            if (PKey.contains(e.getMaLDPhat())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
     public Boolean add(QLLDPhatDTO LDPhat){
         Boolean check = LDPhatDAO.add(LDPhat);
         if (check){

@@ -1,6 +1,7 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -26,6 +27,96 @@ public class QLTheBUS {
     
     public String [] getHeader_full(){
         return new String[]{"Mã Thẻ", "Ngày Cấp", "Ngày Hết Hạn", "Mã Khách Hàng", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email"};
+    }
+    
+    public QLTheDTO getThe(String maThe){
+        for (QLTheDTO e : arrThe){
+            if (e.equals(maThe)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLTheDTO> search (String column, String value){
+        ArrayList <QLTheDTO> result_search = new ArrayList <QLTheDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Thẻ":
+                for (QLTheDTO e : arrThe){
+                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Ngày Cấp":
+                for (QLTheDTO e : arrThe){
+                    if (e.getNgayCap().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Ngày Hết Hạn":
+                for (QLTheDTO e : arrThe){
+                    if (e.getNgayHetHan().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mã Khách Hàng":
+                for (QLTheDTO e : arrThe){
+                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            /**case "Thẻ Khách Hàng": 
+                for (QLTheDTO e : arrThe){
+                    if (e.getKhachHang().toLowerCase(Locale.getDefault()).compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;**/
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLTheDTO> search_all (String column, String value){
+        ArrayList <QLTheDTO> result_search = new ArrayList <QLTheDTO> ();
+        for (QLTheDTO e : arrThe){
+            if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            if (e.getMaKhachHang().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getNgayCap().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getNgayHetHan().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLTheDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLTheDTO> res_filter = new ArrayList <QLTheDTO>(); 
+        for (QLTheDTO e : arrThe){
+            if (PKey.contains(e.getMaThe())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLTheDTO> filter (ArrayList <String> PKey, ArrayList <QLTheDTO> arr){
+        ArrayList <QLTheDTO> res_filter = new ArrayList <QLTheDTO>(); 
+        for (QLTheDTO e : arr){
+            if (PKey.contains(e.getMaThe())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
     }
     
     public Boolean add(QLTheDTO the){

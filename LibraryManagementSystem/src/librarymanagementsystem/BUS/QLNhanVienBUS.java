@@ -34,6 +34,129 @@ public class QLNhanVienBUS {
         return "";
     }
     
+    public QLNhanVienDTO getNhanVien(String maKhachHang){
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (e.equals(maKhachHang)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLNhanVienDTO> search (String column, String value){
+        ArrayList <QLNhanVienDTO> result_search = new ArrayList <QLNhanVienDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Khách Hàng":
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getMaNhanVien().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Password": 
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Họ Tên": 
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Ngày Sinh":
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Địa Chỉ":
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Số Điện Thoại":
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Email":
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Chức Vụ":
+                for (QLNhanVienDTO e : arrNhanVien){
+                    if (e.getChucVu().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLNhanVienDTO> search_all (String column, String value){
+        ArrayList <QLNhanVienDTO> result_search = new ArrayList <QLNhanVienDTO> ();
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (e.getMaNhanVien().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getChucVu().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLNhanVienDTO> res_filter = new ArrayList <QLNhanVienDTO>(); 
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (PKey.contains(e.getMaNhanVien())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filter (ArrayList <String> PKey, ArrayList <QLNhanVienDTO> arr){
+        ArrayList <QLNhanVienDTO> res_filter = new ArrayList <QLNhanVienDTO>(); 
+        for (QLNhanVienDTO e : arr){
+            if (PKey.contains(e.getMaNhanVien())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
     public Boolean add(QLNhanVienDTO nhanVien){
         Boolean check = nhanVienDAO.add(nhanVien);
         if (check){

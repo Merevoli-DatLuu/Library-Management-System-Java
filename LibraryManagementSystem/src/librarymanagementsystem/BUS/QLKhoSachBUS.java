@@ -29,6 +29,100 @@ public class QLKhoSachBUS {
         return new String[]{"Mã Sách", "Bìa Sách", "Số Lượng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
     
+    public QLKhoSachDTO getKhoSach(String maSach){
+        for (QLKhoSachDTO e : arrKhoSach){
+            if (e.equals(maSach)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLKhoSachDTO> search (String column, String value){
+        ArrayList <QLKhoSachDTO> result_search = new ArrayList <QLKhoSachDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Sách ":
+                for (QLKhoSachDTO e : arrKhoSach){
+                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Số Lượng": 
+                for (QLKhoSachDTO e : arrKhoSach){
+                    String soLuong= String.valueOf(e.getSoLuong());
+                    if (soLuong.toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }
+    
+    /*public ArrayList <QLKhoSachDTO> search_full (String column, String value){
+        ArrayList <QLKhoSachDTO> result_search = new ArrayList <QLKhoSachDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Sách ":
+                for (QLKhoSachDTO e : arrKhoSach){
+                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Số Lượng": 
+                for (QLKhoSachDTO e : arrKhoSach){
+                    String soLuong= String.valueOf(e.getSoLuong());
+                    if (soLuong.toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Sách":
+                for (QLKhoSachDTO e : arrKhoSach){
+                    if (e.getSach().toLowerCase(Locale.getDefault()).compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }*/
+    
+    public ArrayList <QLKhoSachDTO> search_all (String column, String value){
+        ArrayList <QLKhoSachDTO> result_search = new ArrayList <QLKhoSachDTO> ();
+        for (QLKhoSachDTO e : arrKhoSach){
+            String soLuong=String.valueOf(e.getSoLuong());
+            if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (soLuong.toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLKhoSachDTO> res_filter = new ArrayList <QLKhoSachDTO>(); 
+        for (QLKhoSachDTO e : arrKhoSach){
+            if (PKey.contains(e.getMaSach())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filter (ArrayList <String> PKey, ArrayList <QLKhoSachDTO> arr){
+        ArrayList <QLKhoSachDTO> res_filter = new ArrayList <QLKhoSachDTO>(); 
+        for (QLKhoSachDTO e : arr){
+            if (PKey.contains(e.getMaSach())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
     public Boolean add(QLKhoSachDTO khoSach){
         Boolean check = khoSachDAO.add(khoSach);
         if (check){

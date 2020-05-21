@@ -29,6 +29,114 @@ public class QLChiTietSachBUS {
         return new String[]{"ID Sách", "Bìa Sách", "Mã Sách", "Tình Trạng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
     
+    public QLChiTietSachDTO getChiTietSach(String IDSach){
+        for (QLChiTietSachDTO e : arrChiTietSach){
+            if (e.equals(IDSach)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> search (String column, String value){
+        ArrayList <QLChiTietSachDTO> result_search = new ArrayList <QLChiTietSachDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "ID Sách":
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getIDSach().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mã Sách": 
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tình Trạng":
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getTinhTrang().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }
+    
+    /*public ArrayList <QLChiTietSachDTO> search_full (String column, String value){
+        ArrayList <QLChiTietSachDTO> result_search = new ArrayList <QLChiTietSachDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "ID Sách":
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getIDSach().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mã Sách": // Bỏ cái này sau
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tình Trạng":
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getTinhTrang().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Sách":
+                for (QLChiTietSachDTO e : arrChiTietSach){
+                    if (e.getSach().toLowerCase(Locale.getDefault()).compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }*/
+    
+    public ArrayList <QLChiTietSachDTO> search_all (String column, String value){
+        ArrayList <QLChiTietSachDTO> result_search = new ArrayList <QLChiTietSachDTO> ();
+        for (QLChiTietSachDTO e : arrChiTietSach){
+            if (e.getIDSach().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getTinhTrang().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLChiTietSachDTO> res_filter = new ArrayList <QLChiTietSachDTO>(); 
+        for (QLChiTietSachDTO e : arrChiTietSach){
+            if (PKey.contains(e.getIDSach())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filter (ArrayList <String> PKey, ArrayList <QLChiTietSachDTO> arr){
+        ArrayList <QLChiTietSachDTO> res_filter = new ArrayList <QLChiTietSachDTO>(); 
+        for (QLChiTietSachDTO e : arr){
+            if (PKey.contains(e.getIDSach())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
     public Boolean add(QLChiTietSachDTO chiTietSach){
         Boolean check = chiTietSachDAO.add(chiTietSach);
         if (check){

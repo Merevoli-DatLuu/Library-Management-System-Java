@@ -16,6 +16,89 @@ public class QLPhieuPhatBUS {
         return new String[]{"Mã Phiếu Phạt", "Mã Phiếu Mượn", "Mã Lý Do Phạt", "Tiền Phạt"};
     }
     
+    public QLPhieuPhatDTO getPhieuPhat(String maPhieuPhat){
+        for (QLPhieuPhatDTO e : arrPhieuPhat){
+            if (e.equals(maPhieuPhat)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLPhieuPhatDTO> search (String column, String value){
+        ArrayList <QLPhieuPhatDTO> result_search = new ArrayList <QLPhieuPhatDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Phiếu Phạt":
+                for (QLPhieuPhatDTO e : arrPhieuPhat){
+                    if (e.getMaPhieuPhat().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mã Phiếu Mượn": 
+                for (QLPhieuPhatDTO e : arrPhieuPhat){
+                    if (e.getMaPhieuMuon().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mã Lý Do Phạt":
+                for (QLPhieuPhatDTO e : arrPhieuPhat){
+                    if (e.getMaLDPhat().toString().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            /*case "Tiền Phạt":
+                for (QLPhieuPhatDTO e : arrPhieuPhat){
+                    if (e.get().toString().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;*/
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLPhieuPhatDTO> search_all (String column, String value){
+        ArrayList <QLPhieuPhatDTO> result_search = new ArrayList <QLPhieuPhatDTO> ();
+        for (QLPhieuPhatDTO e : arrPhieuPhat){
+            if (e.getMaPhieuPhat().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getMaPhieuMuon().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getMaLDPhat().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            /*else if (e.get().toString().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }*/
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLPhieuPhatDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLPhieuPhatDTO> res_filter = new ArrayList <QLPhieuPhatDTO>(); 
+        for (QLPhieuPhatDTO e : arrPhieuPhat){
+            if (PKey.contains(e.getMaPhieuPhat())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLPhieuPhatDTO> filter (ArrayList <String> PKey, ArrayList <QLPhieuPhatDTO> arr){
+        ArrayList <QLPhieuPhatDTO> res_filter = new ArrayList <QLPhieuPhatDTO>(); 
+        for (QLPhieuPhatDTO e : arr){
+            if (PKey.contains(e.getMaPhieuPhat())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
     public Boolean add(QLPhieuPhatDTO phieuPhat){
         Boolean check = phieuPhatDAO.add(phieuPhat);
         if (check){

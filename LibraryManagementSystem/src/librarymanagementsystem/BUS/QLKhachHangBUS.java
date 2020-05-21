@@ -20,6 +20,119 @@ public class QLKhachHangBUS {
         return new String[]{"Mã Khách Hàng", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email", "Mã Thẻ"};
     }
     
+    public QLKhachHangDTO getKhachHang(String maKhachHang){
+        for (QLKhachHangDTO e : arrKhachHang){
+            if (e.equals(maKhachHang)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList <QLKhachHangDTO> search (String column, String value){
+        ArrayList <QLKhachHangDTO> result_search = new ArrayList <QLKhachHangDTO> ();
+        switch (column) { // Dựa vào Headers
+            case "Mã Khách Hàng":
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getMaKhachHang().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Họ Tên": 
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Ngày Sinh":
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Địa Chỉ":
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Số Điện Thoại":
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Email":
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Mã Thẻ":
+                for (QLKhachHangDTO e : arrKhachHang){
+                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLKhachHangDTO> search_all (String column, String value){
+        ArrayList <QLKhachHangDTO> result_search = new ArrayList <QLKhachHangDTO> ();
+        for (QLKhachHangDTO e : arrKhachHang){
+            if (e.getMaKhachHang().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+            else if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                result_search.add(e);
+            }
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLKhachHangDTO> filter (ArrayList <String> PKey){
+        ArrayList <QLKhachHangDTO> res_filter = new ArrayList <QLKhachHangDTO>(); 
+        for (QLKhachHangDTO e : arrKhachHang){
+            if (PKey.contains(e.getMaKhachHang())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
+    public ArrayList <QLKhachHangDTO> filter (ArrayList <String> PKey, ArrayList <QLKhachHangDTO> arr){
+        ArrayList <QLKhachHangDTO> res_filter = new ArrayList <QLKhachHangDTO>(); 
+        for (QLKhachHangDTO e : arr){
+            if (PKey.contains(e.getMaKhachHang())){
+                res_filter.add(e);
+            }
+        }
+        return res_filter;
+    }
+    
     public Boolean add(QLKhachHangDTO khachHang){
         Boolean check = khachHangDAO.add(khachHang);
         if (check){
