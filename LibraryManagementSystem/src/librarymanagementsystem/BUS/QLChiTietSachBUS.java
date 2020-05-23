@@ -1,6 +1,9 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -36,6 +39,29 @@ public class QLChiTietSachBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> getChiTietSach_full(ArrayList <String> IDSach){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLChiTietSachDTO> res = new ArrayList<>();
+        for (String e : IDSach){
+            set.add(e);
+        }
+        
+        for (QLChiTietSachDTO e : arrChiTietSach){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLChiTietSachDTO e : arrChiTietSach){
+            Pkey.add(e.getIDSach());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLChiTietSachDTO> search (String column, String value){

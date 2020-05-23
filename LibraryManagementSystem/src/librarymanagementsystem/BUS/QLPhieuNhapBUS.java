@@ -1,6 +1,8 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -23,6 +25,29 @@ public class QLPhieuNhapBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLPhieuNhapDTO> getPhieuNhap_full(ArrayList <String> maPhieuNhap){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLPhieuNhapDTO> res = new ArrayList<>();
+        for (String e : maPhieuNhap){
+            set.add(e);
+        }
+        
+        for (QLPhieuNhapDTO e : arrNhapKho){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLPhieuNhapDTO e : arrNhapKho){
+            Pkey.add(e.getMaNhap());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLPhieuNhapDTO> search (String column, String value){

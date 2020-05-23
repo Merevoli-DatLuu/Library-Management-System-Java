@@ -1,6 +1,9 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -23,6 +26,29 @@ public class QLLDPhatBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLLDPhatDTO> getLDPhat_full(ArrayList <String> maLDPhat){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLLDPhatDTO> res = new ArrayList<>();
+        for (String e : maLDPhat){
+            set.add(e);
+        }
+        
+        for (QLLDPhatDTO e : arrLDPhat){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLLDPhatDTO e : arrLDPhat){
+            Pkey.add(e.getMaLDPhat());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLLDPhatDTO> search (String column, String value){

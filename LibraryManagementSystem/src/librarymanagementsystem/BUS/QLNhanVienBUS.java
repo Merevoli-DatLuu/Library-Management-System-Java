@@ -1,6 +1,8 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -16,31 +18,36 @@ public class QLNhanVienBUS {
         return new String[]{"Mã Quản Lý", "Password", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email", "Chức Vụ"};
     }
     
-    public String kiemTraTaiKhoan(String tk, String pass){
+    public QLNhanVienDTO getNhanVien(String maNhanVien){
         for (QLNhanVienDTO e : arrNhanVien){
-            if (e.getMaNhanVien().equals(tk) && e.getPassword().equals(pass)){
-                return e.getMaNhanVien();
-            }
-        }
-        return "";
-    }
-    
-    public String kiemTraTaiKhoan_RFID_code(String RFID_code){
-        for (QLNhanVienDTO e : arrNhanVien){
-            if (e.getRFID_code().equals(RFID_code)){
-                return e.getMaNhanVien();
-            }
-        }
-        return "";
-    }
-    
-    public QLNhanVienDTO getNhanVien(String maKhachHang){
-        for (QLNhanVienDTO e : arrNhanVien){
-            if (e.equals(maKhachHang)){
+            if (e.equals(maNhanVien)){
                 return e;
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLNhanVienDTO> getNhanVien_full(ArrayList <String> maNhanVien){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLNhanVienDTO> res = new ArrayList<>();
+        for (String e : maNhanVien){
+            set.add(e);
+        }
+        
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLNhanVienDTO e : arrNhanVien){
+            Pkey.add(e.getMaNhanVien());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLNhanVienDTO> search (String column, String value){
@@ -155,6 +162,24 @@ public class QLNhanVienBUS {
             }
         }
         return res_filter;
+    }
+    
+    public String kiemTraTaiKhoan(String tk, String pass){
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (e.getMaNhanVien().equals(tk) && e.getPassword().equals(pass)){
+                return e.getMaNhanVien();
+            }
+        }
+        return "";
+    }
+    
+    public String kiemTraTaiKhoan_RFID_code(String RFID_code){
+        for (QLNhanVienDTO e : arrNhanVien){
+            if (e.getRFID_code().equals(RFID_code)){
+                return e.getMaNhanVien();
+            }
+        }
+        return "";
     }
     
     public Boolean add(QLNhanVienDTO nhanVien){

@@ -1,6 +1,8 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -25,10 +27,27 @@ public class QLNhaCungCapBUS {
         return null;
     }
     
-    public void show(){
-        for (QLNhaCungCapDTO e : arrNhaCungCap){
-            System.out.println(e.getMaNCC() + ' ' + e.getTenNCC());
+    public ArrayList <QLNhaCungCapDTO> getNhaCungCap_full(ArrayList <String> maNCC){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLNhaCungCapDTO> res = new ArrayList<>();
+        for (String e : maNCC){
+            set.add(e);
         }
+        
+        for (QLNhaCungCapDTO e : arrNhaCungCap){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLNhaCungCapDTO e : arrNhaCungCap){
+            Pkey.add(e.getMaNCC());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLNhaCungCapDTO> search (String column, String value){
@@ -158,10 +177,4 @@ public class QLNhaCungCapBUS {
         QLNhaCungCapDTO nhaCungCap=new QLNhaCungCapDTO(maNCC, tenNCC, sdt, email, diaChi);
         return this.mod(nhaCungCap);
     } 
-
-    public ArrayList<QLNhaCungCapDTO> getArrNhaCungCap() {
-        return arrNhaCungCap;
-    }
-    
-    
 }

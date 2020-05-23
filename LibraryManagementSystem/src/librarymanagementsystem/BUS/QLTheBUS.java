@@ -1,7 +1,9 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -38,6 +40,29 @@ public class QLTheBUS {
         return null;
     }
     
+    public ArrayList <QLTheDTO> getThe_full(ArrayList <String> maThe){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLTheDTO> res = new ArrayList<>();
+        for (String e : maThe){
+            set.add(e);
+        }
+        
+        for (QLTheDTO e : arrThe){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLTheDTO e : arrThe){
+            Pkey.add(e.getMaThe());
+        }
+        return Pkey;
+    }
+    
     public ArrayList <QLTheDTO> search (String column, String value){
         ArrayList <QLTheDTO> result_search = new ArrayList <QLTheDTO> ();
         switch (column) { // Dựa vào Headers
@@ -69,13 +94,13 @@ public class QLTheBUS {
                     }
                 }
                 break;
-            /**case "Thẻ Khách Hàng": 
+            case "Thẻ Khách Hàng": 
                 for (QLTheDTO e : arrThe){
                     if (e.getKhachHang().toLowerCase(Locale.getDefault()).compareTo(value) != -1) {
                         result_search.add(e);
                     }
                 }
-                break;**/
+                break;
         }
         return result_search;
     }
@@ -84,9 +109,6 @@ public class QLTheBUS {
         ArrayList <QLTheDTO> result_search = new ArrayList <QLTheDTO> ();
         for (QLTheDTO e : arrThe){
             if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
-                result_search.add(e);
-            }
-            if (e.getMaKhachHang().toLowerCase().compareTo(value) != -1) {
                 result_search.add(e);
             }
             else if (e.getNgayCap().toLowerCase().compareTo(value) != -1) {

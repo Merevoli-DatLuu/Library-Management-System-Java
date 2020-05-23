@@ -3,6 +3,8 @@ package librarymanagementsystem.BUS;
 import librarymanagementsystem.DTO.*;
 import librarymanagementsystem.DAO.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class QLLoaiSachBUS {
     private ArrayList<QLLoaiSachDTO> arrSach = new ArrayList<>();
@@ -16,12 +18,6 @@ public class QLLoaiSachBUS {
         return new String[]{"Mã Sách", "Bìa Sách", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
     
-    public void show(){
-        for (QLLoaiSachDTO sach : arrSach){
-            System.out.println(sach.getMaSach() + '\t' + sach.getTenSach());
-        }
-    }
-    
     public QLLoaiSachDTO getLoaiSach(String maSach){
         for (QLLoaiSachDTO e : arrSach){
             if (e.equals(maSach)){
@@ -29,6 +25,29 @@ public class QLLoaiSachBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLLoaiSachDTO> getLoaiSach_full(ArrayList <String> maSach){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLLoaiSachDTO> res = new ArrayList<>();
+        for (String e : maSach){
+            set.add(e);
+        }
+        
+        for (QLLoaiSachDTO e : arrSach){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLLoaiSachDTO e : arrSach){
+            Pkey.add(e.getMaSach());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLLoaiSachDTO> search (String column, String value){
@@ -181,6 +200,12 @@ public class QLLoaiSachBUS {
         return res_filter;
     }
     
+    public void show(){
+        for (QLLoaiSachDTO sach : arrSach){
+            System.out.println(sach.getMaSach() + '\t' + sach.getTenSach());
+        }
+    }
+            
     public Boolean add(QLLoaiSachDTO sach){
         Boolean check = sachDAO.add(sach);
         

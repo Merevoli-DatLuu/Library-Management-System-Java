@@ -1,6 +1,8 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -27,6 +29,29 @@ public class QLKhachHangBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLKhachHangDTO> getKhachHang_full(ArrayList <String> maKhachHang){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLKhachHangDTO> res = new ArrayList<>();
+        for (String e : maKhachHang){
+            set.add(e);
+        }
+        
+        for (QLKhachHangDTO e : arrKhachHang){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLKhachHangDTO e : arrKhachHang){
+            Pkey.add(e.getMaKhachHang());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLKhachHangDTO> search (String column, String value){

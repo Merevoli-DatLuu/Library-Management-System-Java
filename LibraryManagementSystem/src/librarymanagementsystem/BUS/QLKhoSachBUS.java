@@ -1,6 +1,9 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -28,7 +31,6 @@ public class QLKhoSachBUS {
     public String [] getHeader_full(){
         return new String[]{"Mã Sách", "Bìa Sách", "Số Lượng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
-    
     public QLKhoSachDTO getKhoSach(String maSach){
         for (QLKhoSachDTO e : arrKhoSach){
             if (e.equals(maSach)){
@@ -36,6 +38,29 @@ public class QLKhoSachBUS {
             }
         }
         return null;
+    }
+    
+    public ArrayList <QLKhoSachDTO> getKhoSach_full(ArrayList <String> maSach){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLKhoSachDTO> res = new ArrayList<>();
+        for (String e : maSach){
+            set.add(e);
+        }
+        
+        for (QLKhoSachDTO e : arrKhoSach){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLKhoSachDTO e : arrKhoSach){
+            Pkey.add(e.getMaSach());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLKhoSachDTO> search (String column, String value){

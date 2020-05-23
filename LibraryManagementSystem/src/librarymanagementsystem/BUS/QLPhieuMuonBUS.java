@@ -1,6 +1,9 @@
 package librarymanagementsystem.BUS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -13,16 +16,39 @@ public class QLPhieuMuonBUS {
     }
     
     public String [] getHeader(){
-        return new String[]{"Mã Mượn Sách", "Mã Thẻ", "ID Sách", "Ngày Mượn", "Thời Gian Mượn", "Ngày Trả"};
+        return new String[]{"Mã Phiếu Mượn", "Mã Thẻ", "ID Sách", "Ngày Mượn", "Thời Gian Mượn", "Ngày Trả"};
     }
     
-    public QLPhieuMuonDTO getPhieuMuon(String maPhieuMuon){
+     public QLPhieuMuonDTO getPhieuMuon(String maPhieuMuon){
         for (QLPhieuMuonDTO e : arrMuonTra){
             if (e.equals(maPhieuMuon)){
                 return e;
             }
         }
         return null;
+    }
+     
+    public ArrayList <QLPhieuMuonDTO> getPhieuMuon_full(ArrayList <String> maPhieuMuon){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLPhieuMuonDTO> res = new ArrayList<>();
+        for (String e : maPhieuMuon){
+            set.add(e);
+        }
+        
+        for (QLPhieuMuonDTO e : arrMuonTra){
+            if (set.contains(e)){
+                res.add(e);
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <String> getPKey(){
+        ArrayList <String> Pkey = new ArrayList<>();
+        for (QLPhieuMuonDTO e : arrMuonTra){
+            Pkey.add(e.getMaPhieuMuon());
+        }
+        return Pkey;
     }
     
     public ArrayList <QLPhieuMuonDTO> search (String column, String value){
