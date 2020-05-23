@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/PaginationDataProvider.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLAdminBUS.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/InMemoryPaginationDataProvider.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DAO/QLAdminDAO.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/loginRFID.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/Toolkit/SerialConnection.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/PaginatedTableDecorator.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/RandomUtil.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/ObjectTableModel.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/LoginGUI.java</file>
+        </group>
     </open-files>
 </project-private>

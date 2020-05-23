@@ -22,6 +22,7 @@ public class DBConnection {
     
     public DBConnection(){
         if (checkDriver() == true){
+            //this.DBName = "quanlythuvien";
             this.DBName = "quanlythuvien";
             this.username = "root";
             this.password = "";

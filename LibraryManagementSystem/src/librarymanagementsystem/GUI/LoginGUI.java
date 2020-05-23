@@ -196,7 +196,7 @@ public class LoginGUI extends JFrame{
                 current_session = tk;
                 System.out.println("Đăng Nhập Thành Công");
                 System.out.println("Current Session: " + current_session);
-                new MainGUI(current_session).setVisible(true);
+                //new MainGUI(current_session).setVisible(true);
                 new WelcomeGUI(current_session).setVisible(true);
                 this.dispose();
             }
@@ -229,7 +229,7 @@ public class LoginGUI extends JFrame{
         if (kiemTraDangNhap()){
             System.out.println("Đăng Nhập Thành Công");
             System.out.println("Current Session: " + current_session);
-            new MainGUI(current_session).setVisible(true);
+            //new MainGUI(current_session).setVisible(true);
             new WelcomeGUI(current_session).setVisible(true);
             this.dispose();
         }

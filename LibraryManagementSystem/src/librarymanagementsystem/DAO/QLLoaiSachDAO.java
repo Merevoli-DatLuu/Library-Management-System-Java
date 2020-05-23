@@ -73,7 +73,7 @@ public class QLLoaiSachDAO {
     public Boolean mod(QLLoaiSachDTO sach){
         DBSach = new DBConnection();
         Boolean check = DBSach.SQLUpdate("Update LoaiSach Set "
-                + "', tenSach='" + sach.getTenSach()
+                + " tenSach='" + sach.getTenSach()
                 + "', tenTacGia='" + sach.getTenTacGia()
                 + "', tenNXB='" + sach.getTenNXB()
                 + "', namXB=" + sach.getNamXB()

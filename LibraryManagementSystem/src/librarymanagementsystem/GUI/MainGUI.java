@@ -1,5 +1,6 @@
 package librarymanagementsystem.GUI;
 
+import librarymanagementsystem.GUI.Table.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -36,12 +37,18 @@ public class MainGUI extends javax.swing.JFrame{
 
         jPanel1 = new javax.swing.JPanel();
         exitButton = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         moreInfoUser_Label = new javax.swing.JLabel();
         username_Label = new javax.swing.JLabel();
         iconUser_Label = new javax.swing.JLabel();
         movingWindow = new javax.swing.JLabel();
         homeModule = new javax.swing.JLabel();
         sachModule = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         mainGUI_Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,7 +66,13 @@ public class MainGUI extends javax.swing.JFrame{
             }
         });
         jPanel1.add(exitButton);
-
+        
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel2.setText("NHÀ CUNG CẤP");
+        jLabel2.setBounds(130, 10, 100, 30);
+        jPanel1.add(jLabel2);
+        
         moreInfoUser_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/moreinfo_20_20.png"))); // NOI18N
         moreInfoUser_Label.setBounds(930, 20, 20, 20); // NOI18N
         moreInfoUser_Label.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +122,56 @@ public class MainGUI extends javax.swing.JFrame{
         });
         sachModule.setBounds(15, 170, 32, 32);
         jPanel1.add(sachModule);
+        
+        /**/
+        jButton1.setBackground(new java.awt.Color(104, 104, 104));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Thêm");
+        jButton1.setBorderPainted(false);
+        jButton1.setBounds(300, 80, 80, 40);
+        jPanel1.add(jButton1);
+
+        jButton2.setBackground(new java.awt.Color(104, 104, 104));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Sửa");
+        jButton2.setBorderPainted(false);
+        jButton2.setBounds(580, 80, 80, 40);
+        jPanel1.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(104, 104, 104));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Xóa");
+        jButton3.setBorderPainted(false);
+        jButton3.setBounds(440, 80, 80, 40);
+        jPanel1.add(jButton3);
+
+        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("   Tìm Kiếm");
+        jLabel1.setToolTipText("");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setOpaque(true);
+        jLabel1.setBounds(580, 150, 80, 40);
+        jPanel1.add(jLabel1);
+
+        jTextField1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setText("");
+        jTextField1.setBounds(280, 150, 280, 40);
+        jPanel1.add(jTextField1); 
+        
+            
+        //PaginationExampleMain table = new PaginationExampleMain();
+        //JPanel table_panel = table.get_table();
+        //table_panel.setBounds(100, 200, 800, 420);
+        //table_panel.setBackground(new java.awt.Color(255, 255, 255));
+        //jPanel1.add(table_panel);
+        
+        /**/
 
         mainGUI_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/mainGUI.png"))); // NOI18N
         mainGUI_Label.setBounds(0, 0, 1020, 680); // NOI18N
@@ -191,7 +254,13 @@ public class MainGUI extends javax.swing.JFrame{
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel homeModule;
     private javax.swing.JLabel iconUser_Label;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel mainGUI_Label;
     private javax.swing.JLabel moreInfoUser_Label;
     private javax.swing.JLabel movingWindow;

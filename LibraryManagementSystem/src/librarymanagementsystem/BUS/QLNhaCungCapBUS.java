@@ -25,6 +25,12 @@ public class QLNhaCungCapBUS {
         return null;
     }
     
+    public void show(){
+        for (QLNhaCungCapDTO e : arrNhaCungCap){
+            System.out.println(e.getMaNCC() + ' ' + e.getTenNCC());
+        }
+    }
+    
     public ArrayList <QLNhaCungCapDTO> search (String column, String value){
         ArrayList <QLNhaCungCapDTO> result_search = new ArrayList <QLNhaCungCapDTO> ();
         switch (column) { // Dựa vào Headers
@@ -152,4 +158,10 @@ public class QLNhaCungCapBUS {
         QLNhaCungCapDTO nhaCungCap=new QLNhaCungCapDTO(maNCC, tenNCC, sdt, email, diaChi);
         return this.mod(nhaCungCap);
     } 
+
+    public ArrayList<QLNhaCungCapDTO> getArrNhaCungCap() {
+        return arrNhaCungCap;
+    }
+    
+    
 }
