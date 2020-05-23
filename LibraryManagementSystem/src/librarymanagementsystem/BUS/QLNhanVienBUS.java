@@ -243,4 +243,10 @@ public class QLNhanVienBUS {
         } 
         return check;
     }
+
+    public ArrayList<QLNhanVienDTO> getArrNhanVien() {
+        return arrNhanVien;
+    }
+    
+    
 }

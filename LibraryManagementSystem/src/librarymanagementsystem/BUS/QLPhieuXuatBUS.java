@@ -167,4 +167,10 @@ public class QLPhieuXuatBUS {
         QLPhieuXuatDTO xuatKho=new QLPhieuXuatDTO(maXuat, ngayXuat, maSach, soLuong, maNhanVien);
         return this.mod(xuatKho);
     } 
+
+    public ArrayList<QLPhieuXuatDTO> getArrXuatKho() {
+        return arrXuatKho;
+    }
+    
+    
 }

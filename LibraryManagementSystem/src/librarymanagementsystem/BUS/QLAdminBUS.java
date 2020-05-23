@@ -239,4 +239,10 @@ public class QLAdminBUS {
         
         return check;
     }
+
+    public ArrayList<QLAdminDTO> getArrAdmin() {
+        return arrAdmin;
+    }
+    
+    
 }

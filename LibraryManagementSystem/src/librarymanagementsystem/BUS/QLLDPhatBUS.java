@@ -162,4 +162,10 @@ public class QLLDPhatBUS {
         QLLDPhatDTO LDPhat=new QLLDPhatDTO(maLDPhat, tenLDPhat, mucDo);
         return this.mod(LDPhat);
     } 
+
+    public ArrayList<QLLDPhatDTO> getArrLDPhat() {
+        return arrLDPhat;
+    }
+    
+    
 }

@@ -206,4 +206,10 @@ public class QLChiTietSachBUS {
         QLChiTietSachDTO chiTietSach=new QLChiTietSachDTO(IDSach, maSach, tinhTrang);
         return this.mod(chiTietSach);
     } 
+
+    public ArrayList<QLChiTietSachDTO> getArrChiTietSach() {
+        return arrChiTietSach;
+    }
+    
+    
 }

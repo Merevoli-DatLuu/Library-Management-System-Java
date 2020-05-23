@@ -190,4 +190,10 @@ public class QLPhieuMuonBUS {
         QLPhieuMuonDTO muonTra=new QLPhieuMuonDTO(maPhieuMuon, maThe, IDSach, ngayMuon, thoiGianMuon, ngayTra);
         return this.mod(muonTra);
     } 
+
+    public ArrayList<QLPhieuMuonDTO> getArrMuonTra() {
+        return arrMuonTra;
+    }
+    
+    
 }

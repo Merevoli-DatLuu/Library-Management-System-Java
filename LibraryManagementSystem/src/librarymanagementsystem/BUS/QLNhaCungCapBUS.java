@@ -177,4 +177,10 @@ public class QLNhaCungCapBUS {
         QLNhaCungCapDTO nhaCungCap=new QLNhaCungCapDTO(maNCC, tenNCC, sdt, email, diaChi);
         return this.mod(nhaCungCap);
     } 
+
+    public ArrayList<QLNhaCungCapDTO> getArrNhaCungCap() {
+        return arrNhaCungCap;
+    }
+    
+    
 }

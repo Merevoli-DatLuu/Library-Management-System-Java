@@ -167,4 +167,10 @@ public class QLPhieuPhatBUS {
         QLPhieuPhatDTO phieuPhat=new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat);
         return this.mod(phieuPhat);
     } 
+
+    public ArrayList<QLPhieuPhatDTO> getArrPhieuPhat() {
+        return arrPhieuPhat;
+    }
+    
+    
 }

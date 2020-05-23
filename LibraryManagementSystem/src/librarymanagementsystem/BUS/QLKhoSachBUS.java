@@ -191,4 +191,10 @@ public class QLKhoSachBUS {
         QLKhoSachDTO khoSach=new QLKhoSachDTO(maSach, soLuong);
         return this.mod(khoSach);
     } 
+
+    public ArrayList<QLKhoSachDTO> getArrKhoSach() {
+        return arrKhoSach;
+    }
+    
+    
 }

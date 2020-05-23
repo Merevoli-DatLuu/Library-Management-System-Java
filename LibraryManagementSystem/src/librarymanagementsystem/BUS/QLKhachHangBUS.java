@@ -201,4 +201,10 @@ public class QLKhachHangBUS {
         QLKhachHangDTO khachHang=new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt);
         return this.mod(khachHang);
     } 
+
+    public ArrayList<QLKhachHangDTO> getArrKhachHang() {
+        return arrKhachHang;
+    }
+    
+    
 }

@@ -94,13 +94,6 @@ public class QLTheBUS {
                     }
                 }
                 break;
-            case "Thẻ Khách Hàng": 
-                for (QLTheDTO e : arrThe){
-                    if (e.getKhachHang().toLowerCase(Locale.getDefault()).compareTo(value) != -1) {
-                        result_search.add(e);
-                    }
-                }
-                break;
         }
         return result_search;
     }
@@ -184,4 +177,10 @@ public class QLTheBUS {
         QLTheDTO the=new QLTheDTO(maThe, maKhachHang, ngayCap, ngayHetHan);
         return this.mod(the);
     } 
+
+    public ArrayList<QLTheDTO> getArrThe() {
+        return arrThe;
+    }
+    
+    
 }

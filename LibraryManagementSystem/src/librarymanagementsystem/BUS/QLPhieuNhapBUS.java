@@ -171,4 +171,10 @@ public class QLPhieuNhapBUS {
         QLPhieuNhapDTO nhapKho=new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC);
         return this.mod(nhapKho);
     } 
+
+    public ArrayList<QLPhieuNhapDTO> getArrNhapKho() {
+        return arrNhapKho;
+    }
+    
+    
 }
