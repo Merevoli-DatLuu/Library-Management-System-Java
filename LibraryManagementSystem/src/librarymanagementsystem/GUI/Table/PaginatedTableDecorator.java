@@ -1,6 +1,5 @@
 package librarymanagementsystem.GUI.Table;
 
-
 import javax.swing.*;
 import javax.swing.event.RowSorterEvent;
 import javax.swing.event.RowSorterListener;
@@ -97,6 +96,13 @@ public class PaginatedTableDecorator<T> {
                 currentPage = ((currentPageStartRow - 1) / currentPageSize) + 1;
                 paginate();
             });
+            
+            /**/
+            pageComboBox.setBackground(Color.white); // Màu của Page Size
+            //pageComboBox.setSize(100, 100);
+            pageLinkPanel.setBackground(Color.white);
+            paginationPanel.setBackground(Color.white);
+            /**/
             paginationPanel.add(Box.createHorizontalStrut(15));
             paginationPanel.add(new JLabel("Page Size: "));
             paginationPanel.add(pageComboBox);
@@ -150,6 +156,11 @@ public class PaginatedTableDecorator<T> {
     private void addPageButton(JPanel parentPanel, ButtonGroup buttonGroup, int pageNumber) {
         JToggleButton toggleButton = new JToggleButton(Integer.toString(pageNumber));
         toggleButton.setMargin(new Insets(1, 3, 1, 3));
+        /**/
+        toggleButton.setFont(new Font("consolas", Font.BOLD, 13));
+        toggleButton.setForeground(new Color(91, 197, 187));
+        toggleButton.setBackground(Color.white);
+        /**/
         buttonGroup.add(toggleButton);
         parentPanel.add(toggleButton);
         if (pageNumber == currentPage) {

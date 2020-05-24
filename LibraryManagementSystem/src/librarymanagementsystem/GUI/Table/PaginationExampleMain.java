@@ -1,9 +1,5 @@
 package librarymanagementsystem.GUI.Table;
 
-
-import librarymanagementsystem.BUS.*;
-import librarymanagementsystem.DTO.*;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
@@ -11,15 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaginationExampleMain {
-    ArrayList <String> headers;
-    ArrayList <Object> data;
-    
     public static void main(String[] args) {
         JFrame frame = createFrame();
-        ObjectTableModel<QLNhaCungCapDTO> objectDataModel = createObjectDataModel();
+        ObjectTableModel<Employee> objectDataModel = createObjectDataModel();
         JTable table = new JTable(objectDataModel);
         //** Adjust **//
-        table.setRowHeight(30);
+        table.setRowHeight(35);
         //table.setIntercellSpacing(new Dimension(20, 0)); // Spacing 
         //table.getColumnModel().getColumn(0).setPreferredWidth(70);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -29,63 +22,46 @@ public class PaginationExampleMain {
         table.setDefaultRenderer(Integer.class, centerRenderer);
         table.setDefaultRenderer(Long.class, centerRenderer);
         table.setDefaultRenderer(Double.class, centerRenderer);
+        
+        table.setFont(new Font("Ubuntu", Font.PLAIN, 13));
+        
+        table.getTableHeader().setBackground(new Color(91, 243, 207));
+        table.getTableHeader().setPreferredSize(new Dimension(0,35)); // HEader Height
+        table.getTableHeader().setFont(new Font("Ubuntu", Font.BOLD, 14));
+        table.getTableHeader().setForeground(Color.WHITE);
+        //table.getTableHeader().;
         //** End Adjust **//
         
         table.setAutoCreateRowSorter(true);
-        PaginationDataProvider<QLNhaCungCapDTO> dataProvider = createDataProvider(objectDataModel);
-        PaginatedTableDecorator<QLNhaCungCapDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
+        PaginationDataProvider<Employee> dataProvider = createDataProvider(objectDataModel);
+        PaginatedTableDecorator<Employee> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
-        frame.add(paginatedDecorator.getContentPanel());
+        /**/
+        JPanel p = paginatedDecorator.getContentPanel();
+        //frame.add(paginatedDecorator.getContentPanel());
+        p.setSize(700, 500);
+        p.setBackground(new java.awt.Color(255, 255, 255));
+        frame.add(p);
+        frame.setBackground(new java.awt.Color(255, 255, 255));
+         
+        /**/
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
-    public PaginationExampleMain(ArrayList <String> headers, ArrayList <Object> data) {
-        this.headers = headers;
-        this.data = data;
-    }
-    
-    
-    
-    public JPanel get_table() {
-        JFrame frame = createFrame();
-        ObjectTableModel<QLNhaCungCapDTO> objectDataModel = createObjectDataModel();
-        JTable table = new JTable(objectDataModel);
-        //** Adjust **//
-        table.setRowHeight(30);
-        //table.setIntercellSpacing(new Dimension(20, 0)); // Spacing 
-        //table.getColumnModel().getColumn(0).setPreferredWidth(70);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        table.setDefaultRenderer(String.class, centerRenderer);
-        table.setDefaultRenderer(Object.class, centerRenderer);
-        table.setDefaultRenderer(Integer.class, centerRenderer);
-        table.setDefaultRenderer(Long.class, centerRenderer);
-        table.setDefaultRenderer(Double.class, centerRenderer);
-        //** End Adjust **//
-        
-        table.setAutoCreateRowSorter(true);
-        PaginationDataProvider<QLNhaCungCapDTO> dataProvider = createDataProvider(objectDataModel);
-        PaginatedTableDecorator<QLNhaCungCapDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
-        return paginatedDecorator.getContentPanel();
-    }
-
-    private static ObjectTableModel<QLNhaCungCapDTO> createObjectDataModel() {
-        return new ObjectTableModel<QLNhaCungCapDTO>() {
+    private static ObjectTableModel<Employee> createObjectDataModel() {
+        return new ObjectTableModel<Employee>() {
             @Override
-            public Object getValueAt(QLNhaCungCapDTO nhaCungCap, int columnIndex) {
+            public Object getValueAt(Employee employee, int columnIndex) {
                 switch (columnIndex) {
                     case 0:
-                        return nhaCungCap.getMaNCC();
+                        return employee.getId();
                     case 1:
-                        return nhaCungCap.getTenNCC();
+                        return employee.getName();
                     case 2:
-                        return nhaCungCap.getSdt();
+                        return employee.getDateOfBirth();
                     case 3:
-                        return nhaCungCap.getEmail();
-                    case 4:
-                        return nhaCungCap.getDiaChi();
+                        return employee.getAddress();
                 }
                 return null;
             }
@@ -99,40 +75,37 @@ public class PaginationExampleMain {
             public String getColumnName(int column) {
                 switch (column) {
                     case 0:
-                        return "Mã Nhà Cung Cấp";
+                        return "Id";
                     case 1:
-                        return "Tên Nhà Cung Cấp";
+                        return "Name";
                     case 2:
-                        return "Số Điện Thoại";
+                        return "Date Of Birth";
                     case 3:
-                        return "Email";
-                    case 4:
-                        return "Địa Chỉ";
+                        return "Address";
                 }
                 return null;
             }
         };
     }
 
-    private static PaginationDataProvider<QLNhaCungCapDTO> createDataProvider(
-            ObjectTableModel<QLNhaCungCapDTO> objectDataModel) {
-        final List<QLNhaCungCapDTO> list = new ArrayList<>();
-        /*for (int i = 1; i <= 500; i++) {
-            QLNhaCungCapDTO e = new QLNhaCungCapDTO();
+    private static PaginationDataProvider<Employee> createDataProvider(
+            ObjectTableModel<Employee> objectDataModel) {
+        final List<Employee> list = new ArrayList<>();
+        for (int i = 1; i <= 500; i++) {
+            Employee e = new Employee();
             e.setId(i);
             e.setName(RandomUtil.createRandomWord(6));
             e.setDateOfBirth(RandomUtil.createRandomDate(1950, 2000));
             e.setAddress("address " + i);
             list.add(e);
-        }*/
-        List <QLNhaCungCapDTO> nhaCungCap = new QLNhaCungCapBUS().getArrNhaCungCap();
-        return new InMemoryPaginationDataProvider<>(nhaCungCap, objectDataModel);
+        }
+        return new InMemoryPaginationDataProvider<>(list, objectDataModel);
     }
 
     private static JFrame createFrame() {
         JFrame frame = new JFrame("JTable Pagination example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(new Dimension(600, 300));
+        frame.setSize(new Dimension(700, 500));
         return frame;
     }
 }

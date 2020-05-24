@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2020 at 04:44 PM
+-- Generation Time: May 23, 2020 at 06:19 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -31,17 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `tkAdmin` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hashed` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `RFID_code` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `salt` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL
+  `password_hashed` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RFID_code` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`tkAdmin`, `password`, `password_hashed`, `RFID_code`, `salt`) VALUES
-('AD000001', '123456datluu', 'c1ae5ff731e0c5a18c13aac2fc1ff7b1', '64 6B A5 18', 'e301252571e6b32f59e058bc42c81d6a');
+INSERT INTO `admin` (`tkAdmin`, `password`, `password_hashed`, `RFID_code`) VALUES
+('AD000001', '123456datluu', NULL, '64 6B A5 18');
 
 -- --------------------------------------------------------
 
@@ -507,8 +506,7 @@ INSERT INTO `nhacungcap` (`maNCC`, `tenNCC`, `sdt`, `email`, `diaChi`) VALUES
 CREATE TABLE `nhanvien` (
   `maNhanVien` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hashed` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `salt` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_hashed` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `RFID_code` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hoTen` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `ngaySinh` date NOT NULL,
@@ -522,17 +520,17 @@ CREATE TABLE `nhanvien` (
 -- Dumping data for table `nhanvien`
 --
 
-INSERT INTO `nhanvien` (`maNhanVien`, `password`, `password_hashed`, `salt`, `RFID_code`, `hoTen`, `ngaySinh`, `diaChi`, `sdt`, `email`, `chucVu`) VALUES
-('QL000001', 'QL000001', '261f3be78d4c3ff12e00380e0bdfd72f', '41baa34f66cffd82ffc788a4cd70bf9d', NULL, 'Nguyễn Mai Ngọc Bích', '1988-11-02', 'Cao Thắng, Quận 3, TP HCM', '0358990124', 'ngocbich@gmail.com', 'Thủ Thư'),
-('QL000002', 'QL000002', '644694fb9c214c9f5b8aa23b2048cc25', '1a10f8e2a08c1816208daf3393c98fe8', NULL, 'Nguyễn Đức Minh', '1985-02-13', 'Hồ Học Lãm, Quận Bình Tân, TP HCM', '0705145202', 'minhnguyen@gmail.com', 'Quản Lý Kho'),
-('QL000003', 'QL000003', 'bba1f6527b49b8df760d0ea3f476e9c2', '074484fe51ca878e492e6898f38cdec8', NULL, 'Lê Vân Nhi', '1992-07-17', '3 Tháng 2, Quận 10, TP HCM', '0903214760', 'vannhi@gmail.com', 'Thủ Thư'),
-('QL000004', 'QL000004', 'a42f93001586d44e00c07dcd46e716fe', '891e9f4d62ab25189cf57339d3e33ad1', NULL, 'Lê Gia An', '1987-10-20', 'Lê Lợi, Quận 1, TP HCM', '0345905191', 'anle@gmail.com', 'Quản Lý Kho'),
-('QL000005', 'QL000005', 'ed5deec89a88cb076472f0b136d0a030', 'ff9209aa59464468825a1f0913091b42', NULL, 'Phạm Ánh Dương', '1994-03-15', 'Nguyễn Công Trứ, Quận Bình Thạnh, TP HCM', '0935120275', 'anhduong@gmail.com', 'Thủ Thư'),
-('QL000006', 'QL000006', '843fe76766b5c0d0ffc7c3583246b2b9', 'a80c2affb865c229f56a649f2164e595', NULL, 'Phạm Thiên Ân', '1990-01-31', 'Phan Văn Hớn, Huyện Hóc Môn, TP HCM', '0950123589', 'anhpham@gmail.com', 'Quản Lý Kho'),
-('QL000007', 'QL000007', '9d6310310461250cdb0bb18b0ef16b43', 'd999be8f5ecb928d724d9d75c40b6d4f', NULL, 'Đặng Gia Hân', '1993-05-29', 'Huỳnh Văn Nghệ, Quận Gò Vấp, TP HCM', '0795342467', 'giahan@gmail.com', 'Thủ Thư'),
-('QL000008', 'QL000008', '9da165e83f191c30a12f7967fe26efbe', '58b8fec34661f027c73c8e0f8570eee1', NULL, 'Đặng Ngọc Gia Nguyên', '1986-08-20', 'Nguyễn Văn Trỗi, Quận Phú Nhuận, TP HCM', '0940567316', 'nguyendang@gmail.com', 'Quản Lý Kho'),
-('QL000009', 'QL000009', '47eb5e5512db203625dafa28206a9b47', 'd46cc4babf75a7e4c628b1da9f0c7c28', NULL, 'Đỗ Phương Thảo', '1995-10-10', 'Bạch Đằng, Quận Tân Bình, TP HCM', '0775428796', 'phuongthao@gmail.com', 'Thủ Thư'),
-('QL000010', 'QL000010', '399f364e690c3244387ab088176d06db', 'e303f79fc666c869495c005830d4e632', NULL, 'Đỗ Quang Khải', '1986-12-24', 'Phan Châu Trinh, Quận Tân Phú, TP HCM', '0902464703', 'khaido@gmail.com', 'Quản Lý Kho');
+INSERT INTO `nhanvien` (`maNhanVien`, `password`, `password_hashed`, `RFID_code`, `hoTen`, `ngaySinh`, `diaChi`, `sdt`, `email`, `chucVu`) VALUES
+('QL000001', 'QL000001', NULL, NULL, 'Nguyễn Mai Ngọc Bích', '1988-11-02', 'Cao Thắng, Quận 3, TP HCM', '0358990124', 'ngocbich@gmail.com', 'Thủ Thư'),
+('QL000002', 'QL000002', NULL, NULL, 'Nguyễn Đức Minh', '1985-02-13', 'Hồ Học Lãm, Quận Bình Tân, TP HCM', '0705145202', 'minhnguyen@gmail.com', 'Quản Lý Kho'),
+('QL000003', 'QL000003', NULL, NULL, 'Lê Vân Nhi', '1992-07-17', '3 Tháng 2, Quận 10, TP HCM', '0903214760', 'vannhi@gmail.com', 'Thủ Thư'),
+('QL000004', 'QL000004', NULL, NULL, 'Lê Gia An', '1987-10-20', 'Lê Lợi, Quận 1, TP HCM', '0345905191', 'anle@gmail.com', 'Quản Lý Kho'),
+('QL000005', 'QL000005', NULL, NULL, 'Phạm Ánh Dương', '1994-03-15', 'Nguyễn Công Trứ, Quận Bình Thạnh, TP HCM', '0935120275', 'anhduong@gmail.com', 'Thủ Thư'),
+('QL000006', 'QL000006', NULL, NULL, 'Phạm Thiên Ân', '1990-01-31', 'Phan Văn Hớn, Huyện Hóc Môn, TP HCM', '0950123589', 'anhpham@gmail.com', 'Quản Lý Kho'),
+('QL000007', 'QL000007', NULL, NULL, 'Đặng Gia Hân', '1993-05-29', 'Huỳnh Văn Nghệ, Quận Gò Vấp, TP HCM', '0795342467', 'giahan@gmail.com', 'Thủ Thư'),
+('QL000008', 'QL000008', NULL, NULL, 'Đặng Ngọc Gia Nguyên', '1986-08-20', 'Nguyễn Văn Trỗi, Quận Phú Nhuận, TP HCM', '0940567316', 'nguyendang@gmail.com', 'Quản Lý Kho'),
+('QL000009', 'QL000009', NULL, NULL, 'Đỗ Phương Thảo', '1995-10-10', 'Bạch Đằng, Quận Tân Bình, TP HCM', '0775428796', 'phuongthao@gmail.com', 'Thủ Thư'),
+('QL000010', 'QL000010', NULL, NULL, 'Đỗ Quang Khải', '1986-12-24', 'Phan Châu Trinh, Quận Tân Phú, TP HCM', '0902464703', 'khaido@gmail.com', 'Quản Lý Kho');
 
 -- --------------------------------------------------------
 
