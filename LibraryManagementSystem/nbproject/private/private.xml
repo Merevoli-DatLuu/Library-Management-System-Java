@@ -5,10 +5,11 @@
         <group>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/MainGUI.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Main_2.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/LibraryManagementSystem.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/TrangChuGUI.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/Toolkit/FileProcessing/ImportFile.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/LoaiSachModule.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/LoginGUI.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/HienThiGUI/dashboardCard.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/Sach_SelectionModule.java</file>
         </group>
     </open-files>
 </project-private>

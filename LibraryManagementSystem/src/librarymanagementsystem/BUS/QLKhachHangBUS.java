@@ -3,6 +3,7 @@ package librarymanagementsystem.BUS;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
@@ -206,5 +207,32 @@ public class QLKhachHangBUS {
         return arrKhachHang;
     }
     
-    
+    // Thống Kê (về sau chuyển sang class riêng)
+    /**
+    * Nhóm trẻ em và thanh thiếu niên 0 -> 19
+    * Nhóm người trưởng thành 20 -> 49
+    * Nhóm người lớn tuổi: 49->...
+    **/
+    public ArrayList <Integer> getArrStageofAge(){
+        DataProcessing t = new DataProcessing();
+        ArrayList <Integer> stage = new ArrayList<>();
+        int stage_1 = 0; // Nhóm trẻ em và thanh thiếu niên
+        int stage_2 = 0; // Nhóm người trưởng thành
+        int stage_3 = 0; // Nhóm người lớn tuổi
+        for (QLKhachHangDTO e : arrKhachHang){
+            if (t.getAge(e.getNgaySinh()) <= 19){       // Nhóm trẻ em và thanh thiếu niên
+                stage_1++;
+            }
+            else if (t.getAge(e.getNgaySinh()) <= 49){  // Nhóm người trưởng thành
+                stage_2++;
+            }
+            else{                                       // Nhóm người lớn tuổi
+                stage_3++;
+            }
+        }
+        stage.add(stage_1);
+        stage.add(stage_2);
+        stage.add(stage_3);
+        return stage;
+    }
 }

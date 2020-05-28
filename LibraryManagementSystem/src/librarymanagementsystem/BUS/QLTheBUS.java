@@ -8,7 +8,7 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLTheBUS {
-    private ArrayList<QLTheDTO> arrThe = new ArrayList<>();
+    private static ArrayList<QLTheDTO> arrThe = new ArrayList<>();
     private QLTheDAO theDAO = new QLTheDAO();
 
     public QLTheBUS() {

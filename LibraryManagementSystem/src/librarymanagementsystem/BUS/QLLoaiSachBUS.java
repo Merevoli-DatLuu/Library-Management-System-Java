@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class QLLoaiSachBUS {
-    private ArrayList<QLLoaiSachDTO> arrSach = new ArrayList<>();
+    private static ArrayList<QLLoaiSachDTO> arrSach = new ArrayList<>();
     private QLLoaiSachDAO sachDAO = new QLLoaiSachDAO();
     
     public QLLoaiSachBUS(){

@@ -7,8 +7,11 @@ import javax.swing.JPanel;
 public class Main_2 extends javax.swing.JFrame {
     int x_Mouse, y_Mouse; // For Moving Window
     int current_Module = 0;
+    public static String sub_Module = "";
     static String currentUser = "";
     ExitGUI exitForm;
+    TrangChuGUI TrangChuModule = new TrangChuGUI();
+    public static javax.swing.JPanel Module_Panel = new javax.swing.JPanel(); // về sau dùng phương thức get
     
     public Main_2() {
         initComponents();
@@ -24,6 +27,11 @@ public class Main_2 extends javax.swing.JFrame {
         setSize(1113, 763);
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
+    }
+    
+    // Cái này để Class ko cần vẽ lại. Lý do cho việc này là do tui thiết kế Constructor ngu người vl, và cũng lười sửa lại
+    public Main_2(int i){
+        
     }
 
     /**
@@ -57,11 +65,19 @@ public class Main_2 extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(null);
-
-        JPanel Module = new TrangChuGUI().getTrangChuGUI();
-        Module.setBounds(110, 100, 940, 600);
         
-        jPanel1.add(Module);
+        /** Default Module: TrangChuModule **/
+        Module = TrangChuModule.getTrangChuGUI();
+        //Module = new Sach_SelectionModule().getSach_SelectionModule();
+        //Module = new LoaiSachModule().getLoaiSachModule();
+        Module.setBounds(0, 0, 940, 600);
+        
+        Module_Panel.setOpaque(false);
+        Module_Panel.setLayout(null);
+        Module_Panel.add(Module);
+        Module_Panel.setBounds(110, 100, 940, 600);
+        
+        jPanel1.add(Module_Panel);
         
         exit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (43).png"))); // NOI18N
         exit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,6 +246,14 @@ public class Main_2 extends javax.swing.JFrame {
     private void trangChu_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                             
         turnOffModule();
         current_Module=0;
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
+        Module = TrangChuModule.getTrangChuGUI();
+        Module.setBounds(0, 0, 940, 600);
+        Module_Panel.add(Module);
+        
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (70).png")));
         trangChu_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (41).png")));
     }                                            
@@ -237,6 +261,15 @@ public class Main_2 extends javax.swing.JFrame {
     private void sach_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                         
         turnOffModule();
         current_Module=1;
+        
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
+        Module = new Sach_SelectionModule().getSach_SelectionModule();
+        Module.setBounds(0, 0, 940, 600);
+        Module_Panel.add(Module);
+        
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (78).png")));
         sach_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (72).png")));
     }                                        
@@ -336,5 +369,6 @@ public class Main_2 extends javax.swing.JFrame {
     private javax.swing.JLabel tittleModule;
     private javax.swing.JLabel trangChu_Module;
     private javax.swing.JLabel username_label;
+    private javax.swing.JPanel Module;
     // End of variables declaration                   
 }

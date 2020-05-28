@@ -7,6 +7,7 @@ package librarymanagementsystem.GUI.ModuleGUI;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.GUI.HienThiGUI.*;
 import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.*;
@@ -18,17 +19,21 @@ import javax.swing.JPanel;
  */
 public class TrangChuGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TrangChuGUI
-     */
-    public JPanel getTrangChuGUI() {
+    private static DataProcessing dp = new DataProcessing();
+    private static QLChiTietSachBUS chiTietSachBUS = new QLChiTietSachBUS();
+    private static QLTheBUS theBUS = new QLTheBUS();
+    private static QLPhieuMuonBUS phieuMuonBUS = new QLPhieuMuonBUS();
+    private static QLNhanVienBUS nhanVienBUS = new QLNhanVienBUS();
+    private static QLKhachHangBUS khachHangBUS = new QLKhachHangBUS();
+    
+    public static JPanel getTrangChuGUI() {
         initComponents();
-        setSize(940, 600);
         
-        int value_1 = new QLChiTietSachBUS().getSoLuongSach();
-        int value_2 = new QLTheBUS().getSoLuongThe();
-        int value_3 = new QLPhieuMuonBUS().getSoLuongSachMuon();
-        int value_4 = new QLNhanVienBUS().getSoLuongNhanVien();
+        /** Cards **/
+        int value_1 = chiTietSachBUS.getSoLuongSach();
+        int value_2 = theBUS.getSoLuongThe();
+        int value_3 = phieuMuonBUS.getSoLuongSachMuon();
+        int value_4 = nhanVienBUS.getSoLuongNhanVien();
         
         JPanel card_1 = new dashboardCard("SÁCH", Integer.toString(value_1), "../../images/output-onlinepngtools (85).png").getdashboardCard();
         JPanel card_2 = new dashboardCard("THẺ", Integer.toString(value_2), "../../images/output-onlinepngtools (86).png").getdashboardCard();
@@ -44,25 +49,35 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jPanel1.add(card_2);
         jPanel1.add(card_3);
         jPanel1.add(card_4);
+        /** End Cards **/
         
+        /** Charts **/
         ChartDrawing chart = new ChartDrawing();
         ArrayList <Integer> name_value = new ArrayList<>();
-        ArrayList <Integer> value = new QLPhieuMuonBUS().getArrSoLuongSachMuon(2020);
+        ArrayList <Integer> value = phieuMuonBUS.getArrSoLuongSachMuon_Current();
         
-        for (int i=1; i<=12; i++){
+        for (int i=1; i<=dp.getCurrentMonth(); i++){
             name_value.add(i);
         }
         
-        for (int e : value){
-            System.out.print(e + " ");
-        }
+        System.out.println(dp.getCurrentMonth());
         
         JPanel chart_1 = chart.lineChart("Biểu Đồ về Sách Mượn (2020)", "số sách mượn/tháng", "tháng", "số sách mượn", value, name_value);
-        chart_1.setBounds(35, 200, 550, 370);
+        chart_1.setBounds(35, 200, 550, 380);
         
+        ArrayList <String> name_value2 = new ArrayList<>();
+        ArrayList <Integer> value2 = khachHangBUS.getArrStageofAge();
+        
+        name_value2.add("Nhóm Trẻ em và Thanh thiếu niên");
+        name_value2.add("Nhóm người trưởng thành");
+        name_value2.add("Nhóm người lớn tuổi");
+        
+        JPanel chart_2 = chart.pieChart("Biểu Đồ về phân bố độ tuổi độc giả", name_value2, value2);
+        chart_2.setBounds(600, 200, 315, 380);
         
         jPanel1.add(chart_1);
-        
+        jPanel1.add(chart_2);
+        /** End Charts **/
         return jPanel1;
     }
 
@@ -73,19 +88,19 @@ public class TrangChuGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
+    private static void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //getContentPane().setLayout(null);
 
         jPanel1.setLayout(null);
         jPanel1.setBounds(0, 0, 940, 600);
-        getContentPane().add(jPanel1);
+        //getContentPane().add(jPanel1);
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
-        pack();
+        //pack();
     }// </editor-fold>                        
 
     /**
@@ -124,6 +139,6 @@ public class TrangChuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JPanel jPanel1;
+    private static javax.swing.JPanel jPanel1;
     // End of variables declaration                   
 }

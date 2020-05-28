@@ -9,7 +9,7 @@ import librarymanagementsystem.DTO.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
 
 public class QLPhieuMuonBUS {
-    private ArrayList<QLPhieuMuonDTO> arrMuonTra = new ArrayList<>();
+    private static ArrayList<QLPhieuMuonDTO> arrMuonTra = new ArrayList<>();
     private QLPhieuMuonDAO muonTraDAO = new QLPhieuMuonDAO();
 
     public QLPhieuMuonBUS() {
@@ -196,6 +196,7 @@ public class QLPhieuMuonBUS {
         return arrMuonTra;
     }
     
+    // Thống Kê (về sau chuyển sang class riêng)
     public int getSoLuongSachMuon(){
         int res = 0;
         for (QLPhieuMuonDTO e : arrMuonTra){
@@ -246,6 +247,23 @@ public class QLPhieuMuonBUS {
             int t = 0;
             for (QLPhieuMuonDTO e : arrMuonTra){
                 if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
+                    t += e.getIDSach().size();
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
+    
+    public ArrayList <Integer> getArrSoLuongSachMuon_Current(){
+        ArrayList <Integer> rs = new ArrayList<>();
+        DataProcessing ps = new DataProcessing();
+        int current_month = ps.getCurrentMonth();
+        int current_year = ps.getCurrentYear();
+        for (int month = 1; month <= current_month; month++){
+            int t = 0;
+            for (QLPhieuMuonDTO e : arrMuonTra){
+                if (ps.getYear(e.getNgayMuon()) == current_year && ps.getMonth(e.getNgayMuon()) == month){
                     t += e.getIDSach().size();
                 }
             }

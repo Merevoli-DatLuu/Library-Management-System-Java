@@ -7,7 +7,7 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLNhanVienBUS {
-    private ArrayList<QLNhanVienDTO> arrNhanVien = new ArrayList<>();
+    private static ArrayList<QLNhanVienDTO> arrNhanVien = new ArrayList<>();
     private QLNhanVienDAO nhanVienDAO = new QLNhanVienDAO();
 
     public QLNhanVienBUS() {

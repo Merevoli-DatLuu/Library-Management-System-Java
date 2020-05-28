@@ -7,6 +7,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,12 +30,35 @@ public class PaginatedTableDecorator<T> {
         this.pageSizes = pageSizes;
         this.currentPageSize = defaultPageSize;
     }
+    
+    private PaginatedTableDecorator(JTable table, PaginationDataProvider<T> dataProvider,
+                                    int[] pageSizes, int defaultPageSize, ArrayList <Integer> widthColumns) {
+        this.table = table;
+        this.dataProvider = dataProvider;
+        this.pageSizes = pageSizes;
+        this.currentPageSize = defaultPageSize;
+        
+        // add set Width Column
+        int index = 0;
+        for (int wid : widthColumns){
+            table.getColumnModel().getColumn(index++).setPreferredWidth(wid);
+        }
+    }
 
     public static <T> PaginatedTableDecorator<T> decorate(JTable table,
                                                           PaginationDataProvider<T> dataProvider,
                                                           int[] pageSizes, int defaultPageSize) {
         PaginatedTableDecorator<T> decorator = new PaginatedTableDecorator<>(table, dataProvider,
                 pageSizes, defaultPageSize);
+        decorator.init();
+        return decorator;
+    }
+    
+    public static <T> PaginatedTableDecorator<T> decorate(JTable table,
+                                                          PaginationDataProvider<T> dataProvider,
+                                                          int[] pageSizes, int defaultPageSize, ArrayList <Integer> widthColumns) {
+        PaginatedTableDecorator<T> decorator = new PaginatedTableDecorator<>(table, dataProvider,
+                pageSizes, defaultPageSize, widthColumns);
         decorator.init();
         return decorator;
     }
@@ -103,10 +127,10 @@ public class PaginatedTableDecorator<T> {
             });
             
             /**/
-            pageComboBox.setBackground(Color.white); // Màu của Page Size
+            pageComboBox.setBackground(new Color(249, 249, 249)); // Màu của Page Size
             //pageComboBox.setSize(100, 100);
-            pageLinkPanel.setBackground(Color.white);
-            paginationPanel.setBackground(Color.white);
+            pageLinkPanel.setBackground(new Color(249, 249, 249));
+            paginationPanel.setBackground(new Color(249, 249, 249));
             /**/
             paginationPanel.add(Box.createHorizontalStrut(15));
             paginationPanel.add(new JLabel("Page Size: "));

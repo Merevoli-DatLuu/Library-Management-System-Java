@@ -117,14 +117,31 @@ public class QLLoaiSachTable{
         table.getTableHeader().setBackground(new Color(91, 243, 207));
         table.getTableHeader().setPreferredSize(new Dimension(0,35)); // Header Height
         table.getTableHeader().setFont(new Font("verdana", Font.BOLD, 14));
-        table.getTableHeader().setForeground(Color.WHITE);
+        // Change
+        //table.getTableHeader().setForeground(Color.WHITE);
+        table.getTableHeader().setForeground(new Color(56, 180, 123));
+        
         //table.getTableHeader().;
         //** End Adjust **//
+        
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        
+        width.add(100);
+        width.add(400);
+        width.add(160);
+        width.add(300);
+        width.add(230);
+        width.add(130);
+        width.add(400);
+        width.add(130);
+        width.add(100);
+        width.add(100);
         
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLLoaiSachDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLLoaiSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

@@ -29,7 +29,7 @@ import org.jfree.ui.RefineryUtilities;
 public class ChartDrawing{
    
     //** PieChart **//
-    private PieDataset createDataSet_PieChart(ArrayList <String> key, ArrayList <Double> value){
+    private PieDataset createDataSet_PieChart(ArrayList <String> key, ArrayList <Integer> value){
         DefaultPieDataset dataset = new DefaultPieDataset( );
         for (int i=0; i<key.size(); i++){
             dataset.setValue(key.get(i) , value.get(i) );  
@@ -44,11 +44,15 @@ public class ChartDrawing{
             true,           
             true, 
             false);
-
+        chart.getPlot().setBackgroundPaint( new Color(241, 245, 248) );
+        chart.getPlot().setOutlinePaint(new Color(91, 231, 196));
+        chart.getTitle().setFont(new java.awt.Font("Arial", 1, 16));
+        chart.getTitle().setPaint(new java.awt.Color(77, 97, 77));
+        
         return chart;
     }
     
-    public JPanel pieChart(String title, ArrayList <String> name_value, ArrayList <Double> value) {
+    public JPanel pieChart(String title, ArrayList <String> name_value, ArrayList <Integer> value) {
         JFreeChart chart = createChart_PieChart(title, createDataSet_PieChart(name_value, value) );  
         return new ChartPanel( chart ); 
     }
