@@ -197,6 +197,7 @@ public class LoginGUI extends JFrame{
                 System.out.println("Đăng Nhập Thành Công");
                 System.out.println("Current Session: " + current_session);
                 //new MainGUI(current_session).setVisible(true);
+                new Main_2(current_session).setVisible(true);
                 new WelcomeGUI(current_session).setVisible(true);
                 this.dispose();
             }
@@ -230,6 +231,7 @@ public class LoginGUI extends JFrame{
             System.out.println("Đăng Nhập Thành Công");
             System.out.println("Current Session: " + current_session);
             //new MainGUI(current_session).setVisible(true);
+            new Main_2(current_session).setVisible(true);
             new WelcomeGUI(current_session).setVisible(true);
             this.dispose();
         }

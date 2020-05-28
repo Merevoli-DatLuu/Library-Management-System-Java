@@ -822,4 +822,7 @@ public class ImportFile {
         }
     }
     
+    public static void main(String[] args){
+        new ImportFile().readFileExcel_QLSach();
+    }
 }

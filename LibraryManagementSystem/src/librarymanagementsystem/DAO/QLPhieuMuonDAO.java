@@ -21,20 +21,19 @@ public class QLPhieuMuonDAO {
                 while (rs.next()){
                     String maPhieuMuon = rs.getString("maPhieuMuon");
                     String maThe = rs.getString("maThe");
-                    String thoiDiemMuon = rs.getString("thoiDiemMuon");
+                    String NgayMuon = rs.getString("ngayMuon");
                     int thoiGianMuon = rs.getInt("thoiGianMuon");
-                    String thoiDiemTra = rs.getString("thoiDiemTra");
+                    String NgayTra = rs.getString("ngayTra");
                     ArrayList <String> IDSach = new ArrayList <String> ();
-                    
-                    String query_IDSach = "SELECT * FROM ChiTietPhieuMuon WHERE ChiTietPhieuMuon.maPhieuMuon = "  + maPhieuMuon;
-                    ResultSet rs_IDSach = DBMuonTra.SQLQuery(query);
+                    String query_IDSach = "SELECT * FROM ChiTietPhieuMuon WHERE ChiTietPhieuMuon.maPhieuMuon = '"  + maPhieuMuon + "'";
+                    ResultSet rs_IDSach = new DBConnection().SQLQuery(query_IDSach);
                     if (rs_IDSach != null){
                         while (rs_IDSach.next()){
                             IDSach.add(rs_IDSach.getString("IDSach"));
                         }
                     }
                     
-                    arrMuonTra.add(new QLPhieuMuonDTO(maPhieuMuon, maThe, IDSach, thoiDiemMuon, thoiGianMuon, thoiDiemTra));
+                    arrMuonTra.add(new QLPhieuMuonDTO(maPhieuMuon, maThe, IDSach, NgayMuon, thoiGianMuon, NgayTra));
                 }
             }
 
@@ -50,7 +49,7 @@ public class QLPhieuMuonDAO {
     
     public Boolean add(QLPhieuMuonDTO muonTra){
         DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO PhieuMuon(maPhieuMuon, maThe, thoiDiemMuon, thoiGianMuon, thoiDiemTra) "
+        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO PhieuMuon(maPhieuMuon, maThe, NgayMuon, thoiGianMuon, NgayTra) "
                 + "VALUES ('"
                 + muonTra.getMaPhieuMuon()+ "','"     
                 + muonTra.getMaThe()+ "','"     
@@ -71,15 +70,15 @@ public class QLPhieuMuonDAO {
         return check & check_2;
     }
     
-    public Boolean add(String maPhieuMuon, String maThe, ArrayList <String> IDSach, String thoiDiemMuon, int thoiGianMuon, String thoiDiemTra){
+    public Boolean add(String maPhieuMuon, String maThe, ArrayList <String> IDSach, String NgayMuon, int thoiGianMuon, String NgayTra){
         DBMuonTra = new DBConnection();
-        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO PhieuMuon(maPhieuMuon, maThe, thoiDiemMuon, thoiGianMuon, thoiDiemTra) "
+        Boolean check = DBMuonTra.SQLUpdate("INSERT INTO PhieuMuon(maPhieuMuon, maThe, NgayMuon, thoiGianMuon, NgayTra) "
                 + "VALUES ('"
                 + maPhieuMuon+ "','"     
                 + maThe+ "','"   
-                + thoiDiemMuon+ "',"     
+                + NgayMuon+ "',"     
                 + thoiGianMuon+ ",'"
-                + thoiDiemTra+ "');");
+                + NgayTra+ "');");
         Boolean check_2 = true;
         for (String idsach : IDSach){
             Boolean check_3 = DBMuonTra.SQLUpdate("INSERT INTO ChiTietPhieuMuon(maPhieuMuon, IDSach) "
@@ -106,9 +105,9 @@ public class QLPhieuMuonDAO {
         DBMuonTra = new DBConnection();
         Boolean check = DBMuonTra.SQLUpdate("Update PhieuMuon Set "
                 + " maThe='" + muonTra.getMaThe()
-                + "', thoiDiemMuon='" + muonTra.getNgayMuon()
+                + "', NgayMuon='" + muonTra.getNgayMuon()
                 + "', thoiGianMuon=" + muonTra.getThoiGianMuon()
-                + ", thoiDiemTra='" + muonTra.getNgayTra()
+                + ", NgayTra='" + muonTra.getNgayTra()
                 + "' where maPhieuMuon='" + muonTra.getMaPhieuMuon()+ "';");
         Boolean check_2 = DBMuonTra.SQLUpdate("DELETE FROM ChiTietPhieuMuon WHERE ChiTietPhieuNhap.maPhieuMuon = '" + muonTra.getMaPhieuMuon() + "';");
         for (int i=0; i<muonTra.getIDSach().size(); i++){
@@ -124,13 +123,13 @@ public class QLPhieuMuonDAO {
         return check & check_2;
     }
     
-    public Boolean mod(String maPhieuMuon, String maThe, ArrayList <String> IDSach, String thoiDiemMuon, int thoiGianMuon, String thoiDiemTra){
+    public Boolean mod(String maPhieuMuon, String maThe, ArrayList <String> IDSach, String NgayMuon, int thoiGianMuon, String NgayTra){
         DBMuonTra = new DBConnection();
         Boolean check = DBMuonTra.SQLUpdate("Update PhieuMuon Set "
                 + " maThe='" + maThe
-                + "', thoiDiemMuon='" + thoiDiemMuon
+                + "', NgayMuon='" + NgayMuon
                 + "', thoiGianMuon=" + thoiGianMuon
-                + ", thoiDiemTra='" + thoiDiemTra
+                + ", NgayTra='" + NgayTra
                 + "' where maPhieuMuon='" + maPhieuMuon+ "';");
         Boolean check_2 = DBMuonTra.SQLUpdate("DELETE FROM ChiTietPhieuMuon WHERE ChiTietPhieuNhap.maPhieuMuon = '" + maPhieuMuon + "';");
         for (int i=0; i<IDSach.size(); i++){

@@ -15,9 +15,9 @@ import librarymanagementsystem.DTO.QLLoaiSachDTO;
 
 public class QLLoaiSachTable{
     
-    
+    // for testing
     private static JFrame createFrame() {
-        JFrame frame = new JFrame("JTable Pagination example");
+        JFrame frame = new JFrame("Testing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(700, 500));
         return frame;
@@ -92,27 +92,30 @@ public class QLLoaiSachTable{
         return new InMemoryPaginationDataProvider<>(list, objectDataModel);
     }
     
-    public static void main(String[] args) {
-        JFrame frame = createFrame();
+    public JPanel getTable(){
         ObjectTableModel<QLLoaiSachDTO> objectDataModel = createObjectDataModel();
         JTable table = new JTable(objectDataModel);
-        //** Adjust **//
+        
+        //** Adjust Table**//
         table.setRowHeight(35);
         //table.setIntercellSpacing(new Dimension(20, 0)); // Spacing 
         //table.getColumnModel().getColumn(0).setPreferredWidth(70);
+        
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        /*table.setDefaultRenderer(String.class, centerRenderer);
+        
+        /* Align
+        table.setDefaultRenderer(String.class, centerRenderer);
         table.setDefaultRenderer(Object.class, centerRenderer);
         table.setDefaultRenderer(Integer.class, centerRenderer);
         table.setDefaultRenderer(Long.class, centerRenderer);
         table.setDefaultRenderer(Double.class, centerRenderer);
-        Align
         */
+        
         table.setFont(new Font("verdana", Font.PLAIN, 13));
         
         table.getTableHeader().setBackground(new Color(91, 243, 207));
-        table.getTableHeader().setPreferredSize(new Dimension(0,35)); // HEader Height
+        table.getTableHeader().setPreferredSize(new Dimension(0,35)); // Header Height
         table.getTableHeader().setFont(new Font("verdana", Font.BOLD, 14));
         table.getTableHeader().setForeground(Color.WHITE);
         //table.getTableHeader().;
@@ -122,8 +125,13 @@ public class QLLoaiSachTable{
         PaginationDataProvider<QLLoaiSachDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLLoaiSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
-        /**/
         JPanel p = paginatedDecorator.getContentPanel();
+        return p;
+    }
+    
+    public static void main(String[] args) {
+        JFrame frame = createFrame();
+        JPanel p = new QLLoaiSachTable().getTable();
         //frame.add(paginatedDecorator.getContentPanel());
         p.setSize(700, 500);
         p.setBackground(new java.awt.Color(255, 255, 255));

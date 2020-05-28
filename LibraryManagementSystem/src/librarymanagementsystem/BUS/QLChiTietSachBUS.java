@@ -211,5 +211,7 @@ public class QLChiTietSachBUS {
         return arrChiTietSach;
     }
     
-    
+    public int getSoLuongSach(){
+        return arrChiTietSach.size();
+    }
 }

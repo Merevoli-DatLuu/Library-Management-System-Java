@@ -3,6 +3,7 @@ package librarymanagementsystem.GUI;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import java.awt.Color;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -12,13 +13,15 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities; 
 import org.jfree.chart.plot.XYPlot; 
 import org.jfree.chart.ChartFactory; 
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation; 
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.axis.NumberAxis; 
+import org.jfree.data.xy.XYSeriesCollection;    
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.general.PieDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
@@ -51,7 +54,15 @@ public class ChartDrawing{
     }
     
     //** Line Chart **//
-    private DefaultCategoryDataset createDataSet_LineChart(String series, ArrayList <Double> value_1, ArrayList <Double> value_2){
+    /*private DefaultCategoryDataset createDataSet_LineChart(String series, ArrayList <Double> value_1, ArrayList <Double> value_2){
+        DefaultCategoryDataset  dataset = new DefaultCategoryDataset( );
+        for (int i=0; i<value_1.size(); i++){
+            dataset.setValue(value_1.get(i), series, value_2.get(i));  
+        }
+        return dataset;
+    }*/
+    
+    private DefaultCategoryDataset createDataSet_LineChart(String series, ArrayList <Integer> value_1, ArrayList <Integer> value_2){
         DefaultCategoryDataset  dataset = new DefaultCategoryDataset( );
         for (int i=0; i<value_1.size(); i++){
             dataset.setValue(value_1.get(i), series, value_2.get(i));  
@@ -75,19 +86,31 @@ public class ChartDrawing{
     }
     */
     
-    private JFreeChart createChart_PieChart(String title, String name_value_1, String name_value_2, DefaultCategoryDataset dataset ) {
+    private JFreeChart createChart_LineChart(String title, String name_value_1, String name_value_2, DefaultCategoryDataset dataset ) {
         JFreeChart lineChart = ChartFactory.createLineChart(
             title,
             name_value_1, name_value_2,
             dataset,    
             PlotOrientation.VERTICAL,
             true,true,false);
+        lineChart.getPlot().setBackgroundPaint( new Color(241, 245, 248) );
+        lineChart.getPlot().setOutlinePaint(new Color(91, 231, 196));
+        lineChart.getTitle().setFont(new java.awt.Font("Arial", 1, 16));
+        
+        CategoryPlot plot = (CategoryPlot) lineChart.getPlot();
+        
+        LineAndShapeRenderer render = new LineAndShapeRenderer();
+ 
+        // sets paint color for each series
+        render.setSeriesPaint(0, new Color(82, 210, 202));
+        
+        plot.setRenderer(render);
         
         return lineChart;
     }
     
-    public JPanel lineChart(String title, String series, String name_value_1, String name_value_2, ArrayList <Double> value_1, ArrayList <Double> value_2) {
-        ChartPanel chart = new ChartPanel(createChart_PieChart(title, name_value_1, name_value_2, createDataSet_LineChart(series, value_1, value_2)));  
+    public JPanel lineChart(String title, String series, String name_value_1, String name_value_2, ArrayList <Integer> value_1, ArrayList <Integer> value_2) {
+        ChartPanel chart = new ChartPanel(createChart_LineChart(title, name_value_1, name_value_2, createDataSet_LineChart(series, value_1, value_2)));  
         return chart; 
     }
     
@@ -151,7 +174,7 @@ public class ChartDrawing{
         value.add(1233d);
         ChartDrawing demo = new ChartDrawing();
         JFrame t = new JFrame("Tdsafsadn");
-        JPanel p = demo.lineChart("Hsdsane", "ser asdsa", "nasmdnd", "asdnsadn", value, name_value);
+        JPanel p = demo.xyChart("Hsdsane", "ser asdsa", "nasmdnd", "asdnsadn", value, name_value);
         t.add(p);
         t.setSize(600, 600);
         t.setVisible(true);

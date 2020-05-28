@@ -248,5 +248,9 @@ public class QLNhanVienBUS {
         return arrNhanVien;
     }
     
+    public int getSoLuongNhanVien(){
+        return arrNhanVien.size();
+    }
+    
     
 }

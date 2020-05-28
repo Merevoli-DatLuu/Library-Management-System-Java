@@ -182,5 +182,7 @@ public class QLTheBUS {
         return arrThe;
     }
     
-    
+    public int getSoLuongThe(){
+        return arrThe.size();
+    }
 }

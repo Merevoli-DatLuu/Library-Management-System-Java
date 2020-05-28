@@ -242,14 +242,14 @@ public class DataProcessing {
     public int getMonth(Date date){
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        return cal.get(Calendar.MONTH);
+        return cal.get(Calendar.MONTH) + 1;
     }
     
     public int getMonth(String date){
         Date dat = Date.valueOf(date);
         Calendar cal = Calendar.getInstance();
         cal.setTime(dat);
-        return cal.get(Calendar.MONTH);
+        return cal.get(Calendar.MONTH) + 1;
     }
     
     public int getYear(Date date){

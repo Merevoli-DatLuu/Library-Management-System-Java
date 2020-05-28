@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.DataProcessing;
 
 public class QLPhieuMuonBUS {
     private ArrayList<QLPhieuMuonDTO> arrMuonTra = new ArrayList<>();
@@ -195,5 +196,62 @@ public class QLPhieuMuonBUS {
         return arrMuonTra;
     }
     
+    public int getSoLuongSachMuon(){
+        int res = 0;
+        for (QLPhieuMuonDTO e : arrMuonTra){
+            res += e.getIDSach().size();
+        }
+        return res;
+    }
+    
+    public int getSoLuongSachMuon(int year){
+        int res = 0;
+        DataProcessing ps = new DataProcessing();
+        for (QLPhieuMuonDTO e : arrMuonTra){
+            if (ps.getYear(e.getNgayMuon()) == year){
+                res += e.getIDSach().size();
+            }
+        }
+        return res;
+    }
+    
+    
+    public int getSoLuongSachMuon(int month, int year){
+        int res = 0;
+        DataProcessing ps = new DataProcessing();
+        for (QLPhieuMuonDTO e : arrMuonTra){
+            if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
+                res += e.getIDSach().size();
+            }
+        }
+        return res;
+    }
+    
+    
+    public int getSoLuongSachMuon(int day, int month, int year){
+        int res = 0;
+        DataProcessing ps = new DataProcessing();
+        for (QLPhieuMuonDTO e : arrMuonTra){
+            if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month && ps.getDay(e.getNgayMuon()) == day){
+                res += e.getIDSach().size();
+            }
+        }
+        return res;
+    }
+    
+    public ArrayList <Integer> getArrSoLuongSachMuon(int year){
+        ArrayList <Integer> rs = new ArrayList<>();
+        DataProcessing ps = new DataProcessing();
+        for (int month = 1; month <= 12; month++){
+            int t = 0;
+            for (QLPhieuMuonDTO e : arrMuonTra){
+                if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
+                    t += e.getIDSach().size();
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
     
 }

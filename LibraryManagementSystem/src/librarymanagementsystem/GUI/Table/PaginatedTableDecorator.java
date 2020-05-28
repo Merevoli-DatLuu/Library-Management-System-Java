@@ -76,8 +76,13 @@ public class PaginatedTableDecorator<T> {
     private void initPaginationComponents() {
         contentPanel = new JPanel(new BorderLayout());
         JPanel paginationPanel = createPaginationPanel();
+        
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
         contentPanel.add(paginationPanel, BorderLayout.NORTH);
         contentPanel.add(new JScrollPane(table));
+        
+        contentPanel.add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
     private JPanel createPaginationPanel() {
