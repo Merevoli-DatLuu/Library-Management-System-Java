@@ -6,6 +6,7 @@ import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.Toolkit.FileProcessing.*;
 import librarymanagementsystem.GUI.Table.*;
 import librarymanagementsystem.GUI.HienThiGUI.*;
+import librarymanagementsystem.GUI.ThemSuaGUI.*;
 import librarymanagementsystem.DTO.*;
 import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.*;
@@ -106,6 +107,7 @@ public class LoaiSachModule {
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
         System.out.println("Thêm");
+        new ThemLoaiSachForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           

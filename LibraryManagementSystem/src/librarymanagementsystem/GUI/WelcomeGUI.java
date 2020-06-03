@@ -2,6 +2,8 @@ package librarymanagementsystem.GUI;
 
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import librarymanagementsystem.BUS.*;
+import librarymanagementsystem.DTO.*;
 
 public class WelcomeGUI extends javax.swing.JFrame{
     /**
@@ -9,6 +11,10 @@ public class WelcomeGUI extends javax.swing.JFrame{
      */
     
     public WelcomeGUI(String name) {
+        /** Bug **/
+        //if (name.substring(0, 2).equals("QL")){
+        //    name = new QLNhanVienBUS().getNhanVien(name).getHoTen();
+        //}
         initComponents(name);
         setSize(640, 434);
         setLocationRelativeTo(null);

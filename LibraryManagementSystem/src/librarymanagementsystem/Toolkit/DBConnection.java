@@ -99,6 +99,7 @@ public class DBConnection {
                 return true;
             }
             catch (SQLException e){
+                System.err.println(e);
                 JOptionPane.showMessageDialog(null, "Lỗi!!! Không thể cập nhật dữ liệu");
                 return false;
             }

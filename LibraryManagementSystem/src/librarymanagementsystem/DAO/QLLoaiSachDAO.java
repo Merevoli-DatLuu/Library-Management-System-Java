@@ -87,4 +87,10 @@ public class QLLoaiSachDAO {
         DBSach.closeConnection();
         return check;
     }
+    
+    // Testing
+    public static void main(String[] args){
+        QLLoaiSachDTO loaisach = new QLLoaiSachDTO("S000028", "1231234", "213213", "213213", "123213213", "234234", "3241", 2123, 32423432, 123213213, "C:\\Users\\NTH\\Pictures\\aaasdd.png");
+        new QLLoaiSachDAO().add(loaisach);
+    }
 }

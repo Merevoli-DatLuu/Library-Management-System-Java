@@ -108,13 +108,13 @@ public class loginRFID extends javax.swing.JFrame {
             return admin;
         }
         
-        // Tạm thời làm cho admin
-        /*QLNhanVienBUS tknhanvien = new QLNhanVienBUS();
-        String nhanvien = tknhanvien.kiemTraTaiKhoan(username_field.getText(), password_field.getText());
+        
+        QLNhanVienBUS tknhanvien = new QLNhanVienBUS();
+        String nhanvien = tknhanvien.kiemTraTaiKhoan_RFID_code(RFID_code);
         if (!nhanvien.equals("")){
-            current_session = nhanvien;
-            return true;
-        }*/
+            //current_session = nhanvien;
+            return nhanvien;
+        }
         
         return "";
     }

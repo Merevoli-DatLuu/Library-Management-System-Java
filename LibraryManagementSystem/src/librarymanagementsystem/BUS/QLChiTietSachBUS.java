@@ -15,6 +15,10 @@ public class QLChiTietSachBUS {
         arrChiTietSach= chiTietSachDAO.readDB();
     }
     
+    public QLChiTietSachBUS(int i){
+        
+    }
+    
     public void readDB(){
         arrChiTietSach= chiTietSachDAO.readDB();
     }

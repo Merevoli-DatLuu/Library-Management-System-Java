@@ -11,6 +11,7 @@ public class Main_2 extends javax.swing.JFrame {
     static String currentUser = "";
     ExitGUI exitForm;
     TrangChuGUI TrangChuModule = new TrangChuGUI();
+    //Sach_SelectionModule sach_SelectionModule = new Sach_SelectionModule();
     public static javax.swing.JPanel Module_Panel = new javax.swing.JPanel(); // về sau dùng phương thức get
     
     public Main_2() {
@@ -29,7 +30,7 @@ public class Main_2 extends javax.swing.JFrame {
         setBackground(new Color(0, 0, 0, 0));
     }
     
-    // Cái này để Class ko cần vẽ lại. Lý do cho việc này là do tui thiết kế Constructor ngu người vl, và cũng lười sửa lại
+    // Cái này để Class ko cần vẽ lại. Lý do cho việc này là do tui thiết kế Constructor ngu người vl, và cũng lười sửa lại:))
     public Main_2(int i){
         
     }
@@ -277,6 +278,11 @@ public class Main_2 extends javax.swing.JFrame {
     private void the_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                        
         turnOffModule();
         current_Module=2;
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
+        
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (79).png")));
         the_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (73).png")));
     
@@ -285,30 +291,52 @@ public class Main_2 extends javax.swing.JFrame {
     private void nhanVien_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                             
         turnOffModule();
         current_Module=3;
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
+        Module = new NhanVienModule().getNhanVienModule();
+        Module.setBounds(0, 0, 940, 600);
+        Module_Panel.add(Module);
+        
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (80).png")));
         nhanVien_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (74).png")));
     
-    }                                            
+    } 
+    
+    private void kho_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        turnOffModule();
+        current_Module=4;
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
+        
+        tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (81).png")));
+        kho_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (75).png")));
+    
+    }  
 
     private void thongKe_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                            
         turnOffModule();
         current_Module=5;
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
+        
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (82).png")));
         thongKe_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (76).png")));
     
-    }                                           
-
-    private void kho_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                        
-        turnOffModule();
-        current_Module=4;
-        tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (81).png")));
-        kho_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (75).png")));
-    
-    }                                       
+    }                                    
 
     private void info_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                         
         turnOffModule();
         current_Module=6;
+        
+        Module_Panel.removeAll();
+        Module_Panel.repaint();
+        Module_Panel.revalidate();
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (83).png")));
         info_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (69).png")));
     

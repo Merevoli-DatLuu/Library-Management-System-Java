@@ -118,8 +118,8 @@ public class QLLoaiSachTable{
         table.getTableHeader().setPreferredSize(new Dimension(0,35)); // Header Height
         table.getTableHeader().setFont(new Font("verdana", Font.BOLD, 14));
         // Change
-        //table.getTableHeader().setForeground(Color.WHITE);
-        table.getTableHeader().setForeground(new Color(56, 180, 123));
+        table.getTableHeader().setForeground(Color.WHITE);
+        //table.getTableHeader().setForeground(new Color(56, 180, 123));
         
         //table.getTableHeader().;
         //** End Adjust **//

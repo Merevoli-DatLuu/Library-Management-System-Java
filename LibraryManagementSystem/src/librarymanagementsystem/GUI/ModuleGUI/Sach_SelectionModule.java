@@ -140,6 +140,16 @@ public class Sach_SelectionModule{
 
     private void choice_SachThuVienMouseClicked(java.awt.event.MouseEvent evt) {                                                
         System.out.println("Go to SachThuVienModule");
+        
+        main_2.Module_Panel.removeAll();
+        main_2.Module_Panel.repaint();
+        main_2.Module_Panel.revalidate();
+        
+        JPanel sp = new SachThuVienModule().getSachThuVienModule();
+        sp.setBounds(0, 0, 940, 600);
+        
+        
+        main_2.Module_Panel.add(sp);
     }                                               
 
     private void choice_SachMuonMouseClicked(java.awt.event.MouseEvent evt) {                                             

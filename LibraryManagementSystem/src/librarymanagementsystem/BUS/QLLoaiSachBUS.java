@@ -14,6 +14,10 @@ public class QLLoaiSachBUS {
         arrSach = sachDAO.readDB();
     }
     
+    public QLLoaiSachBUS(int i){
+        
+    }
+    
     public String[] getHeaders(){
         return new String[]{"Mã Sách", "Bìa Sách", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }

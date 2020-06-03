@@ -19,6 +19,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Cell.*;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
@@ -90,6 +91,27 @@ public class ExportFile {
                 row.createCell(9, CellType.NUMERIC).setCellValue(sach.getSoTrang());
                 row.createCell(10, CellType.STRING).setCellValue(sach.getHinh());
             }
+            /** for Formula Excel **/
+            /*rownum++;
+            row = sheet.createRow(rownum);
+            row.createCell(4).setCellFormula("1+1");
+            //sheet.getRow(rownum+1).getCell(0).setCellFormula("=1 + 1");
+            System.out.println(sheet.getRow(rownum).getCell(4).getNumericCellValue());
+            System.out.println(sheet.getRow(rownum).getCell(4).getCellType());
+            
+            Cell cell = sheet.getRow(rownum).getCell(4);
+            if(cell.getCellType() == CellType.FORMULA) {
+                System.out.println("Formula is " + cell.getCellFormula());
+                switch(cell.getCachedFormulaResultType()) {
+                    case NUMERIC:
+                        System.out.println("Last evaluated as: " + cell.getNumericCellValue());
+                        break;
+                    case STRING:
+                        System.out.println("Last evaluated as \"" + cell.getRichStringCellValue() + "\"");
+                        break;
+                }
+            }
+            */
             for (int i = 0; i < rownum; i++) {
                 sheet.autoSizeColumn(i);
             }
@@ -98,7 +120,6 @@ public class ExportFile {
             outFile = new FileOutputStream(file);
             workbook.write(outFile); //bug here :((
             JOptionPane.showMessageDialog(null, "Ghi file thành công: " + file.getAbsolutePath());
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ExportFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

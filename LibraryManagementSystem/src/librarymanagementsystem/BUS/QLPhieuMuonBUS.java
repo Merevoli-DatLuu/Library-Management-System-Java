@@ -16,6 +16,10 @@ public class QLPhieuMuonBUS {
         arrMuonTra= muonTraDAO.readDB();
     }
     
+    public QLPhieuMuonBUS(int i){
+        
+    }
+    
     public String [] getHeader(){
         return new String[]{"Mã Phiếu Mượn", "Mã Thẻ", "ID Sách", "Ngày Mượn", "Thời Gian Mượn", "Ngày Trả"};
     }

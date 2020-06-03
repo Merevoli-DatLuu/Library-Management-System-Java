@@ -94,6 +94,12 @@ public class DataProcessing {
         return pattern.matcher(str).matches();
     }
     
+    public Boolean check_number(String number){
+        String regex = "\\d*";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(number).matches();
+    }
+    
     
     /***
      * ** Sinh mã kế tiếp **
@@ -102,7 +108,7 @@ public class DataProcessing {
      * @return String
      */
     public String next_ma(ArrayList <Integer> ma){
-        int[] hashmap = new int[ma.size() + 1];
+        int[] hashmap = new int[ma.size() + 107];
         for (int a : ma){
             if (a <= ma.size()){
                 hashmap[a] = 1;
@@ -276,6 +282,34 @@ public class DataProcessing {
         Calendar cal = Calendar.getInstance();
         cal.setTime(dat);
         return cal.get(Calendar.DAY_OF_WEEK);
+    }
+    
+    public int getCurrentYear(){
+        return Calendar.getInstance().get(Calendar.YEAR);
+    }
+    
+    public int getCurrentMonth(){
+        return Calendar.getInstance().get(Calendar.MONTH) + 1;
+    }
+    
+    public int getCurrentDay(){
+        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    }
+    
+    // return numbers of years
+    public int getAge(Date date_1){
+        Calendar cal_1 = Calendar.getInstance();
+        cal_1.setTime(date_1);
+        Calendar cal_2 = Calendar.getInstance();
+        return cal_2.get(Calendar.YEAR) - cal_1.get(Calendar.YEAR);
+    }
+    
+    public int getAge(String date_1){
+        Date dat = Date.valueOf(date_1);
+        Calendar cal_1 = Calendar.getInstance();
+        cal_1.setTime(dat);
+        Calendar cal_2 = Calendar.getInstance();
+        return cal_2.get(Calendar.YEAR) - cal_1.get(Calendar.YEAR);
     }
     
     /** Analysis Functions **/

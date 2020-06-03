@@ -14,6 +14,10 @@ public class QLNhanVienBUS {
         arrNhanVien= nhanVienDAO.readDB();
     }
     
+    public QLNhanVienBUS(int i){
+        
+    }
+    
     public String [] getHeader(){
         return new String[]{"Mã Quản Lý", "Password", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email", "Chức Vụ"};
     }

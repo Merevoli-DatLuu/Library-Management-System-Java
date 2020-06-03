@@ -93,10 +93,17 @@ public class QLChiTietSachTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        
+        width.add(280);
+        width.add(290);
+        width.add(280);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLChiTietSachDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLChiTietSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

@@ -113,10 +113,21 @@ public class QLNhanVienTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(120);
+        width.add(300);
+        width.add(190);
+        width.add(120);
+        width.add(340);
+        width.add(110);
+        width.add(225);
+        width.add(120);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLNhanVienDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLNhanVienDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

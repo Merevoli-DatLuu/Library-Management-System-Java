@@ -20,14 +20,16 @@ public class QLNhanVienDAO {
             if (rs != null){
                 while (rs.next()){
                     String maNhanVien = rs.getString("maNhanVien");
-                    String password = rs.getString("password");
+                    //String password = rs.getString("password");
+                    String password = rs.getString("password_hashed");
                     String hoTen = rs.getString("hoTen");
                     String ngaySinh = rs.getString("ngaySinh");
                     String diaChi = rs.getString("diaChi");
                     String email = rs.getString("email");
                     String chucVu = rs.getString("chucVu");
                     String sdt = rs.getString("sdt");
-                    arrNhanVien.add(new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt));
+                    String RFID_code = rs.getString("RFID_code");
+                    arrNhanVien.add(new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code));
                 }
             }
 
