@@ -3,6 +3,7 @@ package librarymanagementsystem.GUI;
 import librarymanagementsystem.GUI.ModuleGUI.*;
 import java.awt.Color;
 import javax.swing.JPanel;
+import librarymanagementsystem.BUS.QLLoaiSachBUS;
 
 public class Main_2 extends javax.swing.JFrame {
     int x_Mouse, y_Mouse; // For Moving Window
@@ -324,6 +325,9 @@ public class Main_2 extends javax.swing.JFrame {
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
+        Module = new ThongKeModule_Sach().getTrangChuGUI();
+        Module.setBounds(0, 0, 940, 600);
+        Module_Panel.add(Module);
         
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (82).png")));
         thongKe_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (76).png")));

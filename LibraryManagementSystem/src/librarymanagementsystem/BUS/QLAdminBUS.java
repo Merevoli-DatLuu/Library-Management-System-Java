@@ -126,7 +126,7 @@ public class QLAdminBUS {
         return result_search;
     }
     
-    public ArrayList <QLAdminDTO> search_all (String column, String value){
+    public ArrayList <QLAdminDTO> search_all (String value){
         ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
         for (QLAdminDTO e : arrAdmin){
             if (e.getTkAdmin().toLowerCase().compareTo(value) != -1) {

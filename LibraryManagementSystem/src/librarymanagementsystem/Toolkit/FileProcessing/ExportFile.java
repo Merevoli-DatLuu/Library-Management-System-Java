@@ -60,7 +60,7 @@ public class ExportFile {
             QLLoaiSachBUS qlnccBUS = new QLLoaiSachBUS();
             ArrayList<QLLoaiSachDTO> list = qlnccBUS.getArrSach();
             //qlnccBUS.show();
-            int rownum = 1;
+            int rownum = 0;
             Row row = sheet.createRow(rownum);
 
             row.createCell(0, CellType.STRING).setCellValue("Mã Sách");

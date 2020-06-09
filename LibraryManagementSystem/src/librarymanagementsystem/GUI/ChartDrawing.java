@@ -21,6 +21,7 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.general.PieDataset;
 import org.jfree.ui.ApplicationFrame;
@@ -48,12 +49,32 @@ public class ChartDrawing{
         chart.getPlot().setOutlinePaint(new Color(91, 231, 196));
         chart.getTitle().setFont(new java.awt.Font("Arial", 1, 16));
         chart.getTitle().setPaint(new java.awt.Color(77, 97, 77));
-        
+        return chart;
+    }
+    
+    public JFreeChart createChart_PieChart(String title, ArrayList <String> key, ArrayList <Integer> value ) {
+        JFreeChart chart = ChartFactory.createPieChart(      
+            title,  
+            createDataSet_PieChart(key, value),       
+            true,           
+            true, 
+            false);
+        chart.getPlot().setBackgroundPaint( new Color(241, 245, 248) );
+        chart.getPlot().setOutlinePaint(new Color(91, 231, 196));
+        chart.getTitle().setFont(new java.awt.Font("Arial", 1, 16));
+        chart.getTitle().setPaint(new java.awt.Color(77, 97, 77));
         return chart;
     }
     
     public JPanel pieChart(String title, ArrayList <String> name_value, ArrayList <Integer> value) {
         JFreeChart chart = createChart_PieChart(title, createDataSet_PieChart(name_value, value) );  
+        return new ChartPanel( chart ); 
+    }
+    
+    public JPanel pieChart_withoutLabel(String title, ArrayList <String> name_value, ArrayList <Integer> value) {
+        JFreeChart chart = createChart_PieChart(title, createDataSet_PieChart(name_value, value) ); 
+        PiePlot pieplot = (PiePlot) chart.getPlot();
+        pieplot.setLabelGenerator(null);
         return new ChartPanel( chart ); 
     }
     

@@ -18,8 +18,14 @@ public class QLLoaiSachBUS {
         
     }
     
+    // Bỏ Bìa Sách
     public String[] getHeaders(){
-        return new String[]{"Mã Sách", "Bìa Sách", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
+        return new String[]{"Mã Sách", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 0, 0, 0, 1, 1, 1};
     }
     
     public QLLoaiSachDTO getLoaiSach(String maSach){
@@ -141,43 +147,44 @@ public class QLLoaiSachBUS {
         return result_search;
     }
     
-    public ArrayList <QLLoaiSachDTO> search_all (String column, String value){
+    public ArrayList <QLLoaiSachDTO> search_all (String value){
         ArrayList <QLLoaiSachDTO> result_search = new ArrayList <QLLoaiSachDTO> ();
+        value = value.toLowerCase();
         for (QLLoaiSachDTO e : arrSach){
             String namXB=String.valueOf(e.getNamXB());
             String giaTien=String.valueOf(e.getGiaTien());
             String soTrang=String.valueOf(e.getSoTrang());
-            if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaSach().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getHinh().toLowerCase().compareTo(value) != -1) {
+            else if (e.getHinh().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTenSach().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTenSach().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTenTacGia().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTenTacGia().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTenNXB().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTenNXB().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTheLoai().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTheLoai().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgonNgu().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgonNgu().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTomTatNoiDung().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTomTatNoiDung().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (namXB.toLowerCase().compareTo(value) != -1) {
+            else if (namXB.toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (giaTien.toLowerCase().compareTo(value) != -1) {
+            else if (giaTien.toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (soTrang.toLowerCase().compareTo(value) != -1) {
+            else if (soTrang.toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }
@@ -264,6 +271,4 @@ public class QLLoaiSachBUS {
     public ArrayList<QLLoaiSachDTO> getArrSach() {
         return arrSach;
     }
-    
-    
 }

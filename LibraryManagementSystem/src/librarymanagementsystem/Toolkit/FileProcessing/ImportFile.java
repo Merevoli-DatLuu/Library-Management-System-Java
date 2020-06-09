@@ -48,24 +48,24 @@ public class ImportFile {
             HSSFWorkbook workbook = new HSSFWorkbook(inputFile);
             HSSFSheet sheet = workbook.getSheetAt(0); // Mặc định data ở sheet 0
             Iterator<Row> rowIterator = sheet.iterator();
-            //Row rowfirst = rowIterator.next();
+            Row rowfirst = rowIterator.next();
             
             ArrayList <QLLoaiSachDTO> arrSach = new ArrayList <QLLoaiSachDTO>();
             
             while (rowIterator.hasNext()){
                 Row row = rowIterator.next();
                 Iterator<Cell> cellIterator = row.cellIterator();
-
+                
                 while (cellIterator.hasNext()){
 
                     String maSach = cellIterator.next().getStringCellValue();
                     String tenSach = cellIterator.next().getStringCellValue();
                     String tenTacGia = cellIterator.next().getStringCellValue();
                     String tenNXB = cellIterator.next().getStringCellValue();
+                    int namXB = (int) cellIterator.next().getNumericCellValue();
                     String theLoai = cellIterator.next().getStringCellValue();
                     String ngonNgu = cellIterator.next().getStringCellValue();
                     String tomTatNoiDung = cellIterator.next().getStringCellValue();
-                    int namXB = (int) cellIterator.next().getNumericCellValue();
                     int giaTien = (int) cellIterator.next().getNumericCellValue();
                     int soTrang = (int) cellIterator.next().getNumericCellValue();
                     String hinh = cellIterator.next().getStringCellValue();
@@ -104,7 +104,7 @@ public class ImportFile {
             HSSFWorkbook workbook = new HSSFWorkbook(inputFile);
             HSSFSheet sheet = workbook.getSheetAt(0); // Mặc định data ở sheet 0
             Iterator<Row> rowIterator = sheet.iterator();
-            //Row rowfirst = rowIterator.next();
+            Row rowfirst = rowIterator.next();
             
             ArrayList <QLTheDTO> arrThe = new ArrayList <QLTheDTO>();
             

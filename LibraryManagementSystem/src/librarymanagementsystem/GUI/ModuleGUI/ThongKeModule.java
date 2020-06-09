@@ -46,19 +46,20 @@ public class ThongKeModule extends JFrame{
         JTabbedPane tabbedPane = new JTabbedPane();
  
         /* create three JPanel, which is content of tabs */
-        JPanel panel1 = createJPanel("Thống Kê Sách");
+        JPanel panel1 = new ThongKeModule_Sach().getTrangChuGUI();
         JPanel panel2 = createJPanel("Thống Kê Thẻ và Khách Hàng");
         JPanel panel3 = createJPanel("Thống Kê Nhân Viên");
         JPanel panel4 = createJPanel("Thống Kê Kho Sách");
         
-        panel1.setSize(600, 500);
+        panel1.setLocation(0, 0);
+        panel1.setSize(940, 600);
         
         /* add three tab with three JPanel */
         tabbedPane.addTab("Sách", null, panel1, "Thống Kê Sách");
         tabbedPane.addTab("Thẻ và Khách Hàng", null, panel2, "Thống Kê Thẻ và Khách Hàng");
         tabbedPane.addTab("Nhân Viên", null, panel3, "Thống Kê Nhân Viên");
         tabbedPane.addTab("Kho Sách", null, panel4, "Thống Kê Kho Sách");
- 
+        
         tabbedPane.setBounds(0, 0, 940, 600);
         return tabbedPane;
     }

@@ -10,6 +10,11 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.table.*;
+import java.awt.event.*;
+import java.awt.Point;
+
+import librarymanagementsystem.BUS.QLLoaiSachBUS;
 
 public class PaginatedTableDecorator<T> {
     private JTable table;
@@ -43,6 +48,92 @@ public class PaginatedTableDecorator<T> {
         for (int wid : widthColumns){
             table.getColumnModel().getColumn(index++).setPreferredWidth(wid);
         }
+        
+        /*// Click event
+        JTableHeader header = table.getTableHeader();
+        //header.addMouseListener(new TableHeaderMouseListener(table));
+        
+        header.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent event){
+                if (SwingUtilities.isRightMouseButton(event)){ // Right Click
+                    Point point = event.getPoint();
+                    int column = table.columnAtPoint(point);
+
+                    //JOptionPane.showMessageDialog(table, "Column header #" + column + " is clicked.");
+                    System.out.println("Column header #" + column + " is clicked.");
+                    //for Loai Sach == testing
+                    
+                    ArrayList <String> header;
+                    header = new ArrayList<String>(Arrays.asList(new QLLoaiSachBUS().getHeaders()));
+                    RowPopup rp = new RowPopup();
+                    rp.RowPopup_forHeader_NUMBER(header.get(column));
+                    rp.show(contentPanel, event.getX(), event.getY() + 40);
+                }
+            }
+        });
+        
+        
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event){
+                if(event.getClickCount()== 1 && SwingUtilities.isRightMouseButton(event)){ // Chuột Phải
+                    JTable target = (JTable)event.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    //JOptionPane.showMessageDialog(null, table.getValueAt(row, column));
+                    //System.out.println(table.getValueAt(row, column));
+                    System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
+                    //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
+                    
+                    RowPopup rp = new RowPopup();
+                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+                }
+            }
+        });*/
+    }
+    
+    public void getClickEvent_LoaiSach(){
+        // Click event
+        JTableHeader header = table.getTableHeader();
+        //header.addMouseListener(new TableHeaderMouseListener(table));
+        
+        header.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent event){
+                if (SwingUtilities.isRightMouseButton(event)){ // Right Click
+                    Point point = event.getPoint();
+                    int column = table.columnAtPoint(point);
+
+                    //JOptionPane.showMessageDialog(table, "Column header #" + column + " is clicked.");
+                    System.out.println("Column header #" + column + " is clicked.");
+                    //for Loai Sach == testing
+                    
+                    ArrayList <String> header;
+                    header = new ArrayList<String>(Arrays.asList(new QLLoaiSachBUS().getHeaders()));
+                    RowPopup rp = new RowPopup();
+                    rp.RowPopup_forHeader_NUMBER(header.get(column));
+                    rp.show(contentPanel, event.getX(), event.getY() + 40);
+                }
+            }
+        });
+        
+        
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event){
+                if(event.getClickCount()== 1 && SwingUtilities.isRightMouseButton(event)){ // Chuột Phải
+                    JTable target = (JTable)event.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    //JOptionPane.showMessageDialog(null, table.getValueAt(row, column));
+                    //System.out.println(table.getValueAt(row, column));
+                    System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
+                    //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
+                    
+                    RowPopup rp = new RowPopup();
+                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+                }
+            }
+        });
     }
 
     public static <T> PaginatedTableDecorator<T> decorate(JTable table,

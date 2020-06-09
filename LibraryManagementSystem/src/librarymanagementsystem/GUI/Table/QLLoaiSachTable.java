@@ -92,6 +92,12 @@ public class QLLoaiSachTable{
         return new InMemoryPaginationDataProvider<>(list, objectDataModel);
     }
     
+    private static PaginationDataProvider<QLLoaiSachDTO> createDataProvider(
+            ObjectTableModel<QLLoaiSachDTO> objectDataModel, ArrayList <QLLoaiSachDTO> loaiSach) {
+        final List<QLLoaiSachDTO> list = loaiSach;
+        return new InMemoryPaginationDataProvider<>(list, objectDataModel);
+    }
+    
     public JPanel getTable(){
         ObjectTableModel<QLLoaiSachDTO> objectDataModel = createObjectDataModel();
         JTable table = new JTable(objectDataModel);
@@ -140,6 +146,62 @@ public class QLLoaiSachTable{
         
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLLoaiSachDTO> dataProvider = createDataProvider(objectDataModel);
+        PaginatedTableDecorator<QLLoaiSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        //paginatedDecorator.getClickEvent(); // event for LoaiSach Table
+        paginatedDecorator.getClickEvent_LoaiSach();
+        JPanel p = paginatedDecorator.getContentPanel();
+        return p;
+    }
+    
+    public JPanel getTable(ArrayList <QLLoaiSachDTO> loaiSach){
+        ObjectTableModel<QLLoaiSachDTO> objectDataModel = createObjectDataModel();
+        JTable table = new JTable(objectDataModel);
+        
+        //** Adjust Table**//
+        table.setRowHeight(35);
+        //table.setIntercellSpacing(new Dimension(20, 0)); // Spacing 
+        //table.getColumnModel().getColumn(0).setPreferredWidth(70);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        
+        /* Align
+        table.setDefaultRenderer(String.class, centerRenderer);
+        table.setDefaultRenderer(Object.class, centerRenderer);
+        table.setDefaultRenderer(Integer.class, centerRenderer);
+        table.setDefaultRenderer(Long.class, centerRenderer);
+        table.setDefaultRenderer(Double.class, centerRenderer);
+        */
+        
+        table.setFont(new Font("verdana", Font.PLAIN, 13));
+        
+        table.getTableHeader().setBackground(new Color(91, 243, 207));
+        table.getTableHeader().setPreferredSize(new Dimension(0,35)); // Header Height
+        table.getTableHeader().setFont(new Font("verdana", Font.BOLD, 14));
+        // Change
+        table.getTableHeader().setForeground(Color.WHITE);
+        //table.getTableHeader().setForeground(new Color(56, 180, 123));
+        
+        //table.getTableHeader().;
+        //** End Adjust **//
+        
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        
+        width.add(100);
+        width.add(400);
+        width.add(160);
+        width.add(300);
+        width.add(230);
+        width.add(130);
+        width.add(400);
+        width.add(130);
+        width.add(100);
+        width.add(100);
+        
+        table.setAutoCreateRowSorter(true);
+        PaginationDataProvider<QLLoaiSachDTO> dataProvider = createDataProvider(objectDataModel, loaiSach);
         PaginatedTableDecorator<QLLoaiSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();

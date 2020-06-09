@@ -34,7 +34,7 @@ public class ThongKe {
         Set<String> set = new HashSet<String>();
         ArrayList <QLLoaiSachDTO> arr = new QLLoaiSachBUS(0).getArrSach();
         for (QLLoaiSachDTO e : arr){
-            set.add(e.getNgonNgu());
+            set.add(e.getTheLoai());
         }
         return set.size();
     }
@@ -49,6 +49,122 @@ public class ThongKe {
             }
         }
         return count;
+    }
+    
+    public ArrayList <String> arr_Sach_NhaXuatBan(){
+        Set<String> set = new HashSet<String>();
+        ArrayList <QLLoaiSachDTO> arr = new QLLoaiSachBUS(0).getArrSach();
+        ArrayList <String> res = new ArrayList<>();
+        for (QLLoaiSachDTO e : arr){
+            set.add(e.getTenNXB());
+        }
+        
+        for (String e : set){
+            res.add(e);
+        }
+        return res;
+    }
+    
+    public ArrayList <String> arr_Sach_NhaXuatBan_top5(){
+        HashMap<String, Integer> cap = new HashMap<String, Integer>();
+        ArrayList <QLLoaiSachDTO> arr = new QLLoaiSachBUS(0).getArrSach();
+        ArrayList <String> res = new ArrayList<>();
+        for (QLLoaiSachDTO e : arr){
+            if (cap.get(e.getTenNXB()) == null){
+                cap.put(e.getTenNXB(), 1);
+            }
+            else{
+                cap.put(e.getTenNXB(), cap.get(e.getTenNXB()) + 1);
+            }
+        }
+        
+        String b = "";
+        int a = 0;
+        for (int i=0; i<=4; i++){
+            a = 0;
+            for (String e : cap.keySet()){
+                if (cap.get(e) > a){
+                    a = cap.get(e);
+                    b = e;
+                }
+            }
+            res.add(b);
+            cap.remove(b);
+        }
+        return res;
+    }
+    
+    public ArrayList <Integer> arrSoLuong_Sach_NhaXuatBan(){
+        HashMap<String, Integer> cap = new HashMap<String, Integer>();
+        ArrayList <QLLoaiSachDTO> arr = new QLLoaiSachBUS(0).getArrSach();
+        ArrayList <Integer> res = new ArrayList<>();
+        for (QLLoaiSachDTO e : arr){
+            if (cap.get(e.getTenNXB()) == null){
+                cap.put(e.getTenNXB(), 1);
+            }
+            else{
+                cap.put(e.getTenNXB(), cap.get(e.getTenNXB()) + 1);
+            }
+        }
+        
+        for (int e : cap.values()){
+            res.add(e);
+        }
+        
+        return res;
+    }
+    
+    public ArrayList <Integer> arrSoLuong_Sach_NhaXuatBan_top5(){
+        HashMap<String, Integer> cap = new HashMap<String, Integer>();
+        ArrayList <QLLoaiSachDTO> arr = new QLLoaiSachBUS(0).getArrSach();
+        ArrayList <Integer> res = new ArrayList<>();
+        for (QLLoaiSachDTO e : arr){
+            if (cap.get(e.getTenNXB()) == null){
+                cap.put(e.getTenNXB(), 1);
+            }
+            else{
+                cap.put(e.getTenNXB(), cap.get(e.getTenNXB()) + 1);
+            }
+        }
+        
+        String b = "";
+        int a = 0;
+        for (int i=0; i<=4; i++){
+            a = 0;
+            for (String e : cap.keySet()){
+                if (cap.get(e) > a){
+                    a = cap.get(e);
+                    b = e;
+                }
+            }
+            res.add(a);
+            cap.remove(b);
+        }
+        return res;
+    }
+    
+    // 3 Mức Giá: 0 - 100000, 100000 - 300000, 300000 - ...
+    public ArrayList <Integer> arrSoLuong_Sach_MucGia(){
+        ArrayList <Integer> res = new ArrayList<>();
+        ArrayList <QLLoaiSachDTO> arr = new QLLoaiSachBUS(0).getArrSach();
+        int mg1 = 0;
+        int mg2 = 0;
+        int mg3 = 0;
+        for (QLLoaiSachDTO e : arr){
+            if (e.getGiaTien() < 100000){
+                mg1++;
+            }
+            else if (e.getGiaTien() < 300000){
+                mg2++;
+            }
+            else{
+                mg3++;
+            }
+        }
+        res.add(mg1);
+        res.add(mg2);
+        res.add(mg3);
+        return res;
     }
     
     /** Thống Kê Sách Thư Viện **/

@@ -20,6 +20,8 @@ public class LoaiSachModule {
     //private static QLPhieuMuonBUS phieuMuonBUS = new QLPhieuMuonBUS();
     //private static QLNhanVienBUS nhanVienBUS = new QLNhanVienBUS();
     //private static QLKhachHangBUS khachHangBUS = new QLKhachHangBUS();
+    private static QLLoaiSachBUS loaiSachBUS = new QLLoaiSachBUS(0);
+    boolean tooglesreach = false;
     
     public JPanel getLoaiSachModule() {
         initComponents();
@@ -58,12 +60,18 @@ public class LoaiSachModule {
         searchtextfield.setForeground(new java.awt.Color(82, 210, 202));
         searchtextfield.setText("Tìm Kiếm...");
         searchtextfield.setBorder(null);
-        searchtextfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchtextfieldActionPerformed(evt);
+        searchtextfield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchtextfieldMouseClicked(evt);
             }
         });
         searchtextfield.setBounds(100, 63, 240, 30);
+        searchtextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchtextfieldKeyReleased(evt);
+            }
+        });
+        
         jPanel1.add(searchtextfield);
 
         search_bar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-05-28T185554.332.png"))); // NOI18N
@@ -99,7 +107,6 @@ public class LoaiSachModule {
         
         loaiSach_Table = new QLLoaiSachTable().getTable();
         loaiSach_Table.setBounds(42, 150, 860, 440);
-        
         jPanel1.add(loaiSach_Table);
         
         //pack();
@@ -113,6 +120,19 @@ public class LoaiSachModule {
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
         System.out.println("Nhập Excel");
         ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLSach();
+        
+        boolean finish = true;
+        for (QLLoaiSachDTO e : sach){
+            if (!loaiSachBUS.add(e)){
+                finish = false;
+                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
+                break;
+            }
+        }
+        
+        if (finish){
+            new AlertGUI(3, "Success", "Nhập Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
+        }
     }                                          
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
@@ -120,9 +140,30 @@ public class LoaiSachModule {
         new ExportFile().writeFileExcel_QLLoaiSach();
     }                                          
 
-    private void searchtextfieldActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                            
+    private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                
+        if (tooglesreach != true){
+            tooglesreach = true;
+            searchtextfield.setText("");
+        }
+    }       
+    
+    private void searchtextfieldKeyReleased(java.awt.event.KeyEvent evt) {    
+        String search_str = searchtextfield.getText();
+        System.out.println("Search: " + search_str);
+        ArrayList <QLLoaiSachDTO> loaiSach = loaiSachBUS.search_all(search_str);
+        
+        /* Print Ma Sach
+        for (QLLoaiSachDTO e : loaiSach){
+            System.out.println(e.getMaSach());
+        }*/
+        
+        jPanel1.remove(loaiSach_Table);
+        jPanel1.repaint();
+        jPanel1.revalidate();
+        loaiSach_Table = new QLLoaiSachTable().getTable(loaiSach);
+        loaiSach_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(loaiSach_Table);
+    }  
     
     /**
      * @param args the command line arguments
