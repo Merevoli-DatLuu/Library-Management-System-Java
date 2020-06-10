@@ -4,16 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Main_2.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLLoaiSachBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/LibraryManagementSystem.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/TrangChuGUI.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/TableHeaderMouseListener.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ChonGUI/Filter.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLKhachHangTable.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/LoaiSachModule.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/AlertGUI.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/PaginatedTableDecorator.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLLoaiSachTable.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/LoadingGUI.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/PopupInRows.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/RowPopup.java</file>
         </group>
     </open-files>

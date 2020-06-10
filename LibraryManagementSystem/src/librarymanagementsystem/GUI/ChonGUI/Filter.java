@@ -104,6 +104,8 @@ public class Filter extends javax.swing.JFrame {
         if (orBtn.isSelected()){
             System.out.println("OR");
         }
+        
+        this.dispose();
     }                                        
 
     private void quayluibtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -116,7 +118,38 @@ public class Filter extends javax.swing.JFrame {
 
     private void orBtnMouseClicked(java.awt.event.MouseEvent evt) {                                   
         andBtn.setSelected(false);
-    }                                  
+    }         
+    
+    public String get_choice_1(){
+        return choice_1.getItemAt(choice_1.getSelectedIndex());
+    }
+    
+    public String get_choice_2(){
+        return choice_2.getItemAt(choice_2.getSelectedIndex());
+    }
+    
+    public String get_value_1(){
+        return textfield_1.getText();
+    }
+    
+    public String get_value_2(){
+        return textfield_2.getText();
+    }
+    
+    // 0: -and, -or; 1: and, -or, 2: -and, or
+    public int get_andor(){
+        if (andBtn.isSelected()){
+            return 1;
+        }
+        else if (orBtn.isSelected()){
+            return 2;
+        }
+        else{
+            return 0;
+        }
+    }
+    
+    
 
     /**
      * @param args the command line arguments
@@ -154,17 +187,17 @@ public class Filter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JRadioButton andBtn;
-    private javax.swing.JComboBox<String> choice_1;
-    private javax.swing.JComboBox<String> choice_2;
+    private static javax.swing.JRadioButton andBtn;
+    private static javax.swing.JComboBox<String> choice_1;
+    private static javax.swing.JComboBox<String> choice_2;
     private javax.swing.JButton dongybtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator line_1;
     private javax.swing.JSeparator line_2;
-    private javax.swing.JRadioButton orBtn;
+    private static javax.swing.JRadioButton orBtn;
     private javax.swing.JButton quayluibtn;
-    private javax.swing.JTextField textfield_1;
-    private javax.swing.JTextField textfield_2;
+    private static javax.swing.JTextField textfield_1;
+    private static javax.swing.JTextField textfield_2;
     private javax.swing.JLabel tittle;
     // End of variables declaration                   
 }

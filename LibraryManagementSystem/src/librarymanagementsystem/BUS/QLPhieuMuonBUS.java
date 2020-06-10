@@ -276,4 +276,7 @@ public class QLPhieuMuonBUS {
         return rs;
     }
     
+    public int getSoLuongSachMuon_MaSach(String maSach, int month, int year){
+        return muonTraDAO.soLuong_Sach_MaSach(maSach, month, year);
+    }
 }

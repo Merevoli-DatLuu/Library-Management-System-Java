@@ -5,6 +5,7 @@ import librarymanagementsystem.DAO.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Iterator;
 
 public class QLLoaiSachBUS {
     private static ArrayList<QLLoaiSachDTO> arrSach = new ArrayList<>();
@@ -30,7 +31,7 @@ public class QLLoaiSachBUS {
     
     public QLLoaiSachDTO getLoaiSach(String maSach){
         for (QLLoaiSachDTO e : arrSach){
-            if (e.equals(maSach)){
+            if (e.getMaSach().equals(maSach)){
                 return e;
             }
         }
@@ -236,8 +237,17 @@ public class QLLoaiSachBUS {
         Boolean check = sachDAO.del(maSach);
         
         if (check){
-            for (QLLoaiSachDTO sach : arrSach){
-                if (sach.getMaSach().equals(maSach)){
+//            for (QLLoaiSachDTO sach : arrSach){
+//                if (sach.getMaSach().equals(maSach)){
+//                    arrSach.remove(sach);
+//                    break;
+//                }
+//            }
+            // Tránh Lỗi ConcurrentModificationException :))
+            Iterator<QLLoaiSachDTO> iterator = arrSach.iterator();
+            while (iterator.hasNext()) {
+                QLLoaiSachDTO sach = iterator.next();
+                if (sach.getMaSach().equals(maSach)) {
                     arrSach.remove(sach);
                     break;
                 }
@@ -270,5 +280,14 @@ public class QLLoaiSachBUS {
 
     public ArrayList<QLLoaiSachDTO> getArrSach() {
         return arrSach;
+    }
+    
+    public static void main(String[] args){
+        if (new QLLoaiSachBUS(0).del("S000027")){
+            System.out.println(111);
+        }
+        else{
+            System.out.println(000);
+        }
     }
 }

@@ -165,6 +165,7 @@ public class RowPopup extends JPopupMenu {
         add(new JSeparator());
         add(notEquals);
         add(new JSeparator());
+        add(new JSeparator());
         add(greaterThan);
         add(new JSeparator());
         add(greaterThanOrEqualsTo);
@@ -251,7 +252,19 @@ public class RowPopup extends JPopupMenu {
     
     public void equalsActionPerformed(String pKey, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Bằng");
-        new Filter("Equals").setVisible(true);
+        Filter flt = new Filter("Equals");
+        flt.setVisible(true);
+        flt.addWindowListener(new WindowAdapter(){
+            public void windowClosed(WindowEvent windowEvent){
+	        System.out.println("tesing");
+                
+                System.out.println(flt.get_choice_1());
+                System.out.println(flt.get_choice_2());
+                System.out.println(flt.get_value_1());
+                System.out.println(flt.get_value_2());
+                System.out.println(flt.get_andor());
+            }  
+        });
     }
 
     public void notEqualsActionPerformed(String pKey, ActionEvent e){

@@ -8,6 +8,10 @@ import javax.swing.*;
 public class AlertGUI extends javax.swing.JFrame{
     int x_Mouse, y_Mouse; // For Moving Window
     
+    public AlertGUI(){
+        
+    }
+    
     public AlertGUI(int choice, String title, String alert, String choice_1, String choice_2) {
         String image = "";
         if (choice == 0){         // Câu Hỏi
@@ -48,6 +52,25 @@ public class AlertGUI extends javax.swing.JFrame{
         setBackground(new Color(0, 0, 0, 0));
     }
 
+    public void setProperties(int choice, String title, String alert, String choice_1, String choice_2){
+        String image = "";
+        if (choice == 0){         // Câu Hỏi
+            image = "../images/question_main_80_80.png";
+        }
+        else if (choice == 1){    // Thông Báo
+            image = "../images/alert_80_80.png";
+        }
+        else if (choice == 2){    // Lỗi
+            image = "../images/error_80_80.png";
+        }
+        else if (choice == 3){    // Thành Công
+            image = "../images/success_80_80.png";
+        }
+        initComponents(image, title, alert, choice_1, choice_2);
+        setSize(400, 260);
+        setLocationRelativeTo(null);
+        setBackground(new Color(0, 0, 0, 0));
+    }
                              
     private void initComponents(String image, String title, String alert, String choice_1, String choice_2) {
 
@@ -281,7 +304,7 @@ public class AlertGUI extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlertGUI(0, "Thông Báo", "Bạn có thông báo.", "Thoát").setVisible(true);
+                new AlertGUI(1, "Thông Báo", "Bạn có thông báo.", "Đồng Ý", "Thoát").setVisible(true);
             }
         });
     }

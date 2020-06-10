@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.event.RowSorterEvent;
 import javax.swing.event.RowSorterListener;
 import javax.swing.event.TableModelEvent;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +17,8 @@ import java.awt.event.*;
 import java.awt.Point;
 
 import librarymanagementsystem.BUS.QLLoaiSachBUS;
+import librarymanagementsystem.GUI.AlertGUI;
+import librarymanagementsystem.GUI.ThemSuaGUI.SuaLoaiSachForm;
 
 public class PaginatedTableDecorator<T> {
     private JTable table;
@@ -108,10 +112,15 @@ public class PaginatedTableDecorator<T> {
                     //for Loai Sach == testing
                     
                     ArrayList <String> header;
-                    header = new ArrayList<String>(Arrays.asList(new QLLoaiSachBUS().getHeaders()));
+                    header = new ArrayList<String>(Arrays.asList(new QLLoaiSachBUS(0).getHeaders()));
                     RowPopup rp = new RowPopup();
                     rp.RowPopup_forHeader_NUMBER(header.get(column));
                     rp.show(contentPanel, event.getX(), event.getY() + 40);
+//                    rp.addPopupMenuListener(new PopupMenuListener(){
+//                        public void popupMenuWillBecomeInvisible(PopupMenuEvent event) {
+//                            System.out.println("12312321");
+//                        }
+//                    });
                 }
             }
         });
@@ -128,7 +137,46 @@ public class PaginatedTableDecorator<T> {
                     System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
                     //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
                     
-                    RowPopup rp = new RowPopup();
+                    RowPopup rp = new RowPopup(){
+                        @Override
+                        public void viewActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                        }
+                        @Override
+                        public void editActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
+                            new SuaLoaiSachForm(pKey).setVisible(true);
+                        }
+                        @Override
+                        public void deleteActionPerformed(String pKey, ActionEvent e){
+                            //JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xóa");
+//                            AlertGUI xacnhan = new AlertGUI(0, "Xóa Loại Sách", "Bạn có muốn xóa loại sách " + pKey + "không?", "Đồng Ý", "Quay Lại"){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+                            //xacnhan.setVisible(true);
+                            //new AlertGUI(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại").setVisible(true);
+                            
+//                            AlertGUI xacnhan = new AlertGUI(){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+//                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
+//                            xacnhan.setVisible(true);
+                            if (new QLLoaiSachBUS(0).del(pKey)){
+                                System.out.println("Xóa " + pKey + " thành công");
+                                new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                            }
+                            else{
+                                System.out.println("Xóa " + pKey + " thất bại");
+                                new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                            }
+                        }
+                    };
                     rp.RowPopup_forRow((String)table.getValueAt(row, 0));
                     rp.show(contentPanel, event.getX(), event.getY() + 70);
                 }

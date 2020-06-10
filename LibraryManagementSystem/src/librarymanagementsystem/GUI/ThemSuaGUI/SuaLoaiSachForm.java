@@ -13,12 +13,13 @@ import librarymanagementsystem.BUS.QLAdminBUS;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.BUS.QLLoaiSachBUS;
+import librarymanagementsystem.DTO.QLLoaiSachDTO;
 
 /**
  *
  * @author NTH
  */
-public class ThemLoaiSachForm extends javax.swing.JFrame {
+public class SuaLoaiSachForm extends javax.swing.JFrame {
 
     int x_Mouse, y_Mouse; // For Moving Window
     FileDialog fx = new FileDialog(new JFrame(), "Thêm hình sách", FileDialog.LOAD);
@@ -26,10 +27,13 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
     DataProcessing dp = new DataProcessing();
     String url = ""; // đường dẫn hình sách
     static QLLoaiSachBUS loaisachBUS = new QLLoaiSachBUS();
+    String ms;
     
-    
-    public ThemLoaiSachForm() {
-        initComponents();
+    public SuaLoaiSachForm(String maSach) {
+        QLLoaiSachDTO sach = new QLLoaiSachBUS().getLoaiSach(maSach);
+        ms = maSach;
+        url = sach.getHinh();
+        initComponents(sach.getTenSach(), sach.getTenTacGia(), sach.getTenNXB(), sach.getTheLoai(), sach.getNgonNgu(), Integer.toString(sach.getNamXB()), sach.getTomTatNoiDung(), Integer.toString(sach.getSoTrang()), Integer.toString(sach.getGiaTien()), sach.getHinh());
         setSize(830, 523);
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
@@ -42,7 +46,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String tenSach, String tenTacGia, String tenNXB, String tenTheLoai, String ngonNgu, String namXB, String tomTatNoiDung, String giaTien, String soTrang, String hinhSach) {
 
         jPanel1 = new javax.swing.JPanel();
         addButton = new javax.swing.JLabel();
@@ -111,7 +115,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         tenSach_textField.setBackground(new java.awt.Color(245, 247, 250));
         tenSach_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tenSach_textField.setText("");
+        tenSach_textField.setText(tenSach);
         tenSach_textField.setBorder(null);
         tenSach_textField.setOpaque(false);
         tenSach_textField.setBounds(60, 130, 210, 30);
@@ -119,7 +123,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         tenTacGia_textField.setBackground(new java.awt.Color(245, 247, 250));
         tenTacGia_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tenTacGia_textField.setText("");
+        tenTacGia_textField.setText(tenTacGia);
         tenTacGia_textField.setBorder(null);
         tenTacGia_textField.setOpaque(false);
         tenTacGia_textField.setBounds(60, 230, 210, 30);
@@ -127,7 +131,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         tenNXB_textField.setBackground(new java.awt.Color(245, 247, 250));
         tenNXB_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tenNXB_textField.setText("");
+        tenNXB_textField.setText(tenNXB);
         tenNXB_textField.setBorder(null);
         tenNXB_textField.setOpaque(false);
         tenNXB_textField.setBounds(60, 330, 210, 30);
@@ -135,7 +139,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         tenTheLoai_textField.setBackground(new java.awt.Color(245, 247, 250));
         tenTheLoai_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tenTheLoai_textField.setText("");
+        tenTheLoai_textField.setText(tenTheLoai);
         tenTheLoai_textField.setBorder(null);
         tenTheLoai_textField.setOpaque(false);
         tenTheLoai_textField.setBounds(60, 430, 210, 30);
@@ -143,7 +147,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         ngonNgu_textField.setBackground(new java.awt.Color(245, 247, 250));
         ngonNgu_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ngonNgu_textField.setText("");
+        ngonNgu_textField.setText(ngonNgu);
         ngonNgu_textField.setBorder(null);
         ngonNgu_textField.setOpaque(false);
         ngonNgu_textField.setBounds(360, 130, 210, 30);
@@ -151,7 +155,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         namXuatBan_textField.setBackground(new java.awt.Color(245, 247, 250));
         namXuatBan_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        namXuatBan_textField.setText("");
+        namXuatBan_textField.setText(namXB);
         namXuatBan_textField.setBorder(null);
         namXuatBan_textField.setOpaque(false);
         namXuatBan_textField.setBounds(650, 130, 110, 30);
@@ -159,7 +163,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         giaTien_textField.setBackground(new java.awt.Color(245, 247, 250));
         giaTien_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        giaTien_textField.setText("");
+        giaTien_textField.setText(giaTien);
         giaTien_textField.setBorder(null);
         giaTien_textField.setOpaque(false);
         giaTien_textField.setBounds(360, 430, 110, 30);
@@ -167,7 +171,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         soTrang_textField.setBackground(new java.awt.Color(245, 247, 250));
         soTrang_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        soTrang_textField.setText("");
+        soTrang_textField.setText(soTrang);
         soTrang_textField.setBorder(null);
         soTrang_textField.setOpaque(false);
         soTrang_textField.setBounds(510, 430, 110, 30);
@@ -176,6 +180,7 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
         tomTatNoiDung_textArea.setColumns(20);
         tomTatNoiDung_textArea.setRows(5);
         tomTatNoiDung_textArea.setBorder(null);
+        tomTatNoiDung_textArea.setText(tomTatNoiDung);
         jScrollPane1.setViewportView(tomTatNoiDung_textArea);
         jScrollPane1.setBounds(352, 234, 405, 126);
 
@@ -183,9 +188,10 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
 
         hinh_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         hinh_label.setBounds(650, 434, 150, 20);
+        hinh_label.setText(hinhSach);
         jPanel1.add(hinh_label);
 
-        loaiSachForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-05-28T235458.996.png"))); // NOI18N
+        loaiSachForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-10T112205.154.png"))); // NOI18N
         loaiSachForm.setBounds(0, 0, 830, 523);
         jPanel1.add(loaiSachForm);
         jPanel1.setBounds(0, 0, 830, 523);
@@ -282,18 +288,18 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
         String giaTien = giaTien_textField.getText();
         String soTrang = soTrang_textField.getText();
         String tomTatNoiDung = tomTatNoiDung_textArea.getText();
-        String maSach = dp.next_maSach(loaisachBUS.getPKey());
+        String maSach = ms;
         
         if (check_input(tenSach, tenTacGia, tenNXB, tenTheLoai, ngonNgu, namXuatBan, giaTien, soTrang, tomTatNoiDung, url)){
             System.out.println("Nhập Thành Công");
-            if (loaisachBUS.add(maSach, tenSach, tenTacGia, tenNXB, tenTheLoai, ngonNgu, tomTatNoiDung, Integer.parseInt(namXuatBan), Integer.parseInt(giaTien), Integer.parseInt(soTrang), url) ){
-                new AlertGUI(3, "Success", "Nhập Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
+            if (loaisachBUS.mod(maSach, tenSach, tenTacGia, tenNXB, tenTheLoai, ngonNgu, tomTatNoiDung, Integer.parseInt(namXuatBan), Integer.parseInt(giaTien), Integer.parseInt(soTrang), url) ){
+                new AlertGUI(3, "Success", "Sửa Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
                 this.dispose();
             }
         }
         else{
             System.err.println(error_mess);
-            System.out.println("Nhập Thất Bại");
+            System.out.println("Sửa Thất Bại");
             new AlertGUI(2, "Error", error_mess, "Quay Lại").setVisible(true);
             // Alert Form
         }
@@ -337,20 +343,20 @@ public class ThemLoaiSachForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThemLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuaLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThemLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuaLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThemLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuaLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThemLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuaLoaiSachForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThemLoaiSachForm().setVisible(true);
+                new SuaLoaiSachForm("S000025").setVisible(true);
             }
         });
     }

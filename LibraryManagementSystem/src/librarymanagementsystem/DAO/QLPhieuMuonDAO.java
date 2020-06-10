@@ -39,7 +39,7 @@ public class QLPhieuMuonDAO {
 
         }
         catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Lỗi!!! Lỗi đọc dữ liệu bảng Mượn Sách");
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Lỗi đọc dữ liệu bảng Phiếu Mượn");
         } 
         finally{
             DBMuonTra.closeConnection();
@@ -144,4 +144,37 @@ public class QLPhieuMuonDAO {
         DBMuonTra.closeConnection();
         return check;
     }
+    
+    // for Report
+    public int soLuong_Sach_MaSach(String maSach, int month, int year){
+        int res = 0;
+        DBMuonTra = new DBConnection();
+        try{
+            String query = ""
+                    + "SELECT COUNT(maSach) "
+                    + "FROM `chitietphieumuon`, `phieumuon`, `chitietsach` "
+                    + "WHERE `chitietphieumuon`.`maPhieuMuon` = `phieumuon`.`maPhieuMuon` AND"
+                    + " `chitietphieumuon`.`IDSach` = `chitietsach`.`IDSach` AND "
+                    + "MONTH(ngaytra) = " + month + " AND YEAR(ngaytra) = " + year + " AND maSach = '" + maSach + "'";
+            ResultSet rs = DBMuonTra.SQLQuery(query);
+            if (rs != null){
+                while (rs.next()){
+                    res = rs.getInt("COUNT(maSach)");
+                }
+            }
+        }
+        catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Lỗi đọc dữ liệu bảng Phiếu Mượn");
+            res = -1;
+        }
+        finally{
+            DBMuonTra.closeConnection();
+        }
+        return res;
+    }
+    
+    //testing
+//    public static void main(String[] args){
+//        System.out.println(new QLPhieuMuonDAO().soLuong_Sach_MaSach("S000003", 2, 2020));
+//    }
 }
