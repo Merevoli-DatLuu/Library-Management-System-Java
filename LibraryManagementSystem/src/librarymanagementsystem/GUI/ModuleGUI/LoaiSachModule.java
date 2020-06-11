@@ -2,10 +2,12 @@ package librarymanagementsystem.GUI.ModuleGUI;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.Toolkit.FileProcessing.*;
 import librarymanagementsystem.GUI.Table.*;
 import librarymanagementsystem.GUI.HienThiGUI.*;
+import librarymanagementsystem.GUI.ThanhPhanGUI.ComboCheckBox;
 import librarymanagementsystem.GUI.ThemSuaGUI.*;
 import librarymanagementsystem.DTO.*;
 import librarymanagementsystem.BUS.*;
@@ -45,7 +47,9 @@ public class LoaiSachModule {
         them_btn = new javax.swing.JLabel();
         nhapexcel_btn = new javax.swing.JLabel();
         xuatexcel_btn = new javax.swing.JLabel();
-
+        refresh_btn = new javax.swing.JLabel();
+        expand_btn = new javax.swing.JLabel();
+        checkbox = new ComboCheckBox(new ArrayList<String>(Arrays.asList(new QLLoaiSachBUS().getHeaders())));
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         //getContentPane().setLayout(null);
 
@@ -105,6 +109,33 @@ public class LoaiSachModule {
         });xuatexcel_btn.setBounds(750, 30, 160, 78);
         jPanel1.add(xuatexcel_btn);
         
+        /** add Expand and Refresh btn **/
+        expand_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-10T234019.664.png"))); // NOI18N
+        expand_btn.setBounds(45, 115, 34, 34);
+        expand_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                expand_btnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(expand_btn);
+        
+        refresh_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-10T234012.187.png"))); // NOI18N
+        refresh_btn.setBounds(89, 115, 34, 34);
+        refresh_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh_btnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(refresh_btn);
+        /** end **/
+        
+        /** Header Check Box **/
+        JPanel cb = checkbox.getCombobox();
+        cb.setOpaque(false);
+        cb.setBounds(150, 110, 200, 100);
+//        cb.setLocation(150, 115);
+        jPanel1.add(cb);
+        
         loaiSach_Table = new QLLoaiSachTable().getTable();
         loaiSach_Table.setBounds(42, 150, 860, 440);
         jPanel1.add(loaiSach_Table);
@@ -145,13 +176,40 @@ public class LoaiSachModule {
             tooglesreach = true;
             searchtextfield.setText("");
         }
+        //checkbox.hidePop();
     }       
     
     private void searchtextfieldKeyReleased(java.awt.event.KeyEvent evt) {    
         String search_str = searchtextfield.getText();
         System.out.println("Search: " + search_str);
-        ArrayList <QLLoaiSachDTO> loaiSach = loaiSachBUS.search_all(search_str);
+        //ArrayList <QLLoaiSachDTO> loaiSach = loaiSachBUS.search_all(search_str);
         
+        /** Testing **/
+        ArrayList <String> columns_checked = checkbox.getChecked();
+        
+        ArrayList <QLLoaiSachDTO> loaiSach = new QLLoaiSachBUS(0).getArrSach();
+        ArrayList <QLLoaiSachDTO> search_res = new ArrayList<>();
+        ArrayList <QLLoaiSachDTO> search_temp = new ArrayList<>();
+        for (String e : columns_checked){
+            search_temp = new QLLoaiSachBUS(0).search(e, search_str);
+            
+            ArrayList <String> pkey_1 = new ArrayList<>();
+            ArrayList <String> pKey_2 = new ArrayList<>();
+            
+            for (QLLoaiSachDTO ele : search_res){
+                pkey_1.add(ele.getMaSach());
+            }
+            
+            for (QLLoaiSachDTO ele : search_temp){
+                pKey_2.add(ele.getMaSach());
+            }
+            
+            search_res = new QLLoaiSachBUS(0).getLoaiSach_full(new DataProcessing().union_arr(pkey_1, pKey_2));
+        }
+        
+        loaiSach = search_res;
+        /** End Testing **/
+
         /* Print Ma Sach
         for (QLLoaiSachDTO e : loaiSach){
             System.out.println(e.getMaSach());
@@ -164,6 +222,28 @@ public class LoaiSachModule {
         loaiSach_Table.setBounds(42, 150, 860, 440);
         jPanel1.add(loaiSach_Table);
     }  
+    
+    public void paintTable(ArrayList <QLLoaiSachDTO> loaiSach){
+        jPanel1.remove(loaiSach_Table);
+        jPanel1.repaint();
+        jPanel1.revalidate();
+        loaiSach_Table = new QLLoaiSachTable().getTable(loaiSach);
+        loaiSach_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(loaiSach_Table);
+    }
+    
+    private void expand_btnMouseClicked(java.awt.event.MouseEvent evt){
+        new QLLoaiSachTable().expandMode();
+    } 
+    
+    private void refresh_btnMouseClicked(java.awt.event.MouseEvent evt){
+        jPanel1.remove(loaiSach_Table);
+        jPanel1.repaint();
+        jPanel1.revalidate();
+        loaiSach_Table = new QLLoaiSachTable().getTable();
+        loaiSach_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(loaiSach_Table);
+    }
     
     /**
      * @param args the command line arguments
@@ -208,5 +288,8 @@ public class LoaiSachModule {
     private static javax.swing.JLabel nhapexcel_btn;
     private static javax.swing.JLabel xuatexcel_btn;
     private static javax.swing.JPanel loaiSach_Table;
+    private static javax.swing.JLabel refresh_btn;
+    private static javax.swing.JLabel expand_btn;
+    private static ComboCheckBox checkbox;
     // End of variables declaration                 
 }

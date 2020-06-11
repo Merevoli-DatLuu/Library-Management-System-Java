@@ -120,6 +120,13 @@ public class QLLoaiSachDTO {
         this.hinh = hinh;
     }
     
-    
+    public Object getIndex(String header){
+        switch (header){
+            case "Mã Sách":
+                return this.getMaSach();
+            
+        }
+        return null;
+    }
  
 }

@@ -3,6 +3,8 @@ package librarymanagementsystem.GUI.Table;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.WindowConstants;
 import librarymanagementsystem.BUS.QLLoaiSachBUS;
 import librarymanagementsystem.DTO.QLLoaiSachDTO;
 
@@ -204,8 +207,33 @@ public class QLLoaiSachTable{
         PaginationDataProvider<QLLoaiSachDTO> dataProvider = createDataProvider(objectDataModel, loaiSach);
         PaginatedTableDecorator<QLLoaiSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        
+        paginatedDecorator.getClickEvent_LoaiSach();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
+    }
+    
+    public void expandMode(){
+        JFrame frame = createFrame();
+        JPanel p = new QLLoaiSachTable().getTable();
+        //frame.add(paginatedDecorator.getContentPanel());
+        p.setSize(1200, 780);
+        p.setBackground(new java.awt.Color(255, 255, 255));
+        frame.add(p);
+        frame.setBackground(new java.awt.Color(255, 255, 255));
+         
+        /**/
+        frame.setSize(1200, 740);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("asdjhgsakdjhaskjdhsajik");
+                frame.dispose();
+            }
+        });
+        frame.setVisible(true);
     }
     
     public static void main(String[] args) {

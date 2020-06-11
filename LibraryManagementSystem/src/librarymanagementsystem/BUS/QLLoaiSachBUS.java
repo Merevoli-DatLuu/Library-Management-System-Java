@@ -29,6 +29,16 @@ public class QLLoaiSachBUS {
         return new int[]{0, 0, 0, 0, 0, 0, 0, 1, 1, 1};
     }
     
+    public int findHeaderType(String header){
+        for (int i=0; i<10; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
+    }
+    
     public QLLoaiSachDTO getLoaiSach(String maSach){
         for (QLLoaiSachDTO e : arrSach){
             if (e.getMaSach().equals(maSach)){
@@ -46,7 +56,7 @@ public class QLLoaiSachBUS {
         }
         
         for (QLLoaiSachDTO e : arrSach){
-            if (set.contains(e)){
+            if (set.contains(e.getMaSach())){
                 res.add(e);
             }
         }
@@ -63,59 +73,60 @@ public class QLLoaiSachBUS {
     
     public ArrayList <QLLoaiSachDTO> search (String column, String value){
         ArrayList <QLLoaiSachDTO> result_search = new ArrayList <QLLoaiSachDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
-            case "Mã Sách ":
+            case "Mã Sách":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaSach().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Bìa Sách": 
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getHinh().toLowerCase().compareTo(value) != -1) {
+                    if (e.getHinh().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tên Sách":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getTenSach().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTenSach().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tên Tác Giả":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getTenTacGia().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTenTacGia().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tên NXB":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getTenNXB().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTenNXB().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Thể Loại":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getTheLoai().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTheLoai().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngôn Ngữ":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getNgonNgu().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgonNgu().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tóm Tắt Nội Dung":
                 for (QLLoaiSachDTO e : arrSach){
-                    if (e.getTomTatNoiDung().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTomTatNoiDung().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -123,7 +134,7 @@ public class QLLoaiSachBUS {
             case "Năm Xuất Bản":
                 for (QLLoaiSachDTO e : arrSach){
                     String namXB=String.valueOf(e.getNamXB());
-                    if (namXB.toLowerCase().compareTo(value) != -1) {
+                    if (namXB.toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -131,7 +142,7 @@ public class QLLoaiSachBUS {
             case "Giá Tiền":
                 for (QLLoaiSachDTO e : arrSach){
                     String giaTien=String.valueOf(e.getGiaTien());
-                    if (giaTien.toLowerCase().compareTo(value) != -1) {
+                    if (giaTien.toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -139,7 +150,95 @@ public class QLLoaiSachBUS {
             case "Số Trang":
                 for (QLLoaiSachDTO e : arrSach){
                     String soTrang=String.valueOf(e.getSoTrang());
-                    if (soTrang.toLowerCase().compareTo(value) != -1) {
+                    if (soTrang.toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+        }
+        return result_search;
+    }
+    
+    public ArrayList <QLLoaiSachDTO> search (ArrayList <QLLoaiSachDTO> arrSearch, String column, String value){
+        ArrayList <QLLoaiSachDTO> result_search = new ArrayList <QLLoaiSachDTO> ();
+        value = value.toLowerCase();
+        switch (column) { // Dựa vào Headers
+            case "Mã Sách":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getMaSach().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Bìa Sách": 
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getHinh().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tên Sách":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getTenSach().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tên Tác Giả":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getTenTacGia().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tên NXB":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getTenNXB().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Thể Loại":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getTheLoai().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Ngôn Ngữ":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getNgonNgu().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tóm Tắt Nội Dung":
+                for (QLLoaiSachDTO e : arrSearch){
+                    if (e.getTomTatNoiDung().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Năm Xuất Bản":
+                for (QLLoaiSachDTO e : arrSearch){
+                    String namXB=String.valueOf(e.getNamXB());
+                    if (namXB.toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Giá Tiền":
+                for (QLLoaiSachDTO e : arrSearch){
+                    String giaTien=String.valueOf(e.getGiaTien());
+                    if (giaTien.toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Số Trang":
+                for (QLLoaiSachDTO e : arrSearch){
+                    String soTrang=String.valueOf(e.getSoTrang());
+                    if (soTrang.toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

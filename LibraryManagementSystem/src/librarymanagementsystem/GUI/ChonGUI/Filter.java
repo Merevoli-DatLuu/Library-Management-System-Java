@@ -1,11 +1,60 @@
 package librarymanagementsystem.GUI.ChonGUI;
 
-public class Filter extends javax.swing.JFrame {
+import librarymanagementsystem.BUS.*;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.GUI.ModuleGUI.*;
+import librarymanagementsystem.Toolkit.DataProcessing;
 
+import java.util.ArrayList;
+
+public class Filter extends javax.swing.JFrame {
+    String header; // Filter theo header
+    String tableName; // table name
+    String choice;
+    String choiceType;
+    
     public Filter(String choice) {
+        this.choice = choice;
         initComponents(choice);
         setSize(480, 280);
         setLocationRelativeTo(null);
+    }
+    
+    public Filter(String choice, String tableName, String header) {
+        this.choice = choice;
+        this.header = header;
+        this.tableName = tableName;
+        initComponents(choice);
+        setSize(480, 280);
+        setLocationRelativeTo(null);
+    }
+    
+    public void setHeader(String header){
+        this.header = header;
+    }
+    
+    public void setTableName(String tableName){
+        this.tableName = tableName;
+    }
+    
+    // STRING NUMBER DATE
+    public void setMode(String mode){
+        if (mode.equals("NUMBER")){
+            choice_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equals", "Not Equals", "Greater Than", "Greater Than Or Equals To", "Less Than", "Less Than Or Equals To" }));
+            choice_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equals", "Not Equals", "Greater Than", "Greater Than Or Equals To", "Less Than", "Less Than Or Equals To" }));
+            choiceType = "NUMBER";
+        }
+        else if (mode.equals("STRING")){
+            choice_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equals", "Not Equals", "Contains", "Does not Contain", "Begins With", "Ends With" }));
+            choice_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equals", "Not Equals", "Contains", "Does not Contain", "Begins With", "Ends With" }));
+            choiceType = "STRING";
+        }
+        else if (mode.equals("DATE")){
+            choice_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equals", "Not Equals", "Greater Than", "Greater Than Or Equals To", "Less Than", "Less Than Or Equals To" }));
+            choice_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equals", "Not Equals", "Greater Than", "Greater Than Or Equals To", "Less Than", "Less Than Or Equals To" }));
+            choiceType = "DATE";
+        }
+        choice_1.setSelectedItem(choice);
     }
                         
     private void initComponents(String choice) {
@@ -94,6 +143,168 @@ public class Filter extends javax.swing.JFrame {
 
         pack();
     }                      
+    
+    public void doFilter(String header, String tableName, FilterData fd){
+        DataProcessing ps = new DataProcessing();
+        if (fd.getandOr() == 0 && fd.hasChoice_1()){ // 1 choice
+            switch (tableName){
+                case "LoaiSach":
+                    ArrayList <QLLoaiSachDTO> arr = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr = new FilterFunction().filterBy_Equails_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr = new FilterFunction().filterBy_NotEquails_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr = new FilterFunction().filterBy_Contains_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr = new FilterFunction().filterBy_DoesNotContain_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr = new FilterFunction().filterBy_BeginsWith_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr = new FilterFunction().filterBy_EndsWith_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                    }
+                    else if (choiceType.equals("NUMBER")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr = new FilterFunction().filterBy_Equails_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr = new FilterFunction().filterBy_NotEquails_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Greater Than")){
+                            arr = new FilterFunction().filterBy_GreaterThan_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Greater Than Or Equals To")){
+                            arr = new FilterFunction().filterBy_GreaterThanOrEqualsTo_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Less Than")){
+                            arr = new FilterFunction().filterBy_LessThan_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Less Than Or Equals To")){
+                            arr = new FilterFunction().filterBy_LessThanOrEqualsTo_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                    }
+                    new LoaiSachModule().paintTable(arr);
+                    break;
+            }
+        }
+        else if (fd.getandOr() != 0 && fd.hasChoice_1() && fd.hasChoice_2()){
+            switch (tableName){
+                case "LoaiSach":
+                    ArrayList <QLLoaiSachDTO> arr = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr = new FilterFunction().filterBy_Equails_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr = new FilterFunction().filterBy_NotEquails_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr = new FilterFunction().filterBy_Contains_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr = new FilterFunction().filterBy_DoesNotContain_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr = new FilterFunction().filterBy_BeginsWith_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr = new FilterFunction().filterBy_EndsWith_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_1);
+                        }
+                    }
+                    else if (choiceType.equals("NUMBER")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr = new FilterFunction().filterBy_Equails_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr = new FilterFunction().filterBy_NotEquails_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Greater Than")){
+                            arr = new FilterFunction().filterBy_GreaterThan_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Greater Than Or Equals To")){
+                            arr = new FilterFunction().filterBy_GreaterThanOrEqualsTo_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Less Than")){
+                            arr = new FilterFunction().filterBy_LessThan_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                        else if (fd.choice_1.equals("Less Than Or Equals To")){
+                            arr = new FilterFunction().filterBy_LessThanOrEqualsTo_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_1));
+                        }
+                    }
+                    
+                    ArrayList <QLLoaiSachDTO> arr_2 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_2.equals("Equals")){
+                            arr_2 = new FilterFunction().filterBy_Equails_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Not Equals")){
+                            arr_2 = new FilterFunction().filterBy_NotEquails_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Contains")){
+                            arr_2 = new FilterFunction().filterBy_Contains_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Does not Contain")){
+                            arr_2 = new FilterFunction().filterBy_DoesNotContain_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Begins With")){
+                            arr_2 = new FilterFunction().filterBy_BeginsWith_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Ends With")){
+                            arr_2 = new FilterFunction().filterBy_EndsWith_STRING_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, fd.value_2);
+                        }
+                    }
+                    else if (choiceType.equals("NUMBER")){
+                        if (fd.choice_2.equals("Equals")){
+                            arr_2 = new FilterFunction().filterBy_Equails_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_2));
+                        }
+                        else if (fd.choice_2.equals("Not Equals")){
+                            arr_2 = new FilterFunction().filterBy_NotEquails_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_2));
+                        }
+                        else if (fd.choice_2.equals("Greater Than")){
+                            arr_2 = new FilterFunction().filterBy_GreaterThan_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_2));
+                        }
+                        else if (fd.choice_2.equals("Greater Than Or Equals To")){
+                            arr_2 = new FilterFunction().filterBy_GreaterThanOrEqualsTo_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_2));
+                        }
+                        else if (fd.choice_2.equals("Less Than")){
+                            arr_2 = new FilterFunction().filterBy_LessThan_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_2));
+                        }
+                        else if (fd.choice_2.equals("Less Than Or Equals To")){
+                            arr_2 = new FilterFunction().filterBy_LessThanOrEqualsTo_NUMBER_LoaiSach(new QLLoaiSachBUS(0).getArrSach(), header, Integer.parseInt(fd.value_2));
+                        }
+                    }
+                    
+                    ArrayList <String> pKey = new ArrayList<>();
+                    ArrayList <String> pKey_2 = new ArrayList<>();
+                    
+                    for (QLLoaiSachDTO e : arr){
+                        pKey.add(e.getMaSach());
+                    }
+                    
+                    for (QLLoaiSachDTO e : arr_2){
+                        pKey_2.add(e.getMaSach());
+                    }
+                    
+                    ArrayList <QLLoaiSachDTO> arr_res = new ArrayList<>();
+                    
+                    if (fd.getandOr() == 1){
+                        arr_res = new QLLoaiSachBUS(0).getLoaiSach_full(ps.intersection_arr(pKey, pKey_2));
+                    }
+                    else if (fd.getandOr() == 2){
+                        arr_res = new QLLoaiSachBUS(0).getLoaiSach_full(ps.union_arr(pKey, pKey_2));
+                    }
+                    new LoaiSachModule().paintTable(arr_res);
+                    break;
+            }
+        }
+    }
 
     private void dongybtnActionPerformed(java.awt.event.ActionEvent evt) {                                         
         System.out.println(choice_1.getItemAt(choice_1.getSelectedIndex()) + " " + textfield_1.getText());
@@ -104,7 +315,19 @@ public class Filter extends javax.swing.JFrame {
         if (orBtn.isSelected()){
             System.out.println("OR");
         }
-        
+        int andor = 0;
+        if (andBtn.isSelected()){
+            andor = 1;
+        }
+        else if (orBtn.isSelected()){
+            andor = 2;
+        }
+        else {
+            andor = 0;
+        }
+        FilterData fd = new FilterData();
+        fd.setData(choice_1.getItemAt(choice_1.getSelectedIndex()), choice_2.getItemAt(choice_2.getSelectedIndex()), textfield_1.getText(), textfield_2.getText(), andor);
+        doFilter(header, tableName, fd);
         this.dispose();
     }                                        
 

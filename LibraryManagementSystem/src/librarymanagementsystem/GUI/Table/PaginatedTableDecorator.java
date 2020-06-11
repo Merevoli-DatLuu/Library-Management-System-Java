@@ -114,13 +114,14 @@ public class PaginatedTableDecorator<T> {
                     ArrayList <String> header;
                     header = new ArrayList<String>(Arrays.asList(new QLLoaiSachBUS(0).getHeaders()));
                     RowPopup rp = new RowPopup();
-                    rp.RowPopup_forHeader_NUMBER(header.get(column));
+                    int headerType = new QLLoaiSachBUS(0).findHeaderType(header.get(column));
+                    if (headerType == 0){
+                        rp.RowPopup_forHeader_STRING(header.get(column), "LoaiSach");
+                    }
+                    else if (headerType == 1){
+                        rp.RowPopup_forHeader_NUMBER(header.get(column), "LoaiSach");
+                    }
                     rp.show(contentPanel, event.getX(), event.getY() + 40);
-//                    rp.addPopupMenuListener(new PopupMenuListener(){
-//                        public void popupMenuWillBecomeInvisible(PopupMenuEvent event) {
-//                            System.out.println("12312321");
-//                        }
-//                    });
                 }
             }
         });

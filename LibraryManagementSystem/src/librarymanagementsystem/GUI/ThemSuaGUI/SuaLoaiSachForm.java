@@ -181,6 +181,8 @@ public class SuaLoaiSachForm extends javax.swing.JFrame {
         tomTatNoiDung_textArea.setRows(5);
         tomTatNoiDung_textArea.setBorder(null);
         tomTatNoiDung_textArea.setText(tomTatNoiDung);
+        tomTatNoiDung_textArea.setWrapStyleWord(true);
+        tomTatNoiDung_textArea.setLineWrap(true);
         jScrollPane1.setViewportView(tomTatNoiDung_textArea);
         jScrollPane1.setBounds(352, 234, 405, 126);
 

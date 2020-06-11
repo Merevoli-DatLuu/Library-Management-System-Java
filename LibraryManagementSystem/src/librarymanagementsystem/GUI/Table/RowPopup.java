@@ -111,7 +111,7 @@ public class RowPopup extends JPopupMenu {
         add(delete);
     }
     
-    public void RowPopup_forHeader_NUMBER(String pKey){
+    public void RowPopup_forHeader_NUMBER(String header, String tableName){
         JMenuItem equals = new JMenuItem("Equals");
         JMenuItem notEquals = new JMenuItem("Not Equals");
         JMenuItem greaterThan = new JMenuItem("Greater Than");
@@ -122,42 +122,42 @@ public class RowPopup extends JPopupMenu {
         equals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                equalsActionPerformed(pKey, e);
+                equalsActionPerformed_NUMBER(header, tableName, e);
             }
         });
 
         notEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notEqualsActionPerformed(pKey, e);
+                notEqualsActionPerformed_NUMBER(header, tableName,  e);
             }
         });
 
         greaterThan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                greaterThanActionPerformed(pKey, e);
+                greaterThanActionPerformed_NUMBER(header, tableName,  e);
             }
         });
 
         greaterThanOrEqualsTo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                greaterThanOrEqualsToActionPerformed(pKey, e);
+                greaterThanOrEqualsToActionPerformed_NUMBER(header, tableName,  e);
             }
         });
 
         lessThan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lessThanActionPerformed(pKey, e);
+                lessThanActionPerformed_NUMBER(header, tableName,  e);
             }
         });
 
         lessThanOrEqualsTo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lessThanOrEqualsToActionPerformed(pKey, e);
+                lessThanOrEqualsToActionPerformed_NUMBER(header, tableName,  e);
             }
         });
 
@@ -175,53 +175,53 @@ public class RowPopup extends JPopupMenu {
         add(lessThanOrEqualsTo);
     }
     
-    public void RowPopup_forHeader_STRING(String pKey){
+    public void RowPopup_forHeader_STRING(String header, String tableName){
         JMenuItem equals = new JMenuItem("Equals");
         JMenuItem notEquals = new JMenuItem("Not Equals");
-        JMenuItem greaterThan = new JMenuItem("Greater Than");
-        JMenuItem greaterThanOrEqualsTo = new JMenuItem("Greater Than Or Equals To");
-        JMenuItem lessThan = new JMenuItem("Less Than");
-        JMenuItem lessThanOrEqualsTo = new JMenuItem("Less Than Or Equals To");
+        JMenuItem contains = new JMenuItem("Contains");
+        JMenuItem doesNotContain = new JMenuItem("Does not Contain");
+        JMenuItem beginsWith = new JMenuItem("Begins With");
+        JMenuItem endsWith = new JMenuItem("Ends With");
 
         equals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                equalsActionPerformed(pKey, e);
+                equalsActionPerformed_STRING(header, tableName, e);
             }
         });
 
         notEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notEqualsActionPerformed(pKey, e);
+                notEqualsActionPerformed_STRING(header, tableName, e);
             }
         });
 
-        greaterThan.addActionListener(new ActionListener() {
+        contains.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                greaterThanActionPerformed(pKey, e);
+                containsActionPerformed_STRING(header, tableName, e);
             }
         });
 
-        greaterThanOrEqualsTo.addActionListener(new ActionListener() {
+        doesNotContain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                greaterThanOrEqualsToActionPerformed(pKey, e);
+                doesNotContainActionPerformed_STRING(header, tableName, e);
             }
         });
 
-        lessThan.addActionListener(new ActionListener() {
+        beginsWith.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lessThanActionPerformed(pKey, e);
+                beginsWithActionPerformed_STRING(header, tableName, e);
             }
         });
 
-        lessThanOrEqualsTo.addActionListener(new ActionListener() {
+        endsWith.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lessThanOrEqualsToActionPerformed(pKey, e);
+                endsWithActionPerformed_STRING(header, tableName, e);
             }
         });
 
@@ -229,13 +229,15 @@ public class RowPopup extends JPopupMenu {
         add(new JSeparator());
         add(notEquals);
         add(new JSeparator());
-        add(greaterThan);
         add(new JSeparator());
-        add(greaterThanOrEqualsTo);
+        add(beginsWith);
         add(new JSeparator());
-        add(lessThan);
+        add(endsWith);
         add(new JSeparator());
-        add(lessThanOrEqualsTo);
+        add(new JSeparator());
+        add(contains);
+        add(new JSeparator());
+        add(doesNotContain);
     }
 
     public void viewActionPerformed(String pKey, ActionEvent e){
@@ -250,45 +252,123 @@ public class RowPopup extends JPopupMenu {
         JOptionPane.showMessageDialog(null, pKey + " Xóa");
     }
     
-    public void equalsActionPerformed(String pKey, ActionEvent e){
+    public void equalsActionPerformed_NUMBER(String header, String tableName, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Bằng");
         Filter flt = new Filter("Equals");
+        flt.setMode("NUMBER");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
         flt.setVisible(true);
-        flt.addWindowListener(new WindowAdapter(){
-            public void windowClosed(WindowEvent windowEvent){
-	        System.out.println("tesing");
-                
-                System.out.println(flt.get_choice_1());
-                System.out.println(flt.get_choice_2());
-                System.out.println(flt.get_value_1());
-                System.out.println(flt.get_value_2());
-                System.out.println(flt.get_andor());
-            }  
-        });
+//        flt.addWindowListener(new WindowAdapter(){
+//            public void windowClosed(WindowEvent windowEvent){
+//	        System.out.println("tesing");
+//                
+//                System.out.println(flt.get_choice_1());
+//                System.out.println(flt.get_choice_2());
+//                System.out.println(flt.get_value_1());
+//                System.out.println(flt.get_value_2());
+//                System.out.println(flt.get_andor());
+//                
+//            }  
+//        });
     }
 
-    public void notEqualsActionPerformed(String pKey, ActionEvent e){
+    public void notEqualsActionPerformed_NUMBER(String header, String tableName, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Khác");
-        new Filter("Not Equals").setVisible(true);
+//        new Filter("Not Equals").setVisible(true);
+        Filter flt = new Filter("Not Equals");
+        flt.setMode("NUMBER");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
     }
 
-    public void greaterThanActionPerformed(String pKey, ActionEvent e){
+    public void greaterThanActionPerformed_NUMBER(String header, String tableName, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Lớn");
-        new Filter("Greater Than").setVisible(true);
+//        new Filter("Greater Than").setVisible(true);
+        Filter flt = new Filter("Greater Than");
+        flt.setMode("NUMBER");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
     }
 
-    public void greaterThanOrEqualsToActionPerformed(String pKey, ActionEvent e){
+    public void greaterThanOrEqualsToActionPerformed_NUMBER(String header, String tableName, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Lớn Bằng");
-        new Filter("Greater Than Or Equals To").setVisible(true);
+//        new Filter("Greater Than Or Equals To").setVisible(true);
+        Filter flt = new Filter("Greater Than Or Equals To");
+        flt.setMode("NUMBER");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
     }
 
-    public void lessThanActionPerformed(String pKey, ActionEvent e){
+    public void lessThanActionPerformed_NUMBER(String header, String tableName, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Bé");
-        new Filter("Less Than").setVisible(true);
+//        new Filter("Less Than").setVisible(true);
+        Filter flt = new Filter("Less Than");
+        flt.setMode("NUMBER");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
     }
 
-    public void lessThanOrEqualsToActionPerformed(String pKey, ActionEvent e){
+    public void lessThanOrEqualsToActionPerformed_NUMBER(String header, String tableName, ActionEvent e){
         //JOptionPane.showMessageDialog(null, pKey + " So Sánh Bé Bằng");
-        new Filter("Less Than Or Equals To").setVisible(true);
+//        new Filter("Less Than Or Equals To").setVisible(true);
+        Filter flt = new Filter("Less Than Or Equals To");
+        flt.setMode("NUMBER");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
+    }
+    
+    public void equalsActionPerformed_STRING(String header, String tableName, ActionEvent e){
+        Filter flt = new Filter("Equails");
+        flt.setMode("STRING");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
+    }
+    
+    public void notEqualsActionPerformed_STRING(String header, String tableName, ActionEvent e){
+        Filter flt = new Filter("Not Equals");
+        System.out.println("choice Not Equals");
+        flt.setMode("STRING");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
+    }
+    
+    public void containsActionPerformed_STRING(String header, String tableName, ActionEvent e){
+        Filter flt = new Filter("Contains");
+        flt.setMode("STRING");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
+    }
+    
+    public void doesNotContainActionPerformed_STRING(String header, String tableName, ActionEvent e){
+        Filter flt = new Filter("Does not Contain");
+        flt.setMode("STRING");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
+    }
+    
+    public void beginsWithActionPerformed_STRING(String header, String tableName, ActionEvent e){
+        Filter flt = new Filter("Begins With");
+        flt.setMode("STRING");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
+    }
+    
+    public void endsWithActionPerformed_STRING(String header, String tableName, ActionEvent e){
+        Filter flt = new Filter("Ends With");
+        flt.setMode("STRING");
+        flt.setHeader(header);
+        flt.setTableName(tableName);
+        flt.setVisible(true);
     }
 }
