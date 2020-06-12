@@ -169,13 +169,17 @@ public class ThongKe {
     
     /** Thống Kê Sách Thư Viện **/
     
+    /** Sách Thư Viện **/
+    public QLChiTietSachBUS sachthuvien = new QLChiTietSachBUS();
+    
     public int soLuong_SachThuVien(){
-        return new QLChiTietSachBUS(0).getArrChiTietSach().size();
+        return new QLChiTietSachBUS().getArrChiTietSach().size();
     }
     
     public int soLuong_SachThuVien_TinhTrang(String TinhTrang){
         return new QLChiTietSachBUS(0).search("Tình Trạng", TinhTrang).size();
     }
+    
     
     /** Thống Kê Sách Mượn **/
     
@@ -213,4 +217,8 @@ public class ThongKe {
         }
         return (int)ps.min(arr);
     }
+    
+    
+    
+    
 }

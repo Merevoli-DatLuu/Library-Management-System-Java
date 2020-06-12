@@ -19,13 +19,14 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
 
-public class ThongKeModule_Sach {
+public class ThongKeModule_SachThuVien {
     private static DataProcessing dp = new DataProcessing();
     private static ThongKe tk = new ThongKe();
     
     public static JPanel getTrangChuGUI() {
         initComponents();
         new QLLoaiSachBUS();
+        new QLChiTietSachBUS();
         /** Cards **/
         /*int value_1 = chiTietSachBUS.getSoLuongSach();
         int value_2 = theBUS.getSoLuongThe();
@@ -54,50 +55,24 @@ public class ThongKeModule_Sach {
         
         /** Charts **/
         ChartDrawing chart = new ChartDrawing();
-        ArrayList <String> nxb_key = tk.arr_Sach_NhaXuatBan_top5();
-        ArrayList <Integer> nxb_value = tk.arrSoLuong_Sach_NhaXuatBan_top5();
+
+        ArrayList <String> value_name = new ArrayList<>();
+        ArrayList <Integer> value = new ArrayList<>();
         
-        int sum_nxb_value = 0;
-        for (int e : nxb_value){
-            sum_nxb_value += e;
-        }
         
-        nxb_key.add("Còn Lại");
-        nxb_value.add(tk.soLuong_Sach() - sum_nxb_value);
+        value_name.add("Tổng Sách");
+        value_name.add("Sách ở tình trạng Tốt");
+        value_name.add("Sách ở tình trạng Bình Thường");
+        value_name.add("Sách ở tình trạng Cũ");
         
-        for (String e : nxb_key){
-            System.out.println(e);
-        }
+        value.add(tk.soLuong_SachThuVien());
+        value.add(tk.soLuong_SachThuVien_TinhTrang("Tốt"));
+        value.add(tk.soLuong_SachThuVien_TinhTrang("Bình Thường"));
+        value.add(tk.soLuong_SachThuVien_TinhTrang("Cũ"));
+        JPanel chartsachthuvien = chart.barChart("Biểu Đồ về Tình Trạng Sách Thư Viện", "Số Lượng Sách", value_name, value);
+        chartsachthuvien.setBounds(35, 240 - 10, 880, 340);
+        jPanel1.add(chartsachthuvien);
         
-        for (int e : nxb_value){
-            System.out.println(e);
-        }
-        
-        JPanel chart_1 = chart.pieChart_withoutLabel("Biểu Đồ về số sách của Nhà Xuất Bản", nxb_key, nxb_value);
-        chart_1.setBounds(35, 240 - 10, 425, 340);
-        
-        ArrayList <String> mucgia_key = new ArrayList<>();
-        ArrayList <Integer> mucgia_value = tk.arrSoLuong_Sach_MucGia();
-        
-        mucgia_key.add("< 100,000 VNĐ");
-        mucgia_key.add("100,000 - 300,000 VNĐ");
-        mucgia_key.add("> 300,000VNĐ");
-        
-        // Custom chart
-        JFreeChart chart_t_2 = chart.createChart_PieChart("Biểu Đồ về Mức Giá của Sách", mucgia_key, mucgia_value);
-        PiePlot pieplot = (PiePlot) chart_t_2.getPlot();
-        pieplot.setLabelBackgroundPaint(new Color(200, 229, 252));
-		pieplot.setLabelFont(new Font("verdana", Font.PLAIN, 10));
-                
-        pieplot.setSectionPaint(mucgia_key.get(0), new Color(33, 150, 243));
-        pieplot.setSectionPaint(mucgia_key.get(1), new Color(89, 176, 246));
-        pieplot.setSectionPaint(mucgia_key.get(2), new Color(144, 203, 249));
-        
-        JPanel chart_2 = new ChartPanel(chart_t_2);
-        chart_2.setBounds(500, 240 - 10, 425, 340);
-        
-        jPanel1.add(chart_1);
-        jPanel1.add(chart_2);
         /** End Charts **/
         final JScrollBar verticalScroller = new JScrollBar();
         verticalScroller.setOrientation(JScrollBar.VERTICAL);

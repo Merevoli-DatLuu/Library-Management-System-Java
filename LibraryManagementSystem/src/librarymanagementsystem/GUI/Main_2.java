@@ -1,11 +1,15 @@
 package librarymanagementsystem.GUI;
 
+import java.awt.BorderLayout;
 import librarymanagementsystem.GUI.ModuleGUI.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import librarymanagementsystem.BUS.QLLoaiSachBUS;
 
 public class Main_2 extends javax.swing.JFrame {
+
     int x_Mouse, y_Mouse; // For Moving Window
     int current_Module = 0;
     public static String sub_Module = "";
@@ -14,14 +18,14 @@ public class Main_2 extends javax.swing.JFrame {
     TrangChuGUI TrangChuModule = new TrangChuGUI();
     //Sach_SelectionModule sach_SelectionModule = new Sach_SelectionModule();
     public static javax.swing.JPanel Module_Panel = new javax.swing.JPanel(); // về sau dùng phương thức get
-    
+
     public Main_2() {
         initComponents();
         setSize(1113, 763);
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
     }
-    
+
     public Main_2(String currentUser) {
         this.currentUser = currentUser;
         System.out.println("Welcome " + currentUser);
@@ -30,10 +34,10 @@ public class Main_2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
     }
-    
+
     // Cái này để Class ko cần vẽ lại. Lý do cho việc này là do tui thiết kế Constructor ngu người vl, và cũng lười sửa lại:))
-    public Main_2(int i){
-        
+    public Main_2(int i) {
+
     }
 
     /**
@@ -67,20 +71,22 @@ public class Main_2 extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(null);
-        
-        /** Default Module: TrangChuModule **/
+
+        /**
+         * Default Module: TrangChuModule *
+         */
         Module = TrangChuModule.getTrangChuGUI();
         //Module = new Sach_SelectionModule().getSach_SelectionModule();
         //Module = new LoaiSachModule().getLoaiSachModule();
         Module.setBounds(0, 0, 940, 600);
-        
+
         Module_Panel.setOpaque(false);
         Module_Panel.setLayout(null);
         Module_Panel.add(Module);
         Module_Panel.setBounds(110, 100, 940, 600);
-        
+
         jPanel1.add(Module_Panel);
-        
+
         exit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (43).png"))); // NOI18N
         exit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -199,28 +205,28 @@ public class Main_2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void exit_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void exit_btnMouseClicked(java.awt.event.MouseEvent evt) {
         //System.exit(0);
-        if (exitForm == null || !exitForm.isDisplayable()){ // Hiển thị 1 windows tại 1 thời điểm 
+        if (exitForm == null || !exitForm.isDisplayable()) { // Hiển thị 1 windows tại 1 thời điểm 
             exitForm = new ExitGUI();
             exitForm.setVisible(true);
         }
-    }                                     
+    }
 
-    private void movingWindowMouseDragged(java.awt.event.MouseEvent evt) {                                          
+    private void movingWindowMouseDragged(java.awt.event.MouseEvent evt) {
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        
-        setLocation(x - x_Mouse - 49, y - y_Mouse - 49);
-    }                                         
 
-    private void movingWindowMousePressed(java.awt.event.MouseEvent evt) {                                          
+        setLocation(x - x_Mouse - 49, y - y_Mouse - 49);
+    }
+
+    private void movingWindowMousePressed(java.awt.event.MouseEvent evt) {
         x_Mouse = evt.getX();
         y_Mouse = evt.getY();
-    }                                         
+    }
 
-    private void turnOffModule(){
-        switch (current_Module){
+    private void turnOffModule() {
+        switch (current_Module) {
             case 0:
                 trangChu_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (77).png")));
                 break;
@@ -228,127 +234,140 @@ public class Main_2 extends javax.swing.JFrame {
                 sach_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (46).png")));
                 break;
             case 2:
-                the_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (65).png"))); 
+                the_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (65).png")));
                 break;
             case 3:
                 nhanVien_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (66).png")));
                 break;
             case 4:
-                kho_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (67).png"))); 
+                kho_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (67).png")));
                 break;
             case 5:
-                thongKe_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (68).png"))); 
+                thongKe_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (68).png")));
                 break;
             case 6:
                 info_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (69).png")));
-                break;  
+                break;
         }
     }
-    
-    private void trangChu_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                             
+
+    private void trangChu_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=0;
-        
+        current_Module = 0;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
         Module = TrangChuModule.getTrangChuGUI();
         Module.setBounds(0, 0, 940, 600);
         Module_Panel.add(Module);
-        
+
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (70).png")));
         trangChu_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (41).png")));
-    }                                            
+    }
 
-    private void sach_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void sach_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=1;
-        
-        
+        current_Module = 1;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
         Module = new Sach_SelectionModule().getSach_SelectionModule();
         Module.setBounds(0, 0, 940, 600);
         Module_Panel.add(Module);
-        
+
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (78).png")));
         sach_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (72).png")));
-    }                                        
+    }
 
-    private void the_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                        
+    private void the_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=2;
-        
+        current_Module = 2;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
-        
+
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (79).png")));
         the_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (73).png")));
-    
-    }                                       
 
-    private void nhanVien_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                             
+    }
+
+    private void nhanVien_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=3;
-        
+        current_Module = 3;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
         Module = new NhanVienModule().getNhanVienModule();
         Module.setBounds(0, 0, 940, 600);
         Module_Panel.add(Module);
-        
+
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (80).png")));
         nhanVien_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (74).png")));
-    
-    } 
-    
-    private void kho_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                        
+
+    }
+
+    private void kho_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=4;
-        
+        current_Module = 4;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
-        
+
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (81).png")));
         kho_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (75).png")));
-    
-    }  
 
-    private void thongKe_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                            
+    }
+
+    private void thongKe_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=5;
-        
+        current_Module = 5;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
         Module = new ThongKeModule_Sach().getTrangChuGUI();
         Module.setBounds(0, 0, 940, 600);
-        Module_Panel.add(Module);
-        
+        Module_Panel.add(new ThongKeModule(0).createTabbedPane());
+
+//        JPanel thongkeModule = new ThongKeModule_Sach().getTrangChuGUI();
+//        thongkeModule.setPreferredSize(new Dimension(940, 600));
+//        JScrollPane scrollPane = new JScrollPane(thongkeModule);
+//        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        //scrollPane.setBounds(0, 0, 500, 400);
+//        JPanel temp_thongke = new JPanel(new BorderLayout());
+//        temp_thongke.add(scrollPane);
+////        temp_thongke.add(scrollPane, BorderLayout.CENTER);
+//        temp_thongke.setOpaque(false);
+//        temp_thongke.setBounds(0, 0, 955, 400);
+////        temp_thongke.setPreferredSize( new Dimension(500, 400));
+//        Module_Panel.add(temp_thongke);
+
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (82).png")));
         thongKe_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (76).png")));
-    
-    }                                    
 
-    private void info_ModuleMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    }
+
+    private void info_ModuleMouseClicked(java.awt.event.MouseEvent evt) {
         turnOffModule();
-        current_Module=6;
-        
+        current_Module = 6;
+
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (83).png")));
         info_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (69).png")));
-    
-    }                                        
 
-    private void moreinfo_btnMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    }
+
+    private void moreinfo_btnMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-    }                                         
+    }
 
     /**
      * @param args the command line arguments

@@ -206,6 +206,7 @@ public class QLPhieuMuonBUS {
         for (QLPhieuMuonDTO e : arrMuonTra){
             res += e.getIDSach().size();
         }
+        System.out.println(""+arrMuonTra.size());
         return res;
     }
     
@@ -244,10 +245,54 @@ public class QLPhieuMuonBUS {
         return res;
     }
     
+    public ArrayList<Integer> getArrSoPhieuMuon(int year) {
+         ArrayList <Integer> rs = new ArrayList<>();
+        DataProcessing ps = new DataProcessing();
+        for (int month = 1; month <= 12; month++){
+            int t = 0;
+            for (QLPhieuMuonDTO e : arrMuonTra){
+                if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
+                    t++;
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
+    
+    public ArrayList<Integer> getArrSoPhieuMuonNuaNam(int year) {
+        ArrayList <Integer> rs = new ArrayList<>();
+        DataProcessing ps = new DataProcessing();
+        for (int month = 1; month <= 6; month++){
+            int t = 0;
+            for (QLPhieuMuonDTO e : arrMuonTra){
+                if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
+                    t++;
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
+    
     public ArrayList <Integer> getArrSoLuongSachMuon(int year){
         ArrayList <Integer> rs = new ArrayList<>();
         DataProcessing ps = new DataProcessing();
         for (int month = 1; month <= 12; month++){
+            int t = 0;
+            for (QLPhieuMuonDTO e : arrMuonTra){
+                if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
+                    t += e.getIDSach().size();
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
+    public ArrayList <Integer> getArrSoLuongSachMuonNuaNam(int year){
+        ArrayList <Integer> rs = new ArrayList<>();
+        DataProcessing ps = new DataProcessing();
+        for (int month = 1; month <= 6; month++){
             int t = 0;
             for (QLPhieuMuonDTO e : arrMuonTra){
                 if (ps.getYear(e.getNgayMuon()) == year && ps.getMonth(e.getNgayMuon()) == month){
@@ -278,5 +323,11 @@ public class QLPhieuMuonBUS {
     
     public int getSoLuongSachMuon_MaSach(String maSach, int month, int year){
         return muonTraDAO.soLuong_Sach_MaSach(maSach, month, year);
+    }
+    
+    public static void main(String[] args){
+        new QLPhieuMuonBUS();
+        System.out.println(new QLPhieuMuonBUS(0).getSoLuongSachMuon_MaSach("S000001", 5, 2019));
+        
     }
 }

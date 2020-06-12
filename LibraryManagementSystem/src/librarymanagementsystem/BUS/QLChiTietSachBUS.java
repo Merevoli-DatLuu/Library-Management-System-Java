@@ -8,7 +8,7 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLChiTietSachBUS {
-    private ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
+    private static ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
     private QLChiTietSachDAO chiTietSachDAO = new QLChiTietSachDAO();
 
     public QLChiTietSachBUS() {
@@ -70,24 +70,25 @@ public class QLChiTietSachBUS {
     
     public ArrayList <QLChiTietSachDTO> search (String column, String value){
         ArrayList <QLChiTietSachDTO> result_search = new ArrayList <QLChiTietSachDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "ID Sách":
                 for (QLChiTietSachDTO e : arrChiTietSach){
-                    if (e.getIDSach().toLowerCase().compareTo(value) != -1) {
+                    if (e.getIDSach().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Mã Sách": 
                 for (QLChiTietSachDTO e : arrChiTietSach){
-                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaSach().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tình Trạng":
                 for (QLChiTietSachDTO e : arrChiTietSach){
-                    if (e.getTinhTrang().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTinhTrang().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

@@ -3,6 +3,7 @@ package librarymanagementsystem.GUI;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -16,10 +17,15 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation; 
 import org.jfree.chart.axis.NumberAxis; 
-import org.jfree.data.xy.XYSeriesCollection;    
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.category.CategoryDataset;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
@@ -172,6 +178,56 @@ public class ChartDrawing{
         return chart; 
     }
     
+    private CategoryDataset createDataSet_BarChart(String series, ArrayList <String> value_name, ArrayList <Integer> value){
+
+        var dataset = new DefaultCategoryDataset();
+        for (int i=0; i<value_name.size(); i++){
+            dataset.setValue(value.get(i), series, value_name.get(i));
+        }
+        return dataset;
+    }
+    
+    private JFreeChart createChart_BarChart(String title, String series, CategoryDataset dataset ) {
+
+        JFreeChart barChart = ChartFactory.createBarChart(
+                title,
+                "",
+                series,
+                dataset,
+                PlotOrientation.HORIZONTAL,
+                false, true, false);
+        
+        barChart.getPlot().setBackgroundPaint(Color.WHITE);
+        barChart.getPlot().setOutlinePaint(new Color(84, 130, 53));
+        
+        BarRenderer renderer = (BarRenderer) barChart.getCategoryPlot().getRenderer();
+
+//        renderer.setSeriesPaint(0, new Color(198, 224, 180));
+        renderer.setSeriesPaint(0, new Color(91, 231, 196));
+//        renderer.setSeriesPaint(0, new Color(0, 158, 115));
+        renderer.setBarPainter(new StandardBarPainter());
+        renderer.setDrawBarOutline(false);
+        renderer.setItemMargin(0);
+        
+        CategoryPlot plot = barChart.getCategoryPlot();
+        // Reduce margin between bars
+        plot.getDomainAxis().setCategoryMargin(0.3);
+        // Reduce left and right margin
+        plot.getDomainAxis().setLowerMargin(0.1);
+        plot.getDomainAxis().setUpperMargin(0.1);
+        
+        renderer.setSeriesOutlinePaint(0, new Color(213, 94, 0));
+        renderer.setSeriesOutlinePaint(1, new Color(204, 121, 167));
+        renderer.setSeriesOutlineStroke(0, new BasicStroke(2.5f));
+        
+        return barChart;
+    }
+    
+    public JPanel barChart(String title, String series, ArrayList <String> value_name, ArrayList <Integer> value) {
+        ChartPanel chart = new ChartPanel(createChart_BarChart(title, series, createDataSet_BarChart(series, value_name, value)));  
+        return chart; 
+    }
+    
     
     public static void main( String[ ] args ) {
         //ChartDrawing demo = new ChartDrawing( "Mobile Sales" );  
@@ -183,23 +239,39 @@ public class ChartDrawing{
         //t.setSize(600, 600);
         //t.setVisible(true);
         
-        ArrayList <Double> name_value = new ArrayList <Double> ();
-        ArrayList <Double> value = new ArrayList <Double> ();
+//        ArrayList <Double> name_value = new ArrayList <Double> ();
+//        ArrayList <Double> value = new ArrayList <Double> ();
+//        
+//        name_value.add(2d);
+//        name_value.add(3d);
+//        name_value.add(4d);
+//        name_value.add(5d);
+//        name_value.add(20d);
+//        
+//        value.add(123d);
+//        value.add(12.2);
+//        value.add(134d);
+//        value.add(1d);
+//        value.add(1233d);
         
-        name_value.add(2d);
-        name_value.add(3d);
-        name_value.add(4d);
-        name_value.add(5d);
-        name_value.add(20d);
+        ArrayList <String> name_value = new ArrayList <String> ();
+        ArrayList <Integer> value = new ArrayList <Integer> ();
         
-        value.add(123d);
-        value.add(12.2);
-        value.add(134d);
-        value.add(1d);
-        value.add(1233d);
+        name_value.add("value name 1");
+        name_value.add("value name 2");
+        name_value.add("value name 3");
+        name_value.add("value name 4");
+        name_value.add("value name 5");
+        
+        value.add(12);
+        value.add(15);
+        value.add(17);
+        value.add(19);
+        value.add(14);
+        
         ChartDrawing demo = new ChartDrawing();
         JFrame t = new JFrame("Tdsafsadn");
-        JPanel p = demo.xyChart("Hsdsane", "ser asdsa", "nasmdnd", "asdnsadn", value, name_value);
+        JPanel p = demo.barChart("Testing", "So sdasd", name_value, value);
         t.add(p);
         t.setSize(600, 600);
         t.setVisible(true);

@@ -10,13 +10,17 @@
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/PaginatedTableDecorator.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/ObjectTableModel.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/RowPopup.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule_Sach.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Main_2.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLLoaiSachBUS.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/LibraryManagementSystem.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ThanhPhanGUI/ComboCheckBox.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/InMemoryPaginationDataProvider.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ThemSuaGUI/SuaLoaiSachForm.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/LoaiSachModule.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLLoaiSachTable.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ChartDrawing.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ChonGUI/FilterFunction.java</file>
         </group>
     </open-files>

@@ -12,14 +12,14 @@ import librarymanagementsystem.BUS.QLPhieuMuonBUS;
 import librarymanagementsystem.BUS.QLTheBUS;
 import librarymanagementsystem.BUS.QLLoaiSachBUS;
 import librarymanagementsystem.GUI.ChartDrawing;
-import librarymanagementsystem.GUI.HienThiGUI.dashboardCard_2;
+import librarymanagementsystem.GUI.HienThiGUI.dashboardCard_3;
 import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.Toolkit.ThongKe;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
 
-public class ThongKeModule_Sach {
+public class ThongKeModule_PhieuMuon {
     private static DataProcessing dp = new DataProcessing();
     private static ThongKe tk = new ThongKe();
     
@@ -36,14 +36,14 @@ public class ThongKeModule_Sach {
         JPanel card_2 = new dashboardCard("THẺ", Integer.toString(value_2), "../../images/output-onlinepngtools (86).png").getdashboardCard();
         JPanel card_3 = new dashboardCard("MƯỢN SÁCH", Integer.toString(value_3), "../../images/output-onlinepngtools (87).png").getdashboardCard();
         JPanel card_4 = new dashboardCard("NHÂN VIÊN", Integer.toString(value_4), "../../images/output-onlinepngtools (88).png").getdashboardCard();*/
-        JPanel card_1 = new dashboardCard_2("Số Lượng Sách", Integer.toString(tk.soLuong_Sach()), "../../images/output-onlinepngtools - 2020-06-05T084538.007.png").getdashboardCard();
-        JPanel card_2 = new dashboardCard_2("Thể Loại", Integer.toString(tk.soLuong_Sach_TheLoai()), "../../images/output-onlinepngtools - 2020-06-05T084549.737.png").getdashboardCard();
-        JPanel card_3 = new dashboardCard_2("Sách Việt Nam", Integer.toString(tk.soLuong_Sach_NgonNgu("Tiếng Việt")), "../../images/output-onlinepngtools - 2020-06-05T084557.140.png").getdashboardCard();
-        JPanel card_4 = new dashboardCard_2("Sách Nước Ngoài", Integer.toString(tk.soLuong_Sach_NgonNgu("Tiếng Anh")), "../../images/output-onlinepngtools - 2020-06-05T084602.595.png").getdashboardCard();
-        card_1.setBounds(20, 40 - 10, 220, 184);
-        card_2.setBounds(250, 40 - 10, 220, 184);
-        card_3.setBounds(480, 40 - 10, 220, 184);
-        card_4.setBounds(710, 40 - 10, 220, 184);
+        JPanel card_1 = new dashboardCard_3("Số Lượng Phiếu", Integer.toString(tk.soLuong_Sach()), "../../images/output-onlinepngtools - 2020-06-12T104902.328.png").getdashboardCard();
+        JPanel card_2 = new dashboardCard_3("Số Lượng Sách", Integer.toString(tk.soLuong_Sach_TheLoai()), "../../images/output-onlinepngtools - 2020-06-12T104929.571.png").getdashboardCard();
+        JPanel card_3 = new dashboardCard_3("Tháng Nhiều Nhất", Integer.toString(tk.soLuong_Sach_NgonNgu("Tiếng Việt")), "../../images/output-onlinepngtools - 2020-06-12T104925.205.png").getdashboardCard();
+        JPanel card_4 = new dashboardCard_3("Tháng Ít Nhất", Integer.toString(tk.soLuong_Sach_NgonNgu("Tiếng Anh")), "../../images/output-onlinepngtools - 2020-06-12T104910.265.png").getdashboardCard();
+        card_1.setBounds(20, 40 - 10, 240, 143);
+        card_2.setBounds(250, 40 - 10, 240, 143);
+        card_3.setBounds(480, 40 - 10, 240, 143);
+        card_4.setBounds(710, 40 - 10, 240, 143);
         
         jPanel1.setBackground(new Color(0, 0, 0, 0));
         jPanel1.add(card_1);
