@@ -218,7 +218,92 @@ public class ThongKe {
         return (int)ps.min(arr);
     }
     
+    public int soLuong_SachMuon_Sach(){
+        ArrayList<QLPhieuMuonDTO> phieumuon = new QLPhieuMuonBUS(0).getArrMuonTra();
+        int sum = 0;
+        for (QLPhieuMuonDTO e : phieumuon){
+            sum += e.getIDSach().size();
+        }
+        return sum;
+    }
     
+    // Current year
+    public int thang_SachMuon_Max(){
+        ArrayList<QLPhieuMuonDTO> phieumuon = new QLPhieuMuonBUS().getArrMuonTra();
+        int[] sum = new int[13]; 
+        for (QLPhieuMuonDTO e : phieumuon){
+            if (ps.getYear(e.getNgayMuon()) == ps.getCurrentYear()){
+                sum[ps.getMonth(e.getNgayMuon())] += e.getIDSach().size();
+            }
+        }
+        int max = 0;
+        int res = 1;
+        for (int i=1; i<=12; i++){
+            if (sum[i] > max){
+                max = sum[i];
+                res = i;
+            }
+        }
+        return res;
+    }
     
+    // Current year
+    public int thang_SachMuon_Min(){
+        ArrayList<QLPhieuMuonDTO> phieumuon = new QLPhieuMuonBUS(0).getArrMuonTra();
+        int[] sum = new int[13]; 
+        for (QLPhieuMuonDTO e : phieumuon){
+            if (ps.getYear(e.getNgayMuon()) == ps.getCurrentYear()){
+                sum[ps.getMonth(e.getNgayMuon())] += e.getIDSach().size();
+            }
+        }
+        int min = 0x3f3f3f3f;
+        int res = 1;
+        for (int i=1; i<=12; i++){
+            if (sum[i] < min && sum[i] > 0){
+                min = sum[i];
+                res = i;
+            }
+        }
+        return res;
+    }
     
+    /** Thống Kê Thẻ **/
+    
+    public int getSoLuongThe(){
+        return new QLTheBUS(0).getArrThe().size();
+    }
+    
+    public int getSoLuongThe_Moi(){
+        ArrayList <QLTheDTO> the = new QLTheBUS(0).getArrThe();
+        int res = 0;
+        for (QLTheDTO e : the){
+            if (ps.getMonth(e.getNgayCap()) == ps.getCurrentMonth() && ps.getYear(e.getNgayCap()) == ps.getCurrentYear()){
+                res++;
+            }
+        }
+        return res;
+    }
+    
+    // Theo Tháng Năm Hiện Tại
+    public ArrayList <Integer> getSoLuongThe_Current(){
+        ArrayList <QLTheDTO> the = new QLTheBUS(0).getArrThe();
+        ArrayList <Integer> rs = new ArrayList<>();
+        int current_month = ps.getCurrentMonth();
+        int current_year = ps.getCurrentYear();
+        for (int month = 1; month <= current_month; month++){
+            int t = 0;
+            for (QLTheDTO e : the){
+                if (ps.getYear(e.getNgayCap()) == current_year && ps.getMonth(e.getNgayCap()) == month){
+                    t++;
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(new ThongKe().thang_SachMuon_Max());
+        System.out.println(new ThongKe().thang_SachMuon_Min());
+    }
 }

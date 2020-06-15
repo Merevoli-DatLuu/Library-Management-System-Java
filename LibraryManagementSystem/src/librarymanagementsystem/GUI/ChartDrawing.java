@@ -93,7 +93,7 @@ public class ChartDrawing{
         return dataset;
     }*/
     
-    private DefaultCategoryDataset createDataSet_LineChart(String series, ArrayList <Integer> value_1, ArrayList <Integer> value_2){
+    public DefaultCategoryDataset createDataSet_LineChart(String series, ArrayList <Integer> value_1, ArrayList <Integer> value_2){
         DefaultCategoryDataset  dataset = new DefaultCategoryDataset( );
         for (int i=0; i<value_1.size(); i++){
             dataset.setValue(value_1.get(i), series, value_2.get(i));  
@@ -117,7 +117,7 @@ public class ChartDrawing{
     }
     */
     
-    private JFreeChart createChart_LineChart(String title, String name_value_1, String name_value_2, DefaultCategoryDataset dataset ) {
+    public JFreeChart createChart_LineChart(String title, String name_value_1, String name_value_2, DefaultCategoryDataset dataset ) {
         JFreeChart lineChart = ChartFactory.createLineChart(
             title,
             name_value_1, name_value_2,
@@ -180,7 +180,7 @@ public class ChartDrawing{
     
     private CategoryDataset createDataSet_BarChart(String series, ArrayList <String> value_name, ArrayList <Integer> value){
 
-        var dataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i=0; i<value_name.size(); i++){
             dataset.setValue(value.get(i), series, value_name.get(i));
         }

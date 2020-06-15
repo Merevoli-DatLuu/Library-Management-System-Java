@@ -321,6 +321,23 @@ public class QLPhieuMuonBUS {
         return rs;
     }
     
+    public ArrayList <Integer> getArrSoLuongSachMuon_Phieu_Current(){
+        ArrayList <Integer> rs = new ArrayList<>();
+        DataProcessing ps = new DataProcessing();
+        int current_month = ps.getCurrentMonth();
+        int current_year = ps.getCurrentYear();
+        for (int month = 1; month <= current_month; month++){
+            int t = 0;
+            for (QLPhieuMuonDTO e : arrMuonTra){
+                if (ps.getYear(e.getNgayMuon()) == current_year && ps.getMonth(e.getNgayMuon()) == month){
+                    t++;
+                }
+            }
+            rs.add(t);
+        }
+        return rs;
+    }
+    
     public int getSoLuongSachMuon_MaSach(String maSach, int month, int year){
         return muonTraDAO.soLuong_Sach_MaSach(maSach, month, year);
     }

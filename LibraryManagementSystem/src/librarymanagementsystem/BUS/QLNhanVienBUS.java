@@ -18,8 +18,23 @@ public class QLNhanVienBUS {
         
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"Mã Quản Lý", "Password", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email", "Chức Vụ"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<8; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLNhanVienDTO getNhanVien(String maNhanVien){
@@ -39,7 +54,7 @@ public class QLNhanVienBUS {
         }
         
         for (QLNhanVienDTO e : arrNhanVien){
-            if (set.contains(e)){
+            if (set.contains(e.getMaNhanVien())){
                 res.add(e);
             }
         }
@@ -56,59 +71,60 @@ public class QLNhanVienBUS {
     
     public ArrayList <QLNhanVienDTO> search (String column, String value){
         ArrayList <QLNhanVienDTO> result_search = new ArrayList <QLNhanVienDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Khách Hàng":
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getMaNhanVien().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaNhanVien().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Password": 
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+                    if (e.getPassword().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Họ Tên": 
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+                    if (e.getHoTen().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Sinh":
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgaySinh().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Địa Chỉ":
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                    if (e.getDiaChi().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Số Điện Thoại":
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                    if (e.getSdt().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Email":
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+                    if (e.getEmail().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Chức Vụ":
                 for (QLNhanVienDTO e : arrNhanVien){
-                    if (e.getChucVu().toLowerCase().compareTo(value) != -1) {
+                    if (e.getChucVu().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

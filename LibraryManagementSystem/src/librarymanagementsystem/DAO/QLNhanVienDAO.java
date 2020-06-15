@@ -20,8 +20,8 @@ public class QLNhanVienDAO {
             if (rs != null){
                 while (rs.next()){
                     String maNhanVien = rs.getString("maNhanVien");
-                    //String password = rs.getString("password");
-                    String password = rs.getString("password_hashed");
+                    String password = rs.getString("password");
+                    //String password = rs.getString("password_hashed");
                     String hoTen = rs.getString("hoTen");
                     String ngaySinh = rs.getString("ngaySinh");
                     String diaChi = rs.getString("diaChi");

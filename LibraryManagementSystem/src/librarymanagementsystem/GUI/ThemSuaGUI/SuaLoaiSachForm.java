@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.FileDialog;
 //import librarymanagementsystem.DTO.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import librarymanagementsystem.BUS.QLAdminBUS;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
@@ -293,10 +294,17 @@ public class SuaLoaiSachForm extends javax.swing.JFrame {
         String maSach = ms;
         
         if (check_input(tenSach, tenTacGia, tenNXB, tenTheLoai, ngonNgu, namXuatBan, giaTien, soTrang, tomTatNoiDung, url)){
-            System.out.println("Nhập Thành Công");
-            if (loaisachBUS.mod(maSach, tenSach, tenTacGia, tenNXB, tenTheLoai, ngonNgu, tomTatNoiDung, Integer.parseInt(namXuatBan), Integer.parseInt(giaTien), Integer.parseInt(soTrang), url) ){
-                new AlertGUI(3, "Success", "Sửa Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
-                this.dispose();
+            int option = JOptionPane.showConfirmDialog(
+                null, 
+                "Bạn có muốn sửa " + tenSach + " ?", 
+                "Xóa Loại Sách", 
+                JOptionPane.YES_NO_OPTION);
+            if(option == JOptionPane.YES_OPTION){
+                System.out.println("Nhập Thành Công");
+                if (loaisachBUS.mod(maSach, tenSach, tenTacGia, tenNXB, tenTheLoai, ngonNgu, tomTatNoiDung, Integer.parseInt(namXuatBan), Integer.parseInt(giaTien), Integer.parseInt(soTrang), url) ){
+                    new AlertGUI(3, "Success", "Sửa Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
+                    this.dispose();
+                }
             }
         }
         else{

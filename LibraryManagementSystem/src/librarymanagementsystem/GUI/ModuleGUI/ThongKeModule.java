@@ -70,7 +70,7 @@ public class ThongKeModule extends JFrame{
         JPanel panel1 = new ThongKeModule_Sach().getTrangChuGUI();
         JPanel panel12 = new ThongKeModule_SachThuVien().getTrangChuGUI();
         JPanel panel13 = new ThongKeModule_PhieuMuon().getTrangChuGUI();
-        JPanel panel2 = createJPanel("Thống Kê Thẻ và Khách Hàng");
+        JPanel panel2 = new ThongKeModule_The().getThongKeModule_The();
         JPanel panel3 = createJPanel("Thống Kê Nhân Viên");
         JPanel panel4 = createJPanel("Thống Kê Kho Sách");
         

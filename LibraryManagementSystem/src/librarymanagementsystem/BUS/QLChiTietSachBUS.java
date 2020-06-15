@@ -28,12 +28,27 @@ public class QLChiTietSachBUS {
         arrChiTietSach = chiTietSachDAO.readDB_full();
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"ID Sách", "Mã Sách", "Tình Trạng"};
     }
     
     public String [] getHeader_full(){
         return new String[]{"ID Sách", "Bìa Sách", "Mã Sách", "Tình Trạng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<3; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLChiTietSachDTO getChiTietSach(String IDSach){
@@ -53,7 +68,7 @@ public class QLChiTietSachBUS {
         }
         
         for (QLChiTietSachDTO e : arrChiTietSach){
-            if (set.contains(e)){
+            if (set.contains(e.getIDSach())){
                 res.add(e);
             }
         }

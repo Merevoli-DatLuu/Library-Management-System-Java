@@ -192,6 +192,110 @@ public class Filter extends javax.swing.JFrame {
                     }
                     new LoaiSachModule().paintTable(arr);
                     break;
+                
+                case "NhaCungCap":
+                    ArrayList <QLNhaCungCapDTO> arr_nhacungcap = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_nhacungcap = new FilterFunction().filterBy_Equails_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_nhacungcap = new FilterFunction().filterBy_NotEquails_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_nhacungcap = new FilterFunction().filterBy_Contains_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_nhacungcap = new FilterFunction().filterBy_DoesNotContain_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_nhacungcap = new FilterFunction().filterBy_BeginsWith_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_nhacungcap = new FilterFunction().filterBy_EndsWith_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                    }
+                    
+                    new NhaCungCapModule().paintTable(arr_nhacungcap);
+                    break;
+                
+                case "The":
+                    ArrayList <QLTheDTO> arr_the = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_the = new FilterFunction().filterBy_Equails_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_the = new FilterFunction().filterBy_NotEquails_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_the = new FilterFunction().filterBy_Contains_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_the = new FilterFunction().filterBy_DoesNotContain_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_the = new FilterFunction().filterBy_BeginsWith_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_the = new FilterFunction().filterBy_EndsWith_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                    }
+                    
+                    new TheModule().paintTable(arr_the);
+                    break;
+                    
+                case "NhanVien":
+                    ArrayList <QLNhanVienDTO> arr_nhanvien = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_nhanvien = new FilterFunction().filterBy_Equails_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_nhanvien = new FilterFunction().filterBy_NotEquails_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_nhanvien = new FilterFunction().filterBy_Contains_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_nhanvien = new FilterFunction().filterBy_DoesNotContain_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_nhanvien = new FilterFunction().filterBy_BeginsWith_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_nhanvien = new FilterFunction().filterBy_EndsWith_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                    }
+                    
+                    new NhanVienModule().paintTable(arr_nhanvien);
+                    break;
+                    
+                case "SachThuVien":
+                    ArrayList <QLChiTietSachDTO> arr_sachthuvien = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_sachthuvien = new FilterFunction().filterBy_Equails_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_sachthuvien = new FilterFunction().filterBy_NotEquails_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_sachthuvien = new FilterFunction().filterBy_Contains_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_sachthuvien = new FilterFunction().filterBy_DoesNotContain_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_sachthuvien = new FilterFunction().filterBy_BeginsWith_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_sachthuvien = new FilterFunction().filterBy_EndsWith_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                    }
+                    
+                    new SachThuVienModule().paintTable(arr_sachthuvien);
+                    break;
             }
         }
         else if (fd.getandOr() != 0 && fd.hasChoice_1() && fd.hasChoice_2()){
@@ -301,6 +405,274 @@ public class Filter extends javax.swing.JFrame {
                         arr_res = new QLLoaiSachBUS(0).getLoaiSach_full(ps.union_arr(pKey, pKey_2));
                     }
                     new LoaiSachModule().paintTable(arr_res);
+                    break;
+                    
+                case "NhaCungCap":
+                    ArrayList <QLNhaCungCapDTO> arr_nhacungcap_1 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_nhacungcap_1 = new FilterFunction().filterBy_Equails_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_nhacungcap_1 = new FilterFunction().filterBy_NotEquails_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_nhacungcap_1 = new FilterFunction().filterBy_Contains_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_nhacungcap_1 = new FilterFunction().filterBy_DoesNotContain_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_nhacungcap_1 = new FilterFunction().filterBy_BeginsWith_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_nhacungcap_1 = new FilterFunction().filterBy_EndsWith_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_1);
+                        }
+                    }
+                    
+                    ArrayList <QLNhaCungCapDTO> arr_nhacungcap_2 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_2.equals("Equals")){
+                            arr_nhacungcap_2 = new FilterFunction().filterBy_Equails_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Not Equals")){
+                            arr_nhacungcap_2 = new FilterFunction().filterBy_NotEquails_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Contains")){
+                            arr_nhacungcap_2 = new FilterFunction().filterBy_Contains_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Does not Contain")){
+                            arr_nhacungcap_2 = new FilterFunction().filterBy_DoesNotContain_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Begins With")){
+                            arr_nhacungcap_2 = new FilterFunction().filterBy_BeginsWith_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Ends With")){
+                            arr_nhacungcap_2 = new FilterFunction().filterBy_EndsWith_STRING_NhaCungCap(new QLNhaCungCapBUS(0).getArrNhaCungCap(), header, fd.value_2);
+                        }
+                    }
+                    
+                    ArrayList <String> pKey_nhacungcap = new ArrayList<>();
+                    ArrayList <String> pKey_2_nhacuncap = new ArrayList<>();
+                    
+                    for (QLNhaCungCapDTO e : arr_nhacungcap_1){
+                        pKey_nhacungcap.add(e.getMaNCC());
+                    }
+                    
+                    for (QLNhaCungCapDTO e : arr_nhacungcap_2){
+                        pKey_2_nhacuncap.add(e.getMaNCC());
+                    }
+                    
+                    ArrayList <QLNhaCungCapDTO> arr_res_nhacungcap = new ArrayList<>();
+                    
+                    if (fd.getandOr() == 1){
+                        arr_res_nhacungcap = new QLNhaCungCapBUS(0).getNhaCungCap_full(ps.intersection_arr(pKey_nhacungcap, pKey_2_nhacuncap));
+                    }
+                    else if (fd.getandOr() == 2){
+                        arr_res_nhacungcap = new QLNhaCungCapBUS(0).getNhaCungCap_full(ps.union_arr(pKey_nhacungcap, pKey_2_nhacuncap));
+                    }
+                    new NhaCungCapModule().paintTable(arr_res_nhacungcap);
+                    break;
+                    
+                case "The":
+                    ArrayList <QLTheDTO> arr_the_1 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_the_1 = new FilterFunction().filterBy_Equails_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_the_1 = new FilterFunction().filterBy_NotEquails_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_the_1 = new FilterFunction().filterBy_Contains_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_the_1 = new FilterFunction().filterBy_DoesNotContain_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_the_1 = new FilterFunction().filterBy_BeginsWith_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_the_1 = new FilterFunction().filterBy_EndsWith_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_1);
+                        }
+                    }
+                    
+                    ArrayList <QLTheDTO> arr_the_2 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_2.equals("Equals")){
+                            arr_the_2 = new FilterFunction().filterBy_Equails_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Not Equals")){
+                            arr_the_2 = new FilterFunction().filterBy_NotEquails_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Contains")){
+                            arr_the_2 = new FilterFunction().filterBy_Contains_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Does not Contain")){
+                            arr_the_2 = new FilterFunction().filterBy_DoesNotContain_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Begins With")){
+                            arr_the_2 = new FilterFunction().filterBy_BeginsWith_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Ends With")){
+                            arr_the_2 = new FilterFunction().filterBy_EndsWith_STRING_The(new QLTheBUS(0).getArrThe(), header, fd.value_2);
+                        }
+                    }
+                    
+                    ArrayList <String> pKey_the = new ArrayList<>();
+                    ArrayList <String> pKey_2_the = new ArrayList<>();
+                    
+                    for (QLTheDTO e : arr_the_1){
+                        pKey_the.add(e.getMaThe());
+                    }
+                    
+                    for (QLTheDTO e : arr_the_2){
+                        pKey_2_the.add(e.getMaThe());
+                    }
+                    
+                    ArrayList <QLTheDTO> arr_res_the = new ArrayList<>();
+                    
+                    if (fd.getandOr() == 1){
+                        arr_res_the = new QLTheBUS(0).getThe_full(ps.intersection_arr(pKey_the, pKey_2_the));
+                    }
+                    else if (fd.getandOr() == 2){
+                        arr_res_the = new QLTheBUS(0).getThe_full(ps.union_arr(pKey_the, pKey_2_the));
+                    }
+                    new TheModule().paintTable(arr_res_the);
+                    break;
+                    
+                case "NhanVien":
+                    ArrayList <QLNhanVienDTO> arr_nhanvien_1 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_nhanvien_1 = new FilterFunction().filterBy_Equails_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_nhanvien_1 = new FilterFunction().filterBy_NotEquails_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_nhanvien_1 = new FilterFunction().filterBy_Contains_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_nhanvien_1 = new FilterFunction().filterBy_DoesNotContain_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_nhanvien_1 = new FilterFunction().filterBy_BeginsWith_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_nhanvien_1 = new FilterFunction().filterBy_EndsWith_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_1);
+                        }
+                    }
+                    
+                    ArrayList <QLNhanVienDTO> arr_nhanvien_2 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_2.equals("Equals")){
+                            arr_nhanvien_2 = new FilterFunction().filterBy_Equails_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Not Equals")){
+                            arr_nhanvien_2 = new FilterFunction().filterBy_NotEquails_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Contains")){
+                            arr_nhanvien_2 = new FilterFunction().filterBy_Contains_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Does not Contain")){
+                            arr_nhanvien_2 = new FilterFunction().filterBy_DoesNotContain_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Begins With")){
+                            arr_nhanvien_2 = new FilterFunction().filterBy_BeginsWith_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Ends With")){
+                            arr_nhanvien_2 = new FilterFunction().filterBy_EndsWith_STRING_NhanVien(new QLNhanVienBUS(0).getArrNhanVien(), header, fd.value_2);
+                        }
+                    }
+                    
+                    ArrayList <String> pKey_nhanvien = new ArrayList<>();
+                    ArrayList <String> pKey_2_nhanvien = new ArrayList<>();
+                    
+                    for (QLNhanVienDTO e : arr_nhanvien_1){
+                        pKey_nhanvien.add(e.getMaNhanVien());
+                    }
+                    
+                    for (QLNhanVienDTO e : arr_nhanvien_2){
+                        pKey_2_nhanvien.add(e.getMaNhanVien());
+                    }
+                    
+                    ArrayList <QLNhanVienDTO> arr_res_nhanvien = new ArrayList<>();
+                    
+                    if (fd.getandOr() == 1){
+                        arr_res_nhanvien = new QLNhanVienBUS(0).getNhanVien_full(ps.intersection_arr(pKey_nhanvien, pKey_2_nhanvien));
+                    }
+                    else if (fd.getandOr() == 2){
+                        arr_res_nhanvien = new QLNhanVienBUS(0).getNhanVien_full(ps.union_arr(pKey_nhanvien, pKey_2_nhanvien));
+                    }
+                    new NhanVienModule().paintTable(arr_res_nhanvien);
+                    break;
+                    
+                case "SachThuVien":
+                    ArrayList <QLChiTietSachDTO> arr_sachthuvien_1 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_1.equals("Equals")){
+                            arr_sachthuvien_1 = new FilterFunction().filterBy_Equails_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Not Equals")){
+                            arr_sachthuvien_1 = new FilterFunction().filterBy_NotEquails_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Contains")){
+                            arr_sachthuvien_1 = new FilterFunction().filterBy_Contains_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Does not Contain")){
+                            arr_sachthuvien_1 = new FilterFunction().filterBy_DoesNotContain_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Begins With")){
+                            arr_sachthuvien_1 = new FilterFunction().filterBy_BeginsWith_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                        else if (fd.choice_1.equals("Ends With")){
+                            arr_sachthuvien_1 = new FilterFunction().filterBy_EndsWith_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_1);
+                        }
+                    }
+                    
+                    ArrayList <QLChiTietSachDTO> arr_sachthuvien_2 = new ArrayList<>();
+                    if (choiceType.equals("STRING")){
+                        if (fd.choice_2.equals("Equals")){
+                            arr_sachthuvien_2 = new FilterFunction().filterBy_Equails_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Not Equals")){
+                            arr_sachthuvien_2 = new FilterFunction().filterBy_NotEquails_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Contains")){
+                            arr_sachthuvien_2 = new FilterFunction().filterBy_Contains_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Does not Contain")){
+                            arr_sachthuvien_2 = new FilterFunction().filterBy_DoesNotContain_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Begins With")){
+                            arr_sachthuvien_2 = new FilterFunction().filterBy_BeginsWith_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_2);
+                        }
+                        else if (fd.choice_2.equals("Ends With")){
+                            arr_sachthuvien_2 = new FilterFunction().filterBy_EndsWith_STRING_SachThuVien(new QLChiTietSachBUS(0).getArrChiTietSach(), header, fd.value_2);
+                        }
+                    }
+                    
+                    ArrayList <String> pKey_sachthuvien = new ArrayList<>();
+                    ArrayList <String> pKey_2_sachthuvien = new ArrayList<>();
+                    
+                    for (QLChiTietSachDTO e : arr_sachthuvien_1){
+                        pKey_sachthuvien.add(e.getIDSach());
+                    }
+                    
+                    for (QLChiTietSachDTO e : arr_sachthuvien_2){
+                        pKey_2_sachthuvien.add(e.getIDSach());
+                    }
+                    
+                    ArrayList <QLChiTietSachDTO> arr_res_sachthuvien = new ArrayList<>();
+                    
+                    if (fd.getandOr() == 1){
+                        arr_res_sachthuvien = new QLChiTietSachBUS(0).getChiTietSach_full(ps.intersection_arr(pKey_sachthuvien, pKey_2_sachthuvien));
+                    }
+                    else if (fd.getandOr() == 2){
+                        arr_res_sachthuvien = new QLChiTietSachBUS(0).getChiTietSach_full(ps.union_arr(pKey_sachthuvien, pKey_2_sachthuvien));
+                    }
+                    new SachThuVienModule().paintTable(arr_res_sachthuvien);
                     break;
             }
         }

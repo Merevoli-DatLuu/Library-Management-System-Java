@@ -15,6 +15,9 @@ public class QLTheBUS {
         arrThe= theDAO.readDB();
     }
     
+    public QLTheBUS(int i) {
+    }
+    
     public void readDB(){
         arrThe= theDAO.readDB();
     }
@@ -23,12 +26,27 @@ public class QLTheBUS {
         arrThe = theDAO.readDB_full();
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"Mã Thẻ", "Mã Khách Hàng", "Ngày Cấp", "Ngày Hết Hạn"};
     }
     
-    public String [] getHeader_full(){
+    public String [] getHeaders_full(){
         return new String[]{"Mã Thẻ", "Ngày Cấp", "Ngày Hết Hạn", "Mã Khách Hàng", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<4; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLTheDTO getThe(String maThe){
@@ -48,7 +66,7 @@ public class QLTheBUS {
         }
         
         for (QLTheDTO e : arrThe){
-            if (set.contains(e)){
+            if (set.contains(e.getMaThe())){
                 res.add(e);
             }
         }
@@ -65,31 +83,32 @@ public class QLTheBUS {
     
     public ArrayList <QLTheDTO> search (String column, String value){
         ArrayList <QLTheDTO> result_search = new ArrayList <QLTheDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Thẻ":
                 for (QLTheDTO e : arrThe){
-                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaThe().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Cấp":
                 for (QLTheDTO e : arrThe){
-                    if (e.getNgayCap().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayCap().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Hết Hạn":
                 for (QLTheDTO e : arrThe){
-                    if (e.getNgayHetHan().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayHetHan().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Mã Khách Hàng":
                 for (QLTheDTO e : arrThe){
-                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaThe().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

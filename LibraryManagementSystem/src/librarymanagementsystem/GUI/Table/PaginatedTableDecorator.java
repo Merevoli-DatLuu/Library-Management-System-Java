@@ -16,7 +16,7 @@ import javax.swing.table.*;
 import java.awt.event.*;
 import java.awt.Point;
 
-import librarymanagementsystem.BUS.QLLoaiSachBUS;
+import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.AlertGUI;
 import librarymanagementsystem.GUI.ThemSuaGUI.SuaLoaiSachForm;
 
@@ -168,13 +168,20 @@ public class PaginatedTableDecorator<T> {
 //                            };
 //                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
 //                            xacnhan.setVisible(true);
-                            if (new QLLoaiSachBUS(0).del(pKey)){
-                                System.out.println("Xóa " + pKey + " thành công");
-                                new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
-                            }
-                            else{
-                                System.out.println("Xóa " + pKey + " thất bại");
-                                new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                            int option = JOptionPane.showConfirmDialog(
+                                        null, 
+                                        "Bạn có muốn xóa " + pKey + " ?", 
+                                        "Xóa Loại Sách", 
+                                        JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION){
+                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                    System.out.println("Xóa " + pKey + " thành công");
+                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                }
+                                else{
+                                    System.out.println("Xóa " + pKey + " thất bại");
+                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                }
                             }
                         }
                     };
@@ -185,6 +192,391 @@ public class PaginatedTableDecorator<T> {
         });
     }
 
+    public void getClickEvent_NhaCungCap(){
+        // Click event
+        JTableHeader header = table.getTableHeader();
+        //header.addMouseListener(new TableHeaderMouseListener(table));
+        
+        header.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent event){
+                if (SwingUtilities.isRightMouseButton(event)){ // Right Click
+                    Point point = event.getPoint();
+                    int column = table.columnAtPoint(point);
+
+                    //JOptionPane.showMessageDialog(table, "Column header #" + column + " is clicked.");
+                    System.out.println("Column header #" + column + " is clicked.");
+                    //for Loai Sach == testing
+                    
+                    ArrayList <String> header;
+                    header = new ArrayList<String>(Arrays.asList(new QLNhaCungCapBUS(0).getHeaders()));
+                    RowPopup rp = new RowPopup();
+                    int headerType = new QLNhaCungCapBUS(0).findHeaderType(header.get(column));
+                    if (headerType == 0){
+                        rp.RowPopup_forHeader_STRING(header.get(column), "NhaCungCap");
+                    }
+                    else if (headerType == 1){
+                        rp.RowPopup_forHeader_NUMBER(header.get(column), "NhaCungCap");
+                    }
+                    rp.show(contentPanel, event.getX(), event.getY() + 40);
+                }
+            }
+        });
+        
+        
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event){
+                if(event.getClickCount()== 1 && SwingUtilities.isRightMouseButton(event)){ // Chuột Phải
+                    JTable target = (JTable)event.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    //JOptionPane.showMessageDialog(null, table.getValueAt(row, column));
+                    //System.out.println(table.getValueAt(row, column));
+                    System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
+                    //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
+                    
+                    RowPopup rp = new RowPopup(){
+                        @Override
+                        public void viewActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Nha Cung Cap" + pKey + " Xem Chi Tiết");
+                        }
+                        @Override
+                        public void editActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Nha Cung Cap" + pKey + " Sửa");
+                            new SuaLoaiSachForm(pKey).setVisible(true);
+                        }
+                        @Override
+                        public void deleteActionPerformed(String pKey, ActionEvent e){
+                            //JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xóa");
+//                            AlertGUI xacnhan = new AlertGUI(0, "Xóa Loại Sách", "Bạn có muốn xóa loại sách " + pKey + "không?", "Đồng Ý", "Quay Lại"){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+                            //xacnhan.setVisible(true);
+                            //new AlertGUI(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại").setVisible(true);
+                            
+//                            AlertGUI xacnhan = new AlertGUI(){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+//                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
+//                            xacnhan.setVisible(true);
+                            int option = JOptionPane.showConfirmDialog(
+                                        null, 
+                                        "Bạn có muốn xóa " + pKey + " ?", 
+                                        "Xóa Loại Sách", 
+                                        JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION){
+                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                    System.out.println("Xóa " + pKey + " thành công");
+                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                }
+                                else{
+                                    System.out.println("Xóa " + pKey + " thất bại");
+                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                }
+                            }
+                        }
+                    };
+                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+                }
+            }
+        });
+    }
+
+    public void getClickEvent_The(){
+        // Click event
+        JTableHeader header = table.getTableHeader();
+        //header.addMouseListener(new TableHeaderMouseListener(table));
+        
+        header.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent event){
+                if (SwingUtilities.isRightMouseButton(event)){ // Right Click
+                    Point point = event.getPoint();
+                    int column = table.columnAtPoint(point);
+
+                    //JOptionPane.showMessageDialog(table, "Column header #" + column + " is clicked.");
+                    System.out.println("Column header #" + column + " is clicked.");
+                    //for Loai Sach == testing
+                    
+                    ArrayList <String> header;
+                    header = new ArrayList<String>(Arrays.asList(new QLTheBUS(0).getHeaders()));
+                    RowPopup rp = new RowPopup();
+                    int headerType = new QLTheBUS(0).findHeaderType(header.get(column));
+                    if (headerType == 0){
+                        rp.RowPopup_forHeader_STRING(header.get(column), "The");
+                    }
+                    else if (headerType == 1){
+                        rp.RowPopup_forHeader_NUMBER(header.get(column), "The");
+                    }
+                    rp.show(contentPanel, event.getX(), event.getY() + 40);
+                }
+            }
+        });
+        
+        
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event){
+                if(event.getClickCount()== 1 && SwingUtilities.isRightMouseButton(event)){ // Chuột Phải
+                    JTable target = (JTable)event.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    //JOptionPane.showMessageDialog(null, table.getValueAt(row, column));
+                    //System.out.println(table.getValueAt(row, column));
+                    System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
+                    //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
+                    
+                    RowPopup rp = new RowPopup(){
+                        @Override
+                        public void viewActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                        }
+                        @Override
+                        public void editActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
+                            new SuaLoaiSachForm(pKey).setVisible(true);
+                        }
+                        @Override
+                        public void deleteActionPerformed(String pKey, ActionEvent e){
+                            //JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xóa");
+//                            AlertGUI xacnhan = new AlertGUI(0, "Xóa Loại Sách", "Bạn có muốn xóa loại sách " + pKey + "không?", "Đồng Ý", "Quay Lại"){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+                            //xacnhan.setVisible(true);
+                            //new AlertGUI(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại").setVisible(true);
+                            
+//                            AlertGUI xacnhan = new AlertGUI(){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+//                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
+//                            xacnhan.setVisible(true);
+                            int option = JOptionPane.showConfirmDialog(
+                                        null, 
+                                        "Bạn có muốn xóa " + pKey + " ?", 
+                                        "Xóa Loại Sách", 
+                                        JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION){
+                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                    System.out.println("Xóa " + pKey + " thành công");
+                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                }
+                                else{
+                                    System.out.println("Xóa " + pKey + " thất bại");
+                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                }
+                            }
+                        }
+                    };
+                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+                }
+            }
+        });
+    }
+
+    public void getClickEvent_NhanVien(){
+        // Click event
+        JTableHeader header = table.getTableHeader();
+        //header.addMouseListener(new TableHeaderMouseListener(table));
+        
+        header.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent event){
+                if (SwingUtilities.isRightMouseButton(event)){ // Right Click
+                    Point point = event.getPoint();
+                    int column = table.columnAtPoint(point);
+
+                    //JOptionPane.showMessageDialog(table, "Column header #" + column + " is clicked.");
+                    System.out.println("Column header #" + column + " is clicked.");
+                    //for Loai Sach == testing
+                    
+                    ArrayList <String> header;
+                    header = new ArrayList<String>(Arrays.asList(new QLNhanVienBUS(0).getHeaders()));
+                    RowPopup rp = new RowPopup();
+                    int headerType = new QLNhanVienBUS(0).findHeaderType(header.get(column));
+                    if (headerType == 0){
+                        rp.RowPopup_forHeader_STRING(header.get(column), "NhanVien");
+                    }
+                    else if (headerType == 1){
+                        rp.RowPopup_forHeader_NUMBER(header.get(column), "NhanVien");
+                    }
+                    rp.show(contentPanel, event.getX(), event.getY() + 40);
+                }
+            }
+        });
+        
+        
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event){
+                if(event.getClickCount()== 1 && SwingUtilities.isRightMouseButton(event)){ // Chuột Phải
+                    JTable target = (JTable)event.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    //JOptionPane.showMessageDialog(null, table.getValueAt(row, column));
+                    //System.out.println(table.getValueAt(row, column));
+                    System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
+                    //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
+                    
+                    RowPopup rp = new RowPopup(){
+                        @Override
+                        public void viewActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                        }
+                        @Override
+                        public void editActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
+                            new SuaLoaiSachForm(pKey).setVisible(true);
+                        }
+                        @Override
+                        public void deleteActionPerformed(String pKey, ActionEvent e){
+                            //JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xóa");
+//                            AlertGUI xacnhan = new AlertGUI(0, "Xóa Loại Sách", "Bạn có muốn xóa loại sách " + pKey + "không?", "Đồng Ý", "Quay Lại"){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+                            //xacnhan.setVisible(true);
+                            //new AlertGUI(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại").setVisible(true);
+                            
+//                            AlertGUI xacnhan = new AlertGUI(){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+//                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
+//                            xacnhan.setVisible(true);
+                            int option = JOptionPane.showConfirmDialog(
+                                        null, 
+                                        "Bạn có muốn xóa " + pKey + " ?", 
+                                        "Xóa Loại Sách", 
+                                        JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION){
+                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                    System.out.println("Xóa " + pKey + " thành công");
+                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                }
+                                else{
+                                    System.out.println("Xóa " + pKey + " thất bại");
+                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                }
+                            }
+                        }
+                    };
+                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+                }
+            }
+        });
+    }
+    
+    public void getClickEvent_SachThuVien(){
+        // Click event
+        JTableHeader header = table.getTableHeader();
+        //header.addMouseListener(new TableHeaderMouseListener(table));
+        
+        header.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent event){
+                if (SwingUtilities.isRightMouseButton(event)){ // Right Click
+                    Point point = event.getPoint();
+                    int column = table.columnAtPoint(point);
+
+                    //JOptionPane.showMessageDialog(table, "Column header #" + column + " is clicked.");
+                    System.out.println("Column header #" + column + " is clicked.");
+                    //for Loai Sach == testing
+                    
+                    ArrayList <String> header;
+                    header = new ArrayList<String>(Arrays.asList(new QLChiTietSachBUS(0).getHeaders()));
+                    RowPopup rp = new RowPopup();
+                    int headerType = new QLChiTietSachBUS(0).findHeaderType(header.get(column));
+                    if (headerType == 0){
+                        rp.RowPopup_forHeader_STRING(header.get(column), "SachThuVien");
+                    }
+                    else if (headerType == 1){
+                        rp.RowPopup_forHeader_NUMBER(header.get(column), "SachThuVien");
+                    }
+                    rp.show(contentPanel, event.getX(), event.getY() + 40);
+                }
+            }
+        });
+        
+        
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event){
+                if(event.getClickCount()== 1 && SwingUtilities.isRightMouseButton(event)){ // Chuột Phải
+                    JTable target = (JTable)event.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    //JOptionPane.showMessageDialog(null, table.getValueAt(row, column));
+                    //System.out.println(table.getValueAt(row, column));
+                    System.out.println(table.getValueAt(row, 0));           // Get Columns 0 (Mã Chính) nhưng bug khi đổi chỗ cột
+                    //new PopupInRows(event, (String)table.getValueAt(row, 0), contentPanel);
+                    
+                    RowPopup rp = new RowPopup(){
+                        @Override
+                        public void viewActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                        }
+                        @Override
+                        public void editActionPerformed(String pKey, ActionEvent e){
+                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
+                            new SuaLoaiSachForm(pKey).setVisible(true);
+                        }
+                        @Override
+                        public void deleteActionPerformed(String pKey, ActionEvent e){
+                            //JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xóa");
+//                            AlertGUI xacnhan = new AlertGUI(0, "Xóa Loại Sách", "Bạn có muốn xóa loại sách " + pKey + "không?", "Đồng Ý", "Quay Lại"){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+                            //xacnhan.setVisible(true);
+                            //new AlertGUI(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại").setVisible(true);
+                            
+//                            AlertGUI xacnhan = new AlertGUI(){
+//                                private void dongy_btnMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//                                    System.out.println("Đồng ý");
+//                                    System.exit(0);
+//                                }     
+//                            };
+//                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
+//                            xacnhan.setVisible(true);
+                            int option = JOptionPane.showConfirmDialog(
+                                        null, 
+                                        "Bạn có muốn xóa " + pKey + " ?", 
+                                        "Xóa Loại Sách", 
+                                        JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION){
+                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                    System.out.println("Xóa " + pKey + " thành công");
+                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                }
+                                else{
+                                    System.out.println("Xóa " + pKey + " thất bại");
+                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                }
+                            }
+                        }
+                    };
+                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+                }
+            }
+        });
+    }
+
+    
     public static <T> PaginatedTableDecorator<T> decorate(JTable table,
                                                           PaginationDataProvider<T> dataProvider,
                                                           int[] pageSizes, int defaultPageSize) {

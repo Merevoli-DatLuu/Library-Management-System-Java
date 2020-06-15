@@ -1,10 +1,11 @@
 package librarymanagementsystem.GUI.ChonGUI;
 
 import java.util.ArrayList;
-import librarymanagementsystem.BUS.QLLoaiSachBUS;
-import librarymanagementsystem.DTO.QLLoaiSachDTO;
+import librarymanagementsystem.BUS.*;
+import librarymanagementsystem.DTO.*;
 
 public class FilterFunction {
+    /**     STRING - LoaiSach       **/
     public ArrayList <QLLoaiSachDTO> filterBy_Equails_STRING_LoaiSach(ArrayList <QLLoaiSachDTO> table, String header, String value){
         ArrayList <QLLoaiSachDTO> filter_res = new ArrayList<>();
         final String[] headers = new QLLoaiSachBUS(0).getHeaders();
@@ -335,6 +336,7 @@ public class FilterFunction {
         return filter_res;
     }
     
+    /**     NUMBER - LoaiSach       **/
     public ArrayList <QLLoaiSachDTO> filterBy_Equails_NUMBER_LoaiSach(ArrayList <QLLoaiSachDTO> table, String header, int value){
         ArrayList <QLLoaiSachDTO> filter_res = new ArrayList<>();
         final String[] headers = new QLLoaiSachBUS(0).getHeaders();
@@ -497,5 +499,1015 @@ public class FilterFunction {
         return filter_res;
     }
     
+    /**     STRING - NhaCungCap       **/
+    public ArrayList <QLNhaCungCapDTO> filterBy_Equails_STRING_NhaCungCap(ArrayList <QLNhaCungCapDTO> table, String header, String value){
+        ArrayList <QLNhaCungCapDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhaCungCapBUS(0).getHeaders();
+        System.err.println(table.size() + " " + header + " " + value);
+        if (header.equals(headers[0])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getMaNCC().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getTenNCC().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getSdt().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getEmail().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getDiaChi().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
     
+    public ArrayList <QLNhaCungCapDTO> filterBy_NotEquails_STRING_NhaCungCap(ArrayList <QLNhaCungCapDTO> table, String header, String value){
+        ArrayList <QLNhaCungCapDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhaCungCapBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getMaNCC().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getTenNCC().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getSdt().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getEmail().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getDiaChi().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhaCungCapDTO> filterBy_Contains_STRING_NhaCungCap(ArrayList <QLNhaCungCapDTO> table, String header, String value){
+        ArrayList <QLNhaCungCapDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhaCungCapBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getMaNCC().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getTenNCC().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getSdt().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getEmail().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getDiaChi().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhaCungCapDTO> filterBy_DoesNotContain_STRING_NhaCungCap(ArrayList <QLNhaCungCapDTO> table, String header, String value){
+        ArrayList <QLNhaCungCapDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhaCungCapBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getMaNCC().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getTenNCC().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getSdt().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getEmail().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhaCungCapDTO e : table){
+                if (!e.getDiaChi().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhaCungCapDTO> filterBy_BeginsWith_STRING_NhaCungCap(ArrayList <QLNhaCungCapDTO> table, String header, String value){
+        ArrayList <QLNhaCungCapDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhaCungCapBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getMaNCC().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getTenNCC().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getSdt().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getEmail().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getDiaChi().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhaCungCapDTO> filterBy_EndsWith_STRING_NhaCungCap(ArrayList <QLNhaCungCapDTO> table, String header, String value){
+        ArrayList <QLNhaCungCapDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhaCungCapBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getMaNCC().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getTenNCC().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getSdt().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getEmail().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhaCungCapDTO e : table){
+                if (e.getDiaChi().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    /**     STRING - The       **/
+    public ArrayList <QLTheDTO> filterBy_Equails_STRING_The(ArrayList <QLTheDTO> table, String header, String value){
+        ArrayList <QLTheDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLTheBUS(0).getHeaders();
+        System.err.println(table.size() + " " + header + " " + value);
+        if (header.equals(headers[0])){
+            for (QLTheDTO e : table){
+                if (e.getMaThe().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLTheDTO e : table){
+                if (e.getMaKhachHang().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLTheDTO e : table){
+                if (e.getNgayCap().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLTheDTO e : table){
+                if (e.getNgayHetHan().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLTheDTO> filterBy_NotEquails_STRING_The(ArrayList <QLTheDTO> table, String header, String value){
+        ArrayList <QLTheDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLTheBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLTheDTO e : table){
+                if (!e.getMaThe().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLTheDTO e : table){
+                if (!e.getMaKhachHang().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLTheDTO e : table){
+                if (!e.getNgayCap().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLTheDTO e : table){
+                if (!e.getNgayHetHan().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLTheDTO> filterBy_Contains_STRING_The(ArrayList <QLTheDTO> table, String header, String value){
+        ArrayList <QLTheDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLTheBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLTheDTO e : table){
+                if (e.getMaThe().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLTheDTO e : table){
+                if (e.getMaKhachHang().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLTheDTO e : table){
+                if (e.getNgayCap().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLTheDTO e : table){
+                if (e.getNgayHetHan().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLTheDTO> filterBy_DoesNotContain_STRING_The(ArrayList <QLTheDTO> table, String header, String value){
+        ArrayList <QLTheDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLTheBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLTheDTO e : table){
+                if (!e.getMaThe().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLTheDTO e : table){
+                if (!e.getMaKhachHang().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLTheDTO e : table){
+                if (!e.getNgayCap().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLTheDTO e : table){
+                if (!e.getNgayHetHan().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLTheDTO> filterBy_BeginsWith_STRING_The(ArrayList <QLTheDTO> table, String header, String value){
+        ArrayList <QLTheDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLTheBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLTheDTO e : table){
+                if (e.getMaThe().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLTheDTO e : table){
+                if (e.getMaKhachHang().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLTheDTO e : table){
+                if (e.getNgayCap().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLTheDTO e : table){
+                if (e.getNgayHetHan().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLTheDTO> filterBy_EndsWith_STRING_The(ArrayList <QLTheDTO> table, String header, String value){
+        ArrayList <QLTheDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLTheBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLTheDTO e : table){
+                if (e.getMaThe().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLTheDTO e : table){
+                if (e.getMaKhachHang().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLTheDTO e : table){
+                if (e.getNgayCap().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLTheDTO e : table){
+                if (e.getNgayHetHan().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    /**     STRING - NhanVien       **/
+    public ArrayList <QLNhanVienDTO> filterBy_Equails_STRING_NhanVien(ArrayList <QLNhanVienDTO> table, String header, String value){
+        ArrayList <QLNhanVienDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhanVienBUS(0).getHeaders();
+        System.err.println(table.size() + " " + header + " " + value);
+        if (header.equals(headers[0])){
+            for (QLNhanVienDTO e : table){
+                if (e.getMaNhanVien().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhanVienDTO e : table){
+                if (e.getPassword().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhanVienDTO e : table){
+                if (e.getHoTen().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhanVienDTO e : table){
+                if (e.getNgaySinh().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhanVienDTO e : table){
+                if (e.getDiaChi().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLNhanVienDTO e : table){
+                if (e.getSdt().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[6])){
+            for (QLNhanVienDTO e : table){
+                if (e.getEmail().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[7])){
+            for (QLNhanVienDTO e : table){
+                if (e.getChucVu().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filterBy_NotEquails_STRING_NhanVien(ArrayList <QLNhanVienDTO> table, String header, String value){
+        ArrayList <QLNhanVienDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhanVienBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getMaNhanVien().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getPassword().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getHoTen().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getNgaySinh().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getDiaChi().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getSdt().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[6])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getEmail().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[7])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getChucVu().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filterBy_Contains_STRING_NhanVien(ArrayList <QLNhanVienDTO> table, String header, String value){
+        ArrayList <QLNhanVienDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhanVienBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhanVienDTO e : table){
+                if (e.getMaNhanVien().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhanVienDTO e : table){
+                if (e.getPassword().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhanVienDTO e : table){
+                if (e.getHoTen().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhanVienDTO e : table){
+                if (e.getNgaySinh().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhanVienDTO e : table){
+                if (e.getDiaChi().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLNhanVienDTO e : table){
+                if (e.getSdt().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[6])){
+            for (QLNhanVienDTO e : table){
+                if (e.getEmail().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[7])){
+            for (QLNhanVienDTO e : table){
+                if (e.getChucVu().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filterBy_DoesNotContain_STRING_NhanVien(ArrayList <QLNhanVienDTO> table, String header, String value){
+        ArrayList <QLNhanVienDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhanVienBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getMaNhanVien().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getPassword().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getHoTen().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getNgaySinh().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getDiaChi().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getSdt().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[6])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getEmail().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[7])){
+            for (QLNhanVienDTO e : table){
+                if (!e.getChucVu().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filterBy_BeginsWith_STRING_NhanVien(ArrayList <QLNhanVienDTO> table, String header, String value){
+        ArrayList <QLNhanVienDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhanVienBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhanVienDTO e : table){
+                if (e.getMaNhanVien().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhanVienDTO e : table){
+                if (e.getPassword().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhanVienDTO e : table){
+                if (e.getHoTen().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhanVienDTO e : table){
+                if (e.getNgaySinh().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhanVienDTO e : table){
+                if (e.getDiaChi().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLNhanVienDTO e : table){
+                if (e.getSdt().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[6])){
+            for (QLNhanVienDTO e : table){
+                if (e.getEmail().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[7])){
+            for (QLNhanVienDTO e : table){
+                if (e.getChucVu().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLNhanVienDTO> filterBy_EndsWith_STRING_NhanVien(ArrayList <QLNhanVienDTO> table, String header, String value){
+        ArrayList <QLNhanVienDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLNhanVienBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLNhanVienDTO e : table){
+                if (e.getMaNhanVien().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLNhanVienDTO e : table){
+                if (e.getPassword().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLNhanVienDTO e : table){
+                if (e.getHoTen().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLNhanVienDTO e : table){
+                if (e.getNgaySinh().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[4])){
+            for (QLNhanVienDTO e : table){
+                if (e.getDiaChi().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLNhanVienDTO e : table){
+                if (e.getSdt().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[6])){
+            for (QLNhanVienDTO e : table){
+                if (e.getEmail().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[7])){
+            for (QLNhanVienDTO e : table){
+                if (e.getChucVu().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    /**         STRING - SachThuVien    **/
+    public ArrayList <QLChiTietSachDTO> filterBy_Equails_STRING_SachThuVien(ArrayList <QLChiTietSachDTO> table, String header, String value){
+        ArrayList <QLChiTietSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLChiTietSachBUS(0).getHeaders();
+        System.err.println(table.size() + " " + header + " " + value);
+        if (header.equals(headers[0])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getIDSach().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getMaSach().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getTinhTrang().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filterBy_NotEquails_STRING_SachThuVien(ArrayList <QLChiTietSachDTO> table, String header, String value){
+        ArrayList <QLChiTietSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLChiTietSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLChiTietSachDTO e : table){
+                if (!e.getIDSach().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLChiTietSachDTO e : table){
+                if (!e.getMaSach().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLChiTietSachDTO e : table){
+                if (!e.getTinhTrang().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filterBy_Contains_STRING_SachThuVien(ArrayList <QLChiTietSachDTO> table, String header, String value){
+        ArrayList <QLChiTietSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLChiTietSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getIDSach().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getMaSach().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getTinhTrang().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filterBy_DoesNotContain_STRING_SachThuVien(ArrayList <QLChiTietSachDTO> table, String header, String value){
+        ArrayList <QLChiTietSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLChiTietSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLChiTietSachDTO e : table){
+                if (!e.getIDSach().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLChiTietSachDTO e : table){
+                if (!e.getMaSach().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLChiTietSachDTO e : table){
+                if (!e.getTinhTrang().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filterBy_BeginsWith_STRING_SachThuVien(ArrayList <QLChiTietSachDTO> table, String header, String value){
+        ArrayList <QLChiTietSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLChiTietSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getIDSach().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getMaSach().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getTinhTrang().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLChiTietSachDTO> filterBy_EndsWith_STRING_SachThuVien(ArrayList <QLChiTietSachDTO> table, String header, String value){
+        ArrayList <QLChiTietSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLChiTietSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getIDSach().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getMaSach().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLChiTietSachDTO e : table){
+                if (e.getTinhTrang().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
 }

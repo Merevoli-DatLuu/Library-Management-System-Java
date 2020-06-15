@@ -235,4 +235,8 @@ public class QLKhachHangBUS {
         stage.add(stage_3);
         return stage;
     }
+    
+    public int getSoLuongKhachHang(){
+        return arrKhachHang.size();
+    }
 }

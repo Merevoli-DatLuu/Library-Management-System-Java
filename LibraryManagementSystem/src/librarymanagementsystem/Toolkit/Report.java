@@ -368,8 +368,8 @@ public class Report {
     } 
     
     public void exportReport() {
-        //new Report().WriteFile(); 
-        String url = "D:\\untitle.xls";
+//        String url = "D:\\untitle.xls";
+        String url = new Report().WriteFile();
         if (url == null) {
             return;
         }
@@ -377,6 +377,7 @@ public class Report {
         try {
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = workbook.createSheet("Thống Kê Phiếu Mượn");
+            sheet.setDisplayGridlines(false);
             sheet.setColumnWidth(0, 600);
             sheet.setColumnWidth(1, 3000);
             sheet.setColumnWidth(2, 3200);
@@ -390,17 +391,23 @@ public class Report {
             
             HSSFFont fontFamily = workbook.createFont();
             fontFamily.setFontName("Calibri");
+            fontFamily.setColor(HSSFColor.HSSFColorPredefined.GREY_80_PERCENT.getIndex());
             
             HSSFCellStyle styleSheet= workbook.createCellStyle();
             styleSheet.setFont(fontFamily);
             
             HSSFFont fontTitle = workbook.createFont();
             fontTitle.setFontHeightInPoints((short) 30);
+            fontTitle.setColor(HSSFColor.HSSFColorPredefined.VIOLET.getIndex());
+//            HSSFColor color = new HSSFColor(0, -1, new Color(115, 87, 115));
+//            fontTitle.setColor(color.getIndex());            
             
             HSSFCellStyle styleTitle= workbook.createCellStyle();
             styleTitle.cloneStyleFrom(styleSheet);
             styleTitle.setVerticalAlignment(VerticalAlignment.CENTER);
             styleTitle.setFont(fontTitle);
+            styleTitle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+            //styleTitle.setFillPattern(CellStyle.SOLID_FOREGROUND); 
             
             Row row = sheet.createRow(0);
             
@@ -410,6 +417,7 @@ public class Report {
             row.setHeightInPoints(50);
             
             HSSFFont fontNote = workbook.createFont();
+            fontNote.setColor(HSSFColor.HSSFColorPredefined.ORCHID.getIndex());
             fontNote.setItalic(true);
             
             HSSFCellStyle styleNote= workbook.createCellStyle();
@@ -445,6 +453,7 @@ public class Report {
 
             HSSFFont fontHeader = workbook.createFont();
             fontHeader.setBold(true);
+            fontHeader.setColor(HSSFColor.HSSFColorPredefined.GREY_80_PERCENT.getIndex());
             
             HSSFCellStyle headerStyle = workbook.createCellStyle(); 
             headerStyle.cloneStyleFrom(styleSheet);
@@ -460,12 +469,12 @@ public class Report {
             center.setVerticalAlignment(VerticalAlignment.CENTER);
             
             HSSFCellStyle styleBold = workbook.createCellStyle();
-            styleBold.cloneStyleFrom(styleSheet);
+//            styleBold.cloneStyleFrom(styleSheet);
             styleBold.cloneStyleFrom(center);
             styleBold.setFont(fontHeader);
             
             HSSFCellStyle stylePercent = workbook.createCellStyle();
-            styleBold.cloneStyleFrom(styleSheet);
+            //styleBold.cloneStyleFrom(styleSheet);
             stylePercent.cloneStyleFrom(styleBold);
             stylePercent.setDataFormat(workbook.createDataFormat().getFormat("0%"));
             
@@ -613,4 +622,5 @@ public class Report {
             }
         }
     } 
+    
 }

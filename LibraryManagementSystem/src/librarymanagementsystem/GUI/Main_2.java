@@ -288,6 +288,9 @@ public class Main_2 extends javax.swing.JFrame {
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
+        Module = new TheModule().getTheModule();
+        Module.setBounds(0, 0, 940, 600);
+        Module_Panel.add(Module);
 
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (79).png")));
         the_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (73).png")));
@@ -317,6 +320,9 @@ public class Main_2 extends javax.swing.JFrame {
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
+        Module = new NhaCungCapModule().getNhaCungCapModule();
+        Module.setBounds(0, 0, 940, 600);
+        Module_Panel.add(Module);
 
         tittleModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (81).png")));
         kho_Module.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/output-onlinepngtools (75).png")));

@@ -7,15 +7,36 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLNhaCungCapBUS {
-    private ArrayList<QLNhaCungCapDTO> arrNhaCungCap = new ArrayList<>();
+    private static ArrayList<QLNhaCungCapDTO> arrNhaCungCap = new ArrayList<>();
     private QLNhaCungCapDAO nhaCungCapDAO = new QLNhaCungCapDAO();
 
     public QLNhaCungCapBUS() {
         arrNhaCungCap= nhaCungCapDAO.readDB();
     }
     
-    public String [] getHeader(){
+    public QLNhaCungCapBUS(int i){
+        if (arrNhaCungCap.size() == 0){
+            arrNhaCungCap= nhaCungCapDAO.readDB();
+        }
+    }
+    
+    public String [] getHeaders(){
         return new String[]{"Mã Nhà Cung Cấp", "Tên Nhà Cung Cấp", "Số Điện Thoại", "Email", "Địa Chỉ"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<5; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLNhaCungCapDTO getNhaCungCap(String maNCC){
@@ -35,7 +56,7 @@ public class QLNhaCungCapBUS {
         }
         
         for (QLNhaCungCapDTO e : arrNhaCungCap){
-            if (set.contains(e)){
+            if (set.contains(e.getMaNCC())){
                 res.add(e);
             }
         }
@@ -52,38 +73,39 @@ public class QLNhaCungCapBUS {
     
     public ArrayList <QLNhaCungCapDTO> search (String column, String value){
         ArrayList <QLNhaCungCapDTO> result_search = new ArrayList <QLNhaCungCapDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Nhà Cung Cấp":
                 for (QLNhaCungCapDTO e : arrNhaCungCap){
-                    if (e.getMaNCC().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaNCC().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tên Nhà Cung Cấp": 
                 for (QLNhaCungCapDTO e : arrNhaCungCap){
-                    if (e.getTenNCC().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTenNCC().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Số Điện Thoại":
                 for (QLNhaCungCapDTO e : arrNhaCungCap){
-                    if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                    if (e.getSdt().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Email":
                 for (QLNhaCungCapDTO e : arrNhaCungCap){
-                    if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+                    if (e.getEmail().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Địa Chỉ":
                 for (QLNhaCungCapDTO e : arrNhaCungCap){
-                    if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                    if (e.getDiaChi().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

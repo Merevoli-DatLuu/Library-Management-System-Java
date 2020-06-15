@@ -64,6 +64,11 @@ public class QLChiTietSachTable {
         return new InMemoryPaginationDataProvider<>(list, objectDataModel);
     }
     
+    private static PaginationDataProvider<QLChiTietSachDTO> createDataProvider(
+            ObjectTableModel<QLChiTietSachDTO> objectDataModel, ArrayList <QLChiTietSachDTO> chiTietSach) {
+        final List<QLChiTietSachDTO> list = chiTietSach;
+        return new InMemoryPaginationDataProvider<>(list, objectDataModel);
+    }
     public JPanel getTable(){
         ObjectTableModel<QLChiTietSachDTO> objectDataModel = createObjectDataModel();
         JTable table = new JTable(objectDataModel);
@@ -104,6 +109,52 @@ public class QLChiTietSachTable {
         PaginationDataProvider<QLChiTietSachDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLChiTietSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_SachThuVien();
+        JPanel p = paginatedDecorator.getContentPanel();
+        return p;
+    }
+    
+    public JPanel getTable(ArrayList <QLChiTietSachDTO> chiTietSach){
+        ObjectTableModel<QLChiTietSachDTO> objectDataModel = createObjectDataModel();
+        JTable table = new JTable(objectDataModel);
+        
+        //** Adjust Table**//
+        table.setRowHeight(35);
+        //table.setIntercellSpacing(new Dimension(20, 0)); // Spacing 
+        //table.getColumnModel().getColumn(0).setPreferredWidth(70);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        
+        /* Align
+        table.setDefaultRenderer(String.class, centerRenderer);
+        table.setDefaultRenderer(Object.class, centerRenderer);
+        table.setDefaultRenderer(Integer.class, centerRenderer);
+        table.setDefaultRenderer(Long.class, centerRenderer);
+        table.setDefaultRenderer(Double.class, centerRenderer);
+        */
+        
+        table.setFont(new Font("verdana", Font.PLAIN, 13));
+        
+        table.getTableHeader().setBackground(new Color(91, 243, 207));
+        table.getTableHeader().setPreferredSize(new Dimension(0,35)); // Header Height
+        table.getTableHeader().setFont(new Font("verdana", Font.BOLD, 14));
+        table.getTableHeader().setForeground(Color.WHITE);
+        //table.getTableHeader().;
+        //** End Adjust **//
+        
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        
+        width.add(280);
+        width.add(290);
+        width.add(280);
+        
+        table.setAutoCreateRowSorter(true);
+        PaginationDataProvider<QLChiTietSachDTO> dataProvider = createDataProvider(objectDataModel, chiTietSach);
+        PaginatedTableDecorator<QLChiTietSachDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
+                dataProvider, new int[]{5, 10, 20, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_SachThuVien();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
