@@ -20,8 +20,23 @@ public class QLPhieuMuonBUS {
         
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"Mã Phiếu Mượn", "Mã Thẻ", "ID Sách", "Ngày Mượn", "Thời Gian Mượn", "Ngày Trả"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 1, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<6; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
      public QLPhieuMuonDTO getPhieuMuon(String maPhieuMuon){
@@ -41,7 +56,7 @@ public class QLPhieuMuonBUS {
         }
         
         for (QLPhieuMuonDTO e : arrMuonTra){
-            if (set.contains(e)){
+            if (set.contains(e.getMaPhieuMuon())){
                 res.add(e);
             }
         }
@@ -58,31 +73,32 @@ public class QLPhieuMuonBUS {
     
     public ArrayList <QLPhieuMuonDTO> search (String column, String value){
         ArrayList <QLPhieuMuonDTO> result_search = new ArrayList <QLPhieuMuonDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Phiếu Mượn":
                 for (QLPhieuMuonDTO e : arrMuonTra){
-                    if (e.getMaPhieuMuon().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaPhieuMuon().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Mã Thẻ": 
                 for (QLPhieuMuonDTO e : arrMuonTra){
-                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaThe().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "ID Sách":
                 for (QLPhieuMuonDTO e : arrMuonTra){
-                    if (e.getIDSach().toString().toLowerCase().compareTo(value) != -1) {
+                    if (e.getIDSach().toString().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Mượn":
                 for (QLPhieuMuonDTO e : arrMuonTra){
-                    if (e.getNgayMuon().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayMuon().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -90,14 +106,14 @@ public class QLPhieuMuonBUS {
             case "Thời Gian Mượn":
                 for (QLPhieuMuonDTO e : arrMuonTra) {
                     String thoiGianMuon=String.valueOf(e.getThoiGianMuon());
-                    if (thoiGianMuon.toLowerCase().compareTo(value) != -1) {
+                    if (thoiGianMuon.toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Trả":
                 for (QLPhieuMuonDTO e : arrMuonTra){
-                    if (e.getNgayTra().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayTra().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

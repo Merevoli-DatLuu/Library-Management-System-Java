@@ -1510,4 +1510,496 @@ public class FilterFunction {
         
         return filter_res;
     }
+    
+    /**     STRING - PhieuMuon  **/
+    public ArrayList <QLPhieuMuonDTO> filterBy_Equails_STRING_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, String value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaPhieuMuon().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaThe().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLPhieuMuonDTO e : table){
+//                if (e.getIDSach().equals(value)){
+                    filter_res.add(e);
+//                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayMuon().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayTra().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_NotEquails_STRING_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, String value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getMaPhieuMuon().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getMaThe().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLPhieuMuonDTO e : table){
+//                if (!e.getIDSach().equals(value)){
+                    filter_res.add(e);
+//                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getNgayMuon().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getNgayTra().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_Contains_STRING_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, String value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaPhieuMuon().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaThe().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLPhieuMuonDTO e : table){
+//                if (e.getIDSach().contains(value)){
+                    filter_res.add(e);
+//                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayMuon().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayTra().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_DoesNotContain_STRING_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, String value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getMaPhieuMuon().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getMaThe().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLPhieuMuonDTO e : table){
+//                if (!e.getIDSach().contains(value)){
+                    filter_res.add(e);
+//                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getNgayMuon().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLPhieuMuonDTO e : table){
+                if (!e.getNgayTra().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_BeginsWith_STRING_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, String value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaPhieuMuon().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaThe().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLPhieuMuonDTO e : table){
+//                if (e.getIDSach().startsWith(value)){
+                    filter_res.add(e);
+//                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayMuon().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayTra().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_EndsWith_STRING_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, String value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaPhieuMuon().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[1])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getMaThe().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[2])){
+            for (QLPhieuMuonDTO e : table){
+//                if (e.getIDSach().endsWith(value)){
+                    filter_res.add(e);
+//                }
+            }
+        }
+        else if (header.equals(headers[3])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayMuon().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        else if (header.equals(headers[5])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getNgayTra().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    /**     NUMBER - PhieuMuon  **/
+    public ArrayList <QLPhieuMuonDTO> filterBy_Equails_NUMBER_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, int value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[4])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getThoiGianMuon()== value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_NotEquails_NUMBER_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, int value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[4])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getThoiGianMuon()!= value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_GreaterThan_NUMBER_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, int value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[4])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getThoiGianMuon()> value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_GreaterThanOrEqualsTo_NUMBER_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, int value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[4])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getThoiGianMuon()>= value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_LessThan_NUMBER_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, int value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[7])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getThoiGianMuon()< value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLPhieuMuonDTO> filterBy_LessThanOrEqualsTo_NUMBER_PhieuMuon(ArrayList <QLPhieuMuonDTO> table, String header, int value){
+        ArrayList <QLPhieuMuonDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLPhieuMuonBUS(0).getHeaders();
+        if (header.equals(headers[4])){
+            for (QLPhieuMuonDTO e : table){
+                if (e.getThoiGianMuon()<= value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    /**     STRING - KhoSach    **/
+    public ArrayList <QLKhoSachDTO> filterBy_Equails_STRING_KhoSach(ArrayList <QLKhoSachDTO> table, String header, String value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLKhoSachDTO e : table){
+                if (e.getMaSach().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_NotEquails_STRING_KhoSach(ArrayList <QLKhoSachDTO> table, String header, String value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLKhoSachDTO e : table){
+                if (!e.getMaSach().equals(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_Contains_STRING_KhoSach(ArrayList <QLKhoSachDTO> table, String header, String value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLKhoSachDTO e : table){
+                if (e.getMaSach().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_DoesNotContain_STRING_KhoSach(ArrayList <QLKhoSachDTO> table, String header, String value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLKhoSachDTO e : table){
+                if (!e.getMaSach().contains(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_BeginsWith_STRING_KhoSach(ArrayList <QLKhoSachDTO> table, String header, String value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLKhoSachDTO e : table){
+                if (e.getMaSach().startsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_EndsWith_STRING_KhoSach(ArrayList <QLKhoSachDTO> table, String header, String value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[0])){
+            for (QLKhoSachDTO e : table){
+                if (e.getMaSach().endsWith(value)){
+                    filter_res.add(e);
+                }
+            }
+        }
+        
+        return filter_res;
+    }
+    
+    /**     NUMBER - KhoSach        **/
+    public ArrayList <QLKhoSachDTO> filterBy_Equails_NUMBER_KhoSach(ArrayList <QLKhoSachDTO> table, String header, int value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[1])){
+            for (QLKhoSachDTO e : table){
+                if (e.getSoLuong()== value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_NotEquails_NUMBER_KhoSach(ArrayList <QLKhoSachDTO> table, String header, int value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[1])){
+            for (QLKhoSachDTO e : table){
+                if (e.getSoLuong()!= value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_GreaterThan_NUMBER_KhoSach(ArrayList <QLKhoSachDTO> table, String header, int value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[1])){
+            for (QLKhoSachDTO e : table){
+                if (e.getSoLuong()> value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_GreaterThanOrEqualsTo_NUMBER_KhoSach(ArrayList <QLKhoSachDTO> table, String header, int value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[1])){
+            for (QLKhoSachDTO e : table){
+                if (e.getSoLuong()>= value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_LessThan_NUMBER_KhoSach(ArrayList <QLKhoSachDTO> table, String header, int value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[1])){
+            for (QLKhoSachDTO e : table){
+                if (e.getSoLuong()< value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
+    public ArrayList <QLKhoSachDTO> filterBy_LessThanOrEqualsTo_NUMBER_KhoSach(ArrayList <QLKhoSachDTO> table, String header, int value){
+        ArrayList <QLKhoSachDTO> filter_res = new ArrayList<>();
+        final String[] headers = new QLKhoSachBUS(0).getHeaders();
+        if (header.equals(headers[1])){
+            for (QLKhoSachDTO e : table){
+                if (e.getSoLuong()<= value){
+                    filter_res.add(e);
+                }
+            }
+        }
+        return filter_res;
+    }
+    
 }

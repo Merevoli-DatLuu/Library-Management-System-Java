@@ -13,12 +13,13 @@ import librarymanagementsystem.GUI.*;
 
 import javax.swing.JPanel;
 import librarymanagementsystem.GUI.ThanhPhanGUI.ComboCheckBox;
+import librarymanagementsystem.GUI.ThemSuaGUI.ThemLoaiSachForm;
 
-public class SachThuVienModule {
-    private static QLChiTietSachBUS chiTietSachBUS = new QLChiTietSachBUS();
+public class PhieuMuonModule {
+    private static QLPhieuMuonBUS phieuMuonBUS = new QLPhieuMuonBUS(0);
     boolean tooglesearch = false;
     
-    public JPanel getSachThuVienModule() {
+    public JPanel getPhieuMuonModule() {
         initComponents();
         
         return jPanel1;
@@ -34,7 +35,7 @@ public class SachThuVienModule {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        chiTietSach_Table = new javax.swing.JPanel();
+        phieuMuon_Table = new javax.swing.JPanel();
         searchtextfield = new javax.swing.JTextField();
         search_bar = new javax.swing.JLabel();
         them_btn = new javax.swing.JLabel();
@@ -42,7 +43,7 @@ public class SachThuVienModule {
         xuatexcel_btn = new javax.swing.JLabel();
         refresh_btn = new javax.swing.JLabel();
         expand_btn = new javax.swing.JLabel();
-        checkbox = new ComboCheckBox(new ArrayList<String>(Arrays.asList(chiTietSachBUS.getHeaders())));
+        checkbox = new ComboCheckBox(new ArrayList<String>(Arrays.asList(phieuMuonBUS.getHeaders())));
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         //getContentPane().setLayout(null);
 
@@ -129,25 +130,25 @@ public class SachThuVienModule {
 //        cb.setLocation(150, 115);
         jPanel1.add(cb);
         
-        chiTietSach_Table = new QLChiTietSachTable().getTable();
-        chiTietSach_Table.setBounds(42, 150, 860, 440);
-        jPanel1.add(chiTietSach_Table);
+        phieuMuon_Table = new QLPhieuMuonTable().getTable();
+        phieuMuon_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(phieuMuon_Table);
         
         //pack();
     }// </editor-fold>                        
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
-//        System.out.println("Thêm");
-//        new ThemchiTietSachForm().setVisible(true);
+        System.out.println("Thêm");
+        new ThemLoaiSachForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
 //        System.out.println("Nhập Excel");
-//        ArrayList <QLChiTietSachDTO> sach = new ImportFile().readFileExcel_QLSach();
+//        ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLSach();
 //        
 //        boolean finish = true;
-//        for (QLChiTietSachDTO e : sach){
-//            if (!chiTietSachBUS.add(e)){
+//        for (QLLoaiSachDTO e : sach){
+//            if (!phieuMuonBUS.add(e)){
 //                finish = false;
 //                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
 //                break;
@@ -160,8 +161,8 @@ public class SachThuVienModule {
     }                                          
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Xuất Excel");
-//        new ExportFile().writeFileExcel_QLchiTietSach();
+        System.out.println("Xuất Excel");
+        new ExportFile().writeFileExcel_QLLoaiSach();
     }                                          
 
     private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                
@@ -175,67 +176,67 @@ public class SachThuVienModule {
     private void searchtextfieldKeyReleased(java.awt.event.KeyEvent evt) {    
         String search_str = searchtextfield.getText();
         System.out.println("Search: " + search_str);
-        //ArrayList <QLChiTietSachDTO> chiTietSach = chiTietSachBUS.search_all(search_str);
+        //ArrayList <QLPhieuMuonDTO> loaiSach = phieuMuonBUS.search_all(search_str);
         
         /** Testing **/
         ArrayList <String> columns_checked = checkbox.getChecked();
         
-        ArrayList <QLChiTietSachDTO> chiTietSach = chiTietSachBUS.getArrChiTietSach();
-        ArrayList <QLChiTietSachDTO> search_res = new ArrayList<>();
-        ArrayList <QLChiTietSachDTO> search_temp = new ArrayList<>();
+        ArrayList <QLPhieuMuonDTO> phieuMuon = phieuMuonBUS.getArrMuonTra();
+        ArrayList <QLPhieuMuonDTO> search_res = new ArrayList<>();
+        ArrayList <QLPhieuMuonDTO> search_temp = new ArrayList<>();
         for (String e : columns_checked){
-            search_temp = chiTietSachBUS.search(e, search_str);
+            search_temp = phieuMuonBUS.search(e, search_str);
             
             ArrayList <String> pkey_1 = new ArrayList<>();
             ArrayList <String> pKey_2 = new ArrayList<>();
             
-            for (QLChiTietSachDTO ele : search_res){
-                pkey_1.add(ele.getIDSach());
+            for (QLPhieuMuonDTO ele : search_res){
+                pkey_1.add(ele.getMaPhieuMuon());
             }
             
-            for (QLChiTietSachDTO ele : search_temp){
-                pKey_2.add(ele.getIDSach());
+            for (QLPhieuMuonDTO ele : search_temp){
+                pKey_2.add(ele.getMaPhieuMuon());
             }
             
-            search_res = chiTietSachBUS.getChiTietSach_full(new DataProcessing().union_arr(pkey_1, pKey_2));
+            search_res = phieuMuonBUS.getPhieuMuon_full(new DataProcessing().union_arr(pkey_1, pKey_2));
         }
         
-        chiTietSach = search_res;
+        phieuMuon = search_res;
         /** End Testing **/
 
         /* Print Ma Sach
-        for (QLChiTietSachDTO e : chiTietSach){
+        for (QLPhieuMuonDTO e : loaiSach){
             System.out.println(e.getMaSach());
         }*/
         
-        jPanel1.remove(chiTietSach_Table);
+        jPanel1.remove(phieuMuon_Table);
         jPanel1.repaint();
         jPanel1.revalidate();
-        chiTietSach_Table = new QLChiTietSachTable().getTable(chiTietSach);
-        chiTietSach_Table.setBounds(42, 150, 860, 440);
-        jPanel1.add(chiTietSach_Table);
+        phieuMuon_Table = new QLPhieuMuonTable().getTable(phieuMuon);
+        phieuMuon_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(phieuMuon_Table);
     }  
     
-    public void paintTable(ArrayList <QLChiTietSachDTO> chiTietSach){
-        jPanel1.remove(chiTietSach_Table);
+    public void paintTable(ArrayList <QLPhieuMuonDTO> phieuMuon){
+        jPanel1.remove(phieuMuon_Table);
         jPanel1.repaint();
         jPanel1.revalidate();
-        chiTietSach_Table = new QLChiTietSachTable().getTable(chiTietSach);
-        chiTietSach_Table.setBounds(42, 150, 860, 440);
-        jPanel1.add(chiTietSach_Table);
+        phieuMuon_Table = new QLPhieuMuonTable().getTable(phieuMuon);
+        phieuMuon_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(phieuMuon_Table);
     }
     
     private void expand_btnMouseClicked(java.awt.event.MouseEvent evt){
-        new QLChiTietSachTable().expandMode();
+        new QLPhieuMuonTable().expandMode();
     } 
     
     private void refresh_btnMouseClicked(java.awt.event.MouseEvent evt){
-        jPanel1.remove(chiTietSach_Table);
+        jPanel1.remove(phieuMuon_Table);
         jPanel1.repaint();
         jPanel1.revalidate();
-        chiTietSach_Table = new QLChiTietSachTable().getTable();
-        chiTietSach_Table.setBounds(42, 150, 860, 440);
-        jPanel1.add(chiTietSach_Table);
+        phieuMuon_Table = new QLPhieuMuonTable().getTable();
+        phieuMuon_Table.setBounds(42, 150, 860, 440);
+        jPanel1.add(phieuMuon_Table);
     }
     
     /**
@@ -280,9 +281,10 @@ public class SachThuVienModule {
     private static javax.swing.JLabel them_btn;
     private static javax.swing.JLabel nhapexcel_btn;
     private static javax.swing.JLabel xuatexcel_btn;
-    private static javax.swing.JPanel chiTietSach_Table;
+    private static javax.swing.JPanel phieuMuon_Table;
     private static javax.swing.JLabel refresh_btn;
     private static javax.swing.JLabel expand_btn;
     private static ComboCheckBox checkbox;
-    // End of variables declaration          
+    // End of variables declaration           
 }
+

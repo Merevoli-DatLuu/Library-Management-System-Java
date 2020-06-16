@@ -41,7 +41,7 @@ public class QLNhaCungCapBUS {
     
     public QLNhaCungCapDTO getNhaCungCap(String maNCC){
         for (QLNhaCungCapDTO e : arrNhaCungCap){
-            if (e.equals(maNCC)){
+            if (e.getMaNCC().equals(maNCC)){
                 return e;
             }
         }

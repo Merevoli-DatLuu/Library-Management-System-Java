@@ -8,12 +8,17 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLKhoSachBUS {
-    private ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
+    private static ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
     private QLKhoSachDAO khoSachDAO = new QLKhoSachDAO();
 
     public QLKhoSachBUS() {
         arrKhoSach= khoSachDAO.readDB();
     }
+    
+    public QLKhoSachBUS(int i) {
+        
+    }
+    
     
     public void readDB(){
         arrKhoSach= khoSachDAO.readDB();
@@ -24,13 +29,29 @@ public class QLKhoSachBUS {
         arrKhoSach = khoSachDAO.readDB_full();
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"Mã Sách", "Số Lượng"};
     }
     
     public String [] getHeader_full(){
         return new String[]{"Mã Sách", "Bìa Sách", "Số Lượng", "Tên Sách", "Tên Tác Giả", "Tên NXB", "Thể Loại", "Ngôn Ngữ", "Tóm Tắt Nội Dung", "Năm Xuất Bản", "Giá Tiền", "Số Trang"};
     }
+   
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 1};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<2; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
+    }
+    
     public QLKhoSachDTO getKhoSach(String maSach){
         for (QLKhoSachDTO e : arrKhoSach){
             if (e.equals(maSach)){
@@ -48,7 +69,7 @@ public class QLKhoSachBUS {
         }
         
         for (QLKhoSachDTO e : arrKhoSach){
-            if (set.contains(e)){
+            if (set.contains(e.getMaSach())){
                 res.add(e);
             }
         }

@@ -154,6 +154,16 @@ public class Sach_SelectionModule{
 
     private void choice_SachMuonMouseClicked(java.awt.event.MouseEvent evt) {                                             
         System.out.println("Go to SachMuonModule");
+        
+        main_2.Module_Panel.removeAll();
+        main_2.Module_Panel.repaint();
+        main_2.Module_Panel.revalidate();
+        
+        JPanel sp = new PhieuMuonModule().getPhieuMuonModule();
+        sp.setBounds(0, 0, 940, 600);
+        
+        
+        main_2.Module_Panel.add(sp);
     }                                            
 
     // Variables declaration - do not modify                     
