@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2020 at 04:10 PM
+-- Generation Time: Jun 16, 2020 at 02:11 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -647,34 +647,35 @@ CREATE TABLE `khachhang` (
   `ngaySinh` date NOT NULL,
   `diaChi` varchar(65) COLLATE utf8_unicode_ci NOT NULL,
   `sdt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+  `email` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `maThe` varchar(7) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `khachhang`
 --
 
-INSERT INTO `khachhang` (`maKhachHang`, `hoTen`, `ngaySinh`, `diaChi`, `sdt`, `email`) VALUES
-('KH000001', 'Nguyễn Thùy Chi', '1999-01-29', 'Tỉnh Lộ 10, Quận Bình Tân, TP HCM', '0321589102', 'thuychi@gmail.com'),
-('KH000002', 'Nguyễn Minh Khang', '2000-02-12', 'Phan Anh, Quận Tân Phú, TP HCM', '0951786905', 'khangnguyen@gmail.com'),
-('KH000003', 'Lê Bảo Trân', '1997-11-22', 'Hồ Ngọc Cẩn, Huyện Hóc Môn, TP HCM', '0985327812', 'baotran@gmail.com'),
-('KH000004', 'Lê Quốc Bình', '2001-09-22', 'Tỉnh Lộ 9, Huyện Củ Chi, TP HCM', '0904281742', 'binhle@gmail.com'),
-('KH000005', 'Phạm Diệu Linh', '1998-09-09', 'Phạm Văn Sáng, Huyện Bình Chánh, TP HCM', '0762190538', 'dieulinh@gmail.com'),
-('KH000006', 'Phạm Hùng Cường', '1996-08-27', 'Nguyễn Huy Tưởng, Quận Bình Thạnh, TP HCM', '0351298632', 'cuongpham@gmail.com'),
-('KH000007', 'Đặng Trúc Lâm', '1997-06-14', 'Cây Trâm, Quận Gò Vấp, TP HCM', '0924582906', 'truclam@gmail.com'),
-('KH000008', 'Đặng Minh Quân', '2000-11-23', 'Trần Quang Diệu, Quận Phú Nhuận, TP HCM', '0705643219', 'quandang@gmail.com'),
-('KH000009', 'Đỗ Đan Hạ', '1997-09-07', 'Ngự Bình, Quận Tân Bình, TP HCM', '0399641785', 'danha@gmail.com'),
-('KH000010', 'Đỗ Thái Dương', '1998-10-10', 'Phạm Văn Đồng, Quận Thủ Đức, TP HCM\r\n', '0761297518', 'duongdo@gmail.com'),
-('KH000011', 'Hoàng Vân Khánh', '1999-08-19', 'An Thới Đông, Huyện Cần Giờ, TP HCM', '0388127529', 'vankhanh@gmail.com'),
-('KH000012', 'Hoàng Vân Phong', '1997-04-02', 'Chánh Hưng, Huyện Nhà Bè, TP HCM', '0982437581', 'phonghoang@gmail.com'),
-('KH000013', 'Đinh Nhã Uyên', '1998-10-24', 'Quang Trung, Quận 12, TP HCM', '0937841679', 'nhauyen@gmail.com'),
-('KH000014', 'Đinh Gia Khánh', '1996-06-11', 'Nguyễn Công Trứ, Quận 9, TP HCM', '0318951479', 'khanhdinh@gmail.com'),
-('KH000015', 'Phan Mẫn Nhi', '1999-05-07', 'Nguyễn Tri Phương, Quận 7, TP HCM', '0985241788', 'nhiphan@gmail.com'),
-('KH000016', 'Phan Tấn Gia Hưng', '1967-12-26', 'An Dương Vương, Quận 5, TP HCM', '0921686578', 'hungphan@gmail.com'),
-('KH000017', 'Vũ Hà My', '2000-08-06', 'Tôn Đản, Quận 4, TP HCM', '0367189002', 'hamy@gmail.com'),
-('KH000018', 'Vũ Trung Nghĩa', '1999-11-20', 'Nguyễn Thượng Hiền, Quận #, TP HCM', '0915738940', 'nghiavu@gmail.com'),
-('KH000019', 'Huỳnh Ngọc Bích', '1998-10-28', 'Mạc Đĩnh Chi, Quận 1, TP HCM', '0974135863', 'ngocbich@gmail.com'),
-('KH000020', 'Huỳnh Anh Việt', '1999-03-08', 'Nguyễn Thị Định, Quận 2, TP HCM', '0357189582', 'viethuynh@gmail.com');
+INSERT INTO `khachhang` (`maKhachHang`, `hoTen`, `ngaySinh`, `diaChi`, `sdt`, `email`, `maThe`) VALUES
+('KH000001', 'Nguyễn Thùy Chi', '1999-01-29', 'Tỉnh Lộ 10, Quận Bình Tân, TP HCM', '0321589102', 'thuychi@gmail.com', 'T000001'),
+('KH000002', 'Nguyễn Minh Khang', '2000-02-12', 'Phan Anh, Quận Tân Phú, TP HCM', '0951786905', 'khangnguyen@gmail.com', 'T000002'),
+('KH000003', 'Lê Bảo Trân', '1997-11-22', 'Hồ Ngọc Cẩn, Huyện Hóc Môn, TP HCM', '0985327812', 'baotran@gmail.com', 'T000003'),
+('KH000004', 'Lê Quốc Bình', '2001-09-22', 'Tỉnh Lộ 9, Huyện Củ Chi, TP HCM', '0904281742', 'binhle@gmail.com', 'T000004'),
+('KH000005', 'Phạm Diệu Linh', '1998-09-09', 'Phạm Văn Sáng, Huyện Bình Chánh, TP HCM', '0762190538', 'dieulinh@gmail.com', 'T000005'),
+('KH000006', 'Phạm Hùng Cường', '1996-08-27', 'Nguyễn Huy Tưởng, Quận Bình Thạnh, TP HCM', '0351298632', 'cuongpham@gmail.com', 'T000006'),
+('KH000007', 'Đặng Trúc Lâm', '1997-06-14', 'Cây Trâm, Quận Gò Vấp, TP HCM', '0924582906', 'truclam@gmail.com', 'T000007'),
+('KH000008', 'Đặng Minh Quân', '2000-11-23', 'Trần Quang Diệu, Quận Phú Nhuận, TP HCM', '0705643219', 'quandang@gmail.com', 'T000008'),
+('KH000009', 'Đỗ Đan Hạ', '1997-09-07', 'Ngự Bình, Quận Tân Bình, TP HCM', '0399641785', 'danha@gmail.com', 'T000009'),
+('KH000010', 'Đỗ Thái Dương', '1998-10-10', 'Phạm Văn Đồng, Quận Thủ Đức, TP HCM\r\n', '0761297518', 'duongdo@gmail.com', 'T000010'),
+('KH000011', 'Hoàng Vân Khánh', '1999-08-19', 'An Thới Đông, Huyện Cần Giờ, TP HCM', '0388127529', 'vankhanh@gmail.com', 'T000011'),
+('KH000012', 'Hoàng Vân Phong', '1997-04-02', 'Chánh Hưng, Huyện Nhà Bè, TP HCM', '0982437581', 'phonghoang@gmail.com', 'T000012'),
+('KH000013', 'Đinh Nhã Uyên', '1998-10-24', 'Quang Trung, Quận 12, TP HCM', '0937841679', 'nhauyen@gmail.com', 'T000013'),
+('KH000014', 'Đinh Gia Khánh', '1996-06-11', 'Nguyễn Công Trứ, Quận 9, TP HCM', '0318951479', 'khanhdinh@gmail.com', 'T000014'),
+('KH000015', 'Phan Mẫn Nhi', '1999-05-07', 'Nguyễn Tri Phương, Quận 7, TP HCM', '0985241788', 'nhiphan@gmail.com', 'T000015'),
+('KH000016', 'Phan Tấn Gia Hưng', '1967-12-26', 'An Dương Vương, Quận 5, TP HCM', '0921686578', 'hungphan@gmail.com', 'T000016'),
+('KH000017', 'Vũ Hà My', '2000-08-06', 'Tôn Đản, Quận 4, TP HCM', '0367189002', 'hamy@gmail.com', 'T000017'),
+('KH000018', 'Vũ Trung Nghĩa', '1999-11-20', 'Nguyễn Thượng Hiền, Quận #, TP HCM', '0915738940', 'nghiavu@gmail.com', 'T000018'),
+('KH000019', 'Huỳnh Ngọc Bích', '1998-10-28', 'Mạc Đĩnh Chi, Quận 1, TP HCM', '0974135863', 'ngocbich@gmail.com', 'T000019'),
+('KH000020', 'Huỳnh Anh Việt', '1999-03-08', 'Nguyễn Thị Định, Quận 2, TP HCM', '0357189582', 'viethuynh@gmail.com', 'T000020');
 
 -- --------------------------------------------------------
 
@@ -1123,26 +1124,6 @@ INSERT INTO `phieuxuat` (`maXuat`, `ngayXuat`, `maQuanLy`, `tongSoLuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quyen`
---
-
-CREATE TABLE `quyen` (
-  `maQuyen` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
-  `tenQuyen` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `chitietQuyen` varchar(15) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `quyen`
---
-
-INSERT INTO `quyen` (`maQuyen`, `tenQuyen`, `chitietQuyen`) VALUES
-('Q000001', 'Thủ Thư', '1111110000000'),
-('Q000002', 'Nhập Kho', '0000000001111');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `the`
 --
 
@@ -1221,7 +1202,8 @@ ALTER TABLE `chitietsach`
 -- Indexes for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  ADD PRIMARY KEY (`maKhachHang`);
+  ADD PRIMARY KEY (`maKhachHang`),
+  ADD KEY `FK_maThe` (`maThe`);
 
 --
 -- Indexes for table `khosach`
@@ -1284,12 +1266,6 @@ ALTER TABLE `phieuxuat`
   ADD KEY `FK_MaQuanLy-XuatKho` (`maQuanLy`);
 
 --
--- Indexes for table `quyen`
---
-ALTER TABLE `quyen`
-  ADD PRIMARY KEY (`maQuyen`);
-
---
 -- Indexes for table `the`
 --
 ALTER TABLE `the`
@@ -1326,6 +1302,12 @@ ALTER TABLE `chitietphieuxuat`
 --
 ALTER TABLE `chitietsach`
   ADD CONSTRAINT `FK_maSach_2` FOREIGN KEY (`maSach`) REFERENCES `loaisach` (`maSach`);
+
+--
+-- Constraints for table `khachhang`
+--
+ALTER TABLE `khachhang`
+  ADD CONSTRAINT `FK_maThe` FOREIGN KEY (`maThe`) REFERENCES `the` (`maThe`);
 
 --
 -- Constraints for table `khosach`
