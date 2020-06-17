@@ -22,7 +22,8 @@ public class QLPhieuPhatDAO {
                     String maPhieuPhat = rs.getString("maPhieuPhat");
                     String maPhieuMuon = rs.getString("maPhieuMuon");
                     String maLDPhat = rs.getString("maLDPhat");
-                    arrPhieuPhat.add(new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat));
+                    int tienPhat = rs.getInt("tienPhat");
+                    arrPhieuPhat.add(new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat));
                 }
             }
 
@@ -38,11 +39,12 @@ public class QLPhieuPhatDAO {
     
     public Boolean add(QLPhieuPhatDTO phieuPhat){
         DBPhieuPhat = new DBConnection();
-        Boolean check = DBPhieuPhat.SQLUpdate("INSERT INTO phieuPhat(maPhieuPhat, maPhieuMuon, maLDPhat) "
+        Boolean check = DBPhieuPhat.SQLUpdate("INSERT INTO phieuPhat(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat) "
                 + "VALUES ('"
                 + phieuPhat.getMaPhieuPhat()+ "','"  
                 + phieuPhat.getMaPhieuMuon()+ "','"  
-                + phieuPhat.getMaLDPhat()+ "');");
+                + phieuPhat.getMaLDPhat()+ "',"
+                + phieuPhat.getTienPhat()+ ");");
         DBPhieuPhat.closeConnection();
         return check;
     }
@@ -58,7 +60,8 @@ public class QLPhieuPhatDAO {
         Boolean check = DBPhieuPhat.SQLUpdate("Update phieuPhat Set "
                 + " maPhieuMuon='" + phieuPhat.getMaPhieuMuon()
                 + "', maLDPhat='" + phieuPhat.getMaLDPhat()
-                + "' where maPhieuPhat='" + phieuPhat.getMaPhieuPhat()+ "';");
+                + "', tienPhat=" + phieuPhat.getTienPhat()
+                + " where maPhieuPhat='" + phieuPhat.getMaPhieuPhat()+ "';");
         DBPhieuPhat.closeConnection();
         return check;
     }

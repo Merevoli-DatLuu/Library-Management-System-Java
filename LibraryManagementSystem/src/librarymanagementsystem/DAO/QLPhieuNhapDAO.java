@@ -27,9 +27,11 @@ public class QLPhieuNhapDAO {
                     ArrayList <Integer> soLuong = new ArrayList <Integer> ();
                     String maNhanVien = rs.getString("maNhanVien");
                     String maNCC = rs.getString("maNCC");
+                    int tongSoLuong = rs.getInt("tongSoLuong");
+                    int tongTien = rs.getInt("tongTien");
                     
-                    String query_chiTietPhieuNhap = "SELECT * FROM chiTietPhieuNhap WHERE ChiTietPhieuNhap.maNhap = "  + maNhap;
-                    ResultSet rs_chiTietPhieuNhap = DBNhapKhoSach.SQLQuery(query);
+                    String query_chiTietPhieuNhap = "SELECT * FROM chiTietPhieuNhap WHERE ChiTietPhieuNhap.maNhap = '"  + maNhap + "'";
+                    ResultSet rs_chiTietPhieuNhap = DBNhapKhoSach.SQLQuery(query_chiTietPhieuNhap);
                     if (rs_chiTietPhieuNhap != null){
                         while (rs_chiTietPhieuNhap.next()){
                             maSach.add(rs_chiTietPhieuNhap.getString("maSach"));
@@ -37,7 +39,7 @@ public class QLPhieuNhapDAO {
                         }
                     }
                     
-                    arrNhapKho.add(new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC));
+                    arrNhapKho.add(new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC, tongSoLuong, tongTien));
                 }
             }
         }
@@ -52,12 +54,14 @@ public class QLPhieuNhapDAO {
     
     public Boolean add(QLPhieuNhapDTO nhapKho){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO PhieuNhap(maNhap, ngayNhap, maNhanVien, maNCC) "
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO PhieuNhap(maNhap, ngayNhap, maNhanVien, maNCC, tongSoLuong, tongTien) "
                 + "VALUES ('"
                 + nhapKho.getMaNhap()+ "','"
                 + nhapKho.getNgayNhap()+ "','"
                 + nhapKho.getMaNhanVien()+ "','"     
-                + nhapKho.getMaNCC()+ ");");      
+                + nhapKho.getMaNCC()+ "',"     
+                + nhapKho.getTongSoLuong()+ ","     
+                + nhapKho.getTongTien()+ ");");      
         
         Boolean check2 = true;
         for (int i=0; i<nhapKho.getMaSach().size(); i++){
@@ -74,14 +78,16 @@ public class QLPhieuNhapDAO {
         return check1 & check2;
     }
     
-    public Boolean add(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC){
+    public Boolean add(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO PhieuNhap(maNhap, ngayNhap, maNhanVien, maNCC) "
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO PhieuNhap(maNhap, ngayNhap, maNhanVien, maNCC, tongSoLuong, tongTien) "
                 + "VALUES ('"
                 + maNhap+ "','"
                 + ngayNhap+ "','" 
                 + maNhanVien+ "','"     
-                + maNCC+ ");");
+                + maNCC+ "',"     
+                + tongSoLuong+ ","     
+                + tongTien+ ");");
         
         Boolean check2 = true;
         for (int i=0; i<maSach.size(); i++){
@@ -112,6 +118,8 @@ public class QLPhieuNhapDAO {
                 + " ngayNhap='" + nhapKho.getNgayNhap()
                 + " maNhanVien='" + nhapKho.getMaNhanVien()
                 + " maNCC='" + nhapKho.getMaNCC()
+                + " tongSoLuong='" + nhapKho.getTongSoLuong()
+                + " tongTien='" + nhapKho.getTongTien()
                 + "' where maNhap='" + nhapKho.getMaNhap()+ "';");
         
         Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuNhap WHERE ChiTietPhieuNhap.maNhap = '" + nhapKho.getMaNhap() + "';");
@@ -129,12 +137,14 @@ public class QLPhieuNhapDAO {
         return check1 && check2;
     }
     
-    public Boolean mod(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC){
+    public Boolean mod(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
         DBNhapKhoSach = new DBConnection();
         Boolean check1 = DBNhapKhoSach.SQLUpdate("Update PhieuNhap Set "
                 + " ngayNhap='" + ngayNhap
                 + " maNhanVien='" + maNhanVien
                 + " maNCC='" + maNCC
+                + " tongSoLuong='" + tongSoLuong
+                + " tongTien='" + tongTien
                 + "' where maNhap='" + maNhap+ "';");
         
         Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuNhap WHERE ChiTietPhieuNhap.maNhap = '" + maNhap + "';");

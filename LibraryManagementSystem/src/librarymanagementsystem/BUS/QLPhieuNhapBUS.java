@@ -14,8 +14,8 @@ public class QLPhieuNhapBUS {
         arrNhapKho= nhapKhoDAO.readDB();
     }
     
-    public String [] getHeader(){
-        return new String[]{"Mã Nhập Kho", "Ngày Nhập", "Mã Sách", "Số Lượng"};
+    public String [] getHeaders(){
+        return new String[]{"Mã Nhập Kho", "Ngày Nhập", "Mã Nhân Viên", "Mã Nhà Cung Cấp", "Mã Sách", "Tổng Số Lượng", "Tổng Tiền"};
     }
     
     public QLPhieuNhapDTO getPhieuNhap(String maNhap){
@@ -35,7 +35,7 @@ public class QLPhieuNhapBUS {
         }
         
         for (QLPhieuNhapDTO e : arrNhapKho){
-            if (set.contains(e)){
+            if (set.contains(e.getMaNhap())){
                 res.add(e);
             }
         }
@@ -52,33 +52,55 @@ public class QLPhieuNhapBUS {
     
     public ArrayList <QLPhieuNhapDTO> search (String column, String value){
         ArrayList <QLPhieuNhapDTO> result_search = new ArrayList <QLPhieuNhapDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Nhập Kho":
                 for (QLPhieuNhapDTO e : arrNhapKho){
-                    if (e.getMaNhap().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaNhap().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Nhập": 
                 for (QLPhieuNhapDTO e : arrNhapKho){
-                    if (e.getNgayNhap().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayNhap().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
-            case "Mã Sách":
+            case "Mã Nhân Viên": 
                 for (QLPhieuNhapDTO e : arrNhapKho){
-                    String masach=String.valueOf(e.getMaSach());
-                    if (masach.toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayNhap().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
-            case "Số Lượng":
+            case "Mã Nhà Cung Cấp": 
                 for (QLPhieuNhapDTO e : arrNhapKho){
-                    String soluong=String.valueOf(e.getSoLuong());
-                    if (soluong.toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayNhap().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            // Không search cột mã sách
+//            case "Mã Sách":
+//                for (QLPhieuNhapDTO e : arrNhapKho){
+//                    String masach=String.valueOf(e.getMaSach());
+//                    if (masach.toLowerCase().compareTo(value) != -1) {
+//                        result_search.add(e);
+//                    }
+//                }
+//                break;
+            case "Tổng Số Lượng":
+                for (QLPhieuNhapDTO e : arrNhapKho){
+                    if (Integer.toString(e.getTongSoLuong()).toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
+            case "Tổng Tiền":
+                for (QLPhieuNhapDTO e : arrNhapKho){
+                    if (Integer.toString(e.getTongTien()).toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -87,21 +109,26 @@ public class QLPhieuNhapBUS {
         return result_search;
     }
     
-    public ArrayList <QLPhieuNhapDTO> search_all (String column, String value){
+    public ArrayList <QLPhieuNhapDTO> search_all (String value){
         ArrayList <QLPhieuNhapDTO> result_search = new ArrayList <QLPhieuNhapDTO> ();
+        value = value.toLowerCase();
         for (QLPhieuNhapDTO e : arrNhapKho){
-            String masach=String.valueOf(e.getMaSach());
-            String soluong=String.valueOf(e.getSoLuong());
-            if (e.getMaNhap().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaNhap().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgayNhap().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgayNhap().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (masach.toLowerCase().compareTo(value) != -1) {
+            else if (e.getMaNhanVien().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (soluong.toLowerCase().compareTo(value) != -1) {
+            else if (e.getMaNCC().toLowerCase().contains(value)) {
+                result_search.add(e);
+            }
+            else if (Integer.toString(e.getTongSoLuong()).toLowerCase().contains(value)) {
+                result_search.add(e);
+            }
+            else if (Integer.toString(e.getTongTien()).toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }
@@ -136,8 +163,8 @@ public class QLPhieuNhapBUS {
         return check;
     }
     
-    public Boolean add(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC){
-        QLPhieuNhapDTO nhapKho=new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC);
+    public Boolean add(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
+        QLPhieuNhapDTO nhapKho=new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC, tongSoLuong, tongTien);
         return this.add(nhapKho);
     }
     
@@ -167,8 +194,8 @@ public class QLPhieuNhapBUS {
         return check;
     }
      
-    public Boolean mod(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC){
-        QLPhieuNhapDTO nhapKho=new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC);
+    public Boolean mod(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
+        QLPhieuNhapDTO nhapKho=new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC, tongSoLuong, tongTien);
         return this.mod(nhapKho);
     } 
 

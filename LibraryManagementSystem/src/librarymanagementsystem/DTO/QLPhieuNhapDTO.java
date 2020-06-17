@@ -7,6 +7,7 @@ public class QLPhieuNhapDTO {
     ArrayList <String> maSach;
     ArrayList <Integer> soLuong;
     String maNhanVien, maNCC;
+    int tongSoLuong, tongTien;
 
     public QLPhieuNhapDTO(String maNhap, String thoiDiemNhap, ArrayList<String> maSach, ArrayList<Integer> soLuong) {
         this.maNhap = maNhap;
@@ -15,13 +16,15 @@ public class QLPhieuNhapDTO {
         this.soLuong = soLuong;
     }
 
-    public QLPhieuNhapDTO(String maNhap, String ngayNhap, ArrayList<String> maSach, ArrayList<Integer> soLuong, String maNhanVien, String maNCC) {
+    public QLPhieuNhapDTO(String maNhap, String ngayNhap, ArrayList<String> maSach, ArrayList<Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien) {
         this.maNhap = maNhap;
         this.ngayNhap = ngayNhap;
         this.maSach = maSach;
         this.soLuong = soLuong;
         this.maNhanVien = maNhanVien;
         this.maNCC = maNCC;
+        this.tongSoLuong = tongSoLuong;
+        this.tongTien = tongTien;
     }
     
 
@@ -72,6 +75,20 @@ public class QLPhieuNhapDTO {
     public void setMaNCC(String maNCC) {
         this.maNCC = maNCC;
     }
-    
-    
+
+    public int getTongSoLuong() {
+        return tongSoLuong;
+    }
+
+    public void setTongSoLuong(int tongSoLuong) {
+        this.tongSoLuong = tongSoLuong;
+    }
+
+    public int getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(int tongTien) {
+        this.tongTien = tongTien;
+    }
 }

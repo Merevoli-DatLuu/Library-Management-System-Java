@@ -288,7 +288,7 @@ public class Main_2 extends javax.swing.JFrame {
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
-        Module = new TheModule().getTheModule();
+        Module = new The_SelectionModule().getThe_SelectionModule();
         Module.setBounds(0, 0, 940, 600);
         Module_Panel.add(Module);
 
@@ -304,7 +304,7 @@ public class Main_2 extends javax.swing.JFrame {
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
-        Module = new NhanVienModule().getNhanVienModule();
+        Module = new NhanVien_SelectionModule().getNhanVien_SelectionModule();
         Module.setBounds(0, 0, 940, 600);
         Module_Panel.add(Module);
 
@@ -320,7 +320,7 @@ public class Main_2 extends javax.swing.JFrame {
         Module_Panel.removeAll();
         Module_Panel.repaint();
         Module_Panel.revalidate();
-        Module = new NhaCungCapModule().getNhaCungCapModule();
+        Module = new Kho_SelectionModule().getKho_SelectionModule();
         Module.setBounds(0, 0, 940, 600);
         Module_Panel.add(Module);
 

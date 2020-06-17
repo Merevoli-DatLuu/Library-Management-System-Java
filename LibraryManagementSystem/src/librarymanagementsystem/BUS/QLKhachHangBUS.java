@@ -19,8 +19,23 @@ public class QLKhachHangBUS {
         arrKhachHang = khachHangDAO.readDB();
     }
     
-    public String [] getHeader(){
-        return new String[]{"Mã Khách Hàng", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email", "Mã Thẻ"};
+    public String [] getHeaders(){
+        return new String[]{"Mã Khách Hàng", "Họ Tên", "Ngày Sinh", "Địa Chỉ", "Số Điện Thoại", "Email"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<6; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLKhachHangDTO getKhachHang(String maKhachHang){
@@ -40,7 +55,7 @@ public class QLKhachHangBUS {
         }
         
         for (QLKhachHangDTO e : arrKhachHang){
-            if (set.contains(e)){
+            if (set.contains(e.getMaKhachHang())){
                 res.add(e);
             }
         }
@@ -57,52 +72,46 @@ public class QLKhachHangBUS {
     
     public ArrayList <QLKhachHangDTO> search (String column, String value){
         ArrayList <QLKhachHangDTO> result_search = new ArrayList <QLKhachHangDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Khách Hàng":
                 for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getMaKhachHang().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaKhachHang().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Họ Tên": 
                 for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+                    if (e.getHoTen().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Sinh":
                 for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgaySinh().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Địa Chỉ":
                 for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+                    if (e.getDiaChi().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Số Điện Thoại":
                 for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+                    if (e.getSdt().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Email":
                 for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getEmail().toLowerCase().compareTo(value) != -1) {
-                        result_search.add(e);
-                    }
-                }
-                break;
-            case "Mã Thẻ":
-                for (QLKhachHangDTO e : arrKhachHang){
-                    if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+                    if (e.getEmail().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -113,26 +122,24 @@ public class QLKhachHangBUS {
     
     public ArrayList <QLKhachHangDTO> search_all (String column, String value){
         ArrayList <QLKhachHangDTO> result_search = new ArrayList <QLKhachHangDTO> ();
+        value = value.toLowerCase();
         for (QLKhachHangDTO e : arrKhachHang){
-            if (e.getMaKhachHang().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaKhachHang().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+            else if (e.getHoTen().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgaySinh().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+            else if (e.getDiaChi().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+            else if (e.getSdt().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getEmail().toLowerCase().compareTo(value) != -1) {
-                result_search.add(e);
-            }
-            else if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+            else if (e.getEmail().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }
@@ -167,8 +174,8 @@ public class QLKhachHangBUS {
         return check;
     }
     
-    public Boolean add(String maKhachHang, String hoTen, String ngaySinh, String diaChi, String email, String maThe, String sdt){
-        QLKhachHangDTO khachHang=new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt);
+    public Boolean add(String maKhachHang, String hoTen, String ngaySinh, String diaChi, String email, String sdt){
+        QLKhachHangDTO khachHang=new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, sdt);
         return this.add(khachHang);
     }
     
@@ -198,8 +205,8 @@ public class QLKhachHangBUS {
         return check;
     }
      
-    public Boolean mod(String maKhachHang, String hoTen, String ngaySinh, String diaChi, String email, String maThe, String sdt){
-        QLKhachHangDTO khachHang=new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt);
+    public Boolean mod(String maKhachHang, String hoTen, String ngaySinh, String diaChi, String email, String sdt){
+        QLKhachHangDTO khachHang=new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, sdt);
         return this.mod(khachHang);
     } 
 

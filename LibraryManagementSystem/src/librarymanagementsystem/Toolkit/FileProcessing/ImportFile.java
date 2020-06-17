@@ -276,10 +276,9 @@ public class ImportFile {
                     String ngaySinh = cellIterator.next().getStringCellValue();
                     String diaChi = cellIterator.next().getStringCellValue();
                     String email = cellIterator.next().getStringCellValue();
-                    String maThe = cellIterator.next().getStringCellValue();
                     String sdt = cellIterator.next().getStringCellValue();
                     
-                    arrKhachHang.add(new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt));
+                    arrKhachHang.add(new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, sdt));
                 }
             }
             return arrKhachHang;

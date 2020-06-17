@@ -1,15 +1,14 @@
 package librarymanagementsystem.DTO;
 
 public class QLKhachHangDTO {
-    String maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt;
+    String maKhachHang, hoTen, ngaySinh, diaChi, email, sdt;
 
-    public QLKhachHangDTO(String maKhachHang, String hoTen, String ngaySinh, String diaChi, String email, String maThe, String sdt) {
+    public QLKhachHangDTO(String maKhachHang, String hoTen, String ngaySinh, String diaChi, String email, String sdt) {
         this.maKhachHang = maKhachHang;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.email = email;
-        this.maThe = maThe;
         this.sdt = sdt;
     }
     
@@ -19,7 +18,6 @@ public class QLKhachHangDTO {
         this.ngaySinh = khachHang.ngaySinh;
         this.diaChi = khachHang.diaChi;
         this.email = khachHang.email;
-        this.maThe = khachHang.maThe;
         this.sdt = khachHang.sdt;
     }
 
@@ -61,14 +59,6 @@ public class QLKhachHangDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getMaThe() {
-        return maThe;
-    }
-
-    public void setMaThe(String maThe) {
-        this.maThe = maThe;
     }
 
     public String getSdt() {

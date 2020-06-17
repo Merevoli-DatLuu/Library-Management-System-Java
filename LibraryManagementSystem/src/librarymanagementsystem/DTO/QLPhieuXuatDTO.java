@@ -7,6 +7,7 @@ public class QLPhieuXuatDTO {
     ArrayList <String> maSach;
     ArrayList <Integer> soLuong;
     String maNhanVien;
+    int tongSoLuong;
     
     public QLPhieuXuatDTO(String maXuat, String thoiDiemXuat, ArrayList<String> maSach, ArrayList<Integer> soLuong) {
         this.maXuat = maXuat;
@@ -15,12 +16,13 @@ public class QLPhieuXuatDTO {
         this.soLuong = soLuong;
     }
 
-    public QLPhieuXuatDTO(String maXuat, String thoiDiemXuat, ArrayList<String> maSach, ArrayList<Integer> soLuong, String maNhanVien) {
+    public QLPhieuXuatDTO(String maXuat, String thoiDiemXuat, ArrayList<String> maSach, ArrayList<Integer> soLuong, String maNhanVien, int tongSoLuong) {
         this.maXuat = maXuat;
         this.ngayXuat = thoiDiemXuat;
         this.maSach = maSach;
         this.soLuong = soLuong;
         this.maNhanVien = maNhanVien;
+        this.tongSoLuong = tongSoLuong;
     }
 
     public String getMaXuat() {
@@ -61,6 +63,14 @@ public class QLPhieuXuatDTO {
 
     public void setMaNhanVien(String maNhanVien) {
         this.maNhanVien = maNhanVien;
+    }
+
+    public int getTongSoLuong() {
+        return tongSoLuong;
+    }
+
+    public void setTongSoLuong(int tongSoLuong) {
+        this.tongSoLuong = tongSoLuong;
     }
     
     

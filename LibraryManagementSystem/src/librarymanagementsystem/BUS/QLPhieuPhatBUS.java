@@ -14,8 +14,23 @@ public class QLPhieuPhatBUS {
         arrPhieuPhat= phieuPhatDAO.readDB();
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"Mã Phiếu Phạt", "Mã Phiếu Mượn", "Mã Lý Do Phạt", "Tiền Phạt"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 1};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<4; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLPhieuPhatDTO getPhieuPhat(String maPhieuPhat){
@@ -35,7 +50,7 @@ public class QLPhieuPhatBUS {
         }
         
         for (QLPhieuPhatDTO e : arrPhieuPhat){
-            if (set.contains(e)){
+            if (set.contains(e.getMaPhieuPhat())){
                 res.add(e);
             }
         }
@@ -52,54 +67,56 @@ public class QLPhieuPhatBUS {
     
     public ArrayList <QLPhieuPhatDTO> search (String column, String value){
         ArrayList <QLPhieuPhatDTO> result_search = new ArrayList <QLPhieuPhatDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Phiếu Phạt":
                 for (QLPhieuPhatDTO e : arrPhieuPhat){
-                    if (e.getMaPhieuPhat().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaPhieuPhat().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Mã Phiếu Mượn": 
                 for (QLPhieuPhatDTO e : arrPhieuPhat){
-                    if (e.getMaPhieuMuon().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaPhieuMuon().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Mã Lý Do Phạt":
                 for (QLPhieuPhatDTO e : arrPhieuPhat){
-                    if (e.getMaLDPhat().toString().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaLDPhat().toString().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
-            /*case "Tiền Phạt":
+            case "Tiền Phạt":
                 for (QLPhieuPhatDTO e : arrPhieuPhat){
-                    if (e.get().toString().toLowerCase().compareTo(value) != -1) {
+                    if (Integer.toString(e.getTienPhat()).toString().contains(value)) {
                         result_search.add(e);
                     }
                 }
-                break;*/
+                break;
         }
         return result_search;
     }
     
     public ArrayList <QLPhieuPhatDTO> search_all (String column, String value){
         ArrayList <QLPhieuPhatDTO> result_search = new ArrayList <QLPhieuPhatDTO> ();
+        value = value.toLowerCase();
         for (QLPhieuPhatDTO e : arrPhieuPhat){
-            if (e.getMaPhieuPhat().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaPhieuPhat().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getMaPhieuMuon().toLowerCase().compareTo(value) != -1) {
+            else if (e.getMaPhieuMuon().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getMaLDPhat().toLowerCase().compareTo(value) != -1) {
+            else if (e.getMaLDPhat().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            /*else if (e.get().toString().toLowerCase().compareTo(value) != -1) {
+            else if (Integer.toString(e.getTienPhat()).toLowerCase().contains(value)) {
                 result_search.add(e);
-            }*/
+            }
         }
         return result_search;
     }
@@ -132,8 +149,8 @@ public class QLPhieuPhatBUS {
         return check;
     }
     
-    public Boolean add(String maPhieuPhat, String maPhieuMuon, String maLDPhat){
-        QLPhieuPhatDTO phieuPhat=new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat);
+    public Boolean add(String maPhieuPhat, String maPhieuMuon, String maLDPhat, int tienPhat){
+        QLPhieuPhatDTO phieuPhat=new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat);
         return this.add(phieuPhat);
     }
     
@@ -163,8 +180,8 @@ public class QLPhieuPhatBUS {
         return check;
     }
      
-    public Boolean mod(String maPhieuPhat, String maPhieuMuon, String maLDPhat){
-        QLPhieuPhatDTO phieuPhat=new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat);
+    public Boolean mod(String maPhieuPhat, String maPhieuMuon, String maLDPhat, int tienPhat){
+        QLPhieuPhatDTO phieuPhat=new QLPhieuPhatDTO(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat);
         return this.mod(phieuPhat);
     } 
 

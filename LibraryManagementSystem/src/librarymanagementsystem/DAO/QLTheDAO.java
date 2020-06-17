@@ -56,7 +56,7 @@ public class QLTheDAO {
                     String diaChi = rs.getString("diaChi");
                     String email = rs.getString("email");
                     String sdt = rs.getString("sdt");
-                    QLKhachHangDTO khachHang = new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt);
+                    QLKhachHangDTO khachHang = new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, sdt);
                     arrThe.add(new QLTheDTO(maThe, maKhachHang, ngayCap, ngayHetHan, khachHang));
                 }
             }

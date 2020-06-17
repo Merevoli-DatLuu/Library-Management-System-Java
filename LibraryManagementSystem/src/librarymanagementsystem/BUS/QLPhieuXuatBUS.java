@@ -14,13 +14,13 @@ public class QLPhieuXuatBUS {
         arrXuatKho= xuatKhoDAO.readDB();
     }
     
-    public String [] getHeader(){
-        return new String[]{"Mã Xuất Kho", "Ngày Xuất", "Mã Sách", "Số Lượng"};
+    public String [] getHeaders(){
+        return new String[]{"Mã Xuất Kho", "Ngày Xuất", "Mã Nhân Viên", "Mã Sách", "Tổng Số Lượng"};
     }
     
     public QLPhieuXuatDTO getPhieuXuat(String maXuat){
         for (QLPhieuXuatDTO e : arrXuatKho){
-            if (e.equals(maXuat)){
+            if (e.getMaXuat().equals(maXuat)){
                 return e;
             }
         }
@@ -35,7 +35,7 @@ public class QLPhieuXuatBUS {
         }
         
         for (QLPhieuXuatDTO e : arrXuatKho){
-            if (set.contains(e)){
+            if (set.contains(e.getMaXuat())){
                 res.add(e);
             }
         }
@@ -52,31 +52,39 @@ public class QLPhieuXuatBUS {
     
     public ArrayList <QLPhieuXuatDTO> search (String column, String value){
         ArrayList <QLPhieuXuatDTO> result_search = new ArrayList <QLPhieuXuatDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Xuất Kho":
                 for (QLPhieuXuatDTO e : arrXuatKho){
-                    if (e.getMaXuat().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaXuat().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Ngày Xuất": 
                 for (QLPhieuXuatDTO e : arrXuatKho){
-                    if (e.getNgayXuat().toLowerCase().compareTo(value) != -1) {
+                    if (e.getNgayXuat().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
-            case "Mã Sách":
+            case "Mã Nhân Viên": 
                 for (QLPhieuXuatDTO e : arrXuatKho){
-                    if (e.getMaSach().toString().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaNhanVien().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
-            case "Số Lượng":
+//            case "Mã Sách":
+//                for (QLPhieuXuatDTO e : arrXuatKho){
+//                    if (e.getMaSach().toString().toLowerCase().contains(value)) {
+//                        result_search.add(e);
+//                    }
+//                }
+//                break;
+            case "Tổng Số Lượng":
                 for (QLPhieuXuatDTO e : arrXuatKho){
-                    if (e.getSoLuong().toString().toLowerCase().compareTo(value) != -1) {
+                    if (Integer.toString(e.getTongSoLuong()).toString().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -88,16 +96,19 @@ public class QLPhieuXuatBUS {
     public ArrayList <QLPhieuXuatDTO> search_all (String column, String value){
         ArrayList <QLPhieuXuatDTO> result_search = new ArrayList <QLPhieuXuatDTO> ();
         for (QLPhieuXuatDTO e : arrXuatKho){
-            if (e.getMaXuat().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaXuat().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgayXuat().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgayXuat().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getMaSach().toArray().equals(value)) {
+            else if (e.getMaNhanVien().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getSoLuong().toString().toLowerCase().compareTo(value) != -1) {
+//            else if (e.getMaSach().toArray().equals(value)) {
+//                result_search.add(e);
+//            }
+            else if (Integer.toString(e.getTongSoLuong()).toString().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }
@@ -132,8 +143,8 @@ public class QLPhieuXuatBUS {
         return check;
     }
     
-    public Boolean add(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien){
-        QLPhieuXuatDTO xuatKho=new QLPhieuXuatDTO(maXuat, ngayXuat, maSach, soLuong, maNhanVien);
+    public Boolean add(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, int tongSoLuong){
+        QLPhieuXuatDTO xuatKho=new QLPhieuXuatDTO(maXuat, ngayXuat, maSach, soLuong, maNhanVien, tongSoLuong);
         return this.add(xuatKho);
     }
     
@@ -163,8 +174,8 @@ public class QLPhieuXuatBUS {
         return check;
     }
      
-    public Boolean mod(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien){
-        QLPhieuXuatDTO xuatKho=new QLPhieuXuatDTO(maXuat, ngayXuat, maSach, soLuong, maNhanVien);
+    public Boolean mod(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, int tongSoLuong){
+        QLPhieuXuatDTO xuatKho=new QLPhieuXuatDTO(maXuat, ngayXuat, maSach, soLuong, maNhanVien, tongSoLuong);
         return this.mod(xuatKho);
     } 
 

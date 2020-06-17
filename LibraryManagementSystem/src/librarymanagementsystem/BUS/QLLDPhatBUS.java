@@ -15,8 +15,23 @@ public class QLLDPhatBUS {
         arrLDPhat= LDPhatDAO.readDB();
     }
     
-    public String [] getHeader(){
+    public String [] getHeaders(){
         return new String[]{"Mã Lý Do Phạt", "Tên Lý Do Phạt", "Mức Độ"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<3; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLLDPhatDTO getLDPhat(String maLDPhat){
@@ -36,7 +51,7 @@ public class QLLDPhatBUS {
         }
         
         for (QLLDPhatDTO e : arrLDPhat){
-            if (set.contains(e)){
+            if (set.contains(e.getMaLDPhat())){
                 res.add(e);
             }
         }
@@ -53,17 +68,18 @@ public class QLLDPhatBUS {
     
     public ArrayList <QLLDPhatDTO> search (String column, String value){
         ArrayList <QLLDPhatDTO> result_search = new ArrayList <QLLDPhatDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Lý Do Phạt ":
                 for (QLLDPhatDTO e : arrLDPhat){
-                    if (e.getMaLDPhat().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaLDPhat().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "Tên Lý Do Phạt": 
                 for (QLLDPhatDTO e : arrLDPhat){
-                    if (e.getTenLDPhat().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTenLDPhat().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -71,7 +87,7 @@ public class QLLDPhatBUS {
             case "Mức Độ":
             for (QLLDPhatDTO e : arrLDPhat) {
                 String mucDo=String.valueOf(e.getMucDo());
-                if (mucDo.toLowerCase().compareTo(value) != -1) {
+                if (mucDo.toLowerCase().contains(value)) {
                     result_search.add(e);
                 }
             }
@@ -84,15 +100,16 @@ public class QLLDPhatBUS {
     
     public ArrayList <QLLDPhatDTO> search_all (String column, String value){
         ArrayList <QLLDPhatDTO> result_search = new ArrayList <QLLDPhatDTO> ();
+        value = value.toLowerCase();
         for (QLLDPhatDTO e : arrLDPhat){
             String mucDo=String.valueOf(e.getMucDo());
-            if (e.getMaLDPhat().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaLDPhat().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTenLDPhat().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTenLDPhat().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (mucDo.toLowerCase().compareTo(value) != -1) {
+            else if (mucDo.toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }

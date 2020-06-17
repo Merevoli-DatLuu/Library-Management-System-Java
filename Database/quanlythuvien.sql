@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2020 at 04:10 PM
+-- Generation Time: Jun 17, 2020 at 02:14 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -1048,7 +1048,7 @@ INSERT INTO `phieumuon` (`maPhieuMuon`, `maThe`, `ngayMuon`, `thoiGianMuon`, `ng
 CREATE TABLE `phieunhap` (
   `maNhap` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `ngayNhap` date NOT NULL,
-  `maQuanLy` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `maNhanVien` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `maNCC` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `tongSoLuong` int(11) DEFAULT NULL,
   `tongTien` int(11) DEFAULT NULL
@@ -1058,7 +1058,7 @@ CREATE TABLE `phieunhap` (
 -- Dumping data for table `phieunhap`
 --
 
-INSERT INTO `phieunhap` (`maNhap`, `ngayNhap`, `maQuanLy`, `maNCC`, `tongSoLuong`, `tongTien`) VALUES
+INSERT INTO `phieunhap` (`maNhap`, `ngayNhap`, `maNhanVien`, `maNCC`, `tongSoLuong`, `tongTien`) VALUES
 ('N0000001', '2020-01-03', 'QL000002', 'NCC000001', 50, 7221000),
 ('N0000002', '2020-03-08', 'QL000010', 'NCC000002', 100, 18248000),
 ('N0000003', '2020-06-16', 'QL000004', 'NCC000003', 72, 11838000);
@@ -1107,7 +1107,7 @@ INSERT INTO `phieuphat` (`maPhieuPhat`, `maPhieuMuon`, `tienPhat`, `maLDPhat`) V
 CREATE TABLE `phieuxuat` (
   `maXuat` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `ngayXuat` date NOT NULL,
-  `maQuanLy` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `maNhanVien` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `tongSoLuong` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1115,7 +1115,7 @@ CREATE TABLE `phieuxuat` (
 -- Dumping data for table `phieuxuat`
 --
 
-INSERT INTO `phieuxuat` (`maXuat`, `ngayXuat`, `maQuanLy`, `tongSoLuong`) VALUES
+INSERT INTO `phieuxuat` (`maXuat`, `ngayXuat`, `maNhanVien`, `tongSoLuong`) VALUES
 ('X0000001', '2020-01-10', 'QL000002', 48),
 ('X0000002', '2020-03-09', 'QL000008', 24),
 ('X0000003', '2020-04-14', 'QL000010', 6);
@@ -1265,7 +1265,7 @@ ALTER TABLE `phieumuon`
 --
 ALTER TABLE `phieunhap`
   ADD PRIMARY KEY (`maNhap`),
-  ADD KEY `FK_MaQuanLy-NhapKho` (`maQuanLy`),
+  ADD KEY `FK_MaQuanLy-NhapKho` (`maNhanVien`),
   ADD KEY `FK_NCC-NhapKho` (`maNCC`);
 
 --
@@ -1281,7 +1281,7 @@ ALTER TABLE `phieuphat`
 --
 ALTER TABLE `phieuxuat`
   ADD PRIMARY KEY (`maXuat`),
-  ADD KEY `FK_MaQuanLy-XuatKho` (`maQuanLy`);
+  ADD KEY `FK_MaQuanLy-XuatKho` (`maNhanVien`);
 
 --
 -- Indexes for table `quyen`
@@ -1343,7 +1343,7 @@ ALTER TABLE `phieumuon`
 -- Constraints for table `phieunhap`
 --
 ALTER TABLE `phieunhap`
-  ADD CONSTRAINT `FK_MaQuanLy-NhapKho` FOREIGN KEY (`maQuanLy`) REFERENCES `nhanvien` (`maNhanVien`),
+  ADD CONSTRAINT `FK_MaQuanLy-NhapKho` FOREIGN KEY (`maNhanVien`) REFERENCES `nhanvien` (`maNhanVien`),
   ADD CONSTRAINT `FK_NCC-NhapKho` FOREIGN KEY (`maNCC`) REFERENCES `nhacungcap` (`maNCC`);
 
 --
@@ -1357,7 +1357,7 @@ ALTER TABLE `phieuphat`
 -- Constraints for table `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
-  ADD CONSTRAINT `FK_MaQuanLy-XuatKho` FOREIGN KEY (`maQuanLy`) REFERENCES `nhanvien` (`maNhanVien`);
+  ADD CONSTRAINT `FK_MaQuanLy-XuatKho` FOREIGN KEY (`maNhanVien`) REFERENCES `nhanvien` (`maNhanVien`);
 
 --
 -- Constraints for table `the`

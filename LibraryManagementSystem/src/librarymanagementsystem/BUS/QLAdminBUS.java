@@ -39,7 +39,7 @@ public class QLAdminBUS {
         }
         
         for (QLAdminDTO e : arrAdmin){
-            if (set.contains(e)){
+            if (set.contains(e.getTkAdmin())){
                 res.add(e);
             }
         }
@@ -103,21 +103,21 @@ public class QLAdminBUS {
         switch (column) { // Dựa vào Headers
             case "Tài Khoản Admin":
                 for (QLAdminDTO e : arrAdmin){
-                    if (e.getTkAdmin().toLowerCase().compareTo(value) != -1) {
+                    if (e.getTkAdmin().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "password": // Bỏ cái này sau
                 for (QLAdminDTO e : arrAdmin){
-                    if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+                    if (e.getPassword().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
                 break;
             case "RFID code":
                 for (QLAdminDTO e : arrAdmin){
-                    if (e.getRFID_code().toLowerCase().compareTo(value) != -1) {
+                    if (e.getRFID_code().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -129,13 +129,13 @@ public class QLAdminBUS {
     public ArrayList <QLAdminDTO> search_all (String value){
         ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
         for (QLAdminDTO e : arrAdmin){
-            if (e.getTkAdmin().toLowerCase().compareTo(value) != -1) {
+            if (e.getTkAdmin().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+            else if (e.getPassword().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getRFID_code().toLowerCase().compareTo(value) != -1) {
+            else if (e.getRFID_code().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }

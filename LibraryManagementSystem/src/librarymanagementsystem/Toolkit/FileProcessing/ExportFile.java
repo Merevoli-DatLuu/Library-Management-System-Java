@@ -709,7 +709,6 @@ public class ExportFile {
             row.createCell(3, CellType.STRING).setCellValue("Địa Chỉ");
             row.createCell(4, CellType.STRING).setCellValue("Số Điện Thoại");
             row.createCell(5, CellType.STRING).setCellValue("Email");
-            row.createCell(6, CellType.STRING).setCellValue("Mã Thẻ");
             
             for (QLKhachHangDTO khachHang : list) {
                 rownum++;
@@ -721,7 +720,6 @@ public class ExportFile {
                 row.createCell(3, CellType.STRING).setCellValue(khachHang.getDiaChi());
                 row.createCell(4, CellType.STRING).setCellValue(khachHang.getSdt());
                 row.createCell(5, CellType.STRING).setCellValue(khachHang.getEmail());
-                row.createCell(6, CellType.STRING).setCellValue(khachHang.getMaThe());
             }
             for (int i = 0; i < rownum; i++) {
                 sheet.autoSizeColumn(i);

@@ -24,9 +24,8 @@ public class QLKhachHangDAO {
                     String ngaySinh = rs.getString("ngaySinh");
                     String diaChi = rs.getString("diaChi");
                     String email = rs.getString("email");
-                    String maThe = rs.getString("maThe");
                     String sdt = rs.getString("sdt");
-                    arrKhachHang.add(new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, maThe, sdt));
+                    arrKhachHang.add(new QLKhachHangDTO(maKhachHang, hoTen, ngaySinh, diaChi, email, sdt));
                 }
             }
 
@@ -47,10 +46,9 @@ public class QLKhachHangDAO {
                 + khachHang.getMaKhachHang()+ "','"  
                 + khachHang.getHoTen()+ "','"  
                 + khachHang.getNgaySinh()+ "','"  
-                + khachHang.getDiaChi()+ "',"  
-                + khachHang.getSdt()+ ",'"  
-                + khachHang.getEmail()+ "','"  
-                + khachHang.getMaThe()+ "');");
+                + khachHang.getDiaChi()+ "','"  
+                + khachHang.getSdt()+ "','"  
+                + khachHang.getEmail()+ "');"); 
         DBKhachHang.closeConnection();
         return check;
     }
@@ -67,9 +65,8 @@ public class QLKhachHangDAO {
                 + " hoTen='" + khachHang.getHoTen()
                 + "', ngaySinh='" + khachHang.getNgaySinh()
                 + "', diaChi='" + khachHang.getDiaChi()
-                + "', sdt=" + khachHang.getSdt()
-                + ", email='" + khachHang.getEmail()
-                + "' maThe='" + khachHang.getMaThe()
+                + "', sdt='" + khachHang.getSdt()
+                + "', email='" + khachHang.getEmail()
                 + "' where maKhachHang='" + khachHang.getMaKhachHang()+ "';");
         DBKhachHang.closeConnection();
         return check;
