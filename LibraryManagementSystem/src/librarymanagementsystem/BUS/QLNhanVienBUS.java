@@ -39,7 +39,7 @@ public class QLNhanVienBUS {
     
     public QLNhanVienDTO getNhanVien(String maNhanVien){
         for (QLNhanVienDTO e : arrNhanVien){
-            if (e.equals(maNhanVien)){
+            if (e.getMaNhanVien().equals(maNhanVien)){
                 return e;
             }
         }

@@ -35,7 +35,7 @@ public class QLPhieuPhatBUS {
     
     public QLPhieuPhatDTO getPhieuPhat(String maPhieuPhat){
         for (QLPhieuPhatDTO e : arrPhieuPhat){
-            if (e.equals(maPhieuPhat)){
+            if (e.getMaPhieuPhat().equals(maPhieuPhat)){
                 return e;
             }
         }

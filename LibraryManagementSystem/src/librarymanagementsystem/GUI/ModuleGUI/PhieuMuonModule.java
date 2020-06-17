@@ -12,6 +12,7 @@ import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.*;
 
 import javax.swing.JPanel;
+import librarymanagementsystem.GUI.Main_2;
 import librarymanagementsystem.GUI.ThanhPhanGUI.ComboCheckBox;
 import librarymanagementsystem.GUI.ThemSuaGUI.ThemLoaiSachForm;
 
@@ -43,6 +44,7 @@ public class PhieuMuonModule {
         xuatexcel_btn = new javax.swing.JLabel();
         refresh_btn = new javax.swing.JLabel();
         expand_btn = new javax.swing.JLabel();
+        phieuPhat_btn = new javax.swing.JLabel();
         checkbox = new ComboCheckBox(new ArrayList<String>(Arrays.asList(phieuMuonBUS.getHeaders())));
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         //getContentPane().setLayout(null);
@@ -102,6 +104,22 @@ public class PhieuMuonModule {
             }
         });xuatexcel_btn.setBounds(750, 30, 160, 78);
         jPanel1.add(xuatexcel_btn);
+        
+        phieuPhat_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-17T210344.296.png"))); // NOI18N
+        phieuPhat_btn.setBounds(760, 114, 140, 31);
+        phieuPhat_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                phieuPhat_btnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                phieuPhat_btnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                phieuPhat_btnMouseExited(evt);
+            }
+        });
+        
+        jPanel1.add(phieuPhat_btn);
         
         /** add Expand and Refresh btn **/
         expand_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-10T234019.664.png"))); // NOI18N
@@ -239,6 +257,25 @@ public class PhieuMuonModule {
         jPanel1.add(phieuMuon_Table);
     }
     
+    private void phieuPhat_btnMouseClicked(java.awt.event.MouseEvent evt){
+        Main_2.Module_Panel.removeAll();
+        Main_2.Module_Panel.repaint();
+        Main_2.Module_Panel.revalidate();
+        JPanel Module = new PhieuPhatModule().getPhieuPhatModule();
+        Module.setBounds(0, 0, 940, 600);
+        Main_2.Module_Panel.add(Module);
+    }
+    
+    private void phieuPhat_btnMouseEntered(java.awt.event.MouseEvent evt){
+        phieuPhat_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-17T210351.501.png"))); // NOI18N
+        phieuPhat_btn.setBounds(745, 103, 171, 54);
+    }
+    
+    private void phieuPhat_btnMouseExited(java.awt.event.MouseEvent evt){
+        phieuPhat_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtools - 2020-06-17T210344.296.png"))); // NOI18N
+        phieuPhat_btn.setBounds(760, 114, 140, 31);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -284,6 +321,7 @@ public class PhieuMuonModule {
     private static javax.swing.JPanel phieuMuon_Table;
     private static javax.swing.JLabel refresh_btn;
     private static javax.swing.JLabel expand_btn;
+    private static javax.swing.JLabel phieuPhat_btn;
     private static ComboCheckBox checkbox;
     // End of variables declaration           
 }

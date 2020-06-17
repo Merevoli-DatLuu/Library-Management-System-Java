@@ -3,27 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLKhoSachBUS.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Main_2.java</file>
             <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DAO/QLPhieuNhapDAO.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLLDPhatBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ChonGUI/Filter.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLPhieuNhapBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DTO/QLPhieuNhapDTO.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/PaginatedTableDecorator.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLKhachHangBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DTO/QLPhieuXuatDTO.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLPhieuPhatTable.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLAdminBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLNhanVienTable.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLPhieuPhatBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/KhoSachModule.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/AdminModule.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DAO/QLPhieuPhatDAO.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLNhanVienBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLAdminTable.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DTO/QLPhieuPhatDTO.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Table/QLKhoSachTable.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ChonGUI/FilterFunction.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/HienThiGUI/ChoiceElement.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/Kho_SelectionModule.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/NhanVien_SelectionModule.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/DAO/QLPhieuXuatDAO.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/Sach_SelectionModule.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/The_SelectionModule.java</file>
         </group>
     </open-files>
 </project-private>

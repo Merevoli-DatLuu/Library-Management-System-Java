@@ -53,7 +53,7 @@ public class QLChiTietSachBUS {
     
     public QLChiTietSachDTO getChiTietSach(String IDSach){
         for (QLChiTietSachDTO e : arrChiTietSach){
-            if (e.equals(IDSach)){
+            if (e.getIDSach().equals(IDSach)){
                 return e;
             }
         }

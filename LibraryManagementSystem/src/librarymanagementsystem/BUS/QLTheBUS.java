@@ -51,7 +51,7 @@ public class QLTheBUS {
     
     public QLTheDTO getThe(String maThe){
         for (QLTheDTO e : arrThe){
-            if (e.equals(maThe)){
+            if (e.getMaThe().equals(maThe)){
                 return e;
             }
         }

@@ -24,7 +24,7 @@ public class QLAdminBUS {
     
     public QLAdminDTO getAdmin(String tkAdmin){
         for (QLAdminDTO e : arrAdmin){
-            if (e.equals(tkAdmin)){
+            if (e.getTkAdmin().equals(tkAdmin)){
                 return e;
             }
         }

@@ -40,7 +40,7 @@ public class QLKhachHangBUS {
     
     public QLKhachHangDTO getKhachHang(String maKhachHang){
         for (QLKhachHangDTO e : arrKhachHang){
-            if (e.equals(maKhachHang)){
+            if (e.getMaKhachHang().equals(maKhachHang)){
                 return e;
             }
         }

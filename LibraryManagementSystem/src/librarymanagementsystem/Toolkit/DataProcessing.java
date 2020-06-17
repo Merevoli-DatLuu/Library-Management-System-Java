@@ -62,6 +62,11 @@ public class DataProcessing {
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(str).matches();
     }
+    public Boolean check_maLDPhat(String str){
+        String regex = "LDP\\d{6}";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(str).matches();
+    }
     
     public Boolean check_ngay(String str){
         String regex = "\\d{1,2}";
@@ -172,6 +177,20 @@ public class DataProcessing {
             int_ma.add(Integer.parseInt(i.substring(2)));
         }
         return "AD" + next_ma(int_ma);
+    }
+    public String next_maPhieuPhat(ArrayList <String> ma){
+        ArrayList <Integer> int_ma = new ArrayList <>();
+        for (String i : ma){
+            int_ma.add(Integer.parseInt(i.substring(2)));
+        }
+        return "LDP" + next_ma(int_ma);
+    }
+    public String next_maNCC(ArrayList <String> ma){
+        ArrayList <Integer> int_ma = new ArrayList <>();
+        for (String i : ma){
+            int_ma.add(Integer.parseInt(i.substring(2)));
+        }
+        return "NCC" + next_ma(int_ma);
     }
         
     /** Thêm phẩy và Đơn vị **/
