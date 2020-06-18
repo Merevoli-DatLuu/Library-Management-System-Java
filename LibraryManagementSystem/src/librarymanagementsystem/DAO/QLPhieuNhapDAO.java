@@ -2,6 +2,7 @@ package librarymanagementsystem.DAO;
 
 import librarymanagementsystem.Toolkit.*;
 import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.BUS.QLKhoSachBUS;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.sql.ResultSet;
@@ -138,8 +139,23 @@ public class QLPhieuNhapDAO {
                 check2 = check;
             }
         }
+        
+        /** Cập Nhập Kho Sách **/
+//        Boolean check3 = true;
+//        QLKhoSachBUS khoSach = new QLKhoSachBUS(0);
+//        for (int i=0; i<nhapKho.getMaSach().size(); i++){
+//            String maSach = nhapKho.getMaSach().get(i);
+//            int soLuong = nhapKho.getSoLuong().get(i);
+//            if (khoSach.getKhoSach(maSach) == null){    // Nếu mã sách chưa có trong kho
+//                check3 = DBNhapKhoSach.SQLUpdate("INSERT INTO `khosach`(`maSach`, `soLuong`) VALUES ('" + maSach + "'," + soLuong + ");");
+//            }
+//            else{                                       // Nếu mã sách có trong kho
+//                check3 = DBNhapKhoSach.SQLUpdate("UPDATE `khosach` SET `soLuong`=`soLuong` + " + soLuong + " WHERE `maSach` = '" + maSach + "'");
+//            }
+//        }
+        
         DBNhapKhoSach.closeConnection();
-        return check1 & check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean add(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
@@ -164,8 +180,22 @@ public class QLPhieuNhapDAO {
                 check2 = check;
             }
         }
+        
+//        /** Cập Nhập Kho Sách **/
+//        Boolean check3 = true;
+//        QLKhoSachBUS khoSach = new QLKhoSachBUS(0);
+//        for (int i=0; i<maSach.size(); i++){
+//            String maSach_e = maSach.get(i);
+//            int soLuong_e = soLuong.get(i);
+//            if (khoSach.getKhoSach(maSach_e) == null){    // Nếu mã sách chưa có trong kho
+//                check3 = DBNhapKhoSach.SQLUpdate("INSERT INTO `khosach`(`maSach`, `soLuong`) VALUES ('" + maSach_e + "'," + soLuong_e + ");");
+//            }
+//            else{                                       // Nếu mã sách có trong kho
+//                check3 = DBNhapKhoSach.SQLUpdate("UPDATE `khosach` SET `soLuong`=`soLuong` + " + soLuong_e + " WHERE `maSach` = '" + maSach_e + "'");
+//            }
+//        }
         DBNhapKhoSach.closeConnection();
-        return check1 & check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean del(String maNhap){
@@ -173,7 +203,7 @@ public class QLPhieuNhapDAO {
         Boolean check1 = DBNhapKhoSach.SQLUpdate("DELETE FROM PhieuNhap WHERE PhieuNhap.maNhap = '" + maNhap + "';");
         Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuNhap WHERE ChiTietPhieuNhap.maNhap = '" + maNhap + "';");
         DBNhapKhoSach.closeConnection();
-        return check1 && check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean mod(QLPhieuNhapDTO nhapKho){
@@ -198,7 +228,7 @@ public class QLPhieuNhapDAO {
             }
         }
         DBNhapKhoSach.closeConnection();
-        return check1 && check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean mod(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
@@ -223,6 +253,6 @@ public class QLPhieuNhapDAO {
             }
         }
         DBNhapKhoSach.closeConnection();
-        return check1 && check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
 }

@@ -8,7 +8,7 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLLDPhatBUS {
-    private ArrayList<QLLDPhatDTO> arrLDPhat = new ArrayList<>();
+    private static ArrayList<QLLDPhatDTO> arrLDPhat = new ArrayList<>();
     private QLLDPhatDAO LDPhatDAO = new QLLDPhatDAO();
 
     public QLLDPhatBUS() {
@@ -27,7 +27,7 @@ public class QLLDPhatBUS {
     
     // 0:string, 1:int, 2:date
     public int[] getHeadersType(){
-        return new int[]{0, 0, 0};
+        return new int[]{0, 0, 1};
     }
     
     public int findHeaderType(String header){

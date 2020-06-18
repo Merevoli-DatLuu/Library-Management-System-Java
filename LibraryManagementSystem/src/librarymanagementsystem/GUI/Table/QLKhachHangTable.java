@@ -113,10 +113,20 @@ public class QLKhachHangTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(160);
+        width.add(220);
+        width.add(170);
+        width.add(380);
+        width.add(220);
+        width.add(220);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLKhachHangDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLKhachHangDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_KhachHang();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -150,10 +160,20 @@ public class QLKhachHangTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(160);
+        width.add(220);
+        width.add(170);
+        width.add(380);
+        width.add(220);
+        width.add(220);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLKhachHangDTO> dataProvider = createDataProvider(objectDataModel, khachhang);
         PaginatedTableDecorator<QLKhachHangDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_KhachHang();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

@@ -7,11 +7,17 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLPhieuPhatBUS {
-    private ArrayList<QLPhieuPhatDTO> arrPhieuPhat = new ArrayList<>();
+    private static ArrayList<QLPhieuPhatDTO> arrPhieuPhat = new ArrayList<>();
     private QLPhieuPhatDAO phieuPhatDAO = new QLPhieuPhatDAO();
 
     public QLPhieuPhatBUS() {
         arrPhieuPhat= phieuPhatDAO.readDB();
+    }
+    
+    public QLPhieuPhatBUS(int i){
+        if (arrPhieuPhat.size() == 0){
+            arrPhieuPhat = phieuPhatDAO.readDB();
+        }
     }
     
     public String [] getHeaders(){
@@ -92,7 +98,7 @@ public class QLPhieuPhatBUS {
                 break;
             case "Tiền Phạt":
                 for (QLPhieuPhatDTO e : arrPhieuPhat){
-                    if (Integer.toString(e.getTienPhat()).toString().contains(value)) {
+                    if (Integer.toString(e.getTienPhat()).toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }

@@ -17,7 +17,9 @@ public class QLPhieuMuonBUS {
     }
     
     public QLPhieuMuonBUS(int i){
-        
+        if (arrMuonTra.size() == 0){
+            arrMuonTra = muonTraDAO.readDB();
+        }
     }
     
     public String [] getHeaders(){
@@ -41,7 +43,7 @@ public class QLPhieuMuonBUS {
     
      public QLPhieuMuonDTO getPhieuMuon(String maPhieuMuon){
         for (QLPhieuMuonDTO e : arrMuonTra){
-            if (e.equals(maPhieuMuon)){
+            if (e.getMaPhieuMuon().equals(maPhieuMuon)){
                 return e;
             }
         }
@@ -124,24 +126,25 @@ public class QLPhieuMuonBUS {
     
     public ArrayList <QLPhieuMuonDTO> search_all (String column, String value){
         ArrayList <QLPhieuMuonDTO> result_search = new ArrayList <QLPhieuMuonDTO> ();
+        value = value.toLowerCase();
         for (QLPhieuMuonDTO e : arrMuonTra){
             String thoiGianMuon=String.valueOf(e.getThoiGianMuon());
-            if (e.getMaPhieuMuon().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaPhieuMuon().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+            else if (e.getMaThe().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getIDSach().toArray().equals(value)) {
+            else if (e.getIDSach().toString().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgayMuon().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgayMuon().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (thoiGianMuon.toLowerCase().compareTo(value) != -1) {
+            else if (thoiGianMuon.toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgayTra().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgayTra().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }
@@ -360,7 +363,7 @@ public class QLPhieuMuonBUS {
     
     public static void main(String[] args){
         new QLPhieuMuonBUS();
-        System.out.println(new QLPhieuMuonBUS(0).getSoLuongSachMuon_MaSach("S000001", 5, 2019));
+        System.out.println(new QLPhieuMuonBUS(0).getPhieuMuon("M000001").getIDSach().toString());
         
     }
 }

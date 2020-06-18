@@ -16,6 +16,9 @@ public class QLTheBUS {
     }
     
     public QLTheBUS(int i) {
+        if (arrThe.size() == 0){
+            arrThe = theDAO.readDB();
+        }
     }
     
     public void readDB(){
@@ -119,14 +122,18 @@ public class QLTheBUS {
     
     public ArrayList <QLTheDTO> search_all (String column, String value){
         ArrayList <QLTheDTO> result_search = new ArrayList <QLTheDTO> ();
+        value = value.toLowerCase();
         for (QLTheDTO e : arrThe){
-            if (e.getMaThe().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaThe().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgayCap().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgayCap().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgayHetHan().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgayHetHan().toLowerCase().contains(value)) {
+                result_search.add(e);
+            }
+            else if (e.getMaKhachHang().toLowerCase().contains(value)){
                 result_search.add(e);
             }
         }

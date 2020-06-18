@@ -110,6 +110,7 @@ public class QLLDPhatTable {
         PaginationDataProvider<QLLDPhatDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLLDPhatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_LDPhat();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -152,6 +153,7 @@ public class QLLDPhatTable {
         PaginationDataProvider<QLLDPhatDTO> dataProvider = createDataProvider(objectDataModel, ldPhat);
         PaginatedTableDecorator<QLLDPhatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_LDPhat();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

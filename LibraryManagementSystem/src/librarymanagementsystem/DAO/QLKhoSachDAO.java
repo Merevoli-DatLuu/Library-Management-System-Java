@@ -2,7 +2,11 @@ package librarymanagementsystem.DAO;
 
 import librarymanagementsystem.Toolkit.*;
 import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.BUS.QLKhoSachBUS;
+import librarymanagementsystem.BUS.QLPhieuNhapBUS;
+import librarymanagementsystem.BUS.QLPhieuXuatBUS;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -82,7 +86,7 @@ public class QLKhoSachDAO {
         return check;
     }
     
-     public Boolean del(String maSach){
+    public Boolean del(String maSach){
         DBKhoSach = new DBConnection();
         Boolean check = DBKhoSach.SQLUpdate("DELETE FROM KhoSach WHERE KhoSach.maSach = '" + maSach + "';");
         DBKhoSach.closeConnection();
@@ -96,5 +100,62 @@ public class QLKhoSachDAO {
                 + " where maSach='" + khoSach.getMaSach()+ "';");
         DBKhoSach.closeConnection();
         return check;
+    }
+    
+    public boolean refreshDB(){
+        QLPhieuNhapBUS phieuNhap = new QLPhieuNhapBUS(0);
+        QLPhieuXuatBUS phieuXuat = new QLPhieuXuatBUS(0);
+        
+        HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+        for (QLPhieuNhapDTO e : phieuNhap.getArrNhapKho()){
+            int size = e.getMaSach().size();
+            for (int i=0; i<size; i++){
+                if (!hashmap.containsKey(e.getMaSach().get(i))){
+                    hashmap.put(e.getMaSach().get(i), e.getSoLuong().get(i));
+                }
+                else{
+                    hashmap.put(e.getMaSach().get(i), hashmap.get(e.getMaSach().get(i)) + e.getSoLuong().get(i));
+                }
+            }
+        }
+        
+        for (QLPhieuXuatDTO e : phieuXuat.getArrXuatKho()){
+            int size = e.getMaSach().size();
+            for (int i=0; i<size; i++){
+                if (!hashmap.containsKey(e.getMaSach().get(i))){
+                    hashmap.put(e.getMaSach().get(i), 0);
+                    System.err.println("Lỗi refresh Kho Sách - Mã " + e.getMaSach().get(i) + " không tồn tại");
+                    return false;
+                }
+                else{
+                    if (hashmap.get(e.getMaSach().get(i)) - e.getSoLuong().get(i) < 0){
+                        System.err.println("Lỗi refresh Kho Sách - " + e.getMaSach().get(i) + "Xuất nhiều hơn sách có trong kho");
+                        return false;
+                    }
+                    hashmap.put(e.getMaSach().get(i), hashmap.get(e.getMaSach().get(i)) - e.getSoLuong().get(i));
+                }
+            }
+        }
+        
+        DBKhoSach = new DBConnection();
+        Boolean check = DBKhoSach.SQLUpdate("TRUNCATE TABLE khosach");
+        DBKhoSach.closeConnection();
+        if (!check){
+            return check;
+        }
+        check = true;
+        for (String e : hashmap.keySet()) {
+            if (add(new QLKhoSachDTO(e, hashmap.get(e))) == false){
+                check = false;
+            }
+//            System.out.println(e + " " + hashmap.get(e));
+        }
+        new QLKhoSachBUS();
+        
+        return check;
+    }
+    
+    public static void main(String[] args) {
+        new QLKhoSachDAO().refreshDB();
     }
 }

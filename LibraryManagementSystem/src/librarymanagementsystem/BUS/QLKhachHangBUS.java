@@ -8,11 +8,17 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLKhachHangBUS {
-    private ArrayList<QLKhachHangDTO> arrKhachHang = new ArrayList<>();
+    private static ArrayList<QLKhachHangDTO> arrKhachHang = new ArrayList<>();
     private QLKhachHangDAO khachHangDAO = new QLKhachHangDAO();
 
     public QLKhachHangBUS() {
         arrKhachHang = khachHangDAO.readDB();
+    }
+    
+    public QLKhachHangBUS(int i){
+        if (arrKhachHang.size() == 0){
+            arrKhachHang = khachHangDAO.readDB();
+        }
     }
     
     public void readDB(){

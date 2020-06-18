@@ -7,11 +7,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class QLAdminBUS {
-    private ArrayList<QLAdminDTO> arrAdmin = new ArrayList<>();
+    private static ArrayList<QLAdminDTO> arrAdmin = new ArrayList<>();
     private QLAdminDAO adminDAO = new QLAdminDAO();
     
     public QLAdminBUS(){
         arrAdmin = adminDAO.readDB();
+    }
+    
+    public QLAdminBUS(int i){
+        if (arrAdmin.size() == 0){
+            arrAdmin = adminDAO.readDB();
+        }
     }
     
     public void readDB(){
@@ -20,6 +26,21 @@ public class QLAdminBUS {
     
     public String[] getHeaders(){
         return new String[]{"Tài Khoản Admin", "password",  "RFID code"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<3; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLAdminDTO getAdmin(String tkAdmin){
@@ -100,6 +121,7 @@ public class QLAdminBUS {
     
     public ArrayList <QLAdminDTO> search (String column, String value){
         ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Tài Khoản Admin":
                 for (QLAdminDTO e : arrAdmin){
@@ -128,6 +150,7 @@ public class QLAdminBUS {
     
     public ArrayList <QLAdminDTO> search_all (String value){
         ArrayList <QLAdminDTO> result_search = new ArrayList <QLAdminDTO> ();
+        value = value.toLowerCase();
         for (QLAdminDTO e : arrAdmin){
             if (e.getTkAdmin().toLowerCase().contains(value)) {
                 result_search.add(e);

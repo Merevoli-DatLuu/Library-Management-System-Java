@@ -116,20 +116,21 @@ public class QLNhaCungCapBUS {
     
     public ArrayList <QLNhaCungCapDTO> search_all (String column, String value){
         ArrayList <QLNhaCungCapDTO> result_search = new ArrayList <QLNhaCungCapDTO> ();
+        value = value.toLowerCase();
         for (QLNhaCungCapDTO e : arrNhaCungCap){
-            if (e.getMaNCC().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaNCC().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getTenNCC().toLowerCase().compareTo(value) != -1) {
+            else if (e.getTenNCC().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+            else if (e.getSdt().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+            else if (e.getEmail().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+            else if (e.getDiaChi().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }

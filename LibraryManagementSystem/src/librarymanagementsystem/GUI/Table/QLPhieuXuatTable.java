@@ -120,6 +120,7 @@ public class QLPhieuXuatTable{
         PaginationDataProvider<QLPhieuXuatDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLPhieuXuatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_PhieuXuat();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -167,6 +168,7 @@ public class QLPhieuXuatTable{
         PaginationDataProvider<QLPhieuXuatDTO> dataProvider = createDataProvider(objectDataModel, phieuXuat);
         PaginatedTableDecorator<QLPhieuXuatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_PhieuXuat();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

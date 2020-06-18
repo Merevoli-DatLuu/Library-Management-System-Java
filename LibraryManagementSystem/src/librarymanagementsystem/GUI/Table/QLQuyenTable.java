@@ -110,7 +110,7 @@ public class QLQuyenTable {
         PaginationDataProvider<QLQuyenDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLQuyenDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
-        //
+        paginatedDecorator.getClickEvent_Quyen();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -153,7 +153,7 @@ public class QLQuyenTable {
         PaginationDataProvider<QLQuyenDTO> dataProvider = createDataProvider(objectDataModel, quyen);
         PaginatedTableDecorator<QLQuyenDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
-        //
+        paginatedDecorator.getClickEvent_Quyen();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

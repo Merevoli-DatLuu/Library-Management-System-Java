@@ -15,7 +15,9 @@ public class QLNhanVienBUS {
     }
     
     public QLNhanVienBUS(int i){
-        
+        if (arrNhanVien.size() == 0){
+            arrNhanVien = nhanVienDAO.readDB();
+        }
     }
     
     public String [] getHeaders(){
@@ -135,29 +137,30 @@ public class QLNhanVienBUS {
     
     public ArrayList <QLNhanVienDTO> search_all (String column, String value){
         ArrayList <QLNhanVienDTO> result_search = new ArrayList <QLNhanVienDTO> ();
+        value = value.toLowerCase();
         for (QLNhanVienDTO e : arrNhanVien){
-            if (e.getMaNhanVien().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaNhanVien().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getPassword().toLowerCase().compareTo(value) != -1) {
+            else if (e.getPassword().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getHoTen().toLowerCase().compareTo(value) != -1) {
+            else if (e.getHoTen().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getNgaySinh().toLowerCase().compareTo(value) != -1) {
+            else if (e.getNgaySinh().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getDiaChi().toLowerCase().compareTo(value) != -1) {
+            else if (e.getDiaChi().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getSdt().toLowerCase().compareTo(value) != -1) {
+            else if (e.getSdt().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getEmail().toLowerCase().compareTo(value) != -1) {
+            else if (e.getEmail().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (e.getChucVu().toLowerCase().compareTo(value) != -1) {
+            else if (e.getChucVu().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }

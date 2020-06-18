@@ -7,20 +7,41 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLPhieuNhapBUS {
-    private ArrayList<QLPhieuNhapDTO> arrNhapKho = new ArrayList<>();
+    private static ArrayList<QLPhieuNhapDTO> arrNhapKho = new ArrayList<>();
     private QLPhieuNhapDAO nhapKhoDAO = new QLPhieuNhapDAO();
 
     public QLPhieuNhapBUS() {
         arrNhapKho= nhapKhoDAO.readDB();
     }
     
+    public QLPhieuNhapBUS(int i){
+        if (arrNhapKho.size() == 0){
+            arrNhapKho = nhapKhoDAO.readDB();
+        }
+    }
+    
     public String [] getHeaders(){
         return new String[]{"Mã Nhập Kho", "Ngày Nhập", "Mã Nhân Viên", "Mã Nhà Cung Cấp", "Mã Sách", "Tổng Số Lượng", "Tổng Tiền"};
     }
     
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 0, 1, 1};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<7; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
+    }
+    
     public QLPhieuNhapDTO getPhieuNhap(String maNhap){
         for (QLPhieuNhapDTO e : arrNhapKho){
-            if (e.equals(maNhap)){
+            if (e.getMaNhap().equals(maNhap)){
                 return e;
             }
         }
@@ -82,15 +103,13 @@ public class QLPhieuNhapBUS {
                     }
                 }
                 break;
-            // Không search cột mã sách
-//            case "Mã Sách":
-//                for (QLPhieuNhapDTO e : arrNhapKho){
-//                    String masach=String.valueOf(e.getMaSach());
-//                    if (masach.toLowerCase().compareTo(value) != -1) {
-//                        result_search.add(e);
-//                    }
-//                }
-//                break;
+            case "Mã Sách":
+                for (QLPhieuNhapDTO e : arrNhapKho){
+                    if (e.getMaSach().toString().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
             case "Tổng Số Lượng":
                 for (QLPhieuNhapDTO e : arrNhapKho){
                     if (Integer.toString(e.getTongSoLuong()).toLowerCase().contains(value)) {

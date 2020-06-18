@@ -88,10 +88,11 @@ public class QLKhoSachBUS {
     
     public ArrayList <QLKhoSachDTO> search (String column, String value){
         ArrayList <QLKhoSachDTO> result_search = new ArrayList <QLKhoSachDTO> ();
+        value = value.toLowerCase();
         switch (column) { // Dựa vào Headers
             case "Mã Sách ":
                 for (QLKhoSachDTO e : arrKhoSach){
-                    if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+                    if (e.getMaSach().toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -99,7 +100,7 @@ public class QLKhoSachBUS {
             case "Số Lượng": 
                 for (QLKhoSachDTO e : arrKhoSach){
                     String soLuong= String.valueOf(e.getSoLuong());
-                    if (soLuong.toLowerCase().compareTo(value) != -1) {
+                    if (soLuong.toLowerCase().contains(value)) {
                         result_search.add(e);
                     }
                 }
@@ -139,12 +140,13 @@ public class QLKhoSachBUS {
     
     public ArrayList <QLKhoSachDTO> search_all (String column, String value){
         ArrayList <QLKhoSachDTO> result_search = new ArrayList <QLKhoSachDTO> ();
+        value = value.toLowerCase();
         for (QLKhoSachDTO e : arrKhoSach){
             String soLuong=String.valueOf(e.getSoLuong());
-            if (e.getMaSach().toLowerCase().compareTo(value) != -1) {
+            if (e.getMaSach().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-            else if (soLuong.toLowerCase().compareTo(value) != -1) {
+            else if (soLuong.toLowerCase().contains(value)) {
                 result_search.add(e);
             }
         }

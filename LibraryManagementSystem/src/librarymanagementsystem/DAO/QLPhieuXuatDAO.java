@@ -96,7 +96,7 @@ public class QLPhieuXuatDAO {
             }
         }
         DBXuatKhoSach.closeConnection();
-        return check1 & check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean add(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, int tongSoLuong){
@@ -120,7 +120,7 @@ public class QLPhieuXuatDAO {
             }
         }
         DBXuatKhoSach.closeConnection();
-        return check1 & check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean del(String maXuat){
@@ -128,7 +128,7 @@ public class QLPhieuXuatDAO {
         Boolean check1 = DBXuatKhoSach.SQLUpdate("DELETE FROM PhieuXuat WHERE PhieuXuat.maXuat = '" + maXuat + "';");
         Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuXuat WHERE ChiTietPhieuXuat.maXuat = '" + maXuat + "';");
         DBXuatKhoSach.closeConnection();
-        return check1 && check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean mod(QLPhieuXuatDTO xuatKho){
@@ -151,7 +151,7 @@ public class QLPhieuXuatDAO {
             }
         }
         DBXuatKhoSach.closeConnection();
-        return check1 && check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean mod(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, int tongSoLuong){
@@ -174,6 +174,6 @@ public class QLPhieuXuatDAO {
             }
         }
         DBXuatKhoSach.closeConnection();
-        return check1 && check2;
+        return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
 }

@@ -101,10 +101,17 @@ public class QLAdminTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(260);
+        width.add(260);
+        width.add(355);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLAdminDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLAdminDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_Admin();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -138,10 +145,17 @@ public class QLAdminTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(260);
+        width.add(260);
+        width.add(355);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLAdminDTO> dataProvider = createDataProvider(objectDataModel, admin);
         PaginatedTableDecorator<QLAdminDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_Admin();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

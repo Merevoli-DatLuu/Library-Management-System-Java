@@ -16,7 +16,9 @@ public class QLChiTietSachBUS {
     }
     
     public QLChiTietSachBUS(int i){
-        
+        if (arrChiTietSach.size() == 0){
+            arrChiTietSach = chiTietSachDAO.readDB();
+        }
     }
     
     public void readDB(){
@@ -149,6 +151,7 @@ public class QLChiTietSachBUS {
     
     public ArrayList <QLChiTietSachDTO> search_all (String column, String value){
         ArrayList <QLChiTietSachDTO> result_search = new ArrayList <QLChiTietSachDTO> ();
+        value = value.toLowerCase();
         for (QLChiTietSachDTO e : arrChiTietSach){
             if (e.getIDSach().toLowerCase().compareTo(value) != -1) {
                 result_search.add(e);

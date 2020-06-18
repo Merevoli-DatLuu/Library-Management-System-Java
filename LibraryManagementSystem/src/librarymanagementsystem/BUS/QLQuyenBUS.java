@@ -14,7 +14,9 @@ public class QLQuyenBUS {
     }
     
     public QLQuyenBUS(int i){
-        
+        if (arrQuyen.size() == 0){
+            arrQuyen = quyenDAO.readDB();
+        }
     }
     
     public String[] getHeaders(){

@@ -7,15 +7,36 @@ import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
 
 public class QLPhieuXuatBUS {
-    private ArrayList<QLPhieuXuatDTO> arrXuatKho = new ArrayList<>();
+    private static ArrayList<QLPhieuXuatDTO> arrXuatKho = new ArrayList<>();
     private QLPhieuXuatDAO xuatKhoDAO = new QLPhieuXuatDAO();
 
     public QLPhieuXuatBUS() {
         arrXuatKho= xuatKhoDAO.readDB();
     }
     
+    public QLPhieuXuatBUS(int i){
+        if (arrXuatKho.size() == 0){
+            arrXuatKho = xuatKhoDAO.readDB();
+        }
+    }
+    
     public String [] getHeaders(){
         return new String[]{"Mã Xuất Kho", "Ngày Xuất", "Mã Nhân Viên", "Mã Sách", "Tổng Số Lượng"};
+    }
+    
+    // 0:string, 1:int, 2:date
+    public int[] getHeadersType(){
+        return new int[]{0, 0, 0, 0, 1};
+    }
+    
+    public int findHeaderType(String header){
+        for (int i=0; i<5; i++){
+            if (getHeaders()[i].equals(header)){
+                return getHeadersType()[i];
+            }
+        }
+        System.err.println("header type not found");
+        return -1;
     }
     
     public QLPhieuXuatDTO getPhieuXuat(String maXuat){
@@ -75,13 +96,13 @@ public class QLPhieuXuatBUS {
                     }
                 }
                 break;
-//            case "Mã Sách":
-//                for (QLPhieuXuatDTO e : arrXuatKho){
-//                    if (e.getMaSach().toString().toLowerCase().contains(value)) {
-//                        result_search.add(e);
-//                    }
-//                }
-//                break;
+            case "Mã Sách":
+                for (QLPhieuXuatDTO e : arrXuatKho){
+                    if (e.getMaSach().toString().toLowerCase().contains(value)) {
+                        result_search.add(e);
+                    }
+                }
+                break;
             case "Tổng Số Lượng":
                 for (QLPhieuXuatDTO e : arrXuatKho){
                     if (Integer.toString(e.getTongSoLuong()).toString().toLowerCase().contains(value)) {
@@ -95,6 +116,7 @@ public class QLPhieuXuatBUS {
     
     public ArrayList <QLPhieuXuatDTO> search_all (String column, String value){
         ArrayList <QLPhieuXuatDTO> result_search = new ArrayList <QLPhieuXuatDTO> ();
+        value = value.toLowerCase();
         for (QLPhieuXuatDTO e : arrXuatKho){
             if (e.getMaXuat().toLowerCase().contains(value)) {
                 result_search.add(e);
@@ -105,9 +127,9 @@ public class QLPhieuXuatBUS {
             else if (e.getMaNhanVien().toLowerCase().contains(value)) {
                 result_search.add(e);
             }
-//            else if (e.getMaSach().toArray().equals(value)) {
-//                result_search.add(e);
-//            }
+            else if (e.getMaSach().toString().contains(value)) {
+                result_search.add(e);
+            }
             else if (Integer.toString(e.getTongSoLuong()).toString().toLowerCase().contains(value)) {
                 result_search.add(e);
             }

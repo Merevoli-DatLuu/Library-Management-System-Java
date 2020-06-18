@@ -131,6 +131,7 @@ public class QLPhieuNhapTable {
         PaginationDataProvider<QLPhieuNhapDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLPhieuNhapDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_PhieuNhap();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -178,6 +179,7 @@ public class QLPhieuNhapTable {
         PaginationDataProvider<QLPhieuNhapDTO> dataProvider = createDataProvider(objectDataModel, phieuNhap);
         PaginatedTableDecorator<QLPhieuNhapDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
                 dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
+        paginatedDecorator.getClickEvent_PhieuNhap();
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
