@@ -101,10 +101,15 @@ public class QLLDPhatTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(220);
+        width.add(440);
+        width.add(200);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLLDPhatDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLLDPhatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -138,10 +143,15 @@ public class QLLDPhatTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(220);
+        width.add(440);
+        width.add(200);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLLDPhatDTO> dataProvider = createDataProvider(objectDataModel, ldPhat);
         PaginatedTableDecorator<QLLDPhatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

@@ -16,7 +16,9 @@ public class QLKhoSachBUS {
     }
     
     public QLKhoSachBUS(int i) {
-        
+        if (arrKhoSach.size() == 0){
+            arrKhoSach= khoSachDAO.readDB();
+        }
     }
     
     
@@ -54,7 +56,7 @@ public class QLKhoSachBUS {
     
     public QLKhoSachDTO getKhoSach(String maSach){
         for (QLKhoSachDTO e : arrKhoSach){
-            if (e.equals(maSach)){
+            if (e.getMaSach().equals(maSach)){
                 return e;
             }
         }

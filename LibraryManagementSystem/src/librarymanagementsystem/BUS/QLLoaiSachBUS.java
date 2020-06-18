@@ -16,7 +16,9 @@ public class QLLoaiSachBUS {
     }
     
     public QLLoaiSachBUS(int i){
-        
+        if (arrSach.size() == 0){
+            arrSach = sachDAO.readDB();
+        }
     }
     
     // Bỏ Bìa Sách

@@ -16,6 +16,38 @@ public class QLPhieuNhapDAO {
         ArrayList<QLPhieuNhapDTO> arrNhapKho = new ArrayList<>();
         
         try{
+            HashMap<String, ArrayList <String> > hashmap = new HashMap<String, ArrayList <String> >();
+            HashMap<String, ArrayList <Integer> > hashmap_2 = new HashMap<String, ArrayList <Integer> >();
+            String query_maSach = "SELECT * FROM chiTietPhieuNhap";
+            ResultSet rs_maSach = DBNhapKhoSach.SQLQuery(query_maSach);
+            if (rs_maSach != null){
+                while (rs_maSach.next()){
+                    String maPhieuNhap = rs_maSach.getString("maNhap");
+                    String maSach = rs_maSach.getString("maSach");
+                    int soLuong = rs_maSach.getInt("soLuong");
+                    if (!hashmap.containsKey(maPhieuNhap)){
+                        ArrayList <String > temp = new ArrayList<>();
+                        temp.add(maSach);
+                        hashmap.put(maPhieuNhap, temp);
+                        
+                        ArrayList <Integer > temp_2 = new ArrayList<>();
+                        temp_2.add(soLuong);
+                        hashmap_2.put(maPhieuNhap, temp_2);
+                    }
+                    else{
+                        ArrayList <String > temp = hashmap.get(maPhieuNhap);
+                        
+                        temp.add(maSach);
+                        hashmap.put(maPhieuNhap, temp);
+                        
+                        ArrayList <Integer > temp_2 = hashmap_2.get(maPhieuNhap);
+                        
+                        temp_2.add(soLuong);
+                        hashmap_2.put(maPhieuNhap, temp_2);
+                    }
+                }
+            }
+            
             String query = "SELECT * FROM PhieuNhap";
             ResultSet rs = DBNhapKhoSach.SQLQuery(query);
             
@@ -23,21 +55,12 @@ public class QLPhieuNhapDAO {
                 while (rs.next()){
                     String maNhap = rs.getString("maNhap");
                     String ngayNhap = rs.getString("ngayNhap");                    
-                    ArrayList <String> maSach = new ArrayList <String> ();
-                    ArrayList <Integer> soLuong = new ArrayList <Integer> ();
+                    ArrayList <String> maSach = hashmap.get(maNhap);
+                    ArrayList <Integer> soLuong = hashmap_2.get(maNhap);
                     String maNhanVien = rs.getString("maNhanVien");
                     String maNCC = rs.getString("maNCC");
                     int tongSoLuong = rs.getInt("tongSoLuong");
                     int tongTien = rs.getInt("tongTien");
-                    
-                    String query_chiTietPhieuNhap = "SELECT * FROM chiTietPhieuNhap WHERE ChiTietPhieuNhap.maNhap = '"  + maNhap + "'";
-                    ResultSet rs_chiTietPhieuNhap = DBNhapKhoSach.SQLQuery(query_chiTietPhieuNhap);
-                    if (rs_chiTietPhieuNhap != null){
-                        while (rs_chiTietPhieuNhap.next()){
-                            maSach.add(rs_chiTietPhieuNhap.getString("maSach"));
-                            soLuong.add(rs_chiTietPhieuNhap.getInt("soLuong"));
-                        }
-                    }
                     
                     arrNhapKho.add(new QLPhieuNhapDTO(maNhap, ngayNhap, maSach, soLuong, maNhanVien, maNCC, tongSoLuong, tongTien));
                 }

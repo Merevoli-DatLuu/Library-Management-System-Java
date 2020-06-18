@@ -16,25 +16,50 @@ public class QLPhieuXuatDAO {
         ArrayList<QLPhieuXuatDTO> arrXuatKho = new ArrayList<>();
         
         try{
+            HashMap<String, ArrayList <String> > hashmap = new HashMap<String, ArrayList <String> >();
+            HashMap<String, ArrayList <Integer> > hashmap_2 = new HashMap<String, ArrayList <Integer> >();
+            String query_maSach = "SELECT * FROM chiTietPhieuXuat";
+            ResultSet rs_maSach = DBXuatKhoSach.SQLQuery(query_maSach);
+            if (rs_maSach != null){
+                while (rs_maSach.next()){
+                    String maPhieuNhap = rs_maSach.getString("maXuat");
+                    String maSach = rs_maSach.getString("maSach");
+                    int soLuong = rs_maSach.getInt("soLuong");
+                    if (!hashmap.containsKey(maPhieuNhap)){
+                        ArrayList <String > temp = new ArrayList<>();
+                        temp.add(maSach);
+                        hashmap.put(maPhieuNhap, temp);
+                        
+                        ArrayList <Integer > temp_2 = new ArrayList<>();
+                        temp_2.add(soLuong);
+                        hashmap_2.put(maPhieuNhap, temp_2);
+                    }
+                    else{
+                        ArrayList <String > temp = hashmap.get(maPhieuNhap);
+                        
+                        temp.add(maSach);
+                        hashmap.put(maPhieuNhap, temp);
+                        
+                        ArrayList <Integer > temp_2 = hashmap_2.get(maPhieuNhap);
+                        
+                        temp_2.add(soLuong);
+                        hashmap_2.put(maPhieuNhap, temp_2);
+                    }
+                }
+            }
+            
             String query = "SELECT * FROM PhieuXuat";
             ResultSet rs = DBXuatKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
                     String maXuat = rs.getString("maXuat");
                     String ngayXuat = rs.getString("ngayXuat");                    
-                    ArrayList <String> maSach = new ArrayList <String> ();
-                    ArrayList <Integer> soLuong = new ArrayList <Integer> ();
+                    ArrayList <String> maSach = hashmap.get(maXuat);
+                    ArrayList <Integer> soLuong = hashmap_2.get(maXuat);
                     String maNhanVien = rs.getString("maNhanVien");
                     int tongSoLuong = rs.getInt("tongSoLuong");
                     
-                    String query_chiTietPhieuXuat = "SELECT * FROM chiTietPhieuXuat WHERE ChiTietPhieuXuat.maXuat = '"  + maXuat + "'";
-                    ResultSet rs_chiTietPhieuXuat = DBXuatKhoSach.SQLQuery(query_chiTietPhieuXuat);
-                    if (rs_chiTietPhieuXuat != null){
-                        while (rs_chiTietPhieuXuat.next()){
-                            maSach.add(rs_chiTietPhieuXuat.getString("maSach"));
-                            soLuong.add(rs_chiTietPhieuXuat.getInt("soLuong"));
-                        }
-                    }
+ 
                     
                     arrXuatKho.add(new QLPhieuXuatDTO(maXuat, ngayXuat, maSach, soLuong, maNhanVien, tongSoLuong));
                 }

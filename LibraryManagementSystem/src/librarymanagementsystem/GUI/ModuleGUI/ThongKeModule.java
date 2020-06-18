@@ -71,8 +71,8 @@ public class ThongKeModule extends JFrame{
         JPanel panel12 = new ThongKeModule_SachThuVien().getTrangChuGUI();
         JPanel panel13 = new ThongKeModule_PhieuMuon().getTrangChuGUI();
         JPanel panel2 = new ThongKeModule_The().getThongKeModule_The();
-        JPanel panel3 = createJPanel("Thống Kê Nhân Viên");
-        JPanel panel4 = createJPanel("Thống Kê Kho Sách");
+        JPanel panel3 = new ThongKeModule_NhanVien().getThongKeNhanVienGUI();
+        JPanel panel4 = new ThongKeModule_KhoSach().getThongKeKhoSachGUI();
         
         panel1.setLocation(0, 0);
         panel1.setSize(940, 600);

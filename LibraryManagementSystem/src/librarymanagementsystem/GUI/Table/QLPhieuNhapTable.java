@@ -117,10 +117,20 @@ public class QLPhieuNhapTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(135);
+        width.add(170);
+        width.add(160);
+        width.add(180);
+        width.add(370);
+        width.add(140);
+        width.add(150);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLPhieuNhapDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLPhieuNhapDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -154,10 +164,20 @@ public class QLPhieuNhapTable {
         //table.getTableHeader().;
         //** End Adjust **//
         
+        /** Table Column Width **/
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(135);
+        width.add(170);
+        width.add(160);
+        width.add(180);
+        width.add(370);
+        width.add(140);
+        width.add(150);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLPhieuNhapDTO> dataProvider = createDataProvider(objectDataModel, phieuNhap);
         PaginatedTableDecorator<QLPhieuNhapDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

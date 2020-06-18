@@ -19,6 +19,7 @@ import java.awt.Point;
 import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.AlertGUI;
 import librarymanagementsystem.GUI.ThemSuaGUI.SuaLoaiSachForm;
+import librarymanagementsystem.GUI.ThemSuaGUI.XemLoaiSachForm;
 
 public class PaginatedTableDecorator<T> {
     private JTable table;
@@ -142,6 +143,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void viewActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                            new XemLoaiSachForm(pKey).setVisible(true);
                         }
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){

@@ -15,6 +15,12 @@ public class QLLDPhatBUS {
         arrLDPhat= LDPhatDAO.readDB();
     }
     
+    public QLLDPhatBUS(int i){
+        if (arrLDPhat.size() == 0){
+            arrLDPhat = LDPhatDAO.readDB();
+        }
+    }
+    
     public String [] getHeaders(){
         return new String[]{"Mã Lý Do Phạt", "Tên Lý Do Phạt", "Mức Độ"};
     }
@@ -36,7 +42,7 @@ public class QLLDPhatBUS {
     
     public QLLDPhatDTO getLDPhat(String maLDPhat){
         for (QLLDPhatDTO e : arrLDPhat){
-            if (e.equals(maLDPhat)){
+            if (e.getMaLDPhat().equals(maLDPhat)){
                 return e;
             }
         }

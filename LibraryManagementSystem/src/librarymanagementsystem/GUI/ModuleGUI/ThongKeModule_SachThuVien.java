@@ -37,10 +37,10 @@ public class ThongKeModule_SachThuVien {
         JPanel card_2 = new dashboardCard("THẺ", Integer.toString(value_2), "../../images/output-onlinepngtools (86).png").getdashboardCard();
         JPanel card_3 = new dashboardCard("MƯỢN SÁCH", Integer.toString(value_3), "../../images/output-onlinepngtools (87).png").getdashboardCard();
         JPanel card_4 = new dashboardCard("NHÂN VIÊN", Integer.toString(value_4), "../../images/output-onlinepngtools (88).png").getdashboardCard();*/
-        JPanel card_1 = new dashboardCard_2("Số Lượng Sách", Integer.toString(tk.soLuong_Sach()), "../../images/output-onlinepngtools - 2020-06-05T084538.007.png").getdashboardCard();
-        JPanel card_2 = new dashboardCard_2("Thể Loại", Integer.toString(tk.soLuong_Sach_TheLoai()), "../../images/output-onlinepngtools - 2020-06-05T084549.737.png").getdashboardCard();
-        JPanel card_3 = new dashboardCard_2("Sách Việt Nam", Integer.toString(tk.soLuong_Sach_NgonNgu("Tiếng Việt")), "../../images/output-onlinepngtools - 2020-06-05T084557.140.png").getdashboardCard();
-        JPanel card_4 = new dashboardCard_2("Sách Nước Ngoài", Integer.toString(tk.soLuong_Sach_NgonNgu("Tiếng Anh")), "../../images/output-onlinepngtools - 2020-06-05T084602.595.png").getdashboardCard();
+        JPanel card_1 = new dashboardCard_2("Số Lượng Sách", Integer.toString(tk.soLuong_SachThuVien()), "../../images/output-onlinepngtools - 2020-06-05T084538.007.png").getdashboardCard();
+        JPanel card_2 = new dashboardCard_2("Tình Trạng Tốt", Integer.toString(tk.soLuong_SachThuVien_TinhTrang("Tốt")), "../../images/output-onlinepngtools - 2020-06-05T084549.737.png").getdashboardCard();
+        JPanel card_3 = new dashboardCard_2("Tình Trạng Ổn", Integer.toString(tk.soLuong_SachThuVien_TinhTrang("Bình Thường")), "../../images/output-onlinepngtools - 2020-06-05T084557.140.png").getdashboardCard();
+        JPanel card_4 = new dashboardCard_2("Tình Trạng Cũ", Integer.toString(tk.soLuong_SachThuVien_TinhTrang("Cũ")), "../../images/output-onlinepngtools - 2020-06-05T084602.595.png").getdashboardCard();
         card_1.setBounds(20, 40 - 10, 220, 184);
         card_2.setBounds(250, 40 - 10, 220, 184);
         card_3.setBounds(480, 40 - 10, 220, 184);

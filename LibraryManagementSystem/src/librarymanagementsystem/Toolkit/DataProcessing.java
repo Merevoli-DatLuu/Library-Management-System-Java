@@ -416,6 +416,11 @@ public class DataProcessing {
         return arr.get(k);
     }
     
+    /** Tiền Phạt **/
+    public int calTienPhat(int mucDo){
+        return 5000*mucDo;
+    }
+    
     /** data.length() = date.length() By Date**/ 
     /** Get Data from Analysis **/
     public Double[] getDateValue(ArrayList <String> date) { // count from 2019 && only this count from 0

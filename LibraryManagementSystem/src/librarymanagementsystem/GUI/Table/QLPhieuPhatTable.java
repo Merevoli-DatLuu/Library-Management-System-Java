@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import librarymanagementsystem.BUS.QLPhieuPhatBUS;
+import librarymanagementsystem.BUS.QLLDPhatBUS;
 import librarymanagementsystem.DTO.QLPhieuPhatDTO;
 
 public class QLPhieuPhatTable{
@@ -27,6 +28,7 @@ public class QLPhieuPhatTable{
     }
         
     private static ObjectTableModel<QLPhieuPhatDTO> createObjectDataModel(){
+        QLLDPhatBUS ldPhat = new QLLDPhatBUS(); 
         return new ObjectTableModel<QLPhieuPhatDTO>() {
             @Override
             public Object getValueAt(QLPhieuPhatDTO phieuPhat, int columnIndex) {
@@ -38,6 +40,8 @@ public class QLPhieuPhatTable{
                     case 2:
                         return phieuPhat.getMaLDPhat();
                     case 3:
+                        return ldPhat.getLDPhat(phieuPhat.getMaLDPhat()).getTenLDPhat(); 
+                    case 4:
                         return phieuPhat.getTienPhat(); 
                 }
                 return null;
@@ -45,7 +49,7 @@ public class QLPhieuPhatTable{
 
             @Override
             public int getColumnCount() {
-                return 4;
+                return 5;
             }
 
             @Override
@@ -58,6 +62,8 @@ public class QLPhieuPhatTable{
                     case 2:
                         return "Mã Lý Do Phạt";
                     case 3:
+                        return "Tên Lý Do Phạt";
+                    case 4:
                         return "Tiền Phạt";
                 }
                 return null;
@@ -105,10 +111,17 @@ public class QLPhieuPhatTable{
         //table.getTableHeader().;
         //** End Adjust **//
         
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(195);
+        width.add(170);
+        width.add(150);
+        width.add(180);
+        width.add(160);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLPhieuPhatDTO> dataProvider = createDataProvider(objectDataModel);
         PaginatedTableDecorator<QLPhieuPhatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }
@@ -142,10 +155,17 @@ public class QLPhieuPhatTable{
         //table.getTableHeader().;
         //** End Adjust **//
         
+        ArrayList <Integer> width = new ArrayList<>();
+        width.add(195);
+        width.add(170);
+        width.add(150);
+        width.add(180);
+        width.add(160);
+        
         table.setAutoCreateRowSorter(true);
         PaginationDataProvider<QLPhieuPhatDTO> dataProvider = createDataProvider(objectDataModel, phieuphat);
         PaginatedTableDecorator<QLPhieuPhatDTO> paginatedDecorator = PaginatedTableDecorator.decorate(table,
-                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10);
+                dataProvider, new int[]{5, 10, 20, 50, 75, 100}, 10, width);
         JPanel p = paginatedDecorator.getContentPanel();
         return p;
     }

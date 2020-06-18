@@ -178,7 +178,7 @@ public class ChartDrawing{
         return chart; 
     }
     
-    private CategoryDataset createDataSet_BarChart(String series, ArrayList <String> value_name, ArrayList <Integer> value){
+    public CategoryDataset createDataSet_BarChart(String series, ArrayList <String> value_name, ArrayList <Integer> value){
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i=0; i<value_name.size(); i++){
@@ -187,7 +187,7 @@ public class ChartDrawing{
         return dataset;
     }
     
-    private JFreeChart createChart_BarChart(String title, String series, CategoryDataset dataset ) {
+    public JFreeChart createChart_BarChart(String title, String series, CategoryDataset dataset ) {
 
         JFreeChart barChart = ChartFactory.createBarChart(
                 title,

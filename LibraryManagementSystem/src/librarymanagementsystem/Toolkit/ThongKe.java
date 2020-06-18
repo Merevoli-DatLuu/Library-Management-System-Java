@@ -302,6 +302,83 @@ public class ThongKe {
         return rs;
     }
     
+    /**  Nhân Viên  **/
+    public int getSoLuongNhanVien(){
+        return new QLNhanVienBUS(0).getArrNhanVien().size();
+    }
+    
+    public int getSoLuongNhanVien_ChucVu(){
+        ArrayList <QLNhanVienDTO> nhanVien = new QLNhanVienBUS(0).getArrNhanVien();
+        Set<String> set = new HashSet<String>();
+        for (QLNhanVienDTO e : nhanVien){
+            set.add(e.getChucVu());
+        }
+        return set.size();
+    }
+    
+    public int getSoLuongNhanVien_ChucVu(String chucVu){
+        ArrayList <QLNhanVienDTO> nhanVien = new QLNhanVienBUS(0).getArrNhanVien();
+        int count=0;
+        for (QLNhanVienDTO e : nhanVien){
+            if (e.getChucVu().equals(chucVu)){
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    /**  Kho Sách  **/
+    public int getSoLuongKho_LoaiSach(){
+        ArrayList <QLKhoSachDTO> khoSach = new QLKhoSachBUS().getArrKhoSach();
+        Set<String> set = new HashSet<String>();
+        for (QLKhoSachDTO e : khoSach){
+            set.add(e.getMaSach());
+        }
+        return set.size();
+    }
+    
+    public int getSoLuongKho_ChiTietSach(){
+        ArrayList <QLKhoSachDTO> khoSach = new QLKhoSachBUS().getArrKhoSach();
+        int sum = 0;
+        for (QLKhoSachDTO e : khoSach){
+            sum += e.getSoLuong();
+        }
+        return sum;
+    }
+    
+    public int getSoLuongKho_ChiTietSachTrungBinh(){
+        return (int)getSoLuongKho_ChiTietSach()/getSoLuongKho_LoaiSach();
+    }
+    
+    public int getSoLuongKho_ChiTietSachLonNhat(){
+        ArrayList <QLKhoSachDTO> khoSach = new QLKhoSachBUS().getArrKhoSach();
+        int max = 0;
+        for (QLKhoSachDTO e : khoSach){
+            if (max < e.getSoLuong()){
+                max = e.getSoLuong();
+            }
+        }
+        return max;
+    }
+    
+    public ArrayList <String> getSoLuongKho_LoaiSacharr(){
+        ArrayList <QLKhoSachDTO> khoSach = new QLKhoSachBUS(0).getArrKhoSach();
+        Set<String> set = new HashSet<String>();
+        for (QLKhoSachDTO e : khoSach){
+            set.add(e.getMaSach());
+        }
+        return new ArrayList<String>(set);
+    }
+    
+    public ArrayList <Integer> getSoLuongKho_ChiTietSacharr(){
+        ArrayList <String> khoSach = getSoLuongKho_LoaiSacharr();
+        ArrayList <Integer> soluongarr = new ArrayList<>();
+        for (String e : khoSach){
+            soluongarr.add(new QLKhoSachBUS(0).getKhoSach(e).getSoLuong());
+        }
+        return new ArrayList<Integer>(soluongarr);
+    }
+    
     public static void main(String[] args) {
         System.out.println(new ThongKe().thang_SachMuon_Max());
         System.out.println(new ThongKe().thang_SachMuon_Min());
