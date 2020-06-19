@@ -5,6 +5,7 @@ import librarymanagementsystem.DAO.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import librarymanagementsystem.Toolkit.PasswordHashing;
 
 public class QLAdminBUS {
     private static ArrayList<QLAdminDTO> arrAdmin = new ArrayList<>();
@@ -76,10 +77,24 @@ public class QLAdminBUS {
     }
     
     // Trả về mã Admin, ko có trả về ""
+//    public String kiemTraTaiKhoan(String tk, String pass){        // Cũ chưa hashed password
+//        for (QLAdminDTO e : arrAdmin){
+//            if (e.getTkAdmin().equals(tk) && e.getPassword().equals(pass)){
+//                return e.getTkAdmin();
+//            }
+//        }
+//        return "";
+//    }
+    
     public String kiemTraTaiKhoan(String tk, String pass){
         for (QLAdminDTO e : arrAdmin){
-            if (e.getTkAdmin().equals(tk) && e.getPassword().equals(pass)){
-                return e.getTkAdmin();
+            if (e.getTkAdmin().equals(tk)){
+                PasswordHashing t = new PasswordHashing();
+                t.setSalt(e.getSalt());
+                String passhashing = t.getHashedPassword(pass);
+                if (passhashing.equals(e.getPassword())){
+                    return e.getTkAdmin();
+                }
             }
         }
         return "";

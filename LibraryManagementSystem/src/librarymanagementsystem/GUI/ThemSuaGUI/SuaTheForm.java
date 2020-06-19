@@ -6,10 +6,12 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.BUS.QLKhachHangBUS;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.BUS.QLTheBUS;
 import librarymanagementsystem.DTO.QLTheDTO;
+import static librarymanagementsystem.GUI.ThemSuaGUI.ThemTheForm.error_mess;
 
 public class SuaTheForm extends javax.swing.JFrame{
     int x_Mouse, y_Mouse; // For Moving Window
@@ -126,13 +128,21 @@ public class SuaTheForm extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private boolean check_input(String ngayCap){
+    private boolean check_input(String maKH, String ngayCap){
         if (ngayCap.equals("")){
             error_mess = "Ngày Cấp trống!!!";
             return false;
         }
-        if (dp.check_ngaythangnam(ngayCap)){
+        if (dp.check_ngaythangnam(ngayCap)!=true){
             error_mess = "Ngày Cấp nhập sai!!!";
+            return false;
+        }
+        if (!dp.check_maKhachHang(maKH)){
+            error_mess = "Mã Khách Hàng nhập sai!!!";
+            return false;
+        }
+        if (new QLKhachHangBUS(0).getKhachHang(maKH) == null){
+            error_mess = "Mã Khách Hàng không tồn tại!!!";
             return false;
         }
         return true;
@@ -158,10 +168,11 @@ public class SuaTheForm extends javax.swing.JFrame{
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
         String maKH = maKH_Label.getText();
         String ngayCap = ngayCap_textField.getText();
-        String ngayHetHan = ngayHetHan_Label.getText();
+//        String ngayHetHan = ngayHetHan_Label.getText();
+        String ngayHetHan = Integer.toString(Integer.parseInt(ngayCap_textField.getText().substring(0, 4)) + 1) + ngayCap_textField.getText().substring(4);
         String maThe = mt;
         
-        if (check_input(ngayCap)){
+        if (check_input(maKH, ngayCap)){
             int option = JOptionPane.showConfirmDialog(
                 null, 
                 "Bạn có muốn sửa Thẻ " + maThe + " ?", 
@@ -169,7 +180,7 @@ public class SuaTheForm extends javax.swing.JFrame{
                 JOptionPane.YES_NO_OPTION);
             if(option == JOptionPane.YES_OPTION){
                 System.out.println("Nhập Thành Công");
-                if (theBUS.mod(maThe, ngayHetHan, ngayCap, ngayHetHan)){
+                if (theBUS.mod(maThe, maKH, ngayCap, ngayHetHan)){
                     new AlertGUI(3, "Success", "Sửa Thẻ Thành Công!!!", "Quay Lại").setVisible(true);
                     this.dispose();
                 }

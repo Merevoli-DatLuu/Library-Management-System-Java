@@ -20,7 +20,7 @@ public class SuaAdminForm extends javax.swing.JFrame{
         ad = new QLAdminBUS().getAdmin(tkAdmin);
         tkad = tkAdmin;
         initComponents(ad.getPassword());
-        setSize(550, 198);
+        setSize(830, 216);
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
     }
@@ -40,6 +40,7 @@ public class SuaAdminForm extends javax.swing.JFrame{
         movingWindow = new javax.swing.JLabel();
         password_Field = new javax.swing.JPasswordField();
         tk_Label = new javax.swing.JLabel();
+        RFID_Label = new javax.swing.JLabel();
         nhanVienForm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,7 +65,7 @@ public class SuaAdminForm extends javax.swing.JFrame{
                 exitButtonMouseClicked(evt);
             }
         });
-        exitButton.setBounds(510, 16, 20, 20);
+        exitButton.setBounds(790, 16, 20, 20);
         jPanel1.add(exitButton);
 
         movingWindow.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -77,7 +78,7 @@ public class SuaAdminForm extends javax.swing.JFrame{
                 movingWindowMousePressed(evt);
             }
         });
-        movingWindow.setBounds(0, 0, 550, 60);
+        movingWindow.setBounds(0, 0, 830, 60);
         jPanel1.add(movingWindow);
         
         
@@ -86,21 +87,29 @@ public class SuaAdminForm extends javax.swing.JFrame{
         tk_Label.setText(ad.getTkAdmin());
         tk_Label.setBorder(null);
         tk_Label.setOpaque(false);
-        tk_Label.setBounds(48, 110, 250, 30);
+        tk_Label.setBounds(48, 120, 230, 30);
         jPanel1.add(tk_Label);
 
         password_Field.setBackground(new java.awt.Color(245, 247, 250));
         password_Field.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        password_Field.setText("");
+        password_Field.setText(password);
         password_Field.setBorder(null);
         password_Field.setOpaque(false);
-        password_Field.setBounds(320, 110, 160, 30);
+        password_Field.setBounds(320, 120, 140, 30);
         jPanel1.add(password_Field);
+        
+        RFID_Label.setBackground(new java.awt.Color(245, 247, 250));
+        RFID_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        RFID_Label.setText(ad.getRFID_code());
+        RFID_Label.setBorder(null);
+        RFID_Label.setOpaque(false);
+        RFID_Label.setBounds(612, 120, 230, 30);
+        jPanel1.add(RFID_Label);
 
         nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolssuaadmin.png"))); // NOI18N
-        nhanVienForm.setBounds(0, 0, 550, 198);
+        nhanVienForm.setBounds(0, 0, 830, 216);
         jPanel1.add(nhanVienForm);
-        jPanel1.setBounds(0, 0, 550, 198);
+        jPanel1.setBounds(0, 0, 830, 216);
         
         getContentPane().add(jPanel1);
 
@@ -108,7 +117,7 @@ public class SuaAdminForm extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private boolean check_input(String tkAdmin,String password){
+    private boolean check_input(String tkAdmin,String password,String RFID){
         if (tkAdmin.equals("")){
             error_mess = "Tài khoản trống!!!";
             return false;
@@ -117,7 +126,11 @@ public class SuaAdminForm extends javax.swing.JFrame{
             error_mess = "Password trống!!!";
             return false;
         }
-        if (dp.check_maAdmin(tkAdmin)){
+        if (RFID.equals("")){
+            error_mess = "RFID Code trống!!!";
+            return false;
+        }
+        if (dp.check_maAdmin(tkAdmin)!=true){
             error_mess = "Tài khoản bị sai!!!";
             return false;
         }
@@ -144,9 +157,10 @@ public class SuaAdminForm extends javax.swing.JFrame{
 
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
         String password = password_Field.getText();
+        String RFID= RFID_Label.getText();
         String tkAdmin = tkad;
         
-        if (check_input(tkAdmin, password)){
+        if (check_input(tkAdmin, password, RFID)){
             int option = JOptionPane.showConfirmDialog(
                 null, 
                 "Bạn có muốn sửa mật khẩu của " + tkAdmin + " ?", 
@@ -154,7 +168,7 @@ public class SuaAdminForm extends javax.swing.JFrame{
                 JOptionPane.YES_NO_OPTION);
             if(option == JOptionPane.YES_OPTION){
                 System.out.println("Nhập Thành Công");
-                if (adBUS.mod(tkAdmin, password)){
+                if (adBUS.mod(tkAdmin, password, RFID)){
                     new AlertGUI(3, "Success", "Sửa Mật Khẩu Thành Công!!!", "Quay Lại").setVisible(true);
                     this.dispose();
                 }
@@ -216,5 +230,6 @@ public class SuaAdminForm extends javax.swing.JFrame{
     private javax.swing.JLabel movingWindow;
     private javax.swing.JPasswordField password_Field;
     private javax.swing.JLabel tk_Label;
+    private javax.swing.JLabel RFID_Label;
     // End of variables declaration//GEN-END:variables
 }

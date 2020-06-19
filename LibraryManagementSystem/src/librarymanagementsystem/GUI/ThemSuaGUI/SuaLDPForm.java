@@ -117,7 +117,7 @@ public class SuaLDPForm extends javax.swing.JFrame{
             error_mess = "Mức Độ trống!!!";
             return false;
         }
-        if (dp.check_number(mucDo)){
+        if (dp.check_number(mucDo)!=true){
             error_mess = "Mức Độ nhập sai!!!";
             return false;
         }
@@ -205,7 +205,7 @@ public class SuaLDPForm extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuaLDPForm("LDP000003").setVisible(true);
+                new SuaLDPForm("LDP000004").setVisible(true);
             }
         });
     }

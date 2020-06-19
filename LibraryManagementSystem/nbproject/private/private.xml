@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule_PhieuMuon.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/Main_2.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/Toolkit/ThongKe.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/BUS/QLKhoSachBUS.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule_SachThuVien.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule_NhanVien.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule_KhoSach.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ChartDrawing.java</file>
-            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ModuleGUI/ThongKeModule.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/Toolkit/DataProcessing.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ThemSuaGUI/SuaAdminForm.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ThemSuaGUI/ThemPhieuMuonForm.java</file>
+            <file>file:/D:/Java_Projects/LibraryManagementSystem/src/librarymanagementsystem/GUI/ThemSuaGUI/ThemAdminForm.java</file>
         </group>
     </open-files>
 </project-private>

@@ -139,11 +139,11 @@ public class PhieuNhapModule {
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
         System.out.println("Thêm");
-        new ThemLoaiSachForm().setVisible(true);
+        new ThemPhieuNhapForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Nhập Excel");
+        System.out.println("Nhập Excel");
 //        ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLSach();
 //        
 //        boolean finish = true;
@@ -162,7 +162,7 @@ public class PhieuNhapModule {
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
         System.out.println("Xuất Excel");
-        new ExportFile().writeFileExcel_QLLoaiSach();
+        new ExportFile().writeFileExcel_QLPhieuNhap();
     }                                          
 
     private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                

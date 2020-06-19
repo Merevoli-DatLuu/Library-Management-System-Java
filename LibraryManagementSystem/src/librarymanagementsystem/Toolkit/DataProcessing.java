@@ -67,6 +67,21 @@ public class DataProcessing {
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(str).matches();
     }
+    public Boolean check_maPhieuNhap(String str){
+        String regex = "N\\d{7}";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(str).matches();
+    }
+    public Boolean check_maNCC(String str){
+        String regex = "NCC\\d{6}";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(str).matches();
+    }
+    public Boolean check_maPhieuXuat(String str){
+        String regex = "X\\d{7}";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(str).matches();
+    }
     
     public Boolean check_ngay(String str){
         String regex = "\\d{1,2}";
@@ -84,7 +99,7 @@ public class DataProcessing {
         return pattern.matcher(str).matches();
     }
     public Boolean check_ngaythangnam(String str){
-        String regex = "\\d{1,2}[-|/]\\d{1,2}[-|/]\\d{4}";
+        String regex = "\\d{4}[-|/]\\d{1,2}[-|/]\\d{1,2}";
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(str).matches();
     }
@@ -100,7 +115,7 @@ public class DataProcessing {
     }
     
     public Boolean check_number(String number){
-        String regex = "\\d*";
+        String regex = "\\d{1,11}";
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(number).matches();
     }
@@ -181,16 +196,37 @@ public class DataProcessing {
     public String next_maPhieuPhat(ArrayList <String> ma){
         ArrayList <Integer> int_ma = new ArrayList <>();
         for (String i : ma){
-            int_ma.add(Integer.parseInt(i.substring(2)));
+            int_ma.add(Integer.parseInt(i.substring(1)));
         }
-        return "LDP" + next_ma(int_ma);
+        return "P" + next_ma(int_ma);
     }
     public String next_maNCC(ArrayList <String> ma){
         ArrayList <Integer> int_ma = new ArrayList <>();
         for (String i : ma){
-            int_ma.add(Integer.parseInt(i.substring(2)));
+            int_ma.add(Integer.parseInt(i.substring(3)));
         }
         return "NCC" + next_ma(int_ma);
+    }
+    public String next_MaLDPhat(ArrayList <String> ma){
+        ArrayList <Integer> int_ma = new ArrayList <>();
+        for (String i : ma){
+            int_ma.add(Integer.parseInt(i.substring(3)));
+        }
+        return "LDP" + next_ma(int_ma);
+    }
+    public String next_maPhieuNhap(ArrayList <String> ma){  // fix length sau
+        ArrayList <Integer> int_ma = new ArrayList <>();
+        for (String i : ma){
+            int_ma.add(Integer.parseInt(i.substring(2)));
+        }
+        return "N0" + next_ma(int_ma);
+    }
+    public String next_maPhieuXuat(ArrayList <String> ma){  // fix length sau
+        ArrayList <Integer> int_ma = new ArrayList <>();
+        for (String i : ma){
+            int_ma.add(Integer.parseInt(i.substring(2)));
+        }
+        return "X0" + next_ma(int_ma);
     }
         
     /** Thêm phẩy và Đơn vị **/
@@ -550,5 +586,7 @@ public class DataProcessing {
         }
     }***/
     
-    
+    public static void main(String[] args) {
+        System.out.println(new DataProcessing().check_number("dfsdf"));
+    }
 }

@@ -3,9 +3,12 @@ package librarymanagementsystem.GUI.ThemSuaGUI;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.BUS.QLLDPhatBUS;
+import librarymanagementsystem.BUS.QLPhieuMuonBUS;
 import librarymanagementsystem.BUS.QLPhieuPhatBUS;
 import librarymanagementsystem.DTO.QLPhieuPhatDTO;
 import librarymanagementsystem.GUI.*;
+import static librarymanagementsystem.GUI.ThemSuaGUI.ThemPhieuPhatForm.error_mess;
 import librarymanagementsystem.Toolkit.DataProcessing;
 
 public class SuaPhieuPhatForm extends javax.swing.JFrame{
@@ -19,7 +22,7 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
     public SuaPhieuPhatForm(String maPP) {
         pp = new QLPhieuPhatBUS().getPhieuPhat(maPP);
         mapp = maPP;
-        initComponents(pp.getMaPhieuMuon(),pp.getMaLDPhat());
+        initComponents(pp.getMaPhieuMuon(),pp.getMaLDPhat(),Integer.toString(pp.getTienPhat()));
         setSize(830, 261);
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
@@ -32,15 +35,15 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(String maPM, String maLDP) {
+    private void initComponents(String maPM, String maLDP, String tienPhat) {
         
         jPanel1 = new javax.swing.JPanel();
         addButton = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
         movingWindow = new javax.swing.JLabel();
-        maPM_Label = new javax.swing.JLabel();
+        maPM_Label = new javax.swing.JTextField();
         tienPhat_Label = new javax.swing.JLabel();
-        maLDP_Label = new javax.swing.JLabel();
+        maLDP_Label = new javax.swing.JTextField();
         nhanVienForm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,7 +102,7 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
         jPanel1.add(maLDP_Label);
 
         tienPhat_Label.setBackground(new java.awt.Color(245, 247, 250));
-        tienPhat_Label.setText("200000");
+        tienPhat_Label.setText(tienPhat);
         tienPhat_Label.setBorder(null);
         tienPhat_Label.setOpaque(false);
         tienPhat_Label.setBounds(572, 128, 160, 30);
@@ -117,20 +120,28 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
 
     
     private boolean check_input(String maPM, String maLDP){
-         if (maPM.equals("")){
+        if (maPM.equals("")){
             error_mess = "Mã Phiếu Phạt trống!!!";
             return false;
         }
-         if (maLDP.equals("")){
+        if (maLDP.equals("")){
             error_mess = "Mã Lý Do Phạt trống!!!";
             return false;
         }
-         if (dp.check_maMuonSach(maPM)){
+        if (dp.check_maMuonSach(maPM)!=true){
             error_mess = "Mã Phiếu Mượn bị sai!!!";
             return false;
         }
-          if (dp.check_maLDPhat(maLDP)){
+        if (dp.check_maLDPhat(maLDP)!=true){
             error_mess = "Mã Lý Do Phạt bị sai!!!";
+            return false;
+        }
+        if (new QLPhieuMuonBUS(0).getPhieuMuon(maPM) == null){
+            error_mess = "Mã Phiếu Mượn không tồn tại!!!";
+            return false;
+        }
+        if (new QLLDPhatBUS(0).getLDPhat(maLDP) == null){
+            error_mess = "Mã Lý Do Phạt tồn tại!!!";
             return false;
         }
         return true;
@@ -157,9 +168,8 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
         String maPM = maPM_Label.getText();
         String maLDP = maLDP_Label.getText();
         String maPP = mapp;
-        int tienPhat = Integer.parseInt(tienPhat_Label.getText());
-        
         if (check_input(maPM, maLDP)){
+            int tienPhat = new DataProcessing().calTienPhat(new QLLDPhatBUS(0).getLDPhat(maLDP).getMucDo());
             int option = JOptionPane.showConfirmDialog(
                 null, 
                 "Bạn có muốn sửa Phiếu Phạt " + maPP + " ?", 
@@ -217,7 +227,7 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuaPhieuPhatForm("P000016").setVisible(true);
+                new SuaPhieuPhatForm("P000019").setVisible(true);
             }
         });
     }
@@ -229,7 +239,7 @@ public class SuaPhieuPhatForm extends javax.swing.JFrame{
     private javax.swing.JLabel nhanVienForm;
     private javax.swing.JLabel movingWindow;
     private javax.swing.JLabel tienPhat_Label;
-    private javax.swing.JLabel maPM_Label;
-    private javax.swing.JLabel maLDP_Label;
+    private javax.swing.JTextField maPM_Label;
+    private javax.swing.JTextField maLDP_Label;
     // End of variables declaration//GEN-END:variables
 }

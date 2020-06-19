@@ -41,7 +41,7 @@ public class QLKhachHangDAO {
     
     public Boolean add(QLKhachHangDTO khachHang){
         DBKhachHang = new DBConnection();
-        Boolean check = DBKhachHang.SQLUpdate("INSERT INTO KhachHang(maKhachHang, hoTen, ngaySinh, diaChi, sdt, email, maThe) "
+        Boolean check = DBKhachHang.SQLUpdate("INSERT INTO KhachHang(maKhachHang, hoTen, ngaySinh, diaChi, sdt, email) "
                 + "VALUES ('"
                 + khachHang.getMaKhachHang()+ "','"  
                 + khachHang.getHoTen()+ "','"  

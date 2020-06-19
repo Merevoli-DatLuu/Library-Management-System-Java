@@ -7,6 +7,7 @@ import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.BUS.QLNhanVienBUS;
 import librarymanagementsystem.DTO.QLNhanVienDTO;
+import librarymanagementsystem.Toolkit.PasswordHashing;
 
 public class SuaNhanVienForm extends javax.swing.JFrame{
     int x_Mouse, y_Mouse; // For Moving Window
@@ -37,7 +38,7 @@ public class SuaNhanVienForm extends javax.swing.JFrame{
         addButton = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
         movingWindow = new javax.swing.JLabel();
-        password_textField = new javax.swing.JTextField();
+        password_textField = new javax.swing.JPasswordField();
         hoTen_textField = new javax.swing.JTextField();
         ngaySinh_textField = new javax.swing.JTextField();
         sdt_textField = new javax.swing.JTextField();
@@ -96,7 +97,7 @@ public class SuaNhanVienForm extends javax.swing.JFrame{
 
         password_textField.setBackground(new java.awt.Color(245, 247, 250));
         password_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        password_textField.setText("fdđfddddg");
+        password_textField.setText("");
         password_textField.setBorder(null);
         password_textField.setOpaque(false);
         password_textField.setBounds(355, 127, 130, 30);
@@ -185,15 +186,15 @@ public class SuaNhanVienForm extends javax.swing.JFrame{
             error_mess = "Địa Chỉ trống!!!";
             return false;
         }
-        else if (dp.check_ngaythangnam(ngaySinh)){
+        else if (dp.check_ngaythangnam(ngaySinh)!=true){
             error_mess = "Ngày Sinh nhập sai!!!";
             return false;
         }
-        else if (dp.check_sdt(sdt)){
+        else if (dp.check_sdt(sdt)!=true){
             error_mess = "Số Điện Thoại nhập sai!!!";
             return false;
         }
-        else if (dp.check_email(email)){
+        else if (dp.check_email(email)!=true){
             error_mess = "Email nhập sai!!!";
             return false;
         }
@@ -227,6 +228,15 @@ public class SuaNhanVienForm extends javax.swing.JFrame{
         String chucVu = chucVu_textField.getText();
         String diaChi = diaChi_textField.getText();
         String maNV = mnv;
+        
+        if (password.equals("")){
+            password = new QLNhanVienBUS(0).getNhanVien(maNV).getPassword();
+        }
+        else{
+            PasswordHashing t = new PasswordHashing();
+            t.setSalt(new QLNhanVienBUS(0).getNhanVien(maNV).getSalt());
+            password = t.getHashedPassword(password);
+        }
         
         if (check_input(password, hoTen, ngaySinh, sdt, email, chucVu, diaChi)){
             int option = JOptionPane.showConfirmDialog(
@@ -289,7 +299,7 @@ public class SuaNhanVienForm extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuaNhanVienForm("QL000010").setVisible(true);
+                new SuaNhanVienForm("QL000013").setVisible(true);
             }
         });
     }
@@ -301,7 +311,7 @@ public class SuaNhanVienForm extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nhanVienForm;
     private javax.swing.JLabel movingWindow;
-    private javax.swing.JTextField password_textField;
+    private javax.swing.JPasswordField password_textField;
     private javax.swing.JTextField hoTen_textField;
     private javax.swing.JTextField ngaySinh_textField;
     private javax.swing.JTextField sdt_textField;

@@ -143,11 +143,11 @@ public class SuaNhaCungCapForm extends javax.swing.JFrame{
             error_mess = "Email trống!!!";
             return false;
         }
-        else if (dp.check_sdt(sdt)){
+        else if (!dp.check_sdt(sdt)){
             error_mess = "Số Điện Thoại nhập sai!!!";
             return false;
         }
-        else if (dp.check_email(email)){
+        else if (!dp.check_email(email)){
             error_mess = "Email nhập sai!!!";
             return false;
         }
@@ -239,7 +239,7 @@ public class SuaNhaCungCapForm extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuaNhaCungCapForm("NCC000003").setVisible(true);
+                new SuaNhaCungCapForm("NCC000004").setVisible(true);
             }
         });
     }

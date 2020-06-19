@@ -236,6 +236,7 @@ public class LoginGUI extends JFrame{
             this.dispose();
         }
         else{
+            new AlertGUI(1, "Login", "Đăng Nhập Thất Bại", "Quay Lại").setVisible(true);
             System.out.println("Đăng Nhập Thất Bại");
         }
     }

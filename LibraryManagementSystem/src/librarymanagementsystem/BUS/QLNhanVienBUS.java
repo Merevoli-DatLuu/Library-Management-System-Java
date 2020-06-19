@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import librarymanagementsystem.DAO.*;
 import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.PasswordHashing;
 
 public class QLNhanVienBUS {
     private static ArrayList<QLNhanVienDTO> arrNhanVien = new ArrayList<>();
@@ -187,10 +188,24 @@ public class QLNhanVienBUS {
         return res_filter;
     }
     
+//    public String kiemTraTaiKhoan(String tk, String pass){        // Cũ rồi chưa hashing password
+//        for (QLNhanVienDTO e : arrNhanVien){
+//            if (e.getMaNhanVien().equals(tk) && e.getPassword().equals(pass)){
+//                return e.getMaNhanVien();
+//            }
+//        }
+//        return "";
+//    }
+    
     public String kiemTraTaiKhoan(String tk, String pass){
         for (QLNhanVienDTO e : arrNhanVien){
-            if (e.getMaNhanVien().equals(tk) && e.getPassword().equals(pass)){
-                return e.getMaNhanVien();
+            if (e.getMaNhanVien().equals(tk)){
+                PasswordHashing t = new PasswordHashing();
+                t.setSalt(e.getSalt());
+                String passhashing = t.getHashedPassword(pass);
+                if (passhashing.equals(e.getPassword())){
+                    return e.getMaNhanVien();
+                }
             }
         }
         return "";
@@ -218,8 +233,8 @@ public class QLNhanVienBUS {
         return this.add(nhanVien);
     }
     
-    public Boolean add(String maNhanVien, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt, String RFID_code){
-        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code);
+    public Boolean add(String maNhanVien, String password, String hoTen, String ngaySinh, String diaChi, String email, String chucVu, String sdt, String RFID_code,  String salt){
+        QLNhanVienDTO nhanVien=new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code, salt);
         return this.add(nhanVien);
     }
     

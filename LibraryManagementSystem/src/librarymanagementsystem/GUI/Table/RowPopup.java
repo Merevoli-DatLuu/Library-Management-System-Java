@@ -239,6 +239,72 @@ public class RowPopup extends JPopupMenu {
         add(new JSeparator());
         add(doesNotContain);
     }
+    
+    
+    public void RowPopup_forHeader_DATE(String header, String tableName){
+        JMenuItem equals = new JMenuItem("Equals");
+        JMenuItem notEquals = new JMenuItem("Not Equals");
+        JMenuItem contains = new JMenuItem("After");
+        JMenuItem doesNotContain = new JMenuItem("Before");
+        JMenuItem beginsWith = new JMenuItem("Not After");
+        JMenuItem endsWith = new JMenuItem("Not Before");
+
+        equals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                equalsActionPerformed_STRING(header, tableName, e);
+            }
+        });
+
+        notEquals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notEqualsActionPerformed_STRING(header, tableName, e);
+            }
+        });
+
+        contains.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                containsActionPerformed_STRING(header, tableName, e);
+            }
+        });
+
+        doesNotContain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doesNotContainActionPerformed_STRING(header, tableName, e);
+            }
+        });
+
+        beginsWith.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                beginsWithActionPerformed_STRING(header, tableName, e);
+            }
+        });
+
+        endsWith.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                endsWithActionPerformed_STRING(header, tableName, e);
+            }
+        });
+
+        add(equals);
+        add(new JSeparator());
+        add(notEquals);
+        add(new JSeparator());
+        add(new JSeparator());
+        add(beginsWith);
+        add(new JSeparator());
+        add(endsWith);
+        add(new JSeparator());
+        add(new JSeparator());
+        add(contains);
+        add(new JSeparator());
+        add(doesNotContain);
+    }
 
     public void viewActionPerformed(String pKey, ActionEvent e){
         JOptionPane.showMessageDialog(null, pKey + " Xem Chi Tiết");

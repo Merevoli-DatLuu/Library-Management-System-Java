@@ -4,6 +4,7 @@ package librarymanagementsystem.GUI.ThemSuaGUI;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import librarymanagementsystem.BUS.QLChiTietSachBUS;
+import librarymanagementsystem.BUS.QLLoaiSachBUS;
 import librarymanagementsystem.DTO.QLChiTietSachDTO;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
@@ -35,7 +36,7 @@ public class ThemCTSachForm extends javax.swing.JFrame{
         exitButton = new javax.swing.JLabel();
         movingWindow = new javax.swing.JLabel();
         tinhTrang_textField = new javax.swing.JTextField();
-        maSach_Label = new javax.swing.JLabel();
+        maSach_Label = new javax.swing.JTextField();
         IDSach_Label = new javax.swing.JLabel();
         nhanVienForm = new javax.swing.JLabel();
 
@@ -102,7 +103,7 @@ public class ThemCTSachForm extends javax.swing.JFrame{
         tinhTrang_textField.setBounds(572, 128, 160, 30);
         jPanel1.add(tinhTrang_textField);
 
-        nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolssuactsach.png"))); // NOI18N
+        nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolsthemctsach.png"))); // NOI18N
         nhanVienForm.setBounds(0, 0, 830, 261);
         jPanel1.add(nhanVienForm);
         jPanel1.setBounds(0, 0, 830, 261);
@@ -126,12 +127,16 @@ public class ThemCTSachForm extends javax.swing.JFrame{
             error_mess = "Tình Trạng trống!!!";
             return false;
         }
-         if (dp.check_IDSach(IDSach)){
+        if (dp.check_IDSach(IDSach)!=true){
             error_mess = "ID Sách bị sai!!!";
             return false;
         }
-          if (dp.check_maSach(maSach)){
+        if (dp.check_maSach(maSach)!=true){
             error_mess = "Mã Sách bị sai!!!";
+            return false;
+        }
+        if (new QLLoaiSachBUS(0).getLoaiSach(maSach) == null){
+            error_mess = "Mã Sách không tồn tại!!!";
             return false;
         }
         return true;
@@ -222,7 +227,7 @@ public class ThemCTSachForm extends javax.swing.JFrame{
     private javax.swing.JLabel nhanVienForm;
     private javax.swing.JLabel movingWindow;
     private javax.swing.JTextField tinhTrang_textField;
-    private javax.swing.JLabel maSach_Label;
+    private javax.swing.JTextField maSach_Label;
     private javax.swing.JLabel IDSach_Label;
     // End of variables declaration//GEN-END:variables
 }

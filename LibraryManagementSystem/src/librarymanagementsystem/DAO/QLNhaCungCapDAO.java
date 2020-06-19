@@ -63,7 +63,7 @@ public class QLNhaCungCapDAO {
                 + " tenNCC='" + nhaCungCap.getTenNCC()
                 + "', sdt='" + nhaCungCap.getSdt()
                 + "', email='" + nhaCungCap.getEmail()
-                + "', diaChi=" + nhaCungCap.getDiaChi()
+                + "', diaChi='" + nhaCungCap.getDiaChi()
                 + "' where maNCC='" + nhaCungCap.getMaNCC()+ "';");
         DBNhaCungCap.closeConnection();
         return check;

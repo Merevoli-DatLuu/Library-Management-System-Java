@@ -124,7 +124,7 @@ public class SuaKhachHangForm extends javax.swing.JFrame{
         jPanel1.add(diaChi_textField);
 
 
-        nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolsthemkh.png"))); // NOI18N
+        nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolssuakh.png"))); // NOI18N
         nhanVienForm.setBounds(0, 0, 830, 336);
         jPanel1.add(nhanVienForm);
         jPanel1.setBounds(0, 0, 830, 336);
@@ -156,15 +156,15 @@ public class SuaKhachHangForm extends javax.swing.JFrame{
             error_mess = "Địa Chỉ trống!!!";
             return false;
         }
-        else if (dp.check_ngaythangnam(ngaySinh)){
+        else if (!dp.check_ngaythangnam(ngaySinh)){
             error_mess = "Ngày Sinh nhập sai!!!";
             return false;
         }
-        else if (dp.check_sdt(sdt)){
+        else if (!dp.check_sdt(sdt)){
             error_mess = "Số Điện Thoại nhập sai!!!";
             return false;
         }
-        else if (dp.check_email(email)){
+        else if (!dp.check_email(email)){
             error_mess = "Email nhập sai!!!";
             return false;
         }
@@ -258,7 +258,7 @@ public class SuaKhachHangForm extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuaKhachHangForm("KH000020").setVisible(true);
+                new SuaKhachHangForm("KH000021").setVisible(true);
             }
         });
     }

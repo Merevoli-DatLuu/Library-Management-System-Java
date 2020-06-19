@@ -13,6 +13,7 @@ import librarymanagementsystem.GUI.*;
 
 import javax.swing.JPanel;
 import librarymanagementsystem.GUI.ThanhPhanGUI.ComboCheckBox;
+import librarymanagementsystem.GUI.ThemSuaGUI.ThemCTSachForm;
 
 public class SachThuVienModule {
     private static QLChiTietSachBUS chiTietSachBUS = new QLChiTietSachBUS();
@@ -137,31 +138,31 @@ public class SachThuVienModule {
     }// </editor-fold>                        
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
-//        System.out.println("Thêm");
-//        new ThemchiTietSachForm().setVisible(true);
+        System.out.println("Thêm");
+        new ThemCTSachForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Nhập Excel");
-//        ArrayList <QLChiTietSachDTO> sach = new ImportFile().readFileExcel_QLSach();
-//        
-//        boolean finish = true;
-//        for (QLChiTietSachDTO e : sach){
-//            if (!chiTietSachBUS.add(e)){
-//                finish = false;
-//                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
-//                break;
-//            }
-//        }
-//        
-//        if (finish){
-//            new AlertGUI(3, "Success", "Nhập Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
-//        }
+        System.out.println("Nhập Excel");
+        ArrayList <QLChiTietSachDTO> sach = new ImportFile().readFileExcel_QLChiTietSach();
+        
+        boolean finish = true;
+        for (QLChiTietSachDTO e : sach){
+            if (!chiTietSachBUS.add(e)){
+                finish = false;
+                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
+                break;
+            }
+        }
+        
+        if (finish){
+            new AlertGUI(3, "Success", "Nhập Chi Tiết Sách Thành Công!!!", "Quay Lại").setVisible(true);
+        }
     }                                          
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Xuất Excel");
-//        new ExportFile().writeFileExcel_QLchiTietSach();
+        System.out.println("Xuất Excel");
+        new ExportFile().writeFileExcel_QLChiTietSach();
     }                                          
 
     private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                

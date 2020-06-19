@@ -4,6 +4,7 @@ package librarymanagementsystem.GUI.ThemSuaGUI;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import librarymanagementsystem.BUS.QLChiTietSachBUS;
+import librarymanagementsystem.BUS.QLLoaiSachBUS;
 import librarymanagementsystem.DTO.QLChiTietSachDTO;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
@@ -131,12 +132,16 @@ public class SuaCTSachForm extends javax.swing.JFrame{
             error_mess = "Tình Trạng trống!!!";
             return false;
         }
-         if (dp.check_IDSach(IDSach)){
-            error_mess = "ID Sách bị sai!!!";
+        if (!dp.check_IDSach(IDSach)){
+            error_mess = "ID Sách bị sai!!!" + IDSach;
             return false;
         }
-          if (dp.check_maSach(maSach)){
+        if (!dp.check_maSach(maSach)){
             error_mess = "Mã Sách bị sai!!!";
+            return false;
+        }
+        if (new QLLoaiSachBUS(0).getLoaiSach(maSach) == null){
+            error_mess = "Mã Sách không tồn tại!!!";
             return false;
         }
         return true;
@@ -222,7 +227,7 @@ public class SuaCTSachForm extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuaCTSachForm("IDS000078").setVisible(true);
+                new SuaCTSachForm("IDS000079").setVisible(true);
             }
         });
     }

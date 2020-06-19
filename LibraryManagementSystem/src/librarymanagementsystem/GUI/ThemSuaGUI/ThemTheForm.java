@@ -4,12 +4,15 @@ package librarymanagementsystem.GUI.ThemSuaGUI;
 import java.awt.Color;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JComboBox;
 
 import javax.swing.JOptionPane;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
 import librarymanagementsystem.BUS.QLTheBUS;
+import librarymanagementsystem.BUS.QLKhachHangBUS;
 import librarymanagementsystem.DTO.QLTheDTO;
 
 public class ThemTheForm extends javax.swing.JFrame{
@@ -45,9 +48,13 @@ public class ThemTheForm extends javax.swing.JFrame{
         exitButton = new javax.swing.JLabel();
         movingWindow = new javax.swing.JLabel();
         ngayCap_Label = new javax.swing.JLabel();
-        maKH_Label = new javax.swing.JLabel();
+        maKH_Label = new javax.swing.JTextField();
         ngayHetHan_Label = new javax.swing.JLabel();
         nhanVienForm = new javax.swing.JLabel();
+        comboxMaKH =new JComboBox();
+        ArrayList<String> arrmaKH = new QLKhachHangBUS().getPKey();
+        //String[] arr =(String[]) arrmaKH.toArray();
+        //System.out.println(""+arr);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -95,6 +102,9 @@ public class ThemTheForm extends javax.swing.JFrame{
         maKH_Label.setOpaque(false);
         maKH_Label.setBounds(48, 125, 160, 30);
         jPanel1.add(maKH_Label);
+        for(int i=0;i<arrmaKH.size();i++){
+             //comboxMaKH =new JComboBox(arrmaKH.get(i));
+        }
 
         ngayCap_Label.setBackground(new java.awt.Color(245, 247, 250));
         ngayCap_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -123,13 +133,21 @@ public class ThemTheForm extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private boolean check_input(String ngayCap){
+    private boolean check_input(String maKH, String ngayCap){
         if (ngayCap.equals("")){
             error_mess = "Ngày Cấp trống!!!";
             return false;
         }
-        if (dp.check_ngaythangnam(ngayCap)){
+        if (dp.check_ngaythangnam(ngayCap)!=true){
             error_mess = "Ngày Cấp nhập sai!!!";
+            return false;
+        }
+        if (!dp.check_maKhachHang(maKH)){
+            error_mess = "Mã Khách Hàng nhập sai!!!";
+            return false;
+        }
+        if (new QLKhachHangBUS(0).getKhachHang(maKH) == null){
+            error_mess = "Mã Khách Hàng không tồn tại!!!";
             return false;
         }
         return true;
@@ -158,9 +176,9 @@ public class ThemTheForm extends javax.swing.JFrame{
         String ngayHetHan = ngayHetHan_Label.getText();
         String maThe = dp.next_maThe(theBUS.getPKey());
         
-       if (check_input(ngayCap)){
+       if (check_input(maKH, ngayCap)){
             System.out.println("Nhập Thành Công");
-            if (theBUS.add(maThe, ngayHetHan, ngayCap, ngayHetHan)){
+            if (theBUS.add(maThe, maKH, ngayCap, ngayHetHan)){
                 new AlertGUI(3, "Success", "Nhập Thẻ Thành Công!!!", "Quay Lại").setVisible(true);
                 this.dispose();
             }
@@ -222,7 +240,8 @@ public class ThemTheForm extends javax.swing.JFrame{
     private javax.swing.JLabel nhanVienForm;
     private javax.swing.JLabel movingWindow;
     private javax.swing.JLabel ngayCap_Label;
-    private javax.swing.JLabel maKH_Label;
+    private javax.swing.JTextField maKH_Label;
     private javax.swing.JLabel ngayHetHan_Label;
+    private javax.swing.JComboBox comboxMaKH;
     // End of variables declaration//GEN-END:variables
 }

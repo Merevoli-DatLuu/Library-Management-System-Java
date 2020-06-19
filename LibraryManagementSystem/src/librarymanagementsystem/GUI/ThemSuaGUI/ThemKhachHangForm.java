@@ -154,15 +154,15 @@ public class ThemKhachHangForm extends javax.swing.JFrame{
             error_mess = "Địa Chỉ trống!!!";
             return false;
         }
-        else if (dp.check_ngaythangnam(ngaySinh)){
+        else if (dp.check_ngaythangnam(ngaySinh)!=true){
             error_mess = "Ngày Sinh nhập sai!!!";
             return false;
         }
-        else if (dp.check_sdt(sdt)){
+        else if (dp.check_sdt(sdt)!=true){
             error_mess = "Số Điện Thoại nhập sai!!!";
             return false;
         }
-        else if (dp.check_email(email)){
+        else if (dp.check_email(email)!=true){
             error_mess = "Email nhập sai!!!";
             return false;
         }
@@ -194,7 +194,7 @@ public class ThemKhachHangForm extends javax.swing.JFrame{
         String sdt = sdt_textField.getText();
         String email = email_textField.getText();
         String diaChi = diaChi_textField.getText();
-        String maKH = mkh;
+        String maKH = dp.next_maKhachHang(new QLKhachHangBUS(0).getPKey());
         
         if (check_input(hoTen, ngaySinh, sdt, email, diaChi)){
             System.out.println("Nhập Thành Công");

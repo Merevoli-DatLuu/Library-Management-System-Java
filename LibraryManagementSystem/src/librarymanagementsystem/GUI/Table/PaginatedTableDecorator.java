@@ -18,8 +18,7 @@ import java.awt.Point;
 
 import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.AlertGUI;
-import librarymanagementsystem.GUI.ThemSuaGUI.SuaLoaiSachForm;
-import librarymanagementsystem.GUI.ThemSuaGUI.XemLoaiSachForm;
+import librarymanagementsystem.GUI.ThemSuaGUI.*;
 
 public class PaginatedTableDecorator<T> {
     private JTable table;
@@ -244,7 +243,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Nha Cung Cap" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            new SuaNhaCungCapForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -269,16 +268,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Nhà Cung Cấp", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLNhaCungCapBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Nhà Cung Cấp", "Xóa Nhà Cung Cấp " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Nhà Cung Cấp", "Xóa Nhà Cung Cấp " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -335,12 +334,12 @@ public class PaginatedTableDecorator<T> {
                     RowPopup rp = new RowPopup(){
                         @Override
                         public void viewActionPerformed(String pKey, ActionEvent e){
-                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                            JOptionPane.showMessageDialog(null, "The " + pKey + " Xem Chi Tiết");
                         }
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
-                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            JOptionPane.showMessageDialog(null, "The " + pKey + " Sửa");
+                            new SuaTheForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -365,16 +364,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Thẻ", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLTheBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Thẻ", "Xóa Thẻ " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Thẻ", "Xóa Thẻ " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -431,12 +430,12 @@ public class PaginatedTableDecorator<T> {
                     RowPopup rp = new RowPopup(){
                         @Override
                         public void viewActionPerformed(String pKey, ActionEvent e){
-                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Xem Chi Tiết");
+                            JOptionPane.showMessageDialog(null, "Nhân Viên" + pKey + " Xem Chi Tiết");
                         }
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
-                            JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Nhân Viên" + pKey + " Sửa");
+                            new SuaNhanVienForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -461,16 +460,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Nhân Viên", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLNhanVienBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Nhân Viên", "Xóa Nhân Viên " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Nhân Viên", "Xóa Nhân Viên " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -532,7 +531,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            new SuaCTSachForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -557,16 +556,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Sách Thư Viện", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLChiTietSachBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Sách Thư Viện", "Xóa Sách Thư Viện " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Sách Thư Viện", "Xóa Sách Thư Viện " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -653,16 +652,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Phiếu Mượn", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLPhieuMuonBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Phiếu Mượn", "Xóa Phiếu Mượn " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Phiếu Mượn", "Xóa Phiếu Mượn " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -763,8 +762,8 @@ public class PaginatedTableDecorator<T> {
                             }
                         }
                     };
-                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
-                    rp.show(contentPanel, event.getX(), event.getY() + 70);
+//                    rp.RowPopup_forRow((String)table.getValueAt(row, 0));
+//                    rp.show(contentPanel, event.getX(), event.getY() + 70);
                 }
             }
         });
@@ -820,7 +819,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            new SuaKhachHangForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -845,16 +844,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Khách Hàng", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLKhachHangBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Khách Hàng", "Xóa Khách Hàng " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Khách Hàng", "Xóa Khách Hàng " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -916,7 +915,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+//                            new SuaLoaiSachForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -941,16 +940,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Quyền", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLQuyenBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Quyền", "Xóa Quyền " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Quyền", "Xóa Quyền " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -1012,7 +1011,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            new SuaAdminForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -1034,19 +1033,24 @@ public class PaginatedTableDecorator<T> {
 //                            };
 //                            xacnhan.setProperties(0, "Xóa Loai Sách", "Xóa loại sách " + pKey + "?", "Đồng Ý", "Quay Lại");
 //                            xacnhan.setVisible(true);
-                            int option = JOptionPane.showConfirmDialog(
-                                        null, 
-                                        "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
-                                        JOptionPane.YES_NO_OPTION);
-                            if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
-                                    System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
-                                }
-                                else{
-                                    System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                            if (new QLAdminBUS(0).getArrAdmin().size() == 1){
+                                new AlertGUI(3, "Xóa Admin", "Không Được Xóa Admin", "Quay Lại").setVisible(true);
+                            }
+                            else{
+                                int option = JOptionPane.showConfirmDialog(
+                                            null, 
+                                            "Bạn có muốn xóa " + pKey + " ?", 
+                                            "Xóa Admin", 
+                                            JOptionPane.YES_NO_OPTION);
+                                if(option == JOptionPane.YES_OPTION){
+                                    if (new QLAdminBUS(0).del(pKey)){
+                                        System.out.println("Xóa " + pKey + " thành công");
+                                        new AlertGUI(3, "Xóa Admin", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    }
+                                    else{
+                                        System.out.println("Xóa " + pKey + " thất bại");
+                                        new AlertGUI(1, "Xóa Admin", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    }
                                 }
                             }
                         }
@@ -1108,7 +1112,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+//                            new SuaPhieuXuatForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -1133,16 +1137,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Phiếu Xuất", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLPhieuXuatBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Phiếu Xuất", "Xóa Phiếu Xuất " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Phiếu Xuất", "Xóa Phiếu Xuất " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -1204,7 +1208,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+//                            new SuaLoaiSachForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -1229,16 +1233,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Phiếu Nhập", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLPhieuNhapBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Phiếu Nhập", "Xóa Phiếu Nhập " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Phiếu Nhập", "Xóa Phiếu Nhập " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -1300,7 +1304,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            new SuaPhieuPhatForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -1325,16 +1329,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Phiếu Phạt", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
                                 if (new QLLoaiSachBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Phiếu Phạt", "Xóa Phiếu Phạt " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Phiếu Phạt", "Xóa Phiếu Phạt " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }
@@ -1396,7 +1400,7 @@ public class PaginatedTableDecorator<T> {
                         @Override
                         public void editActionPerformed(String pKey, ActionEvent e){
                             JOptionPane.showMessageDialog(null, "Loai Sach" + pKey + " Sửa");
-                            new SuaLoaiSachForm(pKey).setVisible(true);
+                            new SuaLDPForm(pKey).setVisible(true);
                         }
                         @Override
                         public void deleteActionPerformed(String pKey, ActionEvent e){
@@ -1421,16 +1425,16 @@ public class PaginatedTableDecorator<T> {
                             int option = JOptionPane.showConfirmDialog(
                                         null, 
                                         "Bạn có muốn xóa " + pKey + " ?", 
-                                        "Xóa Loại Sách", 
+                                        "Xóa Lý Do Phạt", 
                                         JOptionPane.YES_NO_OPTION);
                             if(option == JOptionPane.YES_OPTION){
-                                if (new QLLoaiSachBUS(0).del(pKey)){
+                                if (new QLLDPhatBUS(0).del(pKey)){
                                     System.out.println("Xóa " + pKey + " thành công");
-                                    new AlertGUI(3, "Xóa Loai Sách", "Xóa loại sách " + pKey + " Thành Công", "Quay Lại").setVisible(true);
+                                    new AlertGUI(3, "Xóa Lý Do Phạt", "Xóa Lý Do Phạt " + pKey + " Thành Công", "Quay Lại").setVisible(true);
                                 }
                                 else{
                                     System.out.println("Xóa " + pKey + " thất bại");
-                                    new AlertGUI(1, "Xóa Loai Sách", "Xóa loại sách " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
+                                    new AlertGUI(1, "Xóa Lý Do Phạt", "Xóa Lý Do Phạt " + pKey + "Thất Bại", "Quay Lại").setVisible(true);
                                 }
                             }
                         }

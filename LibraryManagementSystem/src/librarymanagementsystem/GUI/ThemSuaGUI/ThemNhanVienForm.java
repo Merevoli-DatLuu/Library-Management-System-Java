@@ -4,6 +4,7 @@ package librarymanagementsystem.GUI.ThemSuaGUI;
 import java.awt.Color;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
+import librarymanagementsystem.Toolkit.PasswordHashing;
 import librarymanagementsystem.BUS.QLNhanVienBUS;
 import librarymanagementsystem.DTO.QLNhanVienDTO;
 
@@ -154,12 +155,12 @@ public class ThemNhanVienForm extends javax.swing.JFrame{
 
     
     private boolean check_input(String password,String hoTen, String ngaySinh, String sdt, String email, String chucVu, String diaChi){
-         if (password.equals("")){
-            error_mess = "Password trống!!!";
-            return false;
-        }
         if (hoTen.equals("")){
             error_mess = "Họ Tên trống!!!";
+            return false;
+        }
+        if (password.equals("")){
+            error_mess = "Password trống!!!";
             return false;
         }
         else if (ngaySinh.equals("")){
@@ -182,15 +183,15 @@ public class ThemNhanVienForm extends javax.swing.JFrame{
             error_mess = "Địa Chỉ trống!!!";
             return false;
         }
-        else if (dp.check_ngaythangnam(ngaySinh)){
+        else if (dp.check_ngaythangnam(ngaySinh)!=true){
             error_mess = "Ngày Sinh nhập sai!!!";
             return false;
         }
-        else if (dp.check_sdt(sdt)){
+        else if (dp.check_sdt(sdt)!=true){
             error_mess = "Số Điện Thoại nhập sai!!!";
             return false;
         }
-        else if (dp.check_email(email)){
+        else if (dp.check_email(email)!=true){
             error_mess = "Email nhập sai!!!";
             return false;
         }
@@ -216,7 +217,7 @@ public class ThemNhanVienForm extends javax.swing.JFrame{
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
-       String password = password_textField.getText();
+        String password = password_textField.getText();
         String hoTen = hoTen_textField.getText();
         String ngaySinh = ngaySinh_textField.getText();
         String sdt = sdt_textField.getText();
@@ -224,10 +225,13 @@ public class ThemNhanVienForm extends javax.swing.JFrame{
         String chucVu = chucVu_textField.getText();
         String diaChi = diaChi_textField.getText();
         String maNV = dp.next_maQuanLy(nvBUS.getPKey());
+        PasswordHashing t = new PasswordHashing();
+        String salt = t.getSalt();
+        password = t.getHashedPassword(password);
         
         if (check_input(password,hoTen, ngaySinh, sdt, email, chucVu, diaChi)){
             System.out.println("Nhập Thành Công");
-            if (nvBUS.add(maNV, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt)){
+            if (nvBUS.add(maNV, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, "", salt)){
                 new AlertGUI(3, "Success", "Nhập Nhân Viên Thành Công!!!", "Quay Lại").setVisible(true);
                 this.dispose();
             }

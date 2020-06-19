@@ -139,11 +139,11 @@ public class ThemNhaCungCapForm extends javax.swing.JFrame{
             error_mess = "Email trống!!!";
             return false;
         }
-        else if (dp.check_sdt(sdt)){
+        else if (dp.check_sdt(sdt)!=true){
             error_mess = "Số Điện Thoại nhập sai!!!";
             return false;
         }
-        else if (dp.check_email(email)){
+        else if (dp.check_email(email)!=true){
             error_mess = "Email nhập sai!!!";
             return false;
         }

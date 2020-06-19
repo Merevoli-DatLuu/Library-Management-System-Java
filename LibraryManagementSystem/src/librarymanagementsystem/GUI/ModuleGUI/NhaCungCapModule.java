@@ -139,30 +139,30 @@ public class NhaCungCapModule {
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
         System.out.println("Thêm");
-        new ThemLoaiSachForm().setVisible(true);
+        new ThemNhaCungCapForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Nhập Excel");
-//        ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLSach();
-//        
-//        boolean finish = true;
-//        for (QLLoaiSachDTO e : sach){
-//            if (!nhaCungCapBUS.add(e)){
-//                finish = false;
-//                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
-//                break;
-//            }
-//        }
-//        
-//        if (finish){
-//            new AlertGUI(3, "Success", "Nhập Loại Sách Thành Công!!!", "Quay Lại").setVisible(true);
-//        }
+        System.out.println("Nhập Excel");
+        ArrayList <QLNhaCungCapDTO> sach = new ImportFile().readFileExcel_QLNhaCungCap();
+        
+        boolean finish = true;
+        for (QLNhaCungCapDTO e : sach){
+            if (!nhaCungCapBUS.add(e)){
+                finish = false;
+                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
+                break;
+            }
+        }
+        
+        if (finish){
+            new AlertGUI(3, "Success", "Nhập Nhà Cung Cấp Thành Công!!!", "Quay Lại").setVisible(true);
+        }
     }                                          
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
         System.out.println("Xuất Excel");
-        new ExportFile().writeFileExcel_QLLoaiSach();
+        new ExportFile().writeFileExcel_QLNhaCungCap();
     }                                          
 
     private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                

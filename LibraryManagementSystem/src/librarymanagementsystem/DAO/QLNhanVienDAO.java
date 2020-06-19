@@ -20,8 +20,7 @@ public class QLNhanVienDAO {
             if (rs != null){
                 while (rs.next()){
                     String maNhanVien = rs.getString("maNhanVien");
-                    String password = rs.getString("password");
-                    //String password = rs.getString("password_hashed");
+                    String password = rs.getString("password_hashed");
                     String hoTen = rs.getString("hoTen");
                     String ngaySinh = rs.getString("ngaySinh");
                     String diaChi = rs.getString("diaChi");
@@ -29,7 +28,8 @@ public class QLNhanVienDAO {
                     String chucVu = rs.getString("chucVu");
                     String sdt = rs.getString("sdt");
                     String RFID_code = rs.getString("RFID_code");
-                    arrNhanVien.add(new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code));
+                    String salt = rs.getString("salt");
+                    arrNhanVien.add(new QLNhanVienDTO(maNhanVien, password, hoTen, ngaySinh, diaChi, email, chucVu, sdt, RFID_code, salt));
                 }
             }
 
@@ -45,16 +45,29 @@ public class QLNhanVienDAO {
     
     public Boolean add(QLNhanVienDTO nhanVien){
         DBNhanVien = new DBConnection();
-        Boolean check = DBNhanVien.SQLUpdate("INSERT INTO NhanVien(maNhanVien, password, hoTen, ngaySinh, diaChi, sdt, email, chucVu) "
+        System.out.println("INSERT INTO NhanVien(maNhanVien, password_hashed, hoTen, ngaySinh, diaChi, sdt, email, chucVu, salt) "
                 + "VALUES ('"
                 + nhanVien.getMaNhanVien()+ "','"     
                 + nhanVien.getPassword()+ "','"   
                 + nhanVien.getHoTen()+ "','"   
                 + nhanVien.getNgaySinh()+ "','"   
-                + nhanVien.getDiaChi()+ "',"   
-                + nhanVien.getSdt()+ ",'"   
+                + nhanVien.getDiaChi()+ "','"   
+                + nhanVien.getSdt()+ "','"   
                 + nhanVien.getEmail()+ "','"   
-                + nhanVien.getChucVu()+ "');");
+                + nhanVien.getChucVu()+ "','"
+//                + new PasswordHashing().getSalt()+ "');");
+                + nhanVien.getSalt()+ "');");
+        Boolean check = DBNhanVien.SQLUpdate("INSERT INTO NhanVien(maNhanVien, password_hashed, hoTen, ngaySinh, diaChi, sdt, email, chucVu, salt) "
+                + "VALUES ('"
+                + nhanVien.getMaNhanVien()+ "','"     
+                + nhanVien.getPassword()+ "','"   
+                + nhanVien.getHoTen()+ "','"   
+                + nhanVien.getNgaySinh()+ "','"   
+                + nhanVien.getDiaChi()+ "','"   
+                + nhanVien.getSdt()+ "','"   
+                + nhanVien.getEmail()+ "','"   
+                + nhanVien.getChucVu()+ "','"
+                + nhanVien.getSalt()+ "');");
         DBNhanVien.closeConnection();
         return check;
     }
@@ -69,7 +82,7 @@ public class QLNhanVienDAO {
     public Boolean mod(QLNhanVienDTO nhanVien){
         DBNhanVien = new DBConnection();
         Boolean check = DBNhanVien.SQLUpdate("Update NhanVien Set "
-                + " password='" + nhanVien.getPassword()
+                + " password_hashed='" + nhanVien.getPassword()
                 + "', hoTen='" + nhanVien.getHoTen()
                 + "', ngaySinh='" + nhanVien.getNgaySinh()
                 + "', diaChi='" + nhanVien.getDiaChi()
@@ -88,5 +101,9 @@ public class QLNhanVienDAO {
                 + "' where maNhanVien='" + maNhanVien+ "'");
         DBNhanVien.closeConnection();
         return check;
+    }
+    
+    public static void main(String[] args) {
+        new QLNhanVienDAO().add(new QLNhanVienDTO("QL000011", "", "", "2020-10-12", "", "", "", ""));
     }
 }

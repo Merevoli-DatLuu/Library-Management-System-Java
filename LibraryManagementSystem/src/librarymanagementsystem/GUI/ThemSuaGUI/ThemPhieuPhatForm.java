@@ -3,8 +3,10 @@ package librarymanagementsystem.GUI.ThemSuaGUI;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.BUS.QLPhieuMuonBUS;
 import librarymanagementsystem.BUS.QLPhieuPhatBUS;
 import librarymanagementsystem.DTO.QLPhieuPhatDTO;
+import librarymanagementsystem.BUS.QLLDPhatBUS;
 import librarymanagementsystem.GUI.*;
 import librarymanagementsystem.Toolkit.DataProcessing;
 
@@ -34,9 +36,9 @@ public class ThemPhieuPhatForm  extends javax.swing.JFrame{
         addButton = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
         movingWindow = new javax.swing.JLabel();
-        maPM_Label = new javax.swing.JLabel();
+        maPM_Label = new javax.swing.JTextField();
         tienPhat_Label = new javax.swing.JLabel();
-        maLDP_Label = new javax.swing.JLabel();
+        maLDP_Label = new javax.swing.JTextField();
         nhanVienForm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,7 +82,7 @@ public class ThemPhieuPhatForm  extends javax.swing.JFrame{
         
         maPM_Label.setBackground(new java.awt.Color(245, 247, 250));
         maPM_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        maPM_Label.setText("dfgfdg");
+        maPM_Label.setText("");
         maPM_Label.setBorder(null);
         maPM_Label.setOpaque(false);
         maPM_Label.setBounds(50, 128, 160, 30);
@@ -88,20 +90,20 @@ public class ThemPhieuPhatForm  extends javax.swing.JFrame{
         
         maLDP_Label.setBackground(new java.awt.Color(245, 247, 250));
         maLDP_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        maLDP_Label.setText("fgdfdg");
+        maLDP_Label.setText("");
         maLDP_Label.setBorder(null);
         maLDP_Label.setOpaque(false);
         maLDP_Label.setBounds(305, 128, 160, 30);
         jPanel1.add(maLDP_Label);
 
         tienPhat_Label.setBackground(new java.awt.Color(245, 247, 250));
-        tienPhat_Label.setText("200000");
+        tienPhat_Label.setText("");
         tienPhat_Label.setBorder(null);
         tienPhat_Label.setOpaque(false);
         tienPhat_Label.setBounds(572, 128, 160, 30);
         jPanel1.add(tienPhat_Label);
 
-        nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolssuapp.png"))); // NOI18N
+        nhanVienForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/output-onlinepngtoolsthempp.png"))); // NOI18N
         nhanVienForm.setBounds(0, 0, 830, 261);
         jPanel1.add(nhanVienForm);
         jPanel1.setBounds(0, 0, 830, 261);
@@ -113,20 +115,28 @@ public class ThemPhieuPhatForm  extends javax.swing.JFrame{
 
     
     private boolean check_input(String maPM, String maLDP){
-         if (maPM.equals("")){
+        if (maPM.equals("")){
             error_mess = "Mã Phiếu Phạt trống!!!";
             return false;
         }
-         if (maLDP.equals("")){
+        if (maLDP.equals("")){
             error_mess = "Mã Lý Do Phạt trống!!!";
             return false;
         }
-         if (dp.check_maMuonSach(maPM)){
+        if (dp.check_maMuonSach(maPM)!=true){
             error_mess = "Mã Phiếu Mượn bị sai!!!";
             return false;
         }
-          if (dp.check_maLDPhat(maLDP)){
+        if (dp.check_maLDPhat(maLDP)!=true){
             error_mess = "Mã Lý Do Phạt bị sai!!!";
+            return false;
+        }
+        if (new QLPhieuMuonBUS(0).getPhieuMuon(maPM) == null){
+            error_mess = "Mã Phiếu Mượn không tồn tại!!!";
+            return false;
+        }
+        if (new QLLDPhatBUS(0).getLDPhat(maLDP) == null){
+            error_mess = "Mã Lý Do Phạt tồn tại!!!";
             return false;
         }
         return true;
@@ -153,9 +163,8 @@ public class ThemPhieuPhatForm  extends javax.swing.JFrame{
         String maPM = maPM_Label.getText();
         String maLDP = maLDP_Label.getText();
         String maPP = dp.next_maPhieuPhat(ppBUS.getPKey());
-        int tienPhat = Integer.parseInt(tienPhat_Label.getText());
-        
          if (check_input(maPM, maLDP)){
+            int tienPhat = new DataProcessing().calTienPhat(new QLLDPhatBUS(0).getLDPhat(maLDP).getMucDo());
             System.out.println("Nhập Thành Công");
             if (ppBUS.add(maPP, maPM, maLDP, tienPhat)){
                 new AlertGUI(3, "Success", "Nhập Phiếu Phạt Thành Công!!!", "Quay Lại").setVisible(true);
@@ -218,7 +227,7 @@ public class ThemPhieuPhatForm  extends javax.swing.JFrame{
     private javax.swing.JLabel nhanVienForm;
     private javax.swing.JLabel movingWindow;
     private javax.swing.JLabel tienPhat_Label;
-    private javax.swing.JLabel maPM_Label;
-    private javax.swing.JLabel maLDP_Label;
+    private javax.swing.JTextField maPM_Label;
+    private javax.swing.JTextField maLDP_Label;
     // End of variables declaration//GEN-END:variables
 }

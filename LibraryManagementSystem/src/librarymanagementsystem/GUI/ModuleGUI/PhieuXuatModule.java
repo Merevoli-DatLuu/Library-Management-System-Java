@@ -139,15 +139,16 @@ public class PhieuXuatModule {
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
         System.out.println("Thêm");
-        new ThemLoaiSachForm().setVisible(true);
+        new ThemPhieuXuatForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Nhập Excel");
-//        ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLSach();
+        System.out.println("Nhập Excel");
+        new AlertGUI(1, "Thong Bao", "Không Làm Nhập Xuất Excel cho Phiếu Nhập!!!", "Quay Lại").setVisible(true);
+//        ArrayList <QLPhieuXuatDTO> sach = new ImportFile().readFileExcel_QLPhieuXuat();
 //        
 //        boolean finish = true;
-//        for (QLLoaiSachDTO e : sach){
+//        for (QLPhieuXuatDTO e : sach){
 //            if (!phieuXuatBUS.add(e)){
 //                finish = false;
 //                new AlertGUI(2, "Error", "Lỗi Nhập", "Quay Lại").setVisible(true);
@@ -162,7 +163,8 @@ public class PhieuXuatModule {
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
         System.out.println("Xuất Excel");
-        new ExportFile().writeFileExcel_QLLoaiSach();
+        new AlertGUI(1, "Thong Bao", "Không Làm Nhập Xuất Excel cho Phiếu Nhập!!!", "Quay Lại").setVisible(true);
+//        new ExportFile().writeFileExcel_QLLoaiSach();
     }                                          
 
     private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                

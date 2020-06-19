@@ -8,6 +8,7 @@ public class QLPhieuPhatDTO {
         this.maPhieuPhat = maPhieuPhat;
         this.maPhieuMuon = maPhieuMuon;
         this.maLDPhat = maLDPhat;
+        this.tienPhat = tienPhat;
     }
     
     public QLPhieuPhatDTO(QLPhieuPhatDTO phieuPhat){

@@ -14,6 +14,7 @@ import librarymanagementsystem.GUI.*;
 import javax.swing.JPanel;
 import librarymanagementsystem.GUI.ThanhPhanGUI.ComboCheckBox;
 import librarymanagementsystem.GUI.ThemSuaGUI.ThemLoaiSachForm;
+import librarymanagementsystem.GUI.ThemSuaGUI.ThemPhieuNhapForm;
 
 public class KhoSachModule {
     private static QLKhoSachBUS khoSachBUS = new QLKhoSachBUS();
@@ -139,12 +140,12 @@ public class KhoSachModule {
 
     private void them_btnMouseClicked(java.awt.event.MouseEvent evt) {                                      
         System.out.println("Thêm");
-        new ThemLoaiSachForm().setVisible(true);
+        new ThemPhieuNhapForm().setVisible(true);
     }                                     
 
     private void nhapexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
-//        System.out.println("Nhập Excel");
-//        ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLSach();
+        System.out.println("Nhập Excel");
+//        ArrayList <QLLoaiSachDTO> sach = new ImportFile().readFileExcel_QLPhieuMuon();
 //        
 //        boolean finish = true;
 //        for (QLLoaiSachDTO e : sach){
@@ -162,7 +163,7 @@ public class KhoSachModule {
 
     private void xuatexcel_btnMouseClicked(java.awt.event.MouseEvent evt) {                                           
         System.out.println("Xuất Excel");
-        new ExportFile().writeFileExcel_QLLoaiSach();
+        new ExportFile().writeFileExcel_QLKhoSach();
     }                                          
 
     private void searchtextfieldMouseClicked(java.awt.event.MouseEvent evt) {                                                
