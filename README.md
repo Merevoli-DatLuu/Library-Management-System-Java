@@ -18,7 +18,7 @@ An **beautiful** and **easy-to-use** Management Tool
 
 **Library Management System** là một phần mềm quản lý thư viện, hướng đến sự đơn giản và tiện lợi cho người dùng. Phần mềm hỗ trợ nhiều tính năng hữu ích giúp việc quản lý dễ dàng hơn.
 
-- [Thành Viên Nhóm](#team)
+- [Thành Viên Nhóm](#thành-viên-nhóm)
 - [Tính năng](#tính-năng)
 - [Tải về và cài đặt](#tải-về-và-cài-đặt)
 - [API Document](#api-document)
