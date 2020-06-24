@@ -58,6 +58,18 @@ An **beautiful** and **easy-to-use** Management Tool
 
 ---
 
-Không cần phải mệt nhọc di chuyển qua lại các trang, toàn bộ mọi thứ đều **nằm gọn gàng trong một trang chính duy nhất**!
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<img align="left" src="/Review/Login GUI.png" width="500px">
+
+<div align="right">
+
+### Trang Chủ
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
