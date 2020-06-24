@@ -75,3 +75,45 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/capture(90).png" width="500px">
+
+<div align="right">
+
+### Quản Lý Phiếu Nhập
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/capture(97).png" width="500px">
+
+<div align="right">
+
+### Menu Chọn
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/capture(99).png" width="500px">
+
+<div align="right">
+
+### Thống Kê
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
