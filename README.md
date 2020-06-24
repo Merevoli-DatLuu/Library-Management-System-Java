@@ -19,11 +19,10 @@ An **beautiful** and **easy-to-use** Management Tool
 **Library Management System** là một phần mềm quản lý thư viện, hướng đến sự đơn giản và tiện lợi cho người dùng. Phần mềm hỗ trợ nhiều tính năng hữu ích giúp việc quản lý dễ dàng hơn.
 
 - [Thành Viên Nhóm](#thành-viên-nhóm)
-- [Tính năng](#tính-năng)
-- [Tải về và cài đặt](#tải-về-và-cài-đặt)
-- [API Document](#api-document)
+- [Tài Khoản](#tài-khoản)
+- [Chức Năng Chính](#chức-năng-chính)
+- [Tính Năng Nâng Cao](#tải-về-và-cài-đặt)
 - [Screenshot](#screenshot)
-- [Contribution](#contribution)
 
 ## Thành Viên Nhóm
 | stt | Họ Tên  | MSSV |
@@ -32,3 +31,12 @@ An **beautiful** and **easy-to-use** Management Tool
 | 2 | Văn Hoàng Chương | 3118410044 |
 | 3 | Nguyễn Thị Mỹ Hằng | 3118410113 |
 | 4 | Nguyễn Hữu Thắng | 3118410402 |
+
+## Tài Khoản
+| stt | Tên Tài Khoản      | Mật Khẩu    |
+|---  | -----              | --------    |
+| 1   | Lưu Thành Đạt      | 3118410073  |
+| 2   | Văn Hoàng Chương   | 3118410044  |
+| 3   | Nguyễn Thị Mỹ Hằng | 3118410113  |
+| 4   | Nguyễn Hữu Thắng   | 3118410402  |
+
