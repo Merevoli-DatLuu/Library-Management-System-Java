@@ -10,7 +10,7 @@
 
 An **beautiful** and **easy-to-use** Management Tool
 
-<img src="/Review/Banner.png">
+<img src="/Review/Banner.png" width="50%">
 
 ![Completion](https://img.shields.io/badge/style-97%25-00e600?label=Completion&logo=java&logoColor=red&style=for-the-badge)
 ![Language](https://img.shields.io/badge/Language-Java-orange.svg)
