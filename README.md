@@ -24,6 +24,7 @@ An **beautiful** and **easy-to-use** Management Tool
 - [Chức Năng Nâng Cao](#chức-năng-nâng-cao)
 - [Screenshot](#screenshot)
 
+---
 <br><br>
 
 ## Thành Viên Nhóm
@@ -171,6 +172,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 <br><br><br><br><br><br><br><br><br><br><br>
 
 ---
+<br><br>
 
 ## Chức Năng Nâng Cao
 &nbsp;
