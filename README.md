@@ -165,3 +165,92 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
+
+<br><br>
+
+---
+
+## Chức Năng Nâng Cao
+&nbsp;
+
+<img align="right" src="/Review/Login GUI.png" width="500px">
+
+<div align="left">
+
+### Đăng Nhập Bằng Thẻ Từ (RFID)
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/Login GUI.png" width="500px">
+
+<div align="right">
+
+### Lựa Chọn Header Tìm Kiếm
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="right" src="/Review/capture(90).png" width="500px">
+
+<div align="left">
+
+### Tìm Kiếm Nâng Cao (Lọc)
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/capture(90).png" width="500px">
+
+<div align="right">
+
+### Table Linh Động
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="right" src="/Review/capture(90).png" width="500px">
+
+<div align="left">
+
+### Biểu Đổ (Chart)
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/capture(90).png" width="500px">
+
+<div align="right">
+
+### Mã Hóa Mật Khẩu
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+
+</div>
