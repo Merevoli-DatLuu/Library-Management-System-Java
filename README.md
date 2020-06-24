@@ -32,6 +32,8 @@ An **beautiful** and **easy-to-use** Management Tool
 | 3 | Nguyễn Thị Mỹ Hằng | 3118410113 |
 | 4 | Nguyễn Hữu Thắng | 3118410402 |
 
+<br><br><br><br>
+
 ## Tài Khoản
 | stt | Tên Tài Khoản      | Mật Khẩu     |
 |-----| ------------------ | ------------ |
@@ -46,6 +48,8 @@ An **beautiful** and **easy-to-use** Management Tool
 | 9   | QL000008           | QL000008     |
 | 10  | QL000009           | QL000009     |
 | 11  | QL000010           | QL000010     |
+
+<br><br><br><br>
 
 ## Chức Năng Chính
 &nbsp;
@@ -96,7 +100,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <div align="right">
 
-### Tìm Kiếm
+### Menu Chọn
 
 ---
 
@@ -120,11 +124,11 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(97).png" width="500px">
+<img align="right" src="/Review/capture(97).png" width="500px">
 
-<div align="right">
+<div align="left">
 
-### Menu Chọn
+### Tìm Kiếm
 
 ---
 
