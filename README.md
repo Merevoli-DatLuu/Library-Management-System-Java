@@ -82,7 +82,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="right" src="/Review/capture(90).png" width="500px">
+<img align="right" src="/Review/capture(90).png" width="50%">
 
 <div align="left">
 
@@ -96,7 +96,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(97).png" width="500px">
+<img align="left" src="/Review/capture(97).png" width="50%">
 
 <div align="right">
 
