@@ -21,7 +21,7 @@ An **beautiful** and **easy-to-use** Management Tool
 - [Thành Viên Nhóm](#thành-viên-nhóm)
 - [Tài Khoản](#tài-khoản)
 - [Chức Năng Chính](#chức-năng-chính)
-- [Tính Năng Nâng Cao](#tải-về-và-cài-đặt)
+- [Chức Năng Nâng Cao](#chức-năng-nâng-cao)
 - [Screenshot](#screenshot)
 
 ## Thành Viên Nhóm
@@ -32,7 +32,7 @@ An **beautiful** and **easy-to-use** Management Tool
 | 3 | Nguyễn Thị Mỹ Hằng | 3118410113 |
 | 4 | Nguyễn Hữu Thắng | 3118410402 |
 
-<br><br><br><br>
+<br><br>
 
 ## Tài Khoản
 | stt | Tên Tài Khoản      | Mật Khẩu     |
@@ -49,7 +49,7 @@ An **beautiful** and **easy-to-use** Management Tool
 | 10  | QL000009           | QL000009     |
 | 11  | QL000010           | QL000010     |
 
-<br><br><br><br>
+<br><br>
 
 ## Chức Năng Chính
 &nbsp;
@@ -110,11 +110,11 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(97).png" width="500px">
+<img align="right" src="/Review/capture(102).png" width="500px">
 
-<div align="right">
+<div align="left">
 
-### Nhập Xuất Excel
+### Tìm Kiếm
 
 ---
 
@@ -124,11 +124,11 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="right" src="/Review/capture(97).png" width="500px">
+<img align="left" src="/Review/capture(101).png" width="500px">
 
-<div align="left">
+<div align="right">
 
-### Tìm Kiếm
+### Nhập Xuất Excel
 
 ---
 
@@ -151,5 +151,17 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<img align="left" src="/Review/maureport.png" width="500px">
+
+<div align="right">
+
+### Report
+
+---
+
+Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
