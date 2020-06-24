@@ -136,6 +136,8 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <img align="right" src="/Review/capture(99).png" width="500px">
 
+<img align="right" src="/Review/capture(100).png" width="500px">
+
 <div align="left">
 
 ### Thống Kê
@@ -145,17 +147,5 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
-
-<br><br><br><br><br><br><br><br><br><br>
-
-<img align="left" src="/Review/capture(100).png" width="500px">
-
-<div align="right">
-
-### Thống Kê
-
----
-
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
