@@ -64,7 +64,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/Login GUI.png" width="500px">
+<img align="left" src="/Review/capture(89).png" width="500px">
 
 <div align="right">
 
