@@ -187,7 +187,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/Login GUI.png" width="500px">
+<img align="left" src="/Review/RFID Login GUI.png" width="500px">
 
 <div align="right">
 
@@ -201,7 +201,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="right" src="/Review/capture(90).png" width="500px">
+<img align="right" src="/Review/capture(103).png" width="500px">
 
 <div align="left">
 
@@ -215,7 +215,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(90).png" width="500px">
+<img align="left" src="/Review/capture(96).png" width="500px">
 
 <div align="right">
 
@@ -229,7 +229,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="right" src="/Review/capture(90).png" width="500px">
+<img align="right" src="/Review/capture(93).png" width="500px">
 
 <div align="left">
 
@@ -243,7 +243,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(90).png" width="500px">
+<img align="left" src="/Review/capture(105).png" width="500px">
 
 <div align="right">
 
