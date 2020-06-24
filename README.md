@@ -78,9 +78,9 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(90).png" width="500px">
+<img align="right" src="/Review/capture(90).png" width="500px">
 
-<div align="right">
+<div align="left">
 
 ### Quản Lý Phiếu Nhập
 
@@ -106,9 +106,9 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(99).png" width="500px">
+<img align="right" src="/Review/capture(99).png" width="500px">
 
-<div align="right">
+<div align="left">
 
 ### Thống Kê
 
