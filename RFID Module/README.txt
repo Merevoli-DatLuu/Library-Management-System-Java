@@ -1,14 +1,17 @@
-﻿HardWare:
+﻿Hardware:
 Controller: Arduino Uno
 Module: Mạch RFID RC522 NFC 13.56Mhz
 
-Soft Ware
+Software
 Arduino Side: 
-+ Library: MFRC522.h (for RFID)
-+ Code:
++ Library: MFRC522.h (for RFID) - rfid-master.zip
++ Code: RFID_main.ino
 
 Java Software Side:
-+ jSerialComm
++ jSerialComm Library
+
+========== Sơ Đồ =============
+RFID        Uno         Mega
 
 SDA (SS)    10          53
 SCK         13          52
@@ -18,6 +21,3 @@ IRQ	    UNUSED      UNUSED
 GND         GND         GND
 RST         9           9
 3.3V        3.3V        3.3V
-
-Card UID: 64 6B A5 18
-Card UID: 1C 17 59 89
