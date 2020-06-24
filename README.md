@@ -241,9 +241,9 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 </div>
 
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
-<img align="left" src="/Review/capture(105).png" width="500px">
+<img align="left" src="/Review/capture(104).png" width="500px">
 
 <div align="right">
 
