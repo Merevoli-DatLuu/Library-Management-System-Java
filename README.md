@@ -173,7 +173,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 ## Chức Năng Nâng Cao
 &nbsp;
 
-<img align="right" src="/Review/RFID Login GUI.png" height="500px">
+<img align="right" src="/Review/RFID Login GUI.png" height="350px">
 
 <div align="left">
 
