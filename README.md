@@ -1,9 +1,4 @@
 
-![Completion](https://img.shields.io/badge/style-97%25-00e600?label=Completion&logo=java&logoColor=red&style=for-the-badge)
-![Language](https://img.shields.io/badge/Language-Java-orange.svg)
-![Team](https://img.shields.io/badge/Team-SGU-00ffff.svg)
-![Project](https://img.shields.io/badge/Project-Java%20%2F%20HK2-1affa3.svg)
-
 <div align="center">
 
 # Library Management System by Java 
@@ -21,16 +16,16 @@ An **beautiful** and **easy-to-use** Management Tool
 
 ---
 
-**Themis Web Interface** là một dự án mã nguồn mở, phi lợi nhuận với mục đích chính nhằm biến việc quản lí và tổ chức các buổi học lập trình, ôn tập và tổ chức kì thi trở nên dễ dàng hơn.
+**Library Management System** là một phần mềm quản lý thư viện, hướng đến sự đơn giản và tiện lợi cho người dùng. Phần mềm hỗ trợ nhiều tính năng hữu ích giúp việc quản lý dễ dàng hơn.
 
-- [Demo](#demo)
+- [Thành Viên Nhóm](#team)
 - [Tính năng](#tính-năng)
 - [Tải về và cài đặt](#tải-về-và-cài-đặt)
 - [API Document](#api-document)
 - [Screenshot](#screenshot)
 - [Contribution](#contribution)
 
-## Team
+## Thành Viên Nhóm
 | stt | Họ Tên  | MSSV |
 |---| ----- | -------- |
 | 1 | Lưu Thành Đạt | 3118410073 |
