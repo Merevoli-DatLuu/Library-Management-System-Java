@@ -79,7 +79,8 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Trang Chủ được thiết kế **trực quan** giúp người sử dụng có cái nhìn **tổng quan về hệ thống**.
+
 
 </div>
 
@@ -93,7 +94,11 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Trang quản lý tối giản với hình **tính năng hỗ trợ**:
++ Tìm Kiếm
++ Lọc Thông Tin
++ Nhập Xuất Excel
++ ...
 
 </div>
 
@@ -107,7 +112,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Menu Chọn **tối giản**, **gọn gàng**.
 
 </div>
 
@@ -121,7 +126,9 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Chức năng tìm kiếm tiện dụng bằng những thao tác đơn giản.
+
+Hỗ trợ lựa chọn Header để tìm kiếm.
 
 </div>
 
@@ -135,7 +142,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Hỗ trợ *nhập xuất Excel* giúp công việc quản lý dễ dàng hơn, hoàn thành công việc nhanh chóng hơn.
 
 </div>
 
@@ -151,7 +158,9 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Đánh giá và thống kê nhanh **tình hình hoạt động** của hệ thống hiện tại.
+
+Thống kê **trực quan**, **đẹp mắt** với nhiều tiêu chí.
 
 </div>
 
@@ -165,7 +174,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Report đầy đủ thông tin, giúp người dùng đánh giá tính hiệu quả của hệ thống đang hoạt động.
 
 </div>
 
@@ -185,7 +194,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Đăng nhập **nhanh chóng** và **an toàn** hơn với thẻ từ.
 
 </div>
 
@@ -199,7 +208,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Tăng sự linh động khi tìm kiếm, giúp việc tìm kiếm thông tin dễ dàng hơn.
 
 </div>
 
@@ -213,7 +222,12 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Hỗ trợ nhiều **phép so sánh** với nhiều **kiểu dữ liệu**:
++ 6 phép so sánh với kiểu STRING
++ 6 phép so sánh với kiểu NUMBER
++ 3 phép so sánh với kiểu DATE
+
+Kết hợp nhiều phép lọc với **AND**, **OR**.
 
 </div>
 
@@ -227,7 +241,16 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Table được thiết kế linh động với nhiều tính năng:
++ Sắp xếp theo Column
++ Resize Column
++ Swap vị trí các Column
++ Bôi đen các Row
++ Phân trang
++ Chọn Page Size 
++ Popup Thêm Sửa Xóa (bôi đen Row rồi click phải)
++ Popup Filter (click phải header)
++ Refresh và Full View
 
 </div>
 
@@ -237,11 +260,18 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 <div align="left">
 
-### Biểu Đổ (Chart)
+### Biểu Đổ (Chart) - JFreeChart
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Biểu đồ trực quan, sinh động với nhiều dạng biểu đồ: Pie Chart, Line Chart, Bar Chart,...
+
+Hỗ trợ nhiều tính năng:
++ Zoom in, zoom out, chọn Range
++ Xuất file png
++ In ấn biểu đồ
++ Thay đổi thuộc tính của biểu đồ
++ ...
 
 </div>
 
@@ -255,6 +285,7 @@ Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
 
 ---
 
-Trang đăng nhập được thiết kế **hiện đại**, **tối giản**.
+Mã hóa mật khẩu theo chuẩn PBKDF2 (mạnh hơn và tốt hơn nhiều so với MD5, SHA1) cùng salt với KeyLength lên đến 128 bit, tham số cường đồ hơn 60000.
+Đảm bảo mật khẩu luôn được an toàn.
 
 </div>
