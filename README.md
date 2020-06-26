@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# Library Management System by Java 
+# Library Management System
 
 An **beautiful** and **easy-to-use** Management Tool
 
