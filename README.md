@@ -264,7 +264,7 @@ Table được thiết kế linh động với nhiều tính năng:
 
 ---
 
-Biểu đồ trực quan, sinh động với nhiều dạng biểu đồ: Pie Chart, Line Chart, Bar Chart,...
+Biểu đồ **trực quan**, **sinh động** với nhiều dạng biểu đồ: *Pie Chart, Line Chart, Bar Chart,...*
 
 Hỗ trợ nhiều tính năng:
 + Zoom in, zoom out, chọn Range
@@ -285,8 +285,8 @@ Hỗ trợ nhiều tính năng:
 
 ---
 
-Mã hóa mật khẩu theo chuẩn PBKDF2 (mạnh hơn và tốt hơn nhiều so với MD5, SHA1) cùng salt với KeyLength lên đến 128 bit, tham số cường đồ hơn 60000.
+Mã hóa mật khẩu theo chuẩn **PBKDF2** (mạnh hơn và tốt hơn nhiều so với *MD5, SHA1*) cùng *salt* với **KeyLength** lên đến 128 bit, **tham số cường đồ** hơn 60000.
 
-Đảm bảo mật khẩu luôn được an toàn.
+*Đảm bảo mật khẩu luôn được an toàn*.
 
 </div>
