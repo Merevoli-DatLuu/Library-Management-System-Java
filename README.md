@@ -98,6 +98,7 @@ Trang quản lý tối giản với hình **tính năng hỗ trợ**:
 + Tìm Kiếm
 + Lọc Thông Tin
 + Nhập Xuất Excel
++ Table đa dụng
 + ...
 
 </div>
@@ -243,8 +244,7 @@ Kết hợp nhiều phép lọc với **AND**, **OR**.
 
 Table được thiết kế linh động với nhiều tính năng:
 + Sắp xếp theo Column
-+ Resize Column
-+ Swap vị trí các Column
++ Resize và Swap vị trí các Column
 + Bôi đen các Row
 + Phân trang
 + Chọn Page Size 
@@ -286,6 +286,7 @@ Hỗ trợ nhiều tính năng:
 ---
 
 Mã hóa mật khẩu theo chuẩn PBKDF2 (mạnh hơn và tốt hơn nhiều so với MD5, SHA1) cùng salt với KeyLength lên đến 128 bit, tham số cường đồ hơn 60000.
+
 Đảm bảo mật khẩu luôn được an toàn.
 
 </div>
