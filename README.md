@@ -3,7 +3,7 @@
 
 # Library Management System
 
-An **beautiful** and **easy-to-use** Management Tool
+A **beautiful** and **easy-to-use** Management Tool
 
 <img src="/Review/Banner.png" width="50%">
 
